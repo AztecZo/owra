@@ -1,22 +1,23 @@
 .intro {
-  @include dims(auto, desktop-vw(700px));
   position: relative;
 
   .logoC {
     @include dims(100%, auto);
+    padding: desktop-vw(130px) 0 desktop-vw(260px) 0;
   }
 
   .iceC {
     @include position(absolute, auto, 0, 0, 0);
     transform: translateY(50%);
+    z-index: 10;
   }
 }
 
 .greetings {
+  background-color: var(--science-blue);
   position: relative;
 
   .text {
-    background-color: var(--science-blue);
     padding: desktop-vw(300px) 0;
 
     > h1 {
@@ -24,9 +25,26 @@
       font-family: var(--font-dela-gothic-one);
       font-size: desktop-vw(82px);
       font-weight: 400;
+      line-height: 1.25;
 
       span {
         display: block;
+
+        &:nth-child(1) {
+          margin-left: desktop-vw(500px);
+        }
+
+        &:nth-child(2) {
+          margin-left: desktop-vw(300px);
+        }
+
+        &:nth-child(3) {
+          margin-left: desktop-vw(400px);
+        }
+
+        &:nth-child(4) {
+          margin-left: desktop-vw(300px);
+        }
       }
     }
 
@@ -36,6 +54,7 @@
       font-family: var(--font-fustat);
       font-size: desktop-vw(18px);
       font-weight: 400;
+      margin-left: desktop-vw(900px);
     }
   }
 
@@ -43,8 +62,8 @@
     position: relative;
 
     .waveC {
-      @include position(absolute, auto, 0, 0, 0);
-      transform: translateY(50%);
+      @include position(absolute, 0, 0, auto, 0);
+      transform: translateY(-60%);
     }
   }
 }
@@ -74,7 +93,9 @@
     padding: desktop-vw(70px);
 
     .imgC {
+      border-radius: desktop-vw(10px);
       margin-bottom: desktop-vw(-200px);
+      overflow: hidden;
 
       &:nth-child(1) {
         @include dims(desktop-vw(450px), desktop-vw(520px));
@@ -122,5 +143,25 @@
         }
       }
     }
+  }
+}
+
+.contact {
+  background-color: var(--science-blue);
+  gap: desktop-vw(80px);
+  padding: desktop-vw(20px);
+  position: relative;
+  margin-bottom: desktop-vw(300px);
+
+  .imgC {
+    @include dims(auto, desktop-vw(770px));
+    border-radius: desktop-vw(10px);
+    overflow: hidden;
+  }
+
+  .waveC {
+    @include position(absolute, auto, 0, 0, 0);
+    transform: translateY(60%);
+    z-index: -1;
   }
 }

@@ -8,7 +8,10 @@ import { Img } from "@/components/utility/img"
 
 import iceCubes from "@/public/img/ice-cubes.png"
 import s1 from "@/public/img/s-1.svg"
+import s2 from "@/public/img/s-2.svg"
+
 import { Marquee } from "@/components/animations/marquee"
+import { FormContact } from "@/components/form-contact"
 
 export default function Home() {
   return (
@@ -37,9 +40,8 @@ export default function Home() {
             sunmayı hedefliyoruz.
           </p>
         </div>
-
         <div className={cx(s.fullImg, "h-screen")}>
-          <Img src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+          <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
 
           <div className={s.waveC}>
             <Img src={s1} alt="Ice Cubes" />
@@ -95,6 +97,19 @@ export default function Home() {
         </div>
       </section>
       <section className="w-screen h-screen flex items-center justify-center">SLIDER</section>
+      <section className={cx(s.contact, "grid grid-cols-12")}>
+        <div className="col-span-6">
+          <FormContact />
+        </div>
+        <div className="col-span-6">
+          <div className={s.imgC}>
+            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+          </div>
+        </div>
+        <div className={s.waveC}>
+          <Img src={s2} alt="Ice Cubes" />
+        </div>
+      </section>
     </DefaultLayout>
   )
 }

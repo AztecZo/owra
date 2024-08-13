@@ -1,3 +1,5 @@
+import Providers from "@/layouts/providers"
+import { SmoothLayout } from "@/layouts/smooth"
 import "@/styles/global.scss"
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
@@ -13,7 +15,11 @@ const delaGothicOne = Dela_Gothic_One({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}>
-      <Component {...pageProps} />
+      <Providers>
+        <SmoothLayout>
+          <Component {...pageProps} />
+        </SmoothLayout>
+      </Providers>
     </div>
   )
 }

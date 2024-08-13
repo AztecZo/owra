@@ -9,6 +9,7 @@ import { CustomHead } from "@/components/utility/custom-head"
 import { baseUrl } from "@/lib/constants"
 import { Seo } from "@/types"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 type Props = {
   children: ReactNode
@@ -30,6 +31,7 @@ const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
       />
       <Header />
       {children}
+      <Footer />
     </div>
   )
 }
