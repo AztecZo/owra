@@ -1,0 +1,21 @@
+.header {
+  font-family: var(--font-mukta);
+  height: var(--header-height);
+  padding: 0 desktop-vw(60px);
+  z-index: z-index("header");
+
+  .nav {
+    gap: desktop-vw(50px);
+    position: relative;
+
+    .part {
+      gap: desktop-vw(30px);
+    }
+
+    .logoC {
+      @include position(absolute, 50%, auto, auto, 50%);
+      @include dims(desktop-vw(120px), desktop-vw(80px));
+      transform: translate(-50%, -50%);
+    }
+  }
+}
