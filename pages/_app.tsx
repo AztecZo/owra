@@ -12,7 +12,7 @@ const delaGothicOne = Dela_Gothic_One({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`flex min-h-screen flex-col items-center justify-between ${delaGothicOne.variable}`}>
+    <div className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}>
       <Component {...pageProps} />
     </div>
   )

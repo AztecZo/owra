@@ -1,7 +1,9 @@
 .header {
-  font-family: var(--font-mukta);
-  height: var(--header-height);
-  padding: 0 desktop-vw(60px);
+  border: 1px solid var(-science-blue);
+  color: var(--science-blue);
+  font-family: var(--font-dela-gothic-one);
+  font-weight: 400;
+  padding: desktop-vw(13px) desktop-vw(40px);
   z-index: z-index("header");
 
   .nav {

@@ -1,0 +1,126 @@
+.intro {
+  @include dims(auto, desktop-vw(700px));
+  position: relative;
+
+  .logoC {
+    @include dims(100%, auto);
+  }
+
+  .iceC {
+    @include position(absolute, auto, 0, 0, 0);
+    transform: translateY(50%);
+  }
+}
+
+.greetings {
+  position: relative;
+
+  .text {
+    background-color: var(--science-blue);
+    padding: desktop-vw(300px) 0;
+
+    > h1 {
+      color: var(--white);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(82px);
+      font-weight: 400;
+
+      span {
+        display: block;
+      }
+    }
+
+    > p {
+      @include dims(desktop-vw(500px), auto);
+      color: var(--white);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(18px);
+      font-weight: 400;
+    }
+  }
+
+  .fullImg {
+    position: relative;
+
+    .waveC {
+      @include position(absolute, auto, 0, 0, 0);
+      transform: translateY(50%);
+    }
+  }
+}
+
+.why {
+  border-bottom: 1px solid var(--algerian-colar);
+
+  .marqueeC {
+    border-bottom: 1px solid var(--algerian-colar);
+    border-top: 1px solid var(--algerian-colar);
+    padding: desktop-vw(50px) 0;
+
+    h2 {
+      color: var(--black);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(80px);
+      font-weight: 400;
+    }
+
+    .iconC {
+      @include dims(desktop-vw(50px));
+      margin: 0 desktop-vw(50px);
+    }
+  }
+
+  .imgs {
+    padding: desktop-vw(70px);
+
+    .imgC {
+      margin-bottom: desktop-vw(-200px);
+
+      &:nth-child(1) {
+        @include dims(desktop-vw(450px), desktop-vw(520px));
+        transform: rotate(10deg);
+        z-index: 10;
+        margin-left: auto;
+      }
+
+      &:nth-child(2) {
+        @include dims(desktop-vw(500px), desktop-vw(700px));
+        transform: rotate(-5deg);
+        z-index: 5;
+      }
+    }
+  }
+
+  .text {
+    padding: 0 desktop-vw(80px) 0 0;
+
+    > p {
+      color: var(--black);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(18px);
+      font-weight: 400;
+      margin-bottom: desktop-vw(100px);
+    }
+
+    > ul {
+      li {
+        margin-bottom: desktop-vw(60px);
+
+        h5 {
+          color: var(--black);
+          font-family: var(--font-dela-gothic-one);
+          font-size: desktop-vw(30px);
+          font-weight: 400;
+          margin-bottom: desktop-vw(12px);
+        }
+
+        p {
+          color: var(--black);
+          font-family: var(--font-fustat);
+          font-size: desktop-vw(24px);
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
