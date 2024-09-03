@@ -61,7 +61,7 @@
     .social {
       @include position(absolute, 50%, auto, auto, 50%);
       gap: desktop-vw(10px);
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
 
       .iconC {
         @include dims(desktop-vw(28px));

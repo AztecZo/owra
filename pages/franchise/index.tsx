@@ -6,10 +6,48 @@ import { DefaultLayout } from "@/layouts/default"
 import { Marquee } from "@/components/animations/marquee"
 import { Img } from "@/components/utility/img"
 import { FormContact } from "@/components/form-contact"
+import { Button } from "@/components/button"
+
+import i1 from "@/public/img/b-1.png"
+import i2 from "@/public/img/b-2.png"
+import i3 from "@/public/img/b-3.png"
+import i4 from "@/public/img/b-4.png"
+import { Parallax } from "@/components/animations/parallax"
+import { useLenisStore } from "@/lib/store/lenis"
+import { useGSAP } from "@gsap/react"
+import { gsap, ScrollTrigger } from "@/lib/gsap"
+import { useRef } from "react"
 
 export interface FranchiseProps {}
 
 export default function Franchise(props: FranchiseProps) {
+  const prosRef = useRef(null)
+  const { lenis } = useLenisStore()
+
+  useGSAP(
+    () => {
+      const a = document.querySelector(".sticky-pin")?.getBoundingClientRect().height
+      const b = document.querySelector(".img-c")?.getBoundingClientRect().height
+
+      if (!a || !b) return
+
+      const tl = gsap.timeline().to(".img-c", {
+        y: `${a - b}px`,
+      })
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: ".sticky-pin",
+        scrub: 0.5,
+        start: "top+=25% center",
+        end: `bottom-=25% center`,
+      })
+    },
+    {
+      scope: prosRef,
+    }
+  )
+
   return (
     <DefaultLayout seo={{ title: "Franchise", description: "Franchise" }}>
       <section className={cx(s.intro, "flex flex-col items-center")}>
@@ -19,7 +57,45 @@ export default function Franchise(props: FranchiseProps) {
           başarılı bir girişimci olabilirsiniz. Kalite, tazelik ve eğlence odaklı ürünlerimizle müşterilerimize en iyi
           hizmeti sunmak için birlikte çalışmak istiyoruz.
         </p>
-        <button>Franchise Ol</button>
+        <button
+          type="button"
+          className={s.cta}
+          onClick={() => {
+            lenis?.scrollTo(`#franchise`, { duration: 1.5 })
+          }}
+        >
+          <Button>Franchise Ol</Button>
+        </button>
+
+        <div className={cx(s.ice, s.ice1)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i3} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice2)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice3)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice4)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i2} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice5)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i4} />
+          </Parallax>
+        </div>
       </section>
 
       <section className={s.marqueeC}>
@@ -60,13 +136,14 @@ export default function Franchise(props: FranchiseProps) {
           </div>
         </div>
       </section>
-      <section className={cx(s.pros, "grid grid-cols-2")}>
+
+      <section className={cx(s.pros, "grid grid-cols-2")} ref={prosRef}>
         <div>
-          <div className={s.imgC}>
+          <div className={cx(s.imgC, "img-c")}>
             <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
           </div>
         </div>
-        <div className={cx(s.text, "flex flex-col")}>
+        <div className={cx(s.text, "sticky-pin", "flex flex-col")}>
           <h2>Owra Franchise Sahibi Olmanın Avantajları</h2>
           <div className={cx(s.items, "flex flex-col")}>
             <div className="flex flex-col items-center justify-start">
@@ -88,7 +165,8 @@ export default function Franchise(props: FranchiseProps) {
           </div>
         </div>
       </section>
-      <section className={cx(s.contact, "grid grid-cols-2")}>
+
+      <section id="franchise" className={cx(s.contact, "grid grid-cols-2")}>
         <div className={s.text}>
           <h5>Nasıl Başvurabilirim?</h5>
           <p>

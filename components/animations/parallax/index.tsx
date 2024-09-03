@@ -1,6 +1,9 @@
+"use client"
+
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import { ReactNode, useRef } from "react"
+import { useWindowSize } from "usehooks-ts"
 
 interface Parallax {
   children: ReactNode
@@ -10,7 +13,8 @@ interface Parallax {
 
 const Parallax = (props: Parallax) => {
   const { children, speedX, speedY } = props
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
+  const windowSize = useWindowSize()
 
   useGSAP(
     () => {
@@ -20,12 +24,13 @@ const Parallax = (props: Parallax) => {
         scrollTrigger: {
           id: "parallax",
           markers: false,
+          start: `top top+=${ref.current?.getBoundingClientRect().top}px`,
           scrub: true,
           trigger: ref.current,
         },
       })
     },
-    { scope: ref, dependencies: [speedX, speedY] }
+    { scope: ref, dependencies: [speedX, speedY, windowSize.width], revertOnUpdate: true }
   )
 
   return (

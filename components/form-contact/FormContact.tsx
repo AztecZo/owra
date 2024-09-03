@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/utility/input"
 import { Textarea } from "@/components/utility/textarea"
 import { FormSchema, useSubmitForm } from "@/pages/api/mutations/contact-form"
+import { Button } from "../button"
 
 export default function FormContact() {
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -121,7 +122,7 @@ export default function FormContact() {
             </div>
 
             <button className={cx(s.submitBtn)} type="submit" disabled={!form.formState.isValid}>
-              <span>Send now</span>
+              <Button>Gönder</Button>
             </button>
           </form>
         </Form>

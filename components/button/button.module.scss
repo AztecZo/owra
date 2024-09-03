@@ -1,0 +1,34 @@
+.button {
+  --borderDistance: 4px;
+  border-radius: desktop-vw(10px);
+  position: relative;
+
+  &::before {
+    content: "";
+    @include position(
+      absolute,
+      var(--borderDistance),
+      var(--borderDistance),
+      var(--borderDistance),
+      var(--borderDistance)
+    );
+    border-radius: desktop-vw(6px);
+    border: 1px solid var(--white);
+  }
+
+  &.blue {
+    background-color: var(--science-blue);
+    color: var(--white);
+  }
+
+  &.white {
+    background-color: var(--white);
+    color: var(--science-blue);
+  }
+
+  > span {
+    font-family: var(--font-dela-gothic-one);
+    font-weight: 400;
+    font-size: desktop-vw(32px);
+  }
+}

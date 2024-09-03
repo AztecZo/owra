@@ -1,6 +1,6 @@
 .intro {
-  margin-bottom: desktop-vw(75px);
   padding: desktop-vw(80px) 0;
+  position: relative;
 
   > h1 {
     color: var(--science-blue);
@@ -28,10 +28,50 @@
     margin-bottom: desktop-vw(80px);
     text-align: center;
   }
+
+  .cta {
+    @include dims(desktop-vw(630px), desktop-vw(80px));
+  }
+
+  .ice {
+    opacity: 0.75;
+    z-index: -1;
+  }
+
+  .ice1 {
+    @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(100px));
+    @include dims(desktop-vw(120px));
+    transform: rotate(8deg);
+  }
+
+  .ice2 {
+    @include position(absolute, desktop-vw(330px), auto, auto, desktop-vw(180px));
+    @include dims(desktop-vw(100px));
+    transform: rotate(-8deg);
+  }
+
+  .ice3 {
+    @include position(absolute, desktop-vw(50px), auto, auto, desktop-vw(730px));
+    @include dims(desktop-vw(120px));
+    transform: rotate(-16deg);
+  }
+
+  .ice4 {
+    @include position(absolute, desktop-vw(280px), auto, auto, desktop-vw(1100px));
+    @include dims(desktop-vw(85px));
+    transform: rotate(8deg);
+  }
+
+  .ice5 {
+    @include position(absolute, desktop-vw(80px), auto, auto, desktop-vw(1300px));
+    @include dims(desktop-vw(140px));
+    transform: rotate(8deg);
+  }
 }
 
 .marqueeC {
-  padding: desktop-vw(80px) 0;
+  border-bottom: 3px solid var(--science-blue);
+  padding-bottom: desktop-vw(80px);
 
   .imgC {
     border-radius: desktop-vw(10px);
@@ -101,7 +141,7 @@
       font-family: var(--font-dela-gothic-one);
       font-size: desktop-vw(50px);
       font-weight: 400;
-      line-height: 1;
+      line-height: 1.1;
       margin-bottom: desktop-vw(100px);
     }
 
@@ -119,7 +159,7 @@
           font-family: var(--font-dela-gothic-one);
           font-size: desktop-vw(30px);
           font-weight: 400;
-          line-height: 1.15;
+          line-height: 1.2;
           margin-bottom: desktop-vw(16px);
         }
 
@@ -128,6 +168,7 @@
           font-family: var(--font-fustat);
           font-size: desktop-vw(20px);
           font-weight: 400;
+          line-height: 1.2;
         }
       }
     }
@@ -143,6 +184,7 @@
 }
 
 .contact {
+  margin-bottom: desktop-vw(200px);
   padding: desktop-vw(60px) 0;
 
   .text {
