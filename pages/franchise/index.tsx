@@ -1,22 +1,22 @@
 import s from "./franchise.module.scss"
 
+import { gsap, ScrollTrigger } from "@/lib/gsap"
+import { useGSAP } from "@gsap/react"
 import cx from "clsx"
+import { useRef } from "react"
 
-import { DefaultLayout } from "@/layouts/default"
 import { Marquee } from "@/components/animations/marquee"
-import { Img } from "@/components/utility/img"
-import { FormContact } from "@/components/form-contact"
+import { Parallax } from "@/components/animations/parallax"
 import { Button } from "@/components/button"
+import { FormContact } from "@/components/form-contact"
+import { Img } from "@/components/utility/img"
+import { DefaultLayout } from "@/layouts/default"
+import { useLenisStore } from "@/lib/store/lenis"
 
 import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
 import i4 from "@/public/img/b-4.png"
-import { Parallax } from "@/components/animations/parallax"
-import { useLenisStore } from "@/lib/store/lenis"
-import { useGSAP } from "@gsap/react"
-import { gsap, ScrollTrigger } from "@/lib/gsap"
-import { useRef } from "react"
 
 export interface FranchiseProps {}
 
@@ -26,6 +26,10 @@ export default function Franchise(props: FranchiseProps) {
 
   useGSAP(
     () => {
+      if (ScrollTrigger.isTouch) {
+        return
+      }
+
       const a = document.querySelector(".sticky-pin")?.getBoundingClientRect().height
       const b = document.querySelector(".img-c")?.getBoundingClientRect().height
 
@@ -137,7 +141,7 @@ export default function Franchise(props: FranchiseProps) {
         </div>
       </section>
 
-      <section className={cx(s.pros, "grid grid-cols-2")} ref={prosRef}>
+      <section className={cx(s.pros, "grid grid-cols-1 tablet:grid-cols-2")} ref={prosRef}>
         <div>
           <div className={cx(s.imgC, "img-c")}>
             <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
@@ -145,7 +149,7 @@ export default function Franchise(props: FranchiseProps) {
         </div>
         <div className={cx(s.text, "sticky-pin", "flex flex-col")}>
           <h2>Owra Franchise Sahibi Olmanın Avantajları</h2>
-          <div className={cx(s.items, "flex flex-col")}>
+          <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col items-center justify-start">
               <h3>Kuruluş ve Operasyonel Rehberlik</h3>
               <p>İşinizi başlatırken ve işletirken size rehberlik ediyoruz.</p>
@@ -166,7 +170,7 @@ export default function Franchise(props: FranchiseProps) {
         </div>
       </section>
 
-      <section id="franchise" className={cx(s.contact, "grid grid-cols-2")}>
+      <section id="franchise" className={cx(s.contact, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={s.text}>
           <h5>Nasıl Başvurabilirim?</h5>
           <p>
@@ -174,7 +178,7 @@ export default function Franchise(props: FranchiseProps) {
             sizinle birlikte çalışarak size uygun olan franchise seçeneklerini tartışacaktır. Başvuru formu doldurabilir
             veya detaylı bilgi almak için bize ulaşabilirsiniz.
           </p>
-          <div className={cx(s.items, "flex flex-col ")}>
+          <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col">
               <h3>Telefon:</h3>
               <p>+90 555 555 55 55</p>

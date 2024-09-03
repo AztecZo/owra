@@ -99,6 +99,7 @@
       margin-top: desktop-vw(12px);
 
       @include mobile {
+        @include dims(100%, mobile-vw(60px));
         margin: 0 auto;
         margin-top: mobile-vw(12px);
       }

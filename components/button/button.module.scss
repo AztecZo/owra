@@ -3,6 +3,10 @@
   border-radius: desktop-vw(10px);
   position: relative;
 
+  @include mobile {
+    border-radius: mobile-vw(10px);
+  }
+
   &::before {
     content: "";
     @include position(
@@ -14,6 +18,10 @@
     );
     border-radius: desktop-vw(6px);
     border: 1px solid var(--white);
+
+    @include mobile {
+      border-radius: mobile-vw(6px);
+    }
   }
 
   &.blue {
@@ -30,5 +38,9 @@
     font-family: var(--font-dela-gothic-one);
     font-weight: 400;
     font-size: desktop-vw(32px);
+
+    @include mobile {
+      font-size: mobile-vw(20px);
+    }
   }
 }
