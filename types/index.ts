@@ -1,12 +1,9 @@
 import { NextSeoProps } from "next-seo"
-import { StaticImageData } from "next/image"
 
 export interface Seo {
   title: NextSeoProps["title"]
   description: NextSeoProps["description"]
 }
-
-export type CursorType = "default" | "click" | "media" | "hide"
 
 export interface Filter {
   ui: string
@@ -17,13 +14,6 @@ export interface Social {
   icon: any
   ui: string
   url: string
-}
-
-export interface Media {
-  type: MediaType
-  src: string | StaticImageData
-  height?: number
-  width?: number
 }
 
 export enum MediaType {
@@ -46,11 +36,56 @@ export enum Size {
   xl = "xl",
 }
 
-export interface CardFloatProps {
-  icon: string
+export interface CardBlogProps {
+  id?: string
+  category: string
+  date: string
   description: string
-  button?: {
-    text: string
-    url: string
-  }
+  horizontal?: boolean
+  media: MediaProps
+  title: string
+  time: string
+  url: string
 }
+
+export interface BlogProps {
+  id?: string
+  header: Omit<CardBlogProps, "url">
+  nextPost: string
+  // body: BlockProps
+}
+
+export interface SocialProps {
+  icon: string
+  url: string
+}
+
+export interface MediaProps {
+  type?: "image" | "video"
+  height?: string
+  src: string
+  width?: string
+}
+
+export interface Alignment {
+  alignment: "tl" | "tr" | "bl" | "br"
+}
+
+export interface OptionProps {
+  label: string
+  value: string
+}
+
+export interface BlockProps {
+  id: string
+  data: MediaProps[] | HTMLElement | any
+  componentName: "Image" | "Text" | "Body"
+  [key: string]: unknown
+}
+
+export interface Seo {
+  title: NextSeoProps["title"]
+  description: NextSeoProps["description"]
+}
+
+export type CursorType = "default" | "click" | "clickDark" | "menu"

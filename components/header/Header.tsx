@@ -26,7 +26,7 @@ export default function Header() {
       <header className={cx(s.header, "flex items-center justify-between")} ref={ref}>
         <nav className={cx(s.nav, "flex items-center justify-between")}>
           <div className={s.navItem}>
-            <Link href="/hakkimizda">Hakkımızda</Link>
+            <Link href="/about-us">Hakkımızda</Link>
           </div>
           <div className={s.navItem}>
             <Link href="/ürünler">Ürünler</Link>
@@ -37,6 +37,9 @@ export default function Header() {
         </nav>
 
         <nav className={cx(s.nav, "flex items-center justify-between")}>
+          <div className={s.navItem}>
+            <Link href="/franchise">Franchise</Link>
+          </div>
           <div className={s.navItem}>
             <Link href="/iletisim">İletişim</Link>
           </div>

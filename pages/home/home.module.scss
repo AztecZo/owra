@@ -151,7 +151,7 @@
   gap: desktop-vw(80px);
   padding: desktop-vw(20px);
   position: relative;
-  margin-bottom: desktop-vw(300px);
+  // margin-bottom: desktop-vw(300px);
 
   .imgC {
     @include dims(auto, desktop-vw(770px));
@@ -159,9 +159,9 @@
     overflow: hidden;
   }
 
-  .waveC {
-    @include position(absolute, auto, 0, 0, 0);
-    transform: translateY(60%);
-    z-index: -1;
-  }
+  // .waveC {
+  //   @include position(absolute, auto, 0, 0, 0);
+  //   transform: translateY(60%);
+  //   z-index: -1;
+  // }
 }

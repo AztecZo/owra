@@ -6,11 +6,9 @@ import { useRef } from "react"
 
 import { useLenisStore } from "@/lib/store/lenis"
 import { useModalStore } from "@/lib/store/modal"
-import { useCursorStore } from "@/lib/store/cursor"
 
 const Modal = () => {
   const { isOpen, content } = useModalStore()
-  const cursorStore = useCursorStore()
   const lenis = useLenisStore()
   const ref = useRef(null)
   const duration = 0.4
@@ -31,7 +29,6 @@ const Modal = () => {
           pointerEvents: "none",
           onComplete: () => {
             lenis.setIsStopped(false)
-            cursorStore.reset()
             ScrollTrigger.refresh()
           },
         })

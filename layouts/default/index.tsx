@@ -30,7 +30,7 @@ const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
           }))}
       />
       <Header />
-      {children}
+      <main>{children}</main>
       <Footer />
     </div>
   )

@@ -55,7 +55,7 @@ export default function Home() {
             <div className="flex items-center">
               <h2>Neden Owra?</h2>
               <span className={s.iconC}>
-                <IconStar />
+                <IconStar fill="var(--algerian-colar)" />
               </span>
             </div>
           </Marquee>
@@ -106,9 +106,9 @@ export default function Home() {
             <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
           </div>
         </div>
-        <div className={s.waveC}>
+        {/* <div className={s.waveC}>
           <Img src={s2} alt="Ice Cubes" />
-        </div>
+        </div> */}
       </section>
     </DefaultLayout>
   )

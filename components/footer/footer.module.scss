@@ -1,0 +1,80 @@
+.footer {
+  position: relative;
+  z-index: z-index("footer");
+
+  &::before {
+    content: url("../../public/img/s-2.svg");
+    @include position(absolute, 0, 0, auto, 0);
+    @include dims(100%, desktop-vw(300px));
+    transform: translateY(-60%);
+  }
+
+  .nav {
+    color: var(--black);
+    gap: desktop-vw(100px);
+    margin-bottom: desktop-vw(600px);
+    margin-top: desktop-vw(320px);
+    padding: 0 desktop-vw(80px);
+    z-index: 20;
+
+    .row {
+      gap: desktop-vw(370px);
+    }
+
+    .col {
+      gap: desktop-vw(40px);
+    }
+
+    .navItem {
+      max-width: desktop-vw(350px);
+
+      > h6 {
+        color: var(--black);
+        font-family: var(--font-fustat);
+        font-size: desktop-vw(20px);
+        font-weight: 800;
+        line-height: 1.35;
+        margin-bottom: desktop-vw(4px);
+      }
+
+      > p {
+        color: var(--black);
+        font-family: var(--font-fustat);
+        font-size: desktop-vw(20px);
+        font-weight: 400;
+        line-height: 1.35;
+      }
+    }
+  }
+
+  .copyright {
+    position: relative;
+
+    > span {
+      color: var(--black);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(20px);
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .social {
+      @include position(absolute, 50%, auto, auto, 50%);
+      gap: desktop-vw(10px);
+      transform: translateX(-50%);
+
+      .iconC {
+        @include dims(desktop-vw(28px));
+      }
+    }
+  }
+
+  .logoC {
+    @include position(absolute, auto, desktop-vw(120px), desktop-vw(180px), desktop-vw(120px));
+  }
+
+  .iceC {
+    @include position(absolute, auto, 0, 0, 0);
+    z-index: 10;
+  }
+}

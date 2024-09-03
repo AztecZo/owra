@@ -1,9 +1,9 @@
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
-import { Media } from "@/types"
+import { MediaProps } from "@/types"
 
 interface MediaComponentProps {
-  media: Media
+  media: MediaProps
   priority?: boolean
 }
 
@@ -17,12 +17,14 @@ export default function MediaComponent(props: MediaComponentProps) {
         className="object-cover"
         src={media.src}
         priority={priority}
-        height={media.height ?? 1000}
-        width={media.width ?? 1000}
+        height={parseFloat(media.height as string) ?? 1000}
+        width={parseFloat(media.width as string) ?? 1000}
       />
     ),
     video: <Video className="object-cover" primaryVideoUrl={media.src as string} />,
   }
 
-  return mediaComponents[media.type]
+  if (media.type) {
+    return mediaComponents[media.type]
+  }
 }

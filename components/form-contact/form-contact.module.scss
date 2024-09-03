@@ -1,21 +1,12 @@
 .formContact {
-  @include dims(auto, desktop-vw(750px));
-  background-color: var(--plastic-carrot);
-
-  @include mobile {
-    @include dims(auto);
-  }
-
   > p {
-    @include dims(desktop-vw(360px), auto);
-    color: var(--black);
-    font-family: var(--font-manrope);
+    color: var(--science-blue);
+    font-family: var(--font-dela-gothic-one);
     font-weight: 400;
-    font-size: desktop-vw(20px);
+    font-size: desktop-vw(32px);
     line-height: 1.35;
 
     @include mobile {
-      @include dims(auto);
       font-size: mobile-vw(20px);
       text-align: center;
     }
@@ -119,7 +110,7 @@
       }
 
       > span {
-        color: var(--black);
+        color: var(--science-blue);
         font-family: var(--font-manrope);
         font-weight: 400;
         font-size: desktop-vw(40px);
@@ -152,7 +143,7 @@
     .input {
       @include dims(100%, desktop-vw(40px));
       border: none;
-      color: var(--black);
+      color: var(--science-blue);
       font-family: var(--font-manrope);
       font-weight: 400;
       font-size: desktop-vw(16px);
@@ -165,11 +156,11 @@
       }
 
       &.border {
-        border-bottom: 1px solid var(--black);
+        border-bottom: 1px solid var(--science-blue);
       }
 
       &::placeholder {
-        color: var(--black);
+        color: var(--science-blue);
         font-family: var(--font-manrope);
         font-weight: 500;
         font-size: desktop-vw(20px);
@@ -202,7 +193,7 @@
     }
 
     .box {
-      border: 1px solid var(--black);
+      border: 1px solid var(--science-blue);
       border-radius: desktop-vw(2px);
 
       @include mobile {

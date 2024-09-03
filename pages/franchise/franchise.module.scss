@@ -1,0 +1,199 @@
+.intro {
+  margin-bottom: desktop-vw(75px);
+  padding: desktop-vw(80px) 0;
+
+  > h1 {
+    color: var(--science-blue);
+    font-family: var(--font-dela-gothic-one);
+    font-size: desktop-vw(70px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: desktop-vw(40px);
+
+    span {
+      display: block;
+
+      &:nth-child(2) {
+        margin-left: desktop-vw(100px);
+      }
+    }
+  }
+
+  > p {
+    @include dims(desktop-vw(560px), auto);
+    color: var(--black);
+    font-family: var(--font-fustat);
+    font-size: desktop-vw(20px);
+    font-weight: 400;
+    margin-bottom: desktop-vw(80px);
+    text-align: center;
+  }
+}
+
+.marqueeC {
+  padding: desktop-vw(80px) 0;
+
+  .imgC {
+    border-radius: desktop-vw(10px);
+    margin-right: desktop-vw(40px);
+    overflow: hidden;
+
+    &:nth-child(1) {
+      @include dims(desktop-vw(320px), desktop-vw(380px));
+    }
+
+    &:nth-child(2) {
+      @include dims(desktop-vw(380px), desktop-vw(230px));
+    }
+  }
+}
+
+.why {
+  padding: desktop-vw(80px) 0;
+
+  > h2 {
+    @include dims(desktop-vw(660px), auto);
+    color: var(--science-blue);
+    font-family: var(--font-dela-gothic-one);
+    font-size: desktop-vw(50px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: desktop-vw(120px);
+    text-align: center;
+  }
+
+  .items {
+    column-gap: desktop-vw(100px);
+    row-gap: desktop-vw(100px);
+
+    > div {
+      @include dims(desktop-vw(350px), auto);
+
+      > h3 {
+        color: var(--science-blue);
+        font-family: var(--font-dela-gothic-one);
+        font-size: desktop-vw(30px);
+        font-weight: 400;
+        line-height: 1;
+        margin-bottom: desktop-vw(16px);
+      }
+
+      > p {
+        color: var(--black);
+        font-family: var(--font-fustat);
+        font-size: desktop-vw(20px);
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.pros {
+  background-color: var(--science-blue);
+  padding: desktop-vw(20px);
+
+  .text {
+    padding: desktop-vw(70px) desktop-vw(80px);
+
+    > h2 {
+      color: var(--white);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(50px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: desktop-vw(100px);
+    }
+
+    .items {
+      > div {
+        @include dims(desktop-vw(400px), auto);
+        margin-bottom: desktop-vw(100px);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        > h3 {
+          color: var(--white);
+          font-family: var(--font-dela-gothic-one);
+          font-size: desktop-vw(30px);
+          font-weight: 400;
+          line-height: 1.15;
+          margin-bottom: desktop-vw(16px);
+        }
+
+        > p {
+          color: var(--white);
+          font-family: var(--font-fustat);
+          font-size: desktop-vw(20px);
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .imgC {
+    @include dims(auto, desktop-vw(530px));
+    border-radius: desktop-vw(10px);
+    overflow: hidden;
+
+    position: -webkit-sticky;
+  }
+}
+
+.contact {
+  padding: desktop-vw(60px) 0;
+
+  .text {
+    padding: 0 desktop-vw(80px);
+
+    > h5 {
+      color: var(--science-blue);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(50px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: desktop-vw(40px);
+    }
+
+    > p {
+      color: var(--black);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(20px);
+      font-weight: 400;
+      margin-bottom: desktop-vw(50px);
+    }
+
+    .items {
+      gap: desktop-vw(10px);
+
+      > div {
+        @include dims(desktop-vw(350px), auto);
+        margin-bottom: desktop-vw(30px);
+
+        > h3 {
+          color: var(--science-blue);
+          font-family: var(--font-dela-gothic-one);
+          font-size: desktop-vw(20px);
+          font-weight: 400;
+          line-height: 1;
+          margin-bottom: desktop-vw(10px);
+        }
+
+        > p {
+          color: var(--black);
+          font-family: var(--font-fustat);
+          font-size: desktop-vw(20px);
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .formContactC {
+    margin-top: desktop-vw(330px);
+    padding: 0 desktop-vw(80px);
+    padding-left: 0;
+  }
+}

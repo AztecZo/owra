@@ -9,6 +9,9 @@ export const FormSchema = z.object({
   email: z.string().email({
     message: "Geçerli bir e-posta adresi giriniz.",
   }),
+  phone: z.string().min(1, {
+    message: "Geçerli bir telefon numarası giriniz.",
+  }),
   message: z.string().min(1, {
     message: "Firma adı giriniz.",
   }),
