@@ -1,12 +1,14 @@
 import s from "./about-us.module.scss"
 
 import cx from "clsx"
+import { useRouter } from "next/router"
 
-import { DefaultLayout } from "@/layouts/default"
 import { Marquee } from "@/components/animations/marquee"
+import { Button } from "@/components/button"
 import { IconStar } from "@/components/icons"
 import { Img } from "@/components/utility/img"
-import { useRouter } from "next/router"
+import { Link } from "@/components/utility/link"
+import { DefaultLayout } from "@/layouts/default"
 
 export interface AboutUsProps {}
 
@@ -17,11 +19,9 @@ export default function AboutUs(props: AboutUsProps) {
 
   return (
     <DefaultLayout seo={{ title: "About Us", description: "About Us" }}>
-      <div className={cx(s.intro, "grid grid-cols-2")}>
-        <div>
-          <div className={s.imgC}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
-          </div>
+      <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2")}>
+        <div className={s.imgC}>
+          <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
 
         <div className={s.text}>
@@ -36,6 +36,7 @@ export default function AboutUs(props: AboutUsProps) {
           </p>
         </div>
       </div>
+
       <section className={s.marqueeC}>
         <Marquee repeat={5}>
           <div className="flex items-center">
@@ -46,7 +47,8 @@ export default function AboutUs(props: AboutUsProps) {
           </div>
         </Marquee>
       </section>
-      <section className={cx(s.purpose, "grid grid-cols-2")}>
+
+      <section className={cx(s.purpose, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className="flex flex-col items-center">
           <h2>Misyonumuz</h2>
           <p>
@@ -63,11 +65,12 @@ export default function AboutUs(props: AboutUsProps) {
           </p>
         </div>
       </section>
+
       <section className={s.pros}>
         <div className={s.imgC}>
           <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
-        <div className={cx(s.items, "grid grid-cols-4")}>
+        <div className={cx(s.items, "grid grid-cols-1 tablet:grid-cols-4")}>
           <div className="flex flex-col items-center justify-start">
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
@@ -98,20 +101,26 @@ export default function AboutUs(props: AboutUsProps) {
           </div>
         </div>
       </section>
+
       <section className={cx(s.franchise, "flex flex-col items-center")}>
         <p>
           Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve
           özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın.
         </p>
-        <button>Franchise Ol</button>
+        <Link className={s.cta} href="/franchise">
+          <Button>Franchise Ol</Button>
+        </Link>
       </section>
-      <section className={cx(s.career, "grid grid-cols-2")}>
+
+      <section className={cx(s.career, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
           <p>
             Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve
             özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın.
           </p>
-          <button>Franchise Ol</button>
+          <Link className={s.cta} href="/franchise">
+            <Button theme="white">Kariyer</Button>
+          </Link>
         </div>
         <div>
           <div className={s.imgC}>

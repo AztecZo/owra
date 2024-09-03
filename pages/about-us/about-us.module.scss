@@ -2,15 +2,30 @@
   margin-bottom: desktop-vw(75px);
   padding: desktop-vw(80px) 0;
 
-  > div {
-    padding: 0 desktop-vw(60px);
+  @include mobile {
+    margin-bottom: mobile-vw(30px);
+    padding: mobile-vw(30px) 0;
   }
 
   .imgC {
     @include dims(auto, desktop-vw(480px));
+    padding: 0 desktop-vw(60px);
+
+    @include mobile {
+      @include dims(auto, mobile-vw(250px));
+      order: 2;
+      padding: 0 mobile-vw(16px);
+    }
   }
 
   .text {
+    padding: 0 desktop-vw(60px);
+
+    @include mobile {
+      margin-bottom: mobile-vw(30px);
+      padding: 0 mobile-vw(16px);
+    }
+
     > h1 {
       color: var(--science-blue);
       font-family: var(--font-dela-gothic-one);
@@ -19,11 +34,22 @@
       line-height: 1;
       margin-bottom: desktop-vw(75px);
 
+      @include mobile {
+        font-size: mobile-vw(50px);
+        margin-bottom: mobile-vw(30px);
+        order: 1;
+        text-align: center;
+      }
+
       span {
         display: block;
 
         &:nth-child(2) {
           margin-left: desktop-vw(100px);
+
+          @include mobile {
+            margin-left: 0;
+          }
         }
       }
     }
@@ -34,6 +60,12 @@
       font-family: var(--font-fustat);
       font-size: desktop-vw(20px);
       font-weight: 400;
+
+      @include mobile {
+        @include dims(100%, auto);
+        font-size: mobile-vw(18px);
+        text-align: center;
+      }
     }
   }
 }
@@ -44,87 +76,52 @@
   padding: desktop-vw(50px) 0;
   transform: rotate(5deg);
 
+  @include mobile {
+    padding: mobile-vw(10px) 0;
+  }
+
   h2 {
     color: var(--science-blue);
     font-family: var(--font-dela-gothic-one);
     font-size: desktop-vw(80px);
     font-weight: 400;
+
+    @include mobile {
+      font-size: mobile-vw(40px);
+    }
   }
 
   .iconC {
     @include dims(desktop-vw(70px));
     margin: 0 desktop-vw(50px);
-  }
-}
 
-.pros {
-  --border-width: 3px;
-  border-top: var(--border-width) solid var(--science-blue);
-
-  .imgC {
-    @include dims(auto, desktop-vw(450px));
-    border-bottom: var(--border-width) solid var(--science-blue);
-  }
-
-  .items {
-    border-bottom: var(--border-width) solid var(--science-blue);
-
-    > div {
-      border-right: var(--border-width) solid var(--science-blue);
-      padding: desktop-vw(70px) 0;
-
-      &:last-child {
-        border-right: none;
-      }
-
-      .iconC {
-        @include dims(desktop-vw(60px));
-        margin-bottom: desktop-vw(30px);
-      }
-
-      > h3 {
-        color: var(--science-blue);
-        font-family: var(--font-dela-gothic-one);
-        font-size: desktop-vw(30px);
-        font-weight: 400;
-        line-height: 1;
-        margin-bottom: desktop-vw(30px);
-      }
-
-      > p {
-        @include dims(desktop-vw(260px), auto);
-        color: var(--black);
-        font-family: var(--font-fustat);
-        font-size: desktop-vw(20px);
-        font-weight: 400;
-        text-align: center;
-      }
+    @include mobile {
+      @include dims(mobile-vw(35px));
+      margin: 0 mobile-vw(25px);
     }
-  }
-}
-
-.franchise {
-  padding: desktop-vw(100px) 0;
-
-  > p {
-    @include dims(desktop-vw(860px), auto);
-    color: var(--black);
-    font-family: var(--font-fustat);
-    font-size: desktop-vw(26px);
-    font-weight: 400;
-    margin-bottom: desktop-vw(100px);
-    text-align: center;
   }
 }
 
 .purpose {
   padding: desktop-vw(100px) 0;
 
+  @include mobile {
+    padding: mobile-vw(50px) 0;
+  }
+
   > div {
     padding: 0 desktop-vw(40px);
 
+    @include mobile {
+      padding: 0 mobile-vw(16px);
+    }
+
     &:nth-child(2) {
       margin-top: desktop-vw(100px);
+
+      @include mobile {
+        margin-top: mobile-vw(100px);
+      }
     }
   }
 
@@ -135,6 +132,11 @@
     font-weight: 400;
     line-height: 1;
     margin-bottom: desktop-vw(30px);
+
+    @include mobile {
+      font-size: mobile-vw(30px);
+      margin-bottom: mobile-vw(20px);
+    }
   }
 
   p {
@@ -144,6 +146,118 @@
     font-size: desktop-vw(20px);
     font-weight: 400;
     text-align: center;
+
+    @include mobile {
+      @include dims(mobile-vw(300px), auto);
+      font-size: mobile-vw(18px);
+    }
+  }
+}
+
+.pros {
+  --border-width: 3px;
+  border-top: var(--border-width) solid var(--science-blue);
+
+  .imgC {
+    @include dims(auto, desktop-vw(450px));
+    border-bottom: var(--border-width) solid var(--science-blue);
+
+    @include mobile {
+      @include dims(auto, mobile-vw(250px));
+    }
+  }
+
+  .items {
+    border-bottom: var(--border-width) solid var(--science-blue);
+
+    @include mobile {
+      border-bottom: none;
+    }
+
+    > div {
+      border-right: var(--border-width) solid var(--science-blue);
+      padding: desktop-vw(70px) 0;
+
+      @include mobile {
+        border-bottom: var(--border-width) solid var(--science-blue);
+        border-right: none;
+        padding: mobile-vw(50px) 0;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .iconC {
+        @include dims(desktop-vw(60px));
+        margin-bottom: desktop-vw(30px);
+
+        @include mobile {
+          @include dims(mobile-vw(60px));
+          margin-bottom: mobile-vw(30px);
+        }
+      }
+
+      > h3 {
+        color: var(--science-blue);
+        font-family: var(--font-dela-gothic-one);
+        font-size: desktop-vw(30px);
+        font-weight: 400;
+        line-height: 1;
+        margin-bottom: desktop-vw(30px);
+
+        @include mobile {
+          font-size: mobile-vw(30px);
+          margin-bottom: mobile-vw(20px);
+        }
+      }
+
+      > p {
+        @include dims(desktop-vw(260px), auto);
+        color: var(--black);
+        font-family: var(--font-fustat);
+        font-size: desktop-vw(20px);
+        font-weight: 400;
+        text-align: center;
+
+        @include mobile {
+          @include dims(mobile-vw(260px), auto);
+          font-size: mobile-vw(18px);
+        }
+      }
+    }
+  }
+}
+
+.franchise {
+  padding: desktop-vw(100px) 0;
+
+  @include mobile {
+    padding: mobile-vw(50px) 0;
+  }
+
+  > p {
+    @include dims(desktop-vw(860px), auto);
+    color: var(--black);
+    font-family: var(--font-fustat);
+    font-size: desktop-vw(26px);
+    font-weight: 400;
+    margin-bottom: desktop-vw(100px);
+    text-align: center;
+
+    @include mobile {
+      @include dims(mobile-vw(300px), auto);
+      font-size: mobile-vw(20px);
+      margin-bottom: mobile-vw(50px);
+    }
+  }
+
+  .cta {
+    @include dims(desktop-vw(630px), desktop-vw(80px));
+
+    @include mobile {
+      @include dims(mobile-vw(300px), mobile-vw(60px));
+    }
   }
 }
 
@@ -151,15 +265,37 @@
   background-color: var(--science-blue);
   padding: desktop-vw(20px);
 
+  @include mobile {
+    padding: mobile-vw(50px) mobile-vw(16px);
+  }
+
   .text {
+    @include mobile {
+      margin-bottom: mobile-vw(50px);
+    }
+
     p {
       @include dims(desktop-vw(500px), auto);
       color: var(--white);
       font-family: var(--font-fustat);
       font-size: desktop-vw(20px);
       font-weight: 500;
-      margin-bottom: desktop-vw(75px);
+      margin-bottom: desktop-vw(100px);
       text-align: center;
+
+      @include mobile {
+        @include dims(100%, auto);
+        font-size: mobile-vw(18px);
+        margin-bottom: mobile-vw(50px);
+      }
+    }
+
+    .cta {
+      @include dims(desktop-vw(630px), desktop-vw(80px));
+
+      @include mobile {
+        @include dims(mobile-vw(300px), mobile-vw(60px));
+      }
     }
   }
 
@@ -167,5 +303,10 @@
     @include dims(auto, desktop-vw(530px));
     border-radius: desktop-vw(10px);
     overflow: hidden;
+
+    @include mobile {
+      @include dims(auto, mobile-vw(250px));
+      border-radius: mobile-vw(10px);
+    }
   }
 }

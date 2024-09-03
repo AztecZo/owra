@@ -17,7 +17,6 @@
       var(--borderDistance)
     );
     border-radius: desktop-vw(6px);
-    border: 1px solid var(--white);
 
     @include mobile {
       border-radius: mobile-vw(6px);
@@ -27,11 +26,19 @@
   &.blue {
     background-color: var(--science-blue);
     color: var(--white);
+
+    &::before {
+      border: 1px solid var(--white);
+    }
   }
 
   &.white {
     background-color: var(--white);
     color: var(--science-blue);
+
+    &::before {
+      border: 1px solid var(--science-blue);
+    }
   }
 
   > span {
