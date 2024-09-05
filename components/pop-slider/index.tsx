@@ -44,6 +44,7 @@ function Scene() {
       <PerspectiveCamera makeDefault position={[0, 0, 4]} near={0.1} fov={50} />
 
       <ambientLight intensity={0.75} />
+      <directionalLight intensity={10} />
 
       <Environment preset="studio" environmentIntensity={0.005} />
 
@@ -427,17 +428,30 @@ function Cup(nodes: GLTFResult["nodes"]) {
   })
 
   return (
-    <group ref={groupRef} castShadow={false} receiveShadow={false}>
+    <group ref={groupRef}>
       <group scale={0.25}>
         <mesh
           geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
           position={[1.37532806, -83.60058784, 0.00108719]}
         >
-          <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
+          {/* <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} /> */}
+          <meshStandardMaterial
+            color={new THREE.Color("#0075CE")}
+            side={THREE.DoubleSide}
+            metalness={0.5}
+            roughness={0.5}
+          />
         </mesh>
 
         <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -79.21138, 0]}>
-          <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} />
+          {/* <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} /> */}
+          <meshStandardMaterial
+            color={new THREE.Color("#0075CE")}
+            side={THREE.DoubleSide}
+            map={packageMap}
+            metalness={0.5}
+            roughness={0.5}
+          />
         </mesh>
       </group>
     </group>
