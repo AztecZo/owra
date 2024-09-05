@@ -6,7 +6,6 @@ import { Environment, Html, MeshTransmissionMaterial, PerspectiveCamera, useGLTF
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 import cx from "clsx"
 import { useControls } from "leva"
-import { Perf } from "r3f-perf"
 import { forwardRef, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
@@ -345,7 +344,7 @@ function IceGlass(props: JSX.IntrinsicElements["group"]) {
       <group
         {...props}
         dispose={null}
-        position={[0, -1, 0]}
+        position={[0, -0.5, 1]}
         rotation={[0, 0, 0]}
         onPointerEnter={() => {
           scaleAmount.current = 0.035
@@ -400,8 +399,8 @@ function Cup(nodes: GLTFResult["nodes"]) {
       backside: true,
       backsideThickness: { value: 2, min: -10, max: 10 },
       samples: { value: 10, min: 0, max: 32, step: 1 },
-      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-      backsideResolution: { value: 1024, min: 32, max: 2048, step: 256 },
+      resolution: { value: 512, min: 256, max: 2048, step: 256 },
+      backsideResolution: { value: 512, min: 32, max: 2048, step: 256 },
       transmission: { value: 1, min: 0, max: 1 },
       roughness: { value: 0.0, min: 0, max: 1, step: 0.01 },
       ior: { value: 1.5, min: 1, max: 5, step: 0.01 },
@@ -428,33 +427,45 @@ function Cup(nodes: GLTFResult["nodes"]) {
   })
 
   return (
-    <group ref={groupRef}>
-      <group scale={0.25}>
-        <mesh
-          geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
-          position={[1.37532806, -83.60058784, 0.00108719]}
-        >
-          {/* <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} /> */}
-          <meshStandardMaterial
-            color={new THREE.Color("#0075CE")}
-            side={THREE.DoubleSide}
-            metalness={0.5}
-            roughness={0.5}
-          />
-        </mesh>
+    <>
+      {/* <group ref={groupRef}>
+        <group scale={0.25}>
+          <mesh
+            geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
+            position={[1.37532806, -83.60058784, 0.00108719]}
+          >
+            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
+            <meshStandardMaterial
+              color={new THREE.Color("#0075CE")}
+              side={THREE.DoubleSide}
+              metalness={0.5}
+              roughness={0.5}
+            />
+          </mesh>
 
-        <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -79.21138, 0]}>
-          {/* <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} /> */}
-          <meshStandardMaterial
-            color={new THREE.Color("#0075CE")}
-            side={THREE.DoubleSide}
-            map={packageMap}
-            metalness={0.5}
-            roughness={0.5}
-          />
-        </mesh>
+          <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -79.21138, 0]}>
+            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} />
+            <meshStandardMaterial
+              color={new THREE.Color("#0075CE")}
+              side={THREE.DoubleSide}
+              map={packageMap}
+              metalness={0.5}
+              roughness={0.5}
+            />
+          </mesh>
+       
+        </group>
+      </group>  */}
+
+      <group ref={groupRef}>
+        <group scale={4.25} position={[0, 20, 0]}>
+          <mesh>
+            <torusKnotGeometry args={[3, 1, 256, 32]} />
+            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
+          </mesh>
+        </group>
       </group>
-    </group>
+    </>
   )
 }
 
