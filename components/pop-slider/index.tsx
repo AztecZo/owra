@@ -2,7 +2,7 @@ import s from "./pop-slider.module.scss"
 
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
-import { Environment, Html, MeshTransmissionMaterial, PerspectiveCamera, useGLTF } from "@react-three/drei"
+import { Environment, Html, MeshTransmissionMaterial, OrthographicCamera, Stats, useGLTF } from "@react-three/drei"
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 import cx from "clsx"
 import { useControls } from "leva"
@@ -37,24 +37,25 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={[1, 2]} gl={{ pixelRatio: 0.01 }}>
+    <Canvas dpr={2}>
       <color attach="background" args={["#ffffff"]} />
 
-      <PerspectiveCamera makeDefault position={[0, 0, 4]} near={0.1} fov={50} />
+      {/* <PerspectiveCamera makeDefault position={[0, 0, 4]} near={0.1} fov={50} /> */}
+      <OrthographicCamera makeDefault position={[0, 0, 4]} near={0.1} zoom={400} />
 
       <ambientLight intensity={0.75} />
-      <directionalLight intensity={10} />
+      {/* <directionalLight intensity={10} /> */}
 
       <Environment preset="studio" environmentIntensity={0.005} />
 
-      <Rig />
+      {/* <Rig /> */}
       {/* <OrbitControls /> */}
+
+      <Stats showPanel={0} />
 
       <Suspense fallback={null}>
         <Geometry />
       </Suspense>
-
-      {/* <Perf position="top-left" /> */}
     </Canvas>
   )
 }
@@ -396,9 +397,9 @@ function Cup(nodes: GLTFResult["nodes"]) {
     {
       meshPhysicalMaterial: false,
       transmissionSampler: true,
-      backside: true,
+      backside: false,
       backsideThickness: { value: 2, min: -10, max: 10 },
-      samples: { value: 10, min: 0, max: 32, step: 1 },
+      samples: { value: 3, min: 0, max: 32, step: 1 },
       resolution: { value: 512, min: 256, max: 2048, step: 256 },
       backsideResolution: { value: 512, min: 32, max: 2048, step: 256 },
       transmission: { value: 1, min: 0, max: 1 },
@@ -428,43 +429,42 @@ function Cup(nodes: GLTFResult["nodes"]) {
 
   return (
     <>
-      {/* <group ref={groupRef}>
-        <group scale={0.25}>
+      <group ref={groupRef}>
+        <group scale={0.15}>
           <mesh
             geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
             position={[1.37532806, -83.60058784, 0.00108719]}
           >
             <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
-            <meshStandardMaterial
+            {/* <meshStandardMaterial
               color={new THREE.Color("#0075CE")}
               side={THREE.DoubleSide}
               metalness={0.5}
               roughness={0.5}
-            />
+            /> */}
           </mesh>
 
           <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -79.21138, 0]}>
             <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} />
-            <meshStandardMaterial
+            {/* <meshStandardMaterial
               color={new THREE.Color("#0075CE")}
               side={THREE.DoubleSide}
               map={packageMap}
               metalness={0.5}
               roughness={0.5}
-            />
+            /> */}
           </mesh>
-       
         </group>
-      </group>  */}
+      </group>
 
-      <group ref={groupRef}>
+      {/* <group ref={groupRef}>
         <group scale={4.25} position={[0, 20, 0]}>
           <mesh>
             <torusKnotGeometry args={[3, 1, 256, 32]} />
             <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
           </mesh>
         </group>
-      </group>
+      </group> */}
     </>
   )
 }

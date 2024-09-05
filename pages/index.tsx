@@ -2,22 +2,21 @@ import s from "./home/home.module.scss"
 
 import cx from "clsx"
 
-import { DefaultLayout } from "@/layouts/default"
 import { IconBgStar, IconOk, IconOwraLogo, IconStar } from "@/components/icons"
 import { Img } from "@/components/utility/img"
+import { DefaultLayout } from "@/layouts/default"
 
 import iceCubes from "@/public/img/ice-cubes.png"
 import s1 from "@/public/img/s-1.svg"
-import s2 from "@/public/img/s-2.svg"
 
 import ice1 from "@/public/img/ice-1.png"
 import ice2 from "@/public/img/ice-2.png"
 
 import { Marquee } from "@/components/animations/marquee"
-import { FormContact } from "@/components/form-contact"
 import { Parallax } from "@/components/animations/parallax"
-import { SliderFade } from "@/components/slider-fade"
+import { FormContact } from "@/components/form-contact"
 import PopSlider from "@/components/pop-slider"
+import { SliderFade } from "@/components/slider-fade"
 
 export default function Home() {
   return (
@@ -31,6 +30,8 @@ export default function Home() {
           <Img src={iceCubes} alt="Ice Cubes" />
         </div>
       </section>
+
+      <section className="w-screen h-screen"></section>
 
       <section className={cx(s.greetings, "flex flex-col items-center")}>
         <div className={s.text}>
