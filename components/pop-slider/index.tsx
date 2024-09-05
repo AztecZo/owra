@@ -54,7 +54,7 @@ function Scene() {
         <Geometry />
       </Suspense>
 
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
     </Canvas>
   )
 }

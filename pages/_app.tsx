@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </SmoothLayout>
       </Providers>
       <div className="z-[9999999999999999999999999]">
-        <Leva />
+        <Leva hidden />
       </div>
     </div>
   )
