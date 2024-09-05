@@ -60,6 +60,14 @@ const nextConfig = {
     locales: ["en", "tr"],
     defaultLocale: "tr",
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag|glslx)$/,
+      use: ["glslify-import-loader", "raw-loader", "glslify-loader"],
+    })
+
+    return config
+  },
 }
 
 export default nextConfig

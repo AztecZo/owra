@@ -1,0 +1,20 @@
+.controls {
+  @include dims(desktop-vw(500px), desktop-vw(150px));
+  background-color: var(--white);
+  display: flex;
+  @include position(absolute, auto, auto, 0, 50%);
+  transform: translateX(-50%);
+  pointer-events: auto;
+
+  .content {
+    flex: 1;
+  }
+
+  .button {
+    @include dims(desktop-vw(150px));
+    flex-shrink: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}

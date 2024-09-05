@@ -17,6 +17,7 @@ import { Marquee } from "@/components/animations/marquee"
 import { FormContact } from "@/components/form-contact"
 import { Parallax } from "@/components/animations/parallax"
 import { SliderFade } from "@/components/slider-fade"
+import PopSlider from "@/components/pop-slider"
 
 export default function Home() {
   return (
@@ -68,7 +69,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-screen h-screen flex items-center justify-center">SLIDER</section>
+      <section className="w-screen h-screen flex items-center justify-center">
+        <PopSlider />
+      </section>
 
       <section className={s.why}>
         <div className={s.marqueeC}>
