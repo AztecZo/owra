@@ -37,7 +37,7 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={2}>
+    <Canvas dpr={1.5}>
       <color attach="background" args={["#ffffff"]} />
 
       {/* <PerspectiveCamera makeDefault position={[0, 0, 4]} near={0.1} fov={50} /> */}
