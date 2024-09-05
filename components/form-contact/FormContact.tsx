@@ -11,7 +11,13 @@ import { Textarea } from "@/components/utility/textarea"
 import { FormSchema, useSubmitForm } from "@/pages/api/mutations/contact-form"
 import { Button } from "../button"
 
-export default function FormContact() {
+export interface FormContactProps {
+  theme?: "blue" | "white"
+}
+
+export default function FormContact(props: FormContactProps) {
+  const { theme = "blue" } = props
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -37,7 +43,7 @@ export default function FormContact() {
   }
 
   return (
-    <div className={cx(s.formContact)}>
+    <div className={cx(s.formContact, [s[theme]])}>
       <div className="flex-1">
         <Form {...form}>
           <form className={s.form} onSubmit={form.handleSubmit(onSubmit)}>
@@ -122,7 +128,7 @@ export default function FormContact() {
             </div>
 
             <button className={cx(s.submitBtn)} type="submit" disabled={!form.formState.isValid}>
-              <Button>Gönder</Button>
+              <Button theme={theme}>Gönder</Button>
             </button>
           </form>
         </Form>

@@ -66,6 +66,18 @@
       transform: translateY(-60%);
     }
   }
+
+  .iceC {
+    &.ice1 {
+      @include position(absolute, desktop-vw(500px), auto, auto, desktop-vw(150px));
+      @include dims(desktop-vw(150px));
+    }
+
+    &.ice2 {
+      @include position(absolute, desktop-vw(800px), auto, auto, desktop-vw(700px));
+      @include dims(desktop-vw(150px));
+    }
+  }
 }
 
 .why {
@@ -91,58 +103,118 @@
 
   .imgs {
     padding: desktop-vw(70px);
+    position: relative;
 
     .imgC {
       border-radius: desktop-vw(10px);
       margin-bottom: desktop-vw(-200px);
       overflow: hidden;
+      position: relative;
 
-      &:nth-child(1) {
-        @include dims(desktop-vw(450px), desktop-vw(520px));
-        transform: rotate(10deg);
-        z-index: 10;
+      &.img1 {
+        @include dims(desktop-vw(440px), desktop-vw(510px));
         margin-left: auto;
+        transform: rotate(7deg);
+        z-index: 10;
       }
 
-      &:nth-child(2) {
-        @include dims(desktop-vw(500px), desktop-vw(700px));
+      &.img2 {
+        @include dims(desktop-vw(490px), desktop-vw(690px));
         transform: rotate(-5deg);
         z-index: 5;
+      }
+    }
+
+    .iconC {
+      @include dims(desktop-vw(120px));
+
+      &.icon1 {
+        @include position(absolute, desktop-vw(200px), auto, auto, desktop-vw(120px));
+        transform: rotate(-5deg);
+        z-index: 15;
+      }
+
+      &.icon2 {
+        @include position(absolute, desktop-vw(800px), auto, auto, desktop-vw(500px));
+        transform: rotate(-5deg);
+        z-index: 15;
       }
     }
   }
 
   .text {
-    padding: 0 desktop-vw(80px) 0 0;
+    padding: desktop-vw(140px) desktop-vw(80px) desktop-vw(60px) desktop-vw(30px);
 
     > p {
       color: var(--black);
       font-family: var(--font-fustat);
-      font-size: desktop-vw(18px);
+      font-size: desktop-vw(24px);
       font-weight: 400;
       margin-bottom: desktop-vw(100px);
     }
 
-    > ul {
-      li {
-        margin-bottom: desktop-vw(60px);
+    li {
+      margin-bottom: desktop-vw(50px);
 
-        h5 {
-          color: var(--black);
-          font-family: var(--font-dela-gothic-one);
-          font-size: desktop-vw(30px);
-          font-weight: 400;
-          margin-bottom: desktop-vw(12px);
-        }
+      h5 {
+        color: var(--science-blue);
+        font-family: var(--font-dela-gothic-one);
+        font-size: desktop-vw(30px);
+        font-weight: 400;
+        margin-bottom: desktop-vw(4px);
+        position: relative;
 
-        p {
-          color: var(--black);
-          font-family: var(--font-fustat);
-          font-size: desktop-vw(24px);
-          font-weight: 400;
+        .iconC {
+          @include position(absolute, 50%, auto, auto, 0);
+          @include dims(desktop-vw(20px));
+          align-items: center;
+          transform: translate(calc(-100% - desktop-vw(12px)), -40%);
+          display: flex;
+          justify-content: center;
         }
       }
+
+      p {
+        color: var(--black);
+        font-family: var(--font-fustat);
+        font-size: desktop-vw(24px);
+        font-weight: 400;
+      }
     }
+  }
+}
+
+.slider {
+  padding: desktop-vw(140px) 0;
+
+  .sliderC {
+    padding: desktop-vw(260px) 0;
+    position: relative;
+
+    .bg {
+      @include position(absolute, 50%, auto, auto, 50%);
+      @include dims(100%);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+  }
+
+  .title {
+    color: var(--science-blue);
+    font-family: var(--font-dela-gothic-one);
+    font-size: desktop-vw(60px);
+    font-weight: 400;
+    margin-bottom: desktop-vw(40px);
+    text-align: center;
+  }
+
+  .description {
+    @include dims(desktop-vw(650px), auto);
+    color: var(--black);
+    font-family: var(--font-fustat);
+    font-size: desktop-vw(24px);
+    font-weight: 400;
+    text-align: center;
   }
 }
 
@@ -151,11 +223,24 @@
   gap: desktop-vw(80px);
   padding: desktop-vw(20px);
   position: relative;
-  // margin-bottom: desktop-vw(300px);
+
+  .formC {
+    padding: desktop-vw(60px);
+    padding-right: 0;
+
+    h2 {
+      color: var(--white);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(32px);
+      font-weight: 400;
+      margin-bottom: desktop-vw(50px);
+    }
+  }
 
   .imgC {
-    @include dims(auto, desktop-vw(770px));
-    border-radius: desktop-vw(10px);
+    @include dims(auto, desktop-vw(760px));
+    border-radius: desktop-vw(20px);
+    margin-left: desktop-vw(50px);
     overflow: hidden;
   }
 

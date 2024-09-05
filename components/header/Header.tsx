@@ -33,7 +33,7 @@ export default function Header() {
             <Link href="/about-us">Hakkımızda</Link>
           </div>
           <div className={s.navItem}>
-            <Link href="/ürünler">Ürünler</Link>
+            <Link href="/products">Ürünler</Link>
           </div>
           <div className={s.navItem}>
             <Link href="/blog">Blog</Link>
@@ -45,7 +45,7 @@ export default function Header() {
             <Link href="/franchise">Franchise</Link>
           </div>
           <div className={s.navItem}>
-            <Link href="/iletisim">İletişim</Link>
+            <Link href="/contact">İletişim</Link>
           </div>
           <div className={s.navItem}>
             <>EN</>

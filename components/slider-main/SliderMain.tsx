@@ -110,7 +110,6 @@ export default function SliderMain(props: SliderMainProps) {
       </div>
       <div className={cx(s.images, "col-span-8")}>
         <EmblaCarousel
-          scrollTo={currentSlideUi}
           options={{
             loop: true,
           }}

@@ -1,18 +1,29 @@
 .formContact {
-  > p {
+  &.blue {
     color: var(--science-blue);
-    font-family: var(--font-dela-gothic-one);
-    font-weight: 400;
-    font-size: desktop-vw(32px);
-    line-height: 1.35;
 
-    @include mobile {
-      font-size: mobile-vw(20px);
-      text-align: center;
+    .input {
+      &::placeholder {
+        color: var(--science-blue);
+      }
+
+      &.border {
+        border-bottom: 1px solid var(--science-blue);
+      }
     }
+  }
 
-    > strong {
-      font-weight: 700;
+  &.white {
+    color: var(--white);
+
+    .input {
+      &::placeholder {
+        color: var(--white);
+      }
+
+      &.border {
+        border-bottom: 1px solid var(--white);
+      }
     }
   }
 
@@ -69,33 +80,11 @@
         @include mobile {
           margin-top: mobile-vw(16px);
         }
-
-        // * {
-        //   color: var(--error);
-
-        //   &::placeholder {
-        //     color: var(--error);
-        //   }
-        // }
       }
-
-      // &.error {
-      //   .input {
-      //     border-bottom: 1px solid var(--error);
-      //   }
-
-      //   * {
-      //     color: var(--error);
-
-      //     &::placeholder {
-      //       color: var(--error);
-      //     }
-      //   }
-      // }
     }
 
     .submitBtn {
-      @include dims(desktop-vw(420px), desktop-vw(80px));
+      @include dims(100%, desktop-vw(80px));
       margin-top: desktop-vw(12px);
 
       @include mobile {
@@ -127,7 +116,6 @@
     .input {
       @include dims(100%, desktop-vw(40px));
       border: none;
-      color: var(--science-blue);
       font-family: var(--font-manrope);
       font-weight: 400;
       font-size: desktop-vw(16px);
@@ -139,12 +127,7 @@
         padding: mobile-vw(12px) 0;
       }
 
-      &.border {
-        border-bottom: 1px solid var(--science-blue);
-      }
-
       &::placeholder {
-        color: var(--science-blue);
         font-family: var(--font-manrope);
         font-weight: 500;
         font-size: desktop-vw(20px);
@@ -160,10 +143,6 @@
           opacity: 0.3;
         }
       }
-
-      // &[aria-invalid="true"] {
-      //   border: 1px solid var(--error);
-      // }
 
       &.textarea {
         min-height: desktop-vw(120px);

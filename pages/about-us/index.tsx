@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 
 import { Marquee } from "@/components/animations/marquee"
 import { Button } from "@/components/button"
-import { IconStar } from "@/components/icons"
+import { IconMask, IconStar } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
@@ -21,6 +21,9 @@ export default function AboutUs(props: AboutUsProps) {
     <DefaultLayout seo={{ title: "About Us", description: "About Us" }}>
       <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={s.imgC}>
+          <div className={s.mask}>
+            <IconMask />
+          </div>
           <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
 
