@@ -2,10 +2,18 @@ import s from "./pop-slider.module.scss"
 
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
-import { Environment, Html, MeshTransmissionMaterial, OrthographicCamera, Stats, useGLTF } from "@react-three/drei"
+import {
+  Environment,
+  Float,
+  Html,
+  MeshTransmissionMaterial,
+  OrthographicCamera,
+  Stats,
+  useGLTF,
+} from "@react-three/drei"
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber"
 import cx from "clsx"
-import { useControls } from "leva"
+import { Leva, useControls } from "leva"
 import { forwardRef, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
@@ -37,16 +45,27 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={1.5}>
+    <Canvas dpr={2}>
       <color attach="background" args={["#ffffff"]} />
 
       {/* <PerspectiveCamera makeDefault position={[0, 0, 4]} near={0.1} fov={50} /> */}
-      <OrthographicCamera makeDefault position={[0, 0, 4]} near={0.1} zoom={400} />
+      <OrthographicCamera
+        makeDefault
+        zoom={50} // Control zoom level
+        // left={-window.innerWidth / 2}
+        // right={window.innerWidth / 2}
+        // top={window.innerHeight / 2}
+        // bottom={-window.innerHeight / 2}
+        near={0.1}
+        far={1000}
+        position={[0, 0, 10]} // Position the camera in space
+      />
 
-      <ambientLight intensity={0.75} />
-      {/* <directionalLight intensity={10} /> */}
+      <ambientLight intensity={1.75} />
 
-      <Environment preset="studio" environmentIntensity={0.005} />
+      <directionalLight intensity={5.75} position={[0, 10, 0]} />
+
+      <Environment preset="studio" environmentIntensity={0.15} />
 
       {/* <Rig /> */}
       {/* <OrbitControls /> */}
@@ -55,8 +74,21 @@ function Scene() {
 
       <Suspense fallback={null}>
         <Geometry />
+        {/* <Seq /> */}
       </Suspense>
     </Canvas>
+  )
+}
+
+function Seq() {
+  const packageMap = useLoader(THREE.TextureLoader, "/img/cup-sequence/bardakgloss.612.1.png")
+
+  return (
+    <group>
+      <mesh geometry={new THREE.PlaneGeometry(10, 10)}>
+        <meshBasicMaterial map={packageMap} side={THREE.DoubleSide} transparent={true} />
+      </mesh>
+    </group>
   )
 }
 
@@ -157,7 +189,7 @@ function Geometry() {
 
   return (
     <>
-      <group position={new THREE.Vector3(0, 0, 0)} ref={groupRef} scale={0.25}>
+      {/* <group ref={groupRef}>
         {items.map((item, index) => (
           <group key={index}>
             <SliderItem
@@ -172,7 +204,10 @@ function Geometry() {
             />
           </group>
         ))}
-      </group>
+      </group> */}
+
+      <Boba />
+
       <Html fullscreen>
         <div className={cx(s.controls)}>
           <div className={cx(s.button, s.prev)} onClick={handlePrev}>
@@ -184,23 +219,6 @@ function Geometry() {
           </div>
         </div>
       </Html>
-      {/* <Text
-        position={[0, -1.5, 0]}
-        fontSize={0.2}
-        lineHeight={1}
-        color="#000000"
-        anchorX="center"
-        anchorY="middle"
-        fillOpacity={1}
-        textAlign="center"
-        material-toneMapped={false} // Disables tone mapping for this material
-        material-color="white"
-        onPointerDown={handlePointerDown}
-      >
-        {`next`}
-      </Text> */}
-      {/* <Background /> */}
-      {/* <Spiral /> */}
       <WavyVortex />
     </>
   )
@@ -263,7 +281,8 @@ const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ item, active, inde
     //   geometry={item.geometry}
     //   material={new THREE.MeshStandardMaterial({ color: item.color })}
     // />
-    <IceGlass />
+    // <IceGlass />
+    <Boba />
   )
 })
 
@@ -345,7 +364,7 @@ function IceGlass(props: JSX.IntrinsicElements["group"]) {
       <group
         {...props}
         dispose={null}
-        position={[0, -0.5, 1]}
+        position={[0, 0, 1]}
         rotation={[0, 0, 0]}
         onPointerEnter={() => {
           scaleAmount.current = 0.035
@@ -360,16 +379,6 @@ function IceGlass(props: JSX.IntrinsicElements["group"]) {
           {/* <IceCubes {...nodes} /> */}
           <Cup {...nodes} />
         </group>
-        {/* <mesh geometry={new THREE.BoxGeometry(4, 5, 0)} scale={5} position={[5, vw > 1024 ? 105 : 105, 0]}>
-          <meshPhysicalMaterial
-            map={iceCubesMap}
-            bumpMap={iceCubesMap}
-            bumpScale={4}
-            color={"#D5FFFF"}
-            transparent={true}
-            opacity={0.5}
-          />
-        </mesh> */}
       </group>
     </>
   )
@@ -428,270 +437,22 @@ function Cup(nodes: GLTFResult["nodes"]) {
   })
 
   return (
-    <>
-      <group ref={groupRef}>
-        <group scale={0.15}>
-          <mesh
-            geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
-            position={[1.37532806, -83.60058784, 0.00108719]}
-          >
-            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
-            {/* <meshStandardMaterial
-              color={new THREE.Color("#0075CE")}
-              side={THREE.DoubleSide}
-              metalness={0.5}
-              roughness={0.5}
-            /> */}
-          </mesh>
+    <group ref={groupRef}>
+      <group>
+        <mesh
+          geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
+          position={[1.37532806, -173.60058784, 0.00108719]}
+        >
+          <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} toneMapped={false} />
+        </mesh>
 
-          <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -79.21138, 0]}>
-            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} />
-            {/* <meshStandardMaterial
-              color={new THREE.Color("#0075CE")}
-              side={THREE.DoubleSide}
-              map={packageMap}
-              metalness={0.5}
-              roughness={0.5}
-            /> */}
-          </mesh>
-        </group>
+        <mesh geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Altobj.geometry} position={[1.3753624, -169.21138, 0]}>
+          <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} map={packageMap} toneMapped={false} />
+        </mesh>
       </group>
-
-      {/* <group ref={groupRef}>
-        <group scale={4.25} position={[0, 20, 0]}>
-          <mesh>
-            <torusKnotGeometry args={[3, 1, 256, 32]} />
-            <MeshTransmissionMaterial {...materialProps} side={THREE.DoubleSide} />
-          </mesh>
-        </group>
-      </group> */}
-    </>
+    </group>
   )
 }
-
-useGLTF.preload("/glb/bardak.glb")
-
-// function Background() {
-//   // This reference will give us direct access to the mesh
-//   const mesh = useRef<THREE.Mesh>(null)
-//   const mousePosition = useRef({ x: 0, y: 0 })
-
-//   const updateMousePosition = useCallback((e: any) => {
-//     mousePosition.current = { x: e.pageX, y: e.pageY }
-//   }, [])
-
-//   function getRandomHexColor(): string {
-//     const letters = "0123456789ABCDEF"
-//     let color = "#"
-
-//     for (let i = 0; i < 6; i++) {
-//       color += letters[Math.floor(Math.random() * 16)]
-//     }
-
-//     return color
-//   }
-
-//   const uniforms = useMemo(
-//     () => ({
-//       u_time: {
-//         value: 0.0,
-//       },
-//       u_mouse: { value: new THREE.Vector2(0, 0) },
-//       u_bg: {
-//         value: new THREE.Color("#A1A3F7"),
-//       },
-//       u_colorA: { value: new THREE.Color("#FF5B4A") },
-//       u_colorB: { value: new THREE.Color("#FF5B4A") },
-//     }),
-//     []
-//   )
-
-//   useEffect(() => {
-//     window.addEventListener("mousemove", updateMousePosition, false)
-
-//     return () => {
-//       window.removeEventListener("mousemove", updateMousePosition, false)
-//     }
-//   }, [updateMousePosition])
-
-//   const [bg, setBg] = useState(new THREE.Color("#A1A3F7"))
-
-//   useFrame((state) => {
-//     if (!mesh.current) return
-
-//     const { clock } = state
-
-//     mesh.current.material.uniforms.u_time.value = clock.getElapsedTime()
-//     mesh.current.material.uniforms.u_mouse.value = new THREE.Vector2(mousePosition.current.x, mousePosition.current.y)
-//     mesh.current.material.uniforms.u_bg.value = bg
-//   })
-
-//   // State for initial and target colors
-//   const [initialColor, setInitialColor] = useState(new THREE.Color("#F05D21"))
-//   const [currentColor, setCurrentColor] = useState(new THREE.Color("#00FF00"))
-//   const [targetColor, setTargetColor] = useState(currentColor.clone())
-
-//   const startTime = useRef(0)
-//   const interpolationDuration = 12.0 // Duration of the interpolation in seconds
-
-//   // useFrame((state) => {
-//   //   if (!mesh.current) return
-
-//   //   const elapsedTime = state.clock.getElapsedTime() - startTime.current
-//   //   const t = Math.min(elapsedTime / interpolationDuration, 1.0) // Calculate interpolation factor
-
-//   //   console.log("t", t)
-
-//   //   // Interpolate between the initial color and the target color
-//   //   const interpolatedColor = initialColor.clone().lerp(targetColor, t)
-
-//   //   console.log(interpolatedColor)
-
-//   //   // Update the material uniform with the interpolated color
-//   //   mesh.current.material.uniforms.u_colorA.value = interpolatedColor
-//   //   mesh.current.material.uniforms.u_colorB.value = interpolatedColor
-
-//   //   // Optionally, update the currentColor state when the interpolation is complete
-//   //   if (t < interpolationDuration) {
-//   //     setCurrentColor(interpolatedColor.clone())
-//   //   } else {
-//   //     setInitialColor(interpolatedColor.clone())
-//   //   }
-//   // })
-
-//   // const startColorTransition = (newColor: THREE.Color) => {
-//   //   setTargetColor(newColor.clone())
-//   //   setInitialColor(currentColor.clone())
-//   //   startTime.current = 0 // Reset the start time
-//   // }
-
-//   return (
-//     <>
-//       <mesh
-//         ref={mesh}
-//         geometry={new THREE.SphereGeometry(15, 64, 64)}
-//         position={new THREE.Vector3(0, 0, 0)}
-//         // onClick={() => startColorTransition(new THREE.Color(getRandomHexColor()))}
-//       >
-//         <shaderMaterial
-//           fragmentShader={fragmentShader}
-//           vertexShader={vertexShader}
-//           uniforms={uniforms}
-//           wireframe={false}
-//           side={THREE.DoubleSide}
-//         />
-//       </mesh>
-
-//       <mesh
-//         ref={mesh}
-//         geometry={new THREE.SphereGeometry(1, 64, 64)}
-//         position={new THREE.Vector3(0, 0, -1)}
-//         rotation={new THREE.Euler(0, Math.PI * 2 * 0.75, 0)}
-//       >
-//         <shaderMaterial
-//           fragmentShader={fragmentShader}
-//           vertexShader={vertexShader}
-//           uniforms={uniforms}
-//           wireframe={false}
-//           side={THREE.DoubleSide}
-//         />
-//       </mesh>
-//     </>
-//   )
-// }
-
-// function Spiral() {
-//   function extractNumbersFromString(string: string) {
-//     if (!string) return
-
-//     var numbers = string.match(/\d+/g).map(Number)
-//     console.log("numbers:" + numbers)
-//     return numbers
-//   }
-
-//   // This reference will give us direct access to the mesh
-//   const mesh = useRef<THREE.Mesh>(null)
-//   const mousePosition = useRef({ x: 0, y: 0 })
-
-//   const updateMousePosition = useCallback((e: any) => {
-//     mousePosition.current = { x: e.pageX, y: e.pageY }
-//   }, [])
-
-//   function getRandomHexColor(): string {
-//     const letters = "0123456789ABCDEF"
-//     let color = "#"
-
-//     for (let i = 0; i < 6; i++) {
-//       color += letters[Math.floor(Math.random() * 16)]
-//     }
-
-//     return color
-//   }
-
-//   const uniforms = useMemo(
-//     () => ({
-//       u_time: { type: "f", value: 1.0 },
-//       u_mouse: { type: "v2", value: new THREE.Vector2() },
-//       u_resolution: { type: "v2", value: new THREE.Vector2() },
-//       primary_color: { type: "v3", value: convertHexToGLSLRGB("#ffd000") },
-//       secondary_color: { type: "v3", value: convertHexToGLSLRGB("#1c1c1c") },
-//       ripples_number: { type: "f", value: "3.0" } /*1 to 10*/,
-//       ripple_size: { type: "f", value: "0.1" },
-//       ripple_bleed: { type: "f", value: "0.000001" },
-//       speed_factor: { type: "f", value: "2.0" } /*0 to 100*/,
-//       direction: { type: "f", value: "-1.0" },
-//       ripple_base_size: { type: "f", value: "0.1" },
-//     }),
-//     []
-//   )
-
-//   useEffect(() => {
-//     window.addEventListener("mousemove", updateMousePosition, false)
-
-//     return () => {
-//       window.removeEventListener("mousemove", updateMousePosition, false)
-//     }
-//   }, [updateMousePosition])
-
-//   const [bg, setBg] = useState(new THREE.Color("#A1A3F7"))
-
-//   useFrame((state) => {
-//     if (!mesh.current) return
-
-//     uniforms.u_time.value += 0.005
-//     uniforms.u_time.value += 0.05
-//   })
-
-//   return (
-//     <>
-//       <mesh
-//         ref={mesh}
-//         geometry={new THREE.SphereGeometry(15, 128, 128)}
-//         position={new THREE.Vector3(0, 0, -10)}
-//         rotation={new THREE.Euler(Math.PI * 2 * 0.25, 0, 0)}
-//       >
-//         <shaderMaterial
-//           fragmentShader={fragmentShaderSpiral}
-//           vertexShader={vertexShaderSpiral}
-//           uniforms={uniforms}
-//           wireframe={false}
-//           side={THREE.DoubleSide}
-//         />
-//       </mesh>
-//     </>
-//   )
-// }
-
-// interface CustomMaterialProps extends THREE.ShaderMaterialParameters {
-//   color: THREE.Vector4
-//   // ringDistance: number
-//   // maxRings: number
-//   // waveCount: number
-//   // waveDepth: number
-//   // yCenter: number
-//   // direction: number
-//   // time: number
-// }
 
 const CustomMaterial: React.FC = (props) => {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -851,8 +612,128 @@ function WavyVortex() {
   return <CustomMaterial />
 }
 
-function Rig() {
-  const { camera, pointer } = useThree()
-  const vec = new THREE.Vector3()
-  return useFrame(() => camera.position.lerp(vec.set(pointer.x / 8, pointer.y / 32, camera.position.z), 0.09))
+type GLTFResultBobaCup = GLTF & {
+  nodes: {
+    Boba_sise2: THREE.Mesh
+  }
+  materials: {
+    ["Cam_Kavanoz_#10"]: THREE.MeshPhysicalMaterial
+  }
 }
+
+type GLTFResultBobaLid = GLTF & {
+  nodes: {
+    Boba_sise1: THREE.Mesh
+  }
+  materials: {
+    ["Default:0:0:0_#11.001"]: THREE.MeshPhysicalMaterial
+  }
+}
+
+function Boba() {
+  const groupRef = useRef<THREE.Group | null>(null)
+  const packageMap = useLoader(THREE.TextureLoader, "/img/boba-pineapple.jpg")
+  const fillMap = useLoader(THREE.TextureLoader, "/img/boba-fill.png")
+
+  useMemo(() => {
+    if (packageMap) {
+      packageMap.wrapS = packageMap.wrapT = THREE.ClampToEdgeWrapping
+      packageMap.offset.set(0, 0)
+      packageMap.rotation = Math.PI * 2
+      packageMap.flipY = false
+      packageMap.center = new THREE.Vector2(0.5, 0.5)
+
+      const aspectRatio = packageMap.image.width / packageMap.image.height
+      packageMap.repeat.set(1, -1)
+    }
+  }, [packageMap])
+
+  const materialProps = useControls(
+    "cup",
+    {
+      meshPhysicalMaterial: false,
+      transmissionSampler: false,
+      backside: false,
+      backsideThickness: { value: 2, min: -10, max: 10 },
+      samples: { value: 3, min: 0, max: 32, step: 1 },
+      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+      backsideResolution: { value: 512, min: 32, max: 2048, step: 256 },
+      transmission: { value: 1, min: 0, max: 1 },
+      roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
+      ior: { value: 1.5, min: 1, max: 5, step: 0.01 },
+      thickness: { value: 0.25, min: 0, max: 10, step: 0.01 },
+      chromaticAberration: { value: 0.4, min: 0, max: 1 },
+      anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
+      distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
+      distortionScale: { value: 0.3, min: 0.01, max: 1, step: 0.01 },
+      temporalDistortion: { value: 0.65, min: 0, max: 1, step: 0.01 },
+      attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
+      clearcoat: { value: 0, min: 0, max: 1 },
+      attenuationColor: "#ffffff",
+      color: "white",
+    },
+    { collapsed: true }
+  )
+
+  useFrame(() => {
+    if (!groupRef.current) return
+
+    // groupRef.current.rotation.x += 0.01
+    groupRef.current.rotation.y += 0.01
+    // groupRef.current.rotation.z += 0.01
+  })
+
+  const { nodes: bobaCupNodes } = useGLTF("/glb/boba-cup.glb") as GLTFResultBobaCup
+  const { nodes: BobaLidNodes } = useGLTF("/glb/boba-lid.glb") as GLTFResultBobaLid
+
+  return (
+    <Float>
+      <>
+        <group ref={groupRef} position={[0, 0, 5]}>
+          <group scale={0.55} position={[0, -3, 0]}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={BobaLidNodes.Boba_sise1.geometry}
+              position={[0, 11.927, 0]}
+              rotation={[Math.PI / 2, 0, 0]}
+            >
+              <meshStandardMaterial color={new THREE.Color("#000000")} side={THREE.DoubleSide} />
+            </mesh>
+
+            <mesh geometry={bobaCupNodes.Boba_sise2.geometry} position={[0, 5.795, 0]} rotation={[Math.PI / 2, 0, 0]}>
+              <MeshTransmissionMaterial {...materialProps} />
+            </mesh>
+
+            <mesh
+              castShadow={false}
+              receiveShadow={false}
+              geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
+              position={[0, 5.8, 0]}
+            >
+              <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
+            </mesh>
+          </group>
+        </group>
+
+        <group>
+          <mesh geometry={new THREE.PlaneGeometry(3.5, 5)} scale={1.1} position={[0, -0.25, 5]}>
+            <meshPhysicalMaterial
+              map={fillMap}
+              bumpMap={fillMap}
+              bumpScale={4}
+              color={"#FFFFFF"}
+              transparent={true}
+              opacity={0.9}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </group>
+      </>
+    </Float>
+  )
+}
+
+useGLTF.preload("/glb/boba-lid.glb")
+useGLTF.preload("/glb/boba-cup.glb")
+useGLTF.preload("/glb/bardak.glb")
