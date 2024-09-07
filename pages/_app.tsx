@@ -21,9 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </SmoothLayout>
       </Providers>
-      <div className="z-[9999999999999999999999999]">
-        <Leva />
-      </div>
     </div>
   )
 }

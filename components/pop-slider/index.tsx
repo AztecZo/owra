@@ -35,10 +35,9 @@ interface SliderItemProps {
 
 export default function PopSlider() {
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
-      <div className="relative w-full h-full">
-        <Scene />
-      </div>
+    <div className="w-full h-full">
+      <Scene />
+      <Leva />
     </div>
   )
 }
@@ -208,7 +207,7 @@ function Geometry() {
 
       <Boba />
 
-      <Html fullscreen>
+      {/* <Html fullscreen>
         <div className={cx(s.controls)}>
           <div className={cx(s.button, s.prev)} onClick={handlePrev}>
             prev
@@ -218,7 +217,7 @@ function Geometry() {
             next
           </div>
         </div>
-      </Html>
+      </Html> */}
       <WavyVortex />
     </>
   )
@@ -657,11 +656,11 @@ function Boba() {
       backsideThickness: { value: 2, min: -10, max: 10 },
       samples: { value: 3, min: 0, max: 32, step: 1 },
       resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-      backsideResolution: { value: 512, min: 32, max: 2048, step: 256 },
+      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
       transmission: { value: 1, min: 0, max: 1 },
       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
-      ior: { value: 1.5, min: 1, max: 5, step: 0.01 },
-      thickness: { value: 0.25, min: 0, max: 10, step: 0.01 },
+      ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
+      thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
       chromaticAberration: { value: 0.4, min: 0, max: 1 },
       anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
       distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
@@ -689,8 +688,8 @@ function Boba() {
   return (
     <Float>
       <>
-        <group ref={groupRef} position={[0, 0, 5]}>
-          <group scale={0.55} position={[0, -3, 0]}>
+        <group position={[0, 0, 5]}>
+          <group ref={groupRef} scale={0.7} position={[0, -4.5, 0]}>
             <mesh
               castShadow
               receiveShadow
@@ -698,7 +697,7 @@ function Boba() {
               position={[0, 11.927, 0]}
               rotation={[Math.PI / 2, 0, 0]}
             >
-              <meshStandardMaterial color={new THREE.Color("#000000")} side={THREE.DoubleSide} />
+              <meshPhongMaterial color={new THREE.Color("#000000")} side={THREE.DoubleSide} />
             </mesh>
 
             <mesh geometry={bobaCupNodes.Boba_sise2.geometry} position={[0, 5.795, 0]} rotation={[Math.PI / 2, 0, 0]}>
@@ -714,20 +713,19 @@ function Boba() {
               <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
             </mesh>
           </group>
-        </group>
-
-        <group>
-          <mesh geometry={new THREE.PlaneGeometry(3.75, 5.5)} scale={1.1} position={[0, 0, 5]}>
-            <meshPhysicalMaterial
-              map={fillMap}
-              bumpMap={fillMap}
-              bumpScale={4}
-              color={"#FFFFFF"}
-              transparent={true}
-              opacity={0.9}
-              side={THREE.DoubleSide}
-            />
-          </mesh>
+          <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
+            <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
+              <meshPhysicalMaterial
+                map={fillMap}
+                bumpMap={fillMap}
+                bumpScale={4}
+                color={"#FFFFFF"}
+                transparent={true}
+                opacity={0.9}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </group>
         </group>
       </>
     </Float>
