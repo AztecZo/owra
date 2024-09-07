@@ -717,7 +717,7 @@ function Boba() {
         </group>
 
         <group>
-          <mesh geometry={new THREE.PlaneGeometry(3.5, 5)} scale={1.1} position={[0, -0.25, 5]}>
+          <mesh geometry={new THREE.PlaneGeometry(3.75, 5.5)} scale={1.1} position={[0, 0, 5]}>
             <meshPhysicalMaterial
               map={fillMap}
               bumpMap={fillMap}
