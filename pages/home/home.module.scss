@@ -4,6 +4,10 @@
   .logoC {
     @include dims(100%, auto);
     padding: desktop-vw(130px) 0 desktop-vw(260px) 0;
+
+    @include mobile {
+      padding: mobile-vw(130px) 0 mobile-vw(260px) 0;
+    }
   }
 
   .iceC {
@@ -80,6 +84,10 @@
   .text {
     padding: desktop-vw(300px) 0;
 
+    @include mobile {
+      padding: mobile-vw(150px) 0;
+    }
+
     > h1 {
       color: var(--white);
       font-family: var(--font-dela-gothic-one);
@@ -87,23 +95,45 @@
       font-weight: 400;
       line-height: 1.25;
 
+      @include mobile {
+        font-size: mobile-vw(40px);
+        margin-bottom: mobile-vw(30px);
+        text-align: center;
+      }
+
       span {
         display: inline-block;
 
         &:nth-child(1) {
           margin-left: desktop-vw(500px);
+
+          @include mobile {
+            margin-left: 0;
+          }
         }
 
         &:nth-child(2) {
           margin-left: desktop-vw(300px);
+
+          @include mobile {
+            margin-left: 0;
+          }
         }
 
         &:nth-child(3) {
           margin-left: desktop-vw(400px);
+
+          @include mobile {
+            margin-left: 0;
+          }
         }
 
         &:nth-child(4) {
           margin-left: desktop-vw(300px);
+
+          @include mobile {
+            margin-left: 0;
+          }
         }
       }
     }
@@ -115,11 +145,22 @@
       font-size: desktop-vw(18px);
       font-weight: 400;
       margin-left: desktop-vw(900px);
+
+      @include mobile {
+        @include dims(100%, auto);
+        font-size: mobile-vw(18px);
+        margin-left: 0;
+        text-align: center;
+      }
     }
   }
 
   .fullImg {
     position: relative;
+
+    @include mobile {
+      @include dims(100%, mobile-vw(300px));
+    }
 
     .waveC {
       @include position(absolute, 0, 0, auto, 0);
@@ -131,11 +172,21 @@
     &.ice1 {
       @include position(absolute, desktop-vw(500px), auto, auto, desktop-vw(150px));
       @include dims(desktop-vw(150px));
+
+      @include mobile {
+        @include position(absolute, mobile-vw(500px), auto, auto, mobile-vw(150px));
+        @include dims(mobile-vw(150px));
+      }
     }
 
     &.ice2 {
       @include position(absolute, desktop-vw(800px), auto, auto, desktop-vw(700px));
       @include dims(desktop-vw(150px));
+
+      @include mobile {
+        @include position(absolute, mobile-vw(800px), auto, auto, mobile-vw(700px));
+        @include dims(mobile-vw(150px));
+      }
     }
   }
 }
@@ -148,16 +199,29 @@
     border-top: 1px solid var(--algerian-colar);
     padding: desktop-vw(50px) 0;
 
+    @include mobile {
+      padding: mobile-vw(30px) 0;
+    }
+
     h2 {
       color: var(--black);
       font-family: var(--font-dela-gothic-one);
       font-size: desktop-vw(80px);
       font-weight: 400;
+
+      @include mobile {
+        font-size: mobile-vw(30px);
+      }
     }
 
     .iconC {
       @include dims(desktop-vw(50px));
       margin: 0 desktop-vw(50px);
+
+      @include mobile {
+        @include dims(mobile-vw(30px));
+        margin: 0 mobile-vw(30px);
+      }
     }
   }
 
@@ -165,39 +229,70 @@
     padding: desktop-vw(70px);
     position: relative;
 
+    @include mobile {
+      padding: mobile-vw(50px) mobile-vw(16px);
+    }
+
     .imgC {
       border-radius: desktop-vw(10px);
       margin-bottom: desktop-vw(-200px);
       overflow: hidden;
       position: relative;
 
+      @include mobile {
+        border-radius: mobile-vw(10px);
+        margin-bottom: mobile-vw(20px);
+      }
+
       &.img1 {
         @include dims(desktop-vw(440px), desktop-vw(510px));
         margin-left: auto;
         transform: rotate(7deg);
         z-index: 10;
+
+        @include mobile {
+          @include dims(100%, mobile-vw(250px));
+          transform: rotate(0deg);
+        }
       }
 
       &.img2 {
         @include dims(desktop-vw(490px), desktop-vw(690px));
         transform: rotate(-5deg);
         z-index: 5;
+
+        @include mobile {
+          @include dims(100%, mobile-vw(250px));
+          transform: rotate(0deg);
+        }
       }
     }
 
     .iconC {
       @include dims(desktop-vw(120px));
 
+      @include mobile {
+        @include dims(mobile-vw(120px));
+      }
+
       &.icon1 {
         @include position(absolute, desktop-vw(200px), auto, auto, desktop-vw(120px));
         transform: rotate(-5deg);
         z-index: 15;
+
+        @include mobile {
+          @include position(absolute, mobile-vw(200px), auto, auto, mobile-vw(120px));
+        }
       }
 
       &.icon2 {
         @include position(absolute, desktop-vw(800px), auto, auto, desktop-vw(500px));
         transform: rotate(-5deg);
         z-index: 15;
+
+        @include mobile {
+          @include position(absolute, mobile-vw(800px), auto, auto, mobile-vw(500px));
+        }
       }
     }
   }
@@ -205,16 +300,29 @@
   .text {
     padding: desktop-vw(140px) desktop-vw(80px) desktop-vw(60px) desktop-vw(30px);
 
+    @include mobile {
+      padding: mobile-vw(140px) mobile-vw(80px) mobile-vw(60px) mobile-vw(30px);
+    }
+
     > p {
       color: var(--black);
       font-family: var(--font-fustat);
       font-size: desktop-vw(24px);
       font-weight: 400;
       margin-bottom: desktop-vw(100px);
+
+      @include mobile {
+        font-size: mobile-vw(24px);
+        margin-bottom: mobile-vw(100px);
+      }
     }
 
     li {
       margin-bottom: desktop-vw(50px);
+
+      @include mobile {
+        margin-bottom: mobile-vw(50px);
+      }
 
       h5 {
         color: var(--science-blue);
@@ -224,6 +332,11 @@
         margin-bottom: desktop-vw(4px);
         position: relative;
 
+        @include mobile {
+          font-size: mobile-vw(30px);
+          margin-bottom: mobile-vw(4px);
+        }
+
         .iconC {
           @include position(absolute, 50%, auto, auto, 0);
           @include dims(desktop-vw(20px));
@@ -231,6 +344,11 @@
           transform: translate(calc(-100% - desktop-vw(12px)), -40%);
           display: flex;
           justify-content: center;
+
+          @include mobile {
+            @include dims(mobile-vw(20px));
+            transform: translate(calc(-100% - mobile-vw(12px)), -40%);
+          }
         }
       }
 
@@ -239,6 +357,10 @@
         font-family: var(--font-fustat);
         font-size: desktop-vw(24px);
         font-weight: 400;
+
+        @include mobile {
+          font-size: mobile-vw(24px);
+        }
       }
     }
   }
@@ -248,9 +370,17 @@
   padding: desktop-vw(140px) 0;
   position: relative;
 
+  @include mobile {
+    padding: mobile-vw(50px) 0;
+  }
+
   .sliderC {
     padding: desktop-vw(260px) 0;
     position: relative;
+
+    @include mobile {
+      padding: 0 0;
+    }
 
     .bg {
       @include position(absolute, 50%, auto, auto, 50%);
@@ -267,6 +397,11 @@
     font-weight: 400;
     margin-bottom: desktop-vw(40px);
     text-align: center;
+
+    @include mobile {
+      font-size: mobile-vw(30px);
+      margin-bottom: mobile-vw(30px);
+    }
   }
 
   .description {
@@ -276,6 +411,11 @@
     font-size: desktop-vw(24px);
     font-weight: 400;
     text-align: center;
+
+    @include mobile {
+      @include dims(mobile-vw(300px), auto);
+      font-size: mobile-vw(15px);
+    }
   }
 
   .ice {
@@ -345,9 +485,18 @@
   padding: desktop-vw(20px);
   position: relative;
 
+  @include mobile {
+    gap: mobile-vw(80px);
+    padding: mobile-vw(16px);
+  }
+
   .formC {
     padding: desktop-vw(60px);
     padding-right: 0;
+
+    @include mobile {
+      padding: 0;
+    }
 
     h2 {
       color: var(--white);
@@ -355,14 +504,25 @@
       font-size: desktop-vw(32px);
       font-weight: 400;
       margin-bottom: desktop-vw(50px);
+
+      @include mobile {
+        font-size: mobile-vw(30px);
+        margin-bottom: mobile-vw(30px);
+      }
     }
   }
 
   .imgC {
-    @include dims(auto, desktop-vw(760px));
+    @include dims(100%, desktop-vw(760px));
     border-radius: desktop-vw(20px);
     margin-left: desktop-vw(50px);
     overflow: hidden;
+
+    @include mobile {
+      @include dims(100%, mobile-vw(250px));
+      border-radius: mobile-vw(20px);
+      margin-left: mobile-vw(50px);
+    }
   }
 
   // .waveC {

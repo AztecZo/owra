@@ -16,6 +16,7 @@ export default function SliderProducts(props: SliderProductsProps) {
   const seqs = {
     iceGlass: "ice-glass",
     boba: "boba",
+    coffee: "coffee",
   }
 
   return (
@@ -36,7 +37,7 @@ export default function SliderProducts(props: SliderProductsProps) {
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float>
-              <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
+              <div className={s.imgC}>{<Sequence type={seqs.coffee} />}</div>
             </Float>
             <h3 className={s.title}>Owra’nın Farkı</h3>
           </div>
@@ -64,7 +65,7 @@ export default function SliderProducts(props: SliderProductsProps) {
 }
 
 export function Sequence({ type }: { type: unknown }) {
-  const PHASE = 20
+  const PHASE = 22
 
   const [currentItem, setCurrentItem] = useState(0)
 
