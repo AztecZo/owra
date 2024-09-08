@@ -7,6 +7,10 @@
     @include position(absolute, 0, 0, auto, 0);
     @include dims(100%, desktop-vw(300px));
     transform: translateY(-60%);
+
+    @include mobile {
+      @include dims(100%, mobile-vw(300px));
+    }
   }
 
   .nav {
@@ -17,16 +21,35 @@
     padding: 0 desktop-vw(80px);
     z-index: 20;
 
+    @include mobile {
+      gap: mobile-vw(50px);
+      margin-bottom: mobile-vw(200px);
+      margin-top: mobile-vw(120px);
+      padding: 0 mobile-vw(16px);
+    }
+
     .row {
       gap: desktop-vw(370px);
+
+      @include mobile {
+        gap: mobile-vw(50px);
+      }
     }
 
     .col {
       gap: desktop-vw(40px);
+
+      @include mobile {
+        gap: mobile-vw(50px);
+      }
     }
 
     .navItem {
       max-width: desktop-vw(350px);
+
+      @include mobile {
+        max-width: mobile-vw(300px);
+      }
 
       > h6 {
         color: var(--black);
@@ -35,6 +58,12 @@
         font-weight: 800;
         line-height: 1.35;
         margin-bottom: desktop-vw(4px);
+
+        @include mobile {
+          font-size: mobile-vw(18px);
+          margin-bottom: mobile-vw(4px);
+          text-align: center;
+        }
       }
 
       > p {
@@ -43,6 +72,11 @@
         font-size: desktop-vw(20px);
         font-weight: 400;
         line-height: 1.35;
+
+        @include mobile {
+          font-size: mobile-vw(18px);
+          text-align: center;
+        }
       }
     }
   }
@@ -50,12 +84,21 @@
   .copyright {
     position: relative;
 
+    @include mobile {
+      gap: mobile-vw(30px);
+    }
+
     > span {
       color: var(--black);
       font-family: var(--font-fustat);
       font-size: desktop-vw(20px);
       font-weight: 400;
       line-height: 1.35;
+
+      @include mobile {
+        font-size: mobile-vw(16px);
+        order: 2;
+      }
     }
 
     .social {
@@ -63,18 +106,37 @@
       gap: desktop-vw(10px);
       transform: translate(-50%, -50%);
 
+      @include mobile {
+        @include position(relative, auto, auto, auto, auto);
+        gap: mobile-vw(10px);
+        transform: unset;
+        order: 1;
+      }
+
       .iconC {
         @include dims(desktop-vw(28px));
+
+        @include mobile {
+          @include dims(mobile-vw(28px));
+        }
       }
     }
   }
 
   .logoC {
     @include position(absolute, auto, desktop-vw(120px), desktop-vw(180px), desktop-vw(120px));
+
+    @include mobile {
+      @include position(absolute, auto, mobile-vw(20px), mobile-vw(60px), mobile-vw(20px));
+    }
   }
 
   .iceC {
     @include position(absolute, auto, 0, 0, 0);
-    z-index: 10;
+    z-index: 30;
+
+    @include mobile {
+      @include position(absolute, auto, mobile-vw(-50px), mobile-vw(0px), mobile-vw(-90px));
+    }
   }
 }

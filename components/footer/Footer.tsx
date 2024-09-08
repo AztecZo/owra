@@ -1,6 +1,9 @@
 import s from "./footer.module.scss"
 
+import { gsap, ScrollTrigger } from "@/lib/gsap"
+import { useGSAP } from "@gsap/react"
 import cx from "clsx"
+import { useRef } from "react"
 
 import { IconLinkedin, IconOwraLogo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
@@ -8,13 +11,43 @@ import { Link } from "@/components/utility/link"
 
 import iceCubes from "@/public/img/ice-cubes-2.png"
 
-export interface FooterProps {}
+export default function Footer() {
+  const ref = useRef(null)
 
-export default function Footer(props: FooterProps) {
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ paused: true })
+
+      tl.from(
+        ".logo-c",
+        {
+          yPercent: 100,
+          scale: 0.9,
+        },
+        "s"
+      ).from(
+        ".ice-c",
+        {
+          yPercent: -80,
+          scale: 1.05,
+        },
+        "s"
+      )
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: ref.current,
+        scrub: true,
+        end: "bottom bottom",
+      })
+    },
+    { scope: ref }
+  )
+
   return (
-    <footer className={cx(s.footer, "flex flex-col items-stretch justify-center")}>
+    <footer className={cx(s.footer, "flex flex-col items-stretch justify-center")} ref={ref}>
       <nav className={cx(s.nav, "flex flex-col items-stretch")}>
-        <div className={cx(s.row, "flex")}>
+        <div className={cx(s.row, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
           <div className={cx(s.col, "flex flex-col")}>
             <div className={s.navItem}>
               <h6>Sales and Orders</h6>
@@ -32,7 +65,7 @@ export default function Footer(props: FooterProps) {
             </div>
           </div>
         </div>
-        <div className={cx(s.copyright, "flex items-end justify-between")}>
+        <div className={cx(s.copyright, "flex flex-col items-center tablet:items-end justify-between")}>
           <span>©2024 Owra</span>
           <span className={cx(s.social, "flex")}>
             <div className={s.iconC}>
@@ -60,11 +93,11 @@ export default function Footer(props: FooterProps) {
         </div>
       </nav>
 
-      <div className={s.logoC}>
+      <div className={cx(s.logoC, "logo-c")}>
         <IconOwraLogo />
       </div>
 
-      <div className={s.iceC}>
+      <div className={cx(s.iceC, "ice-c")}>
         <Img src={iceCubes} alt="Ice Cubes" />
       </div>
     </footer>
