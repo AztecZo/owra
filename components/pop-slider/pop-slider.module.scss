@@ -1,20 +1,39 @@
 .controls {
-  @include dims(desktop-vw(500px), desktop-vw(150px));
-  background-color: var(--white);
+  --height: #{desktop-vw(80px)};
+  @include dims(desktop-vw(500px), var(--height));
+  border-radius: desktop-vw(64px);
+  border: 0px solid var(--science-blue);
   display: flex;
-  @include position(absolute, auto, auto, 0, 50%);
+  @include position(absolute, auto, auto, 2%, 50%);
   transform: translateX(-50%);
   pointer-events: auto;
+  z-index: 10;
 
-  .content {
-    flex: 1;
+  @include mobile {
+    @include position(absolute, auto, auto, 0%, 50%);
+    --height: #{mobile-vw(80px)};
+    @include dims(100%, var(--height));
   }
 
-  .button {
-    @include dims(desktop-vw(150px));
-    flex-shrink: 0;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  &::before {
+    content: "";
+    border-radius: desktop-vw(64px);
+    @include position(absolute, -5px, -5px, -5px, -5px);
+    background-color: var(--science-blue);
+    z-index: -1;
+  }
+
+  .inner {
+    background-color: var(--white);
+    border-radius: desktop-vw(64px);
+
+    .content {
+      flex: 1;
+    }
+
+    .button {
+      @include dims(var(--height));
+      flex-shrink: 0;
+    }
   }
 }
