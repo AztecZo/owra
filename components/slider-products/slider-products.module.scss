@@ -1,8 +1,18 @@
 .sliderProducts {
+  position: relative;
+
   .slide {
     .imgC {
-      @include dims(600px);
+      @include dims(500px);
       border: 1px solid red;
+    }
+  }
+
+  .item {
+    opacity: 1;
+
+    &.active {
+      opacity: 1;
     }
   }
 }

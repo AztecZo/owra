@@ -1,16 +1,24 @@
 import s from "./home/home.module.scss"
 
 import cx from "clsx"
+import dynamic from "next/dynamic"
 
 import { Marquee } from "@/components/animations/marquee"
-import { Parallax } from "@/components/animations/parallax"
 import { FormContact } from "@/components/form-contact"
 import { IconBgStar, IconOk, IconOwraLogo, IconStar } from "@/components/icons"
 import { SliderFade } from "@/components/slider-fade"
+import { SliderProducts } from "@/components/slider-products"
 import { Img } from "@/components/utility/img"
 import { DefaultLayout } from "@/layouts/default"
 
-import { SliderProducts } from "@/components/slider-products"
+const Parallax = dynamic(() => import("@/components/animations/parallax"), {
+  ssr: false,
+})
+
+const Float = dynamic(() => import("@/components/animations/float"), {
+  ssr: false,
+})
+
 import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
@@ -217,6 +225,36 @@ export default function Home() {
               </p>
             </div>
           </SliderFade>
+        </div>
+
+        <div className={cx(s.ice, s.ice1)}>
+          <Float>
+            <Img alt="Ice Cube" className="object-contain" src={i3} />
+          </Float>
+        </div>
+
+        <div className={cx(s.ice, s.ice2)}>
+          <Float>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Float>
+        </div>
+
+        <div className={cx(s.ice, s.ice3)}>
+          <Float>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Float>
+        </div>
+
+        <div className={cx(s.ice, s.ice4)}>
+          <Float>
+            <Img alt="Ice Cube" className="object-contain" src={i2} />
+          </Float>
+        </div>
+
+        <div className={cx(s.ice, s.ice5)}>
+          <Float>
+            <Img alt="Ice Cube" className="object-contain" src={i4} />
+          </Float>
         </div>
       </section>
 

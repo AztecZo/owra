@@ -6,7 +6,7 @@ import cx from "clsx"
 import { useRef } from "react"
 
 import { Marquee } from "@/components/animations/marquee"
-import { Parallax } from "@/components/animations/parallax"
+import Parallax from "@/components/animations/parallax"
 import { Button } from "@/components/button"
 import { FormContact } from "@/components/form-contact"
 import { Img } from "@/components/utility/img"

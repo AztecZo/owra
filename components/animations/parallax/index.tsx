@@ -1,5 +1,3 @@
-"use client"
-
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import { ReactNode, useRef } from "react"
@@ -13,18 +11,28 @@ interface Parallax {
 
 const Parallax = (props: Parallax) => {
   const { children, speedX, speedY } = props
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
   const windowSize = useWindowSize()
+
+  function getElementOffsetTop(element: HTMLElement): number {
+    const rect = element.getBoundingClientRect()
+    const scrollTop = window.scrollY || document.documentElement.scrollTop
+    return rect.top + scrollTop
+  }
 
   useGSAP(
     () => {
-      gsap.to(ref.current, {
+      if (!ref.current) return
+
+      console.log(getElementOffsetTop(ref.current))
+
+      gsap.to(".parallax-item", {
         ...(speedX && { xPercent: 100 * speedX }),
         ...(speedY && { yPercent: 100 * speedY }),
         scrollTrigger: {
           id: "parallax",
-          markers: false,
-          start: `top top+=${ref.current?.getBoundingClientRect().top}px`,
+          markers: true,
+          start: `top top+=${getElementOffsetTop(ref.current)}px`,
           scrub: true,
           trigger: ref.current,
         },
@@ -35,9 +43,9 @@ const Parallax = (props: Parallax) => {
 
   return (
     <div ref={ref} className="inherit-dims">
-      {children}
+      <div className="parallax-item">{children}</div>
     </div>
   )
 }
 
-export { Parallax }
+export default Parallax

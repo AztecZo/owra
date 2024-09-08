@@ -7,7 +7,6 @@ import {
   Float,
   Html,
   MeshTransmissionMaterial,
-  OrbitControls,
   OrthographicCamera,
   Stats,
   useGLTF,
@@ -112,7 +111,6 @@ interface SliderItemProps {
 }
 
 export default function PopSlider() {
-  return null
   return (
     <div className="w-full h-full">
       <Scene />
@@ -346,7 +344,7 @@ const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
   return <>{items[index]}</>
 })
 
-function WavyVortex() {
+export function WavyVortex() {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
@@ -438,13 +436,13 @@ function WavyVortex() {
       height: { value: 0 },
     }),
     [
-      controls.direction,
-      controls.maxRings,
-      controls.waveCount,
-      controls.waveDepth,
-      controls.yCenter,
-      controls.time,
-      controls.ringDistance,
+      // controls.direction,
+      // controls.maxRings,
+      // controls.waveCount,
+      // controls.waveDepth,
+      // controls.yCenter,
+      // controls.time,
+      // controls.ringDistance,
     ]
   )
 

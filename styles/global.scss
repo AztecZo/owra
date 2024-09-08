@@ -122,3 +122,8 @@ sup {
     padding-right: unset;
   }
 }
+
+#leva__root {
+  position: relative;
+  z-index: z-index("gsap-markers");
+}
