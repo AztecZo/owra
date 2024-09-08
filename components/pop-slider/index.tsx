@@ -112,6 +112,7 @@ interface SliderItemProps {
 }
 
 export default function PopSlider() {
+  return null
   return (
     <div className="w-full h-full">
       <Scene />
@@ -122,7 +123,7 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={1}>
+    <Canvas dpr={0.1}>
       <Suspense fallback={<LoadingScreen />}>
         <color attach="background" args={["#ffffff"]} />
 

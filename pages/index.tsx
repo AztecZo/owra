@@ -2,21 +2,23 @@ import s from "./home/home.module.scss"
 
 import cx from "clsx"
 
-import { IconBgStar, IconOk, IconOwraLogo, IconStar } from "@/components/icons"
-import { Img } from "@/components/utility/img"
-import { DefaultLayout } from "@/layouts/default"
-
-import iceCubes from "@/public/img/ice-cubes.png"
-import s1 from "@/public/img/s-1.svg"
-
-import ice1 from "@/public/img/ice-1.png"
-import ice2 from "@/public/img/ice-2.png"
-
 import { Marquee } from "@/components/animations/marquee"
 import { Parallax } from "@/components/animations/parallax"
 import { FormContact } from "@/components/form-contact"
-import PopSlider from "@/components/pop-slider"
+import { IconBgStar, IconOk, IconOwraLogo, IconStar } from "@/components/icons"
 import { SliderFade } from "@/components/slider-fade"
+import { Img } from "@/components/utility/img"
+import { DefaultLayout } from "@/layouts/default"
+
+import { SliderProducts } from "@/components/slider-products"
+import i1 from "@/public/img/b-1.png"
+import i2 from "@/public/img/b-2.png"
+import i3 from "@/public/img/b-3.png"
+import i4 from "@/public/img/b-4.png"
+import ice1 from "@/public/img/ice-1.png"
+import ice2 from "@/public/img/ice-2.png"
+import iceCubes from "@/public/img/ice-cubes.png"
+import s1 from "@/public/img/s-1.svg"
 
 export default function Home() {
   return (
@@ -29,9 +31,37 @@ export default function Home() {
         <div className={s.iceC}>
           <Img src={iceCubes} alt="Ice Cubes" />
         </div>
-      </section>
 
-      <section className="w-screen h-screen"></section>
+        <div className={cx(s.ice, s.ice1)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i3} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice2)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice3)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i1} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice4)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i2} />
+          </Parallax>
+        </div>
+
+        <div className={cx(s.ice, s.ice5)}>
+          <Parallax speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain" src={i4} />
+          </Parallax>
+        </div>
+      </section>
 
       <section className={cx(s.greetings, "flex flex-col items-center")}>
         <div className={s.text}>
@@ -71,7 +101,7 @@ export default function Home() {
       </section>
 
       <section className="w-screen h-screen flex items-center justify-center">
-        <PopSlider />
+        <SliderProducts />
       </section>
 
       <section className={s.why}>

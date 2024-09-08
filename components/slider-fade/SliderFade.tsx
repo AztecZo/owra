@@ -1,23 +1,25 @@
 import s from "./slider-fade.module.scss"
 
 import cx from "clsx"
-
 import { EmblaCarouselType } from "embla-carousel"
 import Autoplay from "embla-carousel-autoplay"
 import Fade from "embla-carousel-fade"
 import useEmblaCarousel from "embla-carousel-react"
 import { ReactNode, useCallback, useEffect, useState } from "react"
+
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { NextButton, PrevButton } from "@/components/utility/embla-carousel/buttons"
 
 export interface SliderFadeProps {
   children: ReactNode[]
+  autoplay?: boolean
 }
 
 export default function SliderFade(props: SliderFadeProps) {
+  const { children, autoplay = false } = props
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Fade(),
-    Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false }),
+    ...(autoplay ? [Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false })] : []),
   ])
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
@@ -50,7 +52,7 @@ export default function SliderFade(props: SliderFadeProps) {
   return (
     <div className={s.slider}>
       <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi}>
-        {props.children}
+        {children}
       </EmblaCarousel>
 
       <div className={cx(s.buttons, "flex items-center justify-between")}>
