@@ -1,3 +1,4 @@
+import useReloadOnResize from "@/hooks/use-reload-on-resize"
 import Providers from "@/layouts/providers"
 import { SmoothLayout } from "@/layouts/smooth"
 import "@/styles/global.scss"
@@ -16,6 +17,7 @@ const delaGothicOne = Dela_Gothic_One({
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
+  useReloadOnResize()
   return (
     <div className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}>
       <QueryClientProvider client={queryClient}>

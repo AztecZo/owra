@@ -3,10 +3,13 @@
   z-index: z-index("footer");
 
   &::before {
-    content: url("../../public/img/s-2.svg");
+    content: "";
     @include position(absolute, 0, 0, auto, 0);
-    @include dims(100%, desktop-vw(300px));
-    transform: translateY(-60%);
+    @include dims(100%);
+    transform: translateY(-15%);
+    background: url("../../public/img/s-2.svg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 
     @include mobile {
       @include dims(100%, mobile-vw(300px));
