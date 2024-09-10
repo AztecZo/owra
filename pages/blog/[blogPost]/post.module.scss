@@ -83,14 +83,14 @@
 }
 
 .banner {
-  @include dims(auto, desktop-vw(500px));
+  @include dims(100%, auto);
   background: var(--alaskan-mist);
   border-radius: desktop-vw(20px);
   grid-column: 1/13;
   overflow: hidden;
 
   @include mobile {
-    @include dims(auto, mobile-vw(200px));
+    @include dims(100%, mobile-vw(200px));
     border-radius: mobile-vw(10px);
   }
 }
