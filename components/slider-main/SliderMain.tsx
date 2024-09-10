@@ -7,56 +7,59 @@ import { Img } from "@/components/utility/img"
 import { useRef, useState } from "react"
 import { useGSAP } from "@gsap/react"
 import { gsap } from "@/lib/gsap"
+import { CardBlogProps } from "@/types"
 
-export interface SliderMainProps {}
+export interface SliderMainProps {
+  items: CardBlogProps[]
+}
 
 export default function SliderMain(props: SliderMainProps) {
   const ref = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [currentSlideUi, setCurrentSlideUi] = useState(currentSlide)
 
-  const items = [
-    {
-      media: { src: "/img/sample.jpg", height: "500", width: "500" },
-      title: "title",
-      description: "description",
-      url: "url",
-      date: "date",
-      category: "category",
-      time: "time",
-      horizontal: true,
-    },
-    {
-      media: { src: "/img/sample.jpg", height: "500", width: "500" },
-      title: "title",
-      description: "description",
-      url: "url",
-      date: "date",
-      category: "category",
-      time: "time",
-      horizontal: true,
-    },
-    {
-      media: { src: "/img/sample.jpg", height: "500", width: "500" },
-      title: "title",
-      description: "description",
-      url: "url",
-      date: "date",
-      category: "category",
-      time: "time",
-      horizontal: true,
-    },
-    {
-      media: { src: "/img/sample.jpg", height: "500", width: "500" },
-      title: "title",
-      description: "description",
-      url: "url",
-      date: "date",
-      category: "category",
-      time: "time",
-      horizontal: true,
-    },
-  ]
+  // const items = [
+  //   {
+  //     media: { src: "/img/sample.jpg", height: "500", width: "500" },
+  //     title: "title",
+  //     description: "description",
+  //     url: "url",
+  //     date: "date",
+  //     category: "category",
+  //     time: "time",
+  //     horizontal: true,
+  //   },
+  //   {
+  //     media: { src: "/img/sample.jpg", height: "500", width: "500" },
+  //     title: "title",
+  //     description: "description",
+  //     url: "url",
+  //     date: "date",
+  //     category: "category",
+  //     time: "time",
+  //     horizontal: true,
+  //   },
+  //   {
+  //     media: { src: "/img/sample.jpg", height: "500", width: "500" },
+  //     title: "title",
+  //     description: "description",
+  //     url: "url",
+  //     date: "date",
+  //     category: "category",
+  //     time: "time",
+  //     horizontal: true,
+  //   },
+  //   {
+  //     media: { src: "/img/sample.jpg", height: "500", width: "500" },
+  //     title: "title",
+  //     description: "description",
+  //     url: "url",
+  //     date: "date",
+  //     category: "category",
+  //     time: "time",
+  //     horizontal: true,
+  //   },
+  // ]
 
   useGSAP(
     () => {
@@ -81,7 +84,7 @@ export default function SliderMain(props: SliderMainProps) {
   return (
     <div className={cx(s.sliderMain, "grid grid-cols-12")} ref={ref}>
       <div className={cx(s.text, "col-span-4")}>
-        {items.map((item, i) => {
+        {props.items.map((item, i) => {
           return (
             <div className={cx(s.itemC, "item-c", "flex flex-col", { [s.active]: currentSlideUi === i })} key={i}>
               <p className={s.category}>{item.category}</p>
@@ -114,15 +117,15 @@ export default function SliderMain(props: SliderMainProps) {
             loop: true,
           }}
         >
-          {items.map((item, i) => {
+          {props.items.map((item, i) => {
             return (
               <div className={s.imgC} key={i}>
                 <Img
                   className="object-cover"
                   src={item.media.src}
                   alt="Blog Cover Photo"
-                  height={parseFloat(item.media.height as string)}
-                  width={parseFloat(item.media.width as string)}
+                  height={1000}
+                  width={1000}
                   loading="lazy"
                 />
               </div>

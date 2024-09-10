@@ -46,13 +46,12 @@ export interface CardBlogProps {
   title: string
   time: string
   url: string
+  content?: string | TrustedHTML
 }
 
 export interface BlogProps {
-  id?: string
-  header: Omit<CardBlogProps, "url">
-  nextPost: string
-  // body: BlockProps
+  blog: CardBlogProps
+  nextblogs: CardBlogProps[]
 }
 
 export interface SocialProps {

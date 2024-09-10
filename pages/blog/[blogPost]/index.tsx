@@ -13,12 +13,14 @@ import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
 import { BlogProps } from "@/types"
 import { SliderMain } from "@/components/slider-main"
+import { single } from "@/api/queries/blog"
 
 type Props = BlogProps
 
-const Post = (props: Props) => {
-  const router = useRouter()
+const BlogPost = (props: Props) => {
   const [copied, setCopied] = useState(false)
+
+  console.log(props)
 
   useIsomorphicLayoutEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,24 +31,23 @@ const Post = (props: Props) => {
   }, [copied])
 
   return (
-    <DefaultLayout seo={{ title: `Blog | ${props.header.title}`, description: props.header.title }}>
+    <DefaultLayout seo={{ title: `Blog | ${props.blog.title}`, description: props.blog.title }}>
       <section className={cx(s.intro, "grid grid-cols-12")}>
+        <Link href="/blog" className={cx(s.back, "underline")}>
+          Geri Dön
+        </Link>
         <div className={cx(s.info, "flex flex-col col-start-7 col-end-12")}>
-          <div className={s.breadcrumb}>
-            <small>
-              <Link href={`/${routes.blog.path}`}>Blog</Link>
-            </small>
-            <small className={s.separator}> / </small>
-            <small>{props.header.title}</small>
-          </div>
+          <Link className={s.category} href={`/${routes.blog.path}`}>
+            Blog
+          </Link>
 
-          <small className={s.time}>{props.header.time}</small>
+          <small className={s.time}>{props.blog.time} Dakikda Okuma Süresi</small>
 
-          <h1 className={s.title}>{props.header.title}</h1>
+          <h1 className={s.title}>{props.blog.title}</h1>
 
-          <p className={s.description}>{props.header.description}</p>
+          <p className={s.description}>{props.blog.description}</p>
 
-          <small className={s.date}>{props.header.date}</small>
+          <small className={s.date}>{props.blog.date}</small>
         </div>
 
         <div className={s.banner}>
@@ -54,20 +55,23 @@ const Post = (props: Props) => {
             alt="Blog Banner"
             className="object-cover"
             priority={true}
-            src={props.header.media.src}
-            height={parseFloat(props.header.media.height as string)}
-            width={parseFloat(props.header.media.width as string)}
+            src={props.blog.media.src}
+            height={2000}
+            width={2000}
           />
         </div>
       </section>
 
-      {/* <section className={s.postBody}>
-        <BlogBody {...props} />
-      </section> */}
+      <section className={cx(s.body, "grid grid-cols-12")}>
+        <div
+          className={cx(s.content, "flex flex-col col-start-7 col-end-12")}
+          dangerouslySetInnerHTML={{ __html: props.blog.content as TrustedHTML }}
+        ></div>
+      </section>
 
       <section className={s.other}>
         <Link
-          href={`/${routes.blog.path}/${props.nextPost}`}
+          href={`/${routes.blog.path}/${""}`}
           className={cx(s.marquee, "cursor-pointer")}
           ariaLabel={"Continue to the Next Post"}
         >
@@ -76,41 +80,27 @@ const Post = (props: Props) => {
           </Marquee>
         </Link>
         <div className={s.sliderC}>
-          <SliderMain />
+          <SliderMain items={props.nextblogs} />
         </div>
       </section>
     </DefaultLayout>
   )
 }
 
-export default Post
+export default BlogPost
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // const res = await apiClient.get("/newsDetail.php", {
-  //   params: {
-  //     url: context.query.post,
-  //   },
-  // })
+  const blogPost = context.params?.blogPost as string
 
-  const post: BlogProps = {
-    header: {
-      category: "category",
-      title: "title",
-      date: "date",
-      description: "description",
-      time: "time",
-      media: { src: "/img/sample.jpg", height: "500", width: "500" },
-    },
-    nextPost: "/blog-2",
-  }
+  const data = await single(blogPost)
 
-  if (!post) {
+  if (!blogPost) {
     return {
       notFound: true,
     }
   }
 
   return {
-    props: post,
+    props: data,
   }
 }

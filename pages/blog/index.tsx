@@ -2,34 +2,22 @@ import s from "./blog.module.scss"
 
 import cx from "clsx"
 
+import { all } from "@/api/queries/blog"
 import { CardBlog } from "@/components/card-blog"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { routes } from "@/constants/index"
 import { DefaultLayout } from "@/layouts/default"
 import { CardBlogProps } from "@/types"
 
-const Blog = () => {
-  const cardBlogProps: CardBlogProps = {
-    media: { src: "/img/sample.jpg", height: "500", width: "500" },
-    title: "title",
-    description: "description",
-    url: "url",
-    date: "date",
-    category: "category",
-    time: "time",
-    horizontal: true,
+interface BlogProps {
+  blogPage: {
+    latestBlog: CardBlogProps[]
+    blogs: CardBlogProps[]
   }
+}
 
-  const cardBlogProps2: CardBlogProps = {
-    media: { src: "/img/sample.jpg", height: "500", width: "500" },
-    title: "title",
-    description: "description",
-    url: "url",
-    date: "date",
-    category: "category",
-    time: "time",
-    horizontal: false,
-  }
+const Blog = ({ blogPage }: BlogProps) => {
+  console.log(blogPage)
 
   return (
     <DefaultLayout seo={{ ...routes.blog.seo }}>
@@ -38,13 +26,14 @@ const Blog = () => {
       </section>
       <section className={s.highlight}>
         <EmblaCarousel>
-          {Array.from("x".repeat(5)).map((item, i) => {
-            return (
-              <div className={s.cardC} key={i}>
-                <CardBlog {...cardBlogProps} />
-              </div>
-            )
-          })}
+          {blogPage.latestBlog &&
+            blogPage.latestBlog.map((item, i) => {
+              return (
+                <div className={s.cardC} key={i}>
+                  <CardBlog {...item} horizontal />
+                </div>
+              )
+            })}
         </EmblaCarousel>
       </section>
       {/* <div className="w-screen h-screen">
@@ -56,16 +45,22 @@ const Blog = () => {
         ></video>
       </div> */}
       <section className={cx(s.content, "grid grid-cols-3")}>
-        {Array.from("x".repeat(5)).map((item, i) => {
-          return (
-            <div className={s.cardC} key={i}>
-              <CardBlog {...cardBlogProps2} />
-            </div>
-          )
-        })}
+        {blogPage.blogs &&
+          blogPage.blogs.map((item, i) => {
+            return (
+              <div className={s.cardC} key={i}>
+                <CardBlog {...item} />
+              </div>
+            )
+          })}
       </section>
     </DefaultLayout>
   )
 }
 
 export default Blog
+
+export const getServerSideProps = async () => {
+  const blogPage = await all()
+  return { props: { blogPage } }
+}

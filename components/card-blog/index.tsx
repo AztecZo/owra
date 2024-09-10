@@ -20,8 +20,8 @@ const CardBlog = (props: Props) => {
           className="object-cover"
           src={props.media.src}
           alt="Blog Cover Photo"
-          height={parseFloat(props.media.height as string)}
-          width={parseFloat(props.media.width as string)}
+          height={800}
+          width={800}
           loading="lazy"
         />
       </div>

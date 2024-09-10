@@ -95,7 +95,9 @@ export function Sequence({ type }: { type: unknown }) {
       {Array.from({ length: PHASE }).map((_, i) => {
         return (
           <div
-            className={cx(s.item, "absolute top-0 left-0 bottom-0 right-0", { [s.active]: currentItem === i })}
+            className={cx(s.item, "absolute top-0 left-0 bottom-0 right-0", {
+              [s.active]: currentItem === i,
+            })}
             key={i}
           >
             <Img

@@ -65,7 +65,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={cx(s.copyright, "flex flex-col items-center tablet:items-end justify-between")}>
+        <div
+          className={cx(s.copyright, "flex flex-col items-center justify-between tablet:flex-row tablet:items-end ")}
+        >
           <span>©2024 Owra</span>
           <span className={cx(s.social, "flex")}>
             <div className={s.iconC}>
