@@ -64,21 +64,18 @@ const BlogPost = (props: Props) => {
 
       <section className={cx(s.body, "grid grid-cols-12")}>
         <div
-          className={cx(s.content, "flex flex-col col-start-7 col-end-12")}
+          className={cx(s.content, "flex flex-col col-start-4 col-end-10")}
           dangerouslySetInnerHTML={{ __html: props.blog.content as TrustedHTML }}
         ></div>
       </section>
 
       <section className={s.other}>
-        <Link
-          href={`/${routes.blog.path}/${""}`}
-          className={cx(s.marquee, "cursor-pointer")}
-          ariaLabel={"Continue to the Next Post"}
-        >
+        <div className={s.marquee}>
           <Marquee duration={30} repeat={4} inverted>
             <h5>Sıradaki İçerik</h5>
           </Marquee>
-        </Link>
+        </div>
+
         <div className={s.sliderC}>
           <SliderMain items={props.nextblogs} />
         </div>

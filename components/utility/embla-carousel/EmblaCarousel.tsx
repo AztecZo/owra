@@ -9,6 +9,7 @@ interface Props {
   options?: EmblaOptionsType
   emblaRef?: EmblaViewportRefType
   emblaApi?: EmblaCarouselType | undefined
+  scrollTo?: number
 }
 
 const EmblaCarousel = (props: Props) => {

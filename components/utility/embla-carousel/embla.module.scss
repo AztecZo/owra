@@ -1,5 +1,3 @@
-//
-
 .embla {
   margin: auto;
   --slide-height: 100%;
@@ -16,8 +14,8 @@
   margin-left: calc(var(--slide-spacing) * -1);
 }
 .emblaSlide {
-  transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
+  display: flex;
+  flex-shrink: 0;
   min-width: 0;
   padding-left: var(--slide-spacing);
 }

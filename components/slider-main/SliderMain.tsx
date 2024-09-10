@@ -4,10 +4,13 @@ import cx from "clsx"
 
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
-import { useRef, useState } from "react"
-import { useGSAP } from "@gsap/react"
-import { gsap } from "@/lib/gsap"
+import { truncateByWords, truncateString } from "@/lib/utils"
 import { CardBlogProps } from "@/types"
+import { useEffect, useRef, useState } from "react"
+
+import useEmblaCarousel from "embla-carousel-react"
+import { IconArrow } from "../icons"
+import { Link } from "../utility/link"
 
 export interface SliderMainProps {
   items: CardBlogProps[]
@@ -16,7 +19,16 @@ export interface SliderMainProps {
 export default function SliderMain(props: SliderMainProps) {
   const ref = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [currentSlideUi, setCurrentSlideUi] = useState(currentSlide)
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" })
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.scrollTo(currentSlide)
+    }
+
+    console.log(currentSlide)
+  }, [emblaApi, currentSlide])
 
   // const items = [
   //   {
@@ -61,62 +73,49 @@ export default function SliderMain(props: SliderMainProps) {
   //   },
   // ]
 
-  useGSAP(
-    () => {
-      gsap.to(".item-c", {
-        opacity: 0,
-        duration: 0.4,
-        onComplete: () => {
-          setCurrentSlideUi(currentSlide)
-          gsap.to(".item-c", {
-            opacity: 1,
-            duration: 0.4,
-          })
-        },
-      })
-    },
-    {
-      dependencies: [currentSlide],
-      scope: ref,
-    }
-  )
+  function handlePrev() {
+    setCurrentSlide((prev) => (prev === 0 ? props.items.length - 1 : prev - 1))
+  }
+
+  function handleNext() {
+    setCurrentSlide((prev) => (prev + 1) % props.items.length)
+  }
 
   return (
     <div className={cx(s.sliderMain, "grid grid-cols-12")} ref={ref}>
       <div className={cx(s.text, "col-span-4")}>
         {props.items.map((item, i) => {
           return (
-            <div className={cx(s.itemC, "item-c", "flex flex-col", { [s.active]: currentSlideUi === i })} key={i}>
+            <div className={cx(s.itemC, "flex flex-col", { [s.active]: currentSlide === i })} key={i}>
               <p className={s.category}>{item.category}</p>
-              <p className={s.time}>{item.time}</p>
-              <p className={s.title}>{item.title}</p>
-              <p className={s.description}>{item.description}</p>
+              <p className={s.time}>{item.time} Dakika Okuma Süresi</p>
+              <p className={s.title}>{truncateByWords(item.title, 7)}</p>
+              <p className={s.description}>{truncateByWords(item.description, 18)}</p>
               <p className={s.date}>{item.date}</p>
-              <p className={s.link}>Devamını Oku</p>
+              <Link className={s.link} href={`/${item.url}`}>
+                Devamını Oku
+              </Link>
             </div>
           )
         })}
-        <div className={cx(s.buttons, "flex gap-1")}>
-          <div
-            className={cx(s.btn, "cursor-pointer flex items-center justify-center")}
-            onClick={() => setCurrentSlide((prev) => prev - 1)}
-          >
-            <span>prev</span>
+        <nav className={cx(s.nav, "flex items-end justify-between")}>
+          <div className={cx(s.buttons, "flex gap-1")}>
+            <div className={cx(s.btn, "cursor-pointer flex items-center justify-center")} onClick={handlePrev}>
+              <span className={s.icon}>
+                <IconArrow fill="var(--science-blue)" rotate={180} />
+              </span>
+            </div>
+            <div className={cx(s.btn, "cursor-pointer flex items-center justify-center")} onClick={handleNext}>
+              <span className={s.icon}>
+                <IconArrow fill="var(--science-blue)" />
+              </span>
+            </div>
           </div>
-          <div
-            className={cx(s.btn, "cursor-pointer flex items-center justify-center")}
-            onClick={() => setCurrentSlide((prev) => prev + 1)}
-          >
-            <span>next</span>
-          </div>
-        </div>
+          <small className={s.indicator}>{`${currentSlide + 1} / ${props.items.length}`}</small>
+        </nav>
       </div>
       <div className={cx(s.images, "col-span-8")}>
-        <EmblaCarousel
-          options={{
-            loop: true,
-          }}
-        >
+        <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi}>
           {props.items.map((item, i) => {
             return (
               <div className={s.imgC} key={i}>

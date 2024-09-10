@@ -82,3 +82,13 @@ export function convertHexToGLSLRGB(hex: string) {
   var b = parseInt(hex.substring(5, 7), 16) / 255.0
   return new Vector3(r, g, b)
 }
+
+export function truncateByWords(input: string, wordLimit: number): string {
+  const words = input.split(" ")
+
+  if (words.length <= wordLimit) {
+    return input // Return the original string if it has fewer words than the limit
+  }
+
+  return words.slice(0, wordLimit).join(" ") + "..."
+}
