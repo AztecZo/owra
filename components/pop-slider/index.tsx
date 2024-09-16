@@ -121,7 +121,7 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={1}>
+    <Canvas dpr={2}>
       <Suspense fallback={<LoadingScreen />}>
         <color attach="background" args={["#ffffff"]} />
 
