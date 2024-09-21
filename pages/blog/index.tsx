@@ -36,15 +36,8 @@ const Blog = ({ blogPage }: BlogProps) => {
             })}
         </EmblaCarousel>
       </section>
-      {/* <div className="w-screen h-screen">
-        <video
-          src="https://hosting.photobucket.com/d20f04cd-08a2-41e6-8fdc-2964c51480bb/9b126534-e77f-4d8b-94af-0b6465e8cb98.mp4"
-          autoPlay
-          muted
-          playsInline
-        ></video>
-      </div> */}
-      <section className={cx(s.content, "grid grid-cols-3")}>
+
+      <section className={cx(s.content, "flex flex-col tablet:grid grid-cols-3")}>
         {blogPage.blogs &&
           blogPage.blogs.map((item, i) => {
             return (

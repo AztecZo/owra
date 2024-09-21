@@ -32,11 +32,11 @@ const BlogPost = (props: Props) => {
 
   return (
     <DefaultLayout seo={{ title: `Blog | ${props.blog.title}`, description: props.blog.title }}>
-      <section className={cx(s.intro, "grid grid-cols-12")}>
-        <Link href="/blog" className={cx(s.back, "underline")}>
+      <section className={cx(s.intro, "flex flex-col tablet:grid grid-cols-12")}>
+        <Link className={cx(s.back, "underline")} href="/blog">
           Geri Dön
         </Link>
-        <div className={cx(s.info, "flex flex-col col-start-7 col-end-12")}>
+        <div className={cx(s.info, "flex flex-col col-start-1 tablet:col-start-7 col-end-13 tablet:col-end-12")}>
           <Link className={s.category} href={`/${routes.blog.path}`}>
             Blog
           </Link>
@@ -64,7 +64,7 @@ const BlogPost = (props: Props) => {
 
       <section className={cx(s.body, "grid grid-cols-12")}>
         <div
-          className={cx(s.content, "flex flex-col col-start-4 col-end-10")}
+          className={cx(s.content, "flex flex-col col-start-1 col-end-13 tablet:col-start-4 tablet:col-end-10")}
           dangerouslySetInnerHTML={{ __html: props.blog.content as TrustedHTML }}
         ></div>
       </section>
