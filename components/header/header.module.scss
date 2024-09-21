@@ -35,3 +35,102 @@
     margin: 0 desktop-vw(32px);
   }
 }
+
+.modalContent {
+  @include dims(desktop-vw(700px), auto);
+  background: var(--science-blue);
+  border-radius: desktop-vw(10px);
+  padding: desktop-vw(32px);
+
+  @include mobile {
+    @include dims(mobile-vw(350px), auto);
+    border-radius: mobile-vw(10px);
+    padding: mobile-vw(16px);
+  }
+
+  .header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.23);
+    padding-bottom: desktop-vw(14px);
+
+    @include mobile {
+      padding-bottom: mobile-vw(14px);
+    }
+
+    .title {
+      color: var(--white);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(36px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+
+      @include mobile {
+        font-size: mobile-vw(22px);
+      }
+    }
+
+    .iconC {
+      @include dims(desktop-vw(20px));
+
+      @include mobile {
+        @include dims(mobile-vw(16px));
+      }
+    }
+  }
+
+  .content {
+    padding-top: desktop-vw(16px);
+
+    @include mobile {
+      padding-top: mobile-vw(16px);
+    }
+
+    > p {
+      @include dims(desktop-vw(410px), auto);
+      color: var(--white);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(24px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin-bottom: desktop-vw(50px);
+
+      @include mobile {
+        @include dims(auto);
+        font-size: mobile-vw(22px);
+        margin-bottom: mobile-vw(10px);
+        text-align: center;
+      }
+    }
+
+    .buttonDrop {
+      background-color: var(--white);
+      border-radius: desktop-vw(10px);
+      color: var(--science-blue);
+      font-family: var(--font-fustat);
+      font-size: desktop-vw(24px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: desktop-vw(50px);
+      padding: desktop-vw(12px) desktop-vw(12px);
+
+      @include mobile {
+        border-radius: mobile-vw(10px);
+        font-size: mobile-vw(20px);
+        margin-bottom: mobile-vw(30px);
+        margin-top: mobile-vw(20px);
+        padding: mobile-vw(5px) mobile-vw(8px);
+      }
+    }
+  }
+
+  .iceC {
+    @include position(absolute, auto, 0, 0, auto);
+    @include dims(desktop-vw(400px));
+    transform: translate(desktop-vw(-250px), desktop-vw(-50px));
+
+    @include mobile {
+      @include dims(mobile-vw(180px));
+      transform: translate(mobile-vw(-5px), mobile-vw(-30px));
+      display: none;
+    }
+  }
+}

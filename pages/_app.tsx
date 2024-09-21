@@ -1,3 +1,4 @@
+import { Modal } from "@/components/utility/modal"
 import useReloadOnResize from "@/hooks/use-reload-on-resize"
 import Providers from "@/layouts/providers"
 import { SmoothLayout } from "@/layouts/smooth"
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </SmoothLayout>
         </Providers>
       </QueryClientProvider>
+      <Modal />
     </div>
   )
 }
