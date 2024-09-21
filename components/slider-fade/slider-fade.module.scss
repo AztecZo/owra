@@ -1,21 +1,23 @@
 .sliderFade {
   position: relative;
 
-  .buttons {
-    @include dims(calc(100vw - desktop-vw(400px)), auto);
-    @include position(absolute, 50%, auto, auto, 50%);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+  .prev,
+  .next {
+    @include dims(desktop-vw(70px));
+    background-color: var(--algerian-colar);
+    border: 4px solid var(--white);
+    border-radius: 50%;
+    color: var(--white);
+    pointer-events: auto;
+    padding: desktop-vw(16px);
+  }
 
-    .prev,
-    .next {
-      @include dims(desktop-vw(70px));
-      background-color: var(--algerian-colar);
-      border: 4px solid var(--white);
-      border-radius: 50%;
-      color: var(--white);
-      pointer-events: auto;
-      padding: desktop-vw(16px);
-    }
+  .prev {
+    @include position(absolute, 50%, auto, auto, 50%);
+    transform: translate(calc(-50% + desktop-vw(-400px)), -50%);
+  }
+  .next {
+    @include position(absolute, 50%, auto, auto, 50%);
+    transform: translate(calc(-50% + desktop-vw(400px)), -50%);
   }
 }

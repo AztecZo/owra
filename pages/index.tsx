@@ -11,11 +11,11 @@ import { SliderProducts } from "@/components/slider-products"
 import { Img } from "@/components/utility/img"
 import { DefaultLayout } from "@/layouts/default"
 
-const Parallax = dynamic(() => import("@/components/animations/parallax"), {
+const ParallaxWrapper = dynamic(() => import("@/components/animations/parallax"), {
   ssr: false,
 })
 
-const Float = dynamic(() => import("@/components/animations/float"), {
+const FloatWrapper = dynamic(() => import("@/components/animations/float"), {
   ssr: false,
 })
 
@@ -41,33 +41,33 @@ export default function Home() {
         </div>
 
         <div className={cx(s.ice, s.ice1)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i3} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i3} />
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice2)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i1} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain -rotate-6" src={i1} />
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice3)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i1} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain -rotate-12" src={i1} />
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice4)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i2} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i2} />
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice5)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i4} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i4} />
+          </ParallaxWrapper>
         </div>
       </section>
 
@@ -96,15 +96,15 @@ export default function Home() {
         </div>
 
         <div className={cx(s.iceC, s.ice1)}>
-          <Parallax speedY={-0.5}>
+          <ParallaxWrapper speedY={-0.9}>
             <Img className="object-contain" src={ice1} alt="Ice Cube" />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.iceC, s.ice2)}>
-          <Parallax speedY={-0.3}>
+          <ParallaxWrapper speedY={-0.6}>
             <Img className="object-contain" src={ice2} alt="Ice Cube" />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
       </section>
 
@@ -129,20 +129,21 @@ export default function Home() {
             <div className={cx(s.imgC, s.img1)}>
               <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
             </div>
+
             <div className={cx(s.imgC, s.img2)}>
               <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
             </div>
 
             <div className={cx(s.iconC, s.icon1)}>
-              <Parallax speedY={-0.5}>
+              <ParallaxWrapper speedY={-1}>
                 <IconStar fill="var(--algerian-colar)" />
-              </Parallax>
+              </ParallaxWrapper>
             </div>
 
             <div className={cx(s.iconC, s.icon2)}>
-              <Parallax speedY={-1}>
+              <ParallaxWrapper speedY={-2}>
                 <IconStar fill="var(--algerian-colar)" />
-              </Parallax>
+              </ParallaxWrapper>
             </div>
           </div>
 
@@ -198,7 +199,7 @@ export default function Home() {
           <div className={s.bg}>
             <IconBgStar />
           </div>
-          <SliderFade>
+          <SliderFade autoplay buttonStyles={s.button}>
             <div className="flex flex-col items-center">
               <h3 className={s.title}>Owra ile Kalite</h3>
               <p className={s.description}>
@@ -228,33 +229,33 @@ export default function Home() {
         </div>
 
         <div className={cx(s.ice, s.ice1)}>
-          <Float>
+          <FloatWrapper amountY={[-20, 20]}>
             <Img alt="Ice Cube" className="object-contain" src={i3} />
-          </Float>
+          </FloatWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice2)}>
-          <Float>
+          <FloatWrapper amountY={[-20, 20]}>
             <Img alt="Ice Cube" className="object-contain" src={i1} />
-          </Float>
+          </FloatWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice3)}>
-          <Float>
+          <FloatWrapper amountY={[-20, 20]}>
             <Img alt="Ice Cube" className="object-contain" src={i1} />
-          </Float>
+          </FloatWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice4)}>
-          <Float>
+          <FloatWrapper amountY={[-20, 20]}>
             <Img alt="Ice Cube" className="object-contain" src={i2} />
-          </Float>
+          </FloatWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice5)}>
-          <Float>
+          <FloatWrapper amountY={[-20, 20]}>
             <Img alt="Ice Cube" className="object-contain" src={i4} />
-          </Float>
+          </FloatWrapper>
         </div>
       </section>
 

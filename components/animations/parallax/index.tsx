@@ -1,15 +1,16 @@
+import { ClientOnly } from "@/components/utility/isomorphic"
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import { ReactNode, useRef } from "react"
 import { useWindowSize } from "usehooks-ts"
 
-interface Parallax {
+interface ParallaxProps {
   children: ReactNode
   speedX?: number
   speedY: number
 }
 
-const Parallax = (props: Parallax) => {
+const Parallax = (props: ParallaxProps) => {
   const { children, speedX, speedY } = props
   const ref = useRef<HTMLDivElement | null>(null)
   const windowSize = useWindowSize()
@@ -31,14 +32,13 @@ const Parallax = (props: Parallax) => {
         ...(speedY && { yPercent: 100 * speedY }),
         scrollTrigger: {
           id: "parallax",
-          markers: true,
           start: `top top+=${getElementOffsetTop(ref.current)}px`,
           scrub: true,
           trigger: ref.current,
         },
       })
     },
-    { scope: ref, dependencies: [speedX, speedY, windowSize.width], revertOnUpdate: true }
+    { scope: ref, dependencies: [speedX, speedY, windowSize.width] }
   )
 
   return (
@@ -48,4 +48,14 @@ const Parallax = (props: Parallax) => {
   )
 }
 
-export default Parallax
+interface ParallaxWrapperProps extends ParallaxProps {}
+
+const ParallaxWrapper = (props: ParallaxWrapperProps) => (
+  <ClientOnly>
+    <Parallax speedX={props.speedX} speedY={props.speedY}>
+      {props.children}
+    </Parallax>
+  </ClientOnly>
+)
+
+export default ParallaxWrapper

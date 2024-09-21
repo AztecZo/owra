@@ -1,22 +1,23 @@
+import { ClientOnly } from "@/components/utility/isomorphic"
 import { ScrollTrigger, gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import { ReactNode, useRef } from "react"
 
-interface Props {
+interface FloatProps {
   children: ReactNode
-  amountY?: number
-  amountRotate?: number
+  amountY?: number[]
+  amountRotate?: number[]
 }
 
-const Float = (props: Props) => {
-  const { children, amountY = gsap.utils.random(-10, 10), amountRotate = gsap.utils.random(-3, 3) } = props
+const Float = (props: FloatProps) => {
+  const { children, amountY = [-10, 10], amountRotate = [-3, 3] } = props
   const ref = useRef(null)
 
   useGSAP(
     () => {
       const tl = gsap.timeline({ paused: true }).to(ref.current, {
-        yPercent: amountY,
-        rotate: amountRotate,
+        yPercent: gsap.utils.random(amountY),
+        rotate: gsap.utils.random(amountRotate),
         duration: 4,
         repeat: -1,
         yoyo: true,
@@ -41,4 +42,14 @@ const Float = (props: Props) => {
   )
 }
 
-export default Float
+interface FloatWrapperProps extends FloatProps {}
+
+const FloatWrapper = (props: FloatWrapperProps) => (
+  <ClientOnly>
+    <Float amountY={props.amountY} amountRotate={props.amountRotate}>
+      {props.children}
+    </Float>
+  </ClientOnly>
+)
+
+export default FloatWrapper

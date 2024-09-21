@@ -24,7 +24,6 @@
   .ice1 {
     @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(100px));
     @include dims(desktop-vw(120px));
-    transform: rotate(8deg);
 
     @include mobile {
       @include position(absolute, mobile-vw(80px), auto, auto, mobile-vw(20px));
@@ -35,7 +34,6 @@
   .ice2 {
     @include position(absolute, desktop-vw(330px), auto, auto, desktop-vw(180px));
     @include dims(desktop-vw(100px));
-    transform: rotate(-8deg);
 
     @include mobile {
       @include position(absolute, mobile-vw(100px), auto, auto, mobile-vw(220px));
@@ -46,7 +44,6 @@
   .ice3 {
     @include position(absolute, desktop-vw(50px), auto, auto, desktop-vw(730px));
     @include dims(desktop-vw(120px));
-    transform: rotate(-16deg);
 
     @include mobile {
       @include position(absolute, mobile-vw(20px), auto, auto, mobile-vw(240px));
@@ -57,7 +54,6 @@
   .ice4 {
     @include position(absolute, desktop-vw(280px), auto, auto, desktop-vw(1100px));
     @include dims(desktop-vw(85px));
-    transform: rotate(8deg);
 
     @include mobile {
       @include position(absolute, mobile-vw(280px), auto, auto, mobile-vw(100px));
@@ -68,7 +64,6 @@
   .ice5 {
     @include position(absolute, desktop-vw(80px), auto, auto, desktop-vw(1300px));
     @include dims(desktop-vw(140px));
-    transform: rotate(8deg);
 
     @include mobile {
       @include position(absolute, mobile-vw(140px), auto, auto, mobile-vw(330px));
@@ -170,7 +165,7 @@
 
   .iceC {
     &.ice1 {
-      @include position(absolute, desktop-vw(500px), auto, auto, desktop-vw(150px));
+      @include position(absolute, desktop-vw(550px), auto, auto, desktop-vw(150px));
       @include dims(desktop-vw(150px));
 
       @include mobile {
@@ -180,7 +175,7 @@
     }
 
     &.ice2 {
-      @include position(absolute, desktop-vw(800px), auto, auto, desktop-vw(700px));
+      @include position(absolute, desktop-vw(850px), auto, auto, desktop-vw(700px));
       @include dims(desktop-vw(150px));
 
       @include mobile {
@@ -388,6 +383,13 @@
       transform: translate(-50%, -50%);
       z-index: -1;
     }
+
+    .button {
+      @include dims(desktop-vw(60px));
+      background-color: var(--white);
+      color: var(--science-blue);
+      border: 1px solid var(--science-blue);
+    }
   }
 
   .title {
@@ -424,7 +426,7 @@
   }
 
   .ice1 {
-    @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(100px));
+    @include position(absolute, desktop-vw(200px), auto, auto, desktop-vw(100px));
     @include dims(desktop-vw(120px));
     transform: rotate(8deg);
 
@@ -435,7 +437,7 @@
   }
 
   .ice2 {
-    @include position(absolute, desktop-vw(330px), auto, auto, desktop-vw(180px));
+    @include position(absolute, desktop-vw(930px), auto, auto, desktop-vw(180px));
     @include dims(desktop-vw(100px));
     transform: rotate(-8deg);
 
@@ -446,7 +448,7 @@
   }
 
   .ice3 {
-    @include position(absolute, desktop-vw(450px), auto, auto, desktop-vw(730px));
+    @include position(absolute, desktop-vw(950px), auto, auto, desktop-vw(1000px));
     @include dims(desktop-vw(120px));
     transform: rotate(-16deg);
 
@@ -457,7 +459,7 @@
   }
 
   .ice4 {
-    @include position(absolute, desktop-vw(280px), auto, auto, desktop-vw(1100px));
+    @include position(absolute, desktop-vw(150px), auto, auto, desktop-vw(1100px));
     @include dims(desktop-vw(85px));
     transform: rotate(8deg);
 
@@ -468,8 +470,8 @@
   }
 
   .ice5 {
-    @include position(absolute, desktop-vw(680px), auto, auto, desktop-vw(1300px));
-    @include dims(desktop-vw(140px));
+    @include position(absolute, desktop-vw(580px), auto, auto, desktop-vw(1250px));
+    @include dims(desktop-vw(120px));
     transform: rotate(8deg);
 
     @include mobile {
@@ -515,13 +517,11 @@
   .imgC {
     @include dims(100%, desktop-vw(760px));
     border-radius: desktop-vw(20px);
-    margin-left: desktop-vw(50px);
     overflow: hidden;
 
     @include mobile {
       @include dims(100%, mobile-vw(250px));
       border-radius: mobile-vw(20px);
-      margin-left: mobile-vw(50px);
     }
   }
 

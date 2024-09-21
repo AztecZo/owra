@@ -14,7 +14,8 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
 export interface SliderFadeProps {
   children: ReactNode[]
   autoplay?: boolean
-  onSelectSlide?: (index: number) => void // New prop to pass the current index to the parent
+  onSelectSlide?: (index: number) => void
+  buttonStyles?: string
 }
 
 export default function SliderFade(props: SliderFadeProps) {
@@ -67,23 +68,38 @@ export default function SliderFade(props: SliderFadeProps) {
         {children}
       </EmblaCarousel>
 
-      <div className={cx(s.buttons, "flex items-center justify-between")}>
-        <PrevButton
-          className={cx(s.prev, "flex items-center justify-center cursor-pointer")}
-          onClick={scrollPrev}
-          disabled={prevBtnDisabled}
-        >
-          <ArrowLeftIcon className="w-full h-full" />
-        </PrevButton>
-
-        <NextButton
-          className={cx(s.next, "flex items-center justify-center cursor-pointer")}
-          onClick={scrollNext}
-          disabled={nextBtnDisabled}
-        >
-          <ArrowRightIcon className="w-full h-full" />
-        </NextButton>
-      </div>
+      <ButtonPrev className={props.buttonStyles} scroll={scrollPrev} disabled={prevBtnDisabled} />
+      <ButtonNext className={props.buttonStyles} scroll={scrollNext} disabled={nextBtnDisabled} />
     </div>
+  )
+}
+
+interface ButtonProps {
+  scroll: () => void | undefined
+  disabled: boolean
+  className?: string
+}
+
+export function ButtonPrev(props: ButtonProps) {
+  return (
+    <PrevButton
+      className={cx(s.prev, "flex items-center justify-center cursor-pointer", props.className)}
+      onClick={props.scroll}
+      disabled={props.disabled}
+    >
+      <ArrowLeftIcon className="w-full h-full" />
+    </PrevButton>
+  )
+}
+
+export function ButtonNext(props: ButtonProps) {
+  return (
+    <NextButton
+      className={cx(s.next, "flex items-center justify-center cursor-pointer", props.className)}
+      onClick={props.scroll}
+      disabled={props.disabled}
+    >
+      <ArrowRightIcon className="w-full h-full" />
+    </NextButton>
   )
 }

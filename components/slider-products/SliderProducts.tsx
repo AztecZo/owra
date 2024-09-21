@@ -1,14 +1,15 @@
 import s from "./slider-products.module.scss"
 
+import { OrthographicCamera } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 import cx from "clsx"
 import { useEffect, useRef, useState } from "react"
 
+import Float from "@/components/animations/float"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
-import Float from "../animations/float"
-import { Canvas } from "@react-three/fiber"
-import { WavyVortex } from "../pop-slider"
-import { OrthographicCamera } from "@react-three/drei"
+import { Vortex } from "@/components/vortex"
+import { ButtonPrev } from "../slider-fade/SliderFade"
 
 export interface SliderProductsProps {}
 
@@ -30,9 +31,9 @@ export default function SliderProducts(props: SliderProductsProps) {
   return (
     <div className={cx(s.sliderProducts, "w-full h-full flex items-center justify-center")}>
       <div className={cx(s.sliderC, "z-20")}>
-        <SliderFade onSelectSlide={handleSelectSlide}>
+        <SliderFade onSelectSlide={handleSelectSlide} autoplay>
           <div className={cx(s.slide, "flex flex-col items-center")}>
-            <Float>
+            <Float amountY={[-5, 5]}>
               <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
             </Float>
             <div className={s.text}>
@@ -44,7 +45,7 @@ export default function SliderProducts(props: SliderProductsProps) {
             </div>
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
-            <Float>
+            <Float amountY={[-7, 7]}>
               <div className={s.imgC}>{<Sequence type={seqs.boba} />}</div>
             </Float>
             <div className={s.text}>
@@ -63,10 +64,9 @@ export default function SliderProducts(props: SliderProductsProps) {
           </div> */}
         </SliderFade>
       </div>
-      <div className="absolute top-10 left-10 right-10 bottom-10 z-10">
+      <div className="absolute top-10 left-10 right-10 bottom-10 z-10 opacity-80">
         <Canvas dpr={2}>
-          <WavyVortex currentItem={currentSlide} />
-
+          <Vortex currentItem={currentSlide} />
           <OrthographicCamera
             makeDefault
             zoom={50} // Control zoom level
