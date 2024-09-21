@@ -11,7 +11,7 @@ interface Props {
   emblaRef?: EmblaViewportRefType
   emblaApi?: EmblaCarouselType | undefined
   scrollTo?: number
-  type: "default" | "fade"
+  type?: "default" | "fade"
 }
 
 const EmblaCarousel = (props: Props) => {
