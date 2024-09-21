@@ -16,36 +16,56 @@ export default function SliderProducts(props: SliderProductsProps) {
   const seqs = {
     iceGlass: "ice-glass",
     boba: "boba",
-    coffee: "coffee",
+    // coffee: "coffee",
+  }
+
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const handleSelectSlide = (index: number) => {
+    console.log("Current slide index:", index)
+    setCurrentSlide(index)
+    // Do something with the selected slide index here
   }
 
   return (
     <div className={cx(s.sliderProducts, "w-full h-full flex items-center justify-center")}>
       <div className={cx(s.sliderC, "z-20")}>
-        <SliderFade>
+        <SliderFade onSelectSlide={handleSelectSlide}>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float>
               <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
             </Float>
-            <h3 className={s.title}>Owra ile Kalite</h3>
+            <div className={s.text}>
+              <h3 className={s.title}>Owra ile Kalite</h3>
+              <p className={s.description}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
+                voluptatem voluptates dignissimos explicabo natus aspernatur!
+              </p>
+            </div>
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float>
               <div className={s.imgC}>{<Sequence type={seqs.boba} />}</div>
             </Float>
-            <h3 className={s.title}>Owra ile Eğlence</h3>
+            <div className={s.text}>
+              <h3 className={s.title}>Owra ile Eğlence</h3>
+              <p className={s.description}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
+                voluptatem voluptates dignissimos explicabo natus aspernatur!
+              </p>
+            </div>
           </div>
-          <div className={cx(s.slide, "flex flex-col items-center")}>
+          {/* <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float>
               <div className={s.imgC}>{<Sequence type={seqs.coffee} />}</div>
             </Float>
             <h3 className={s.title}>Owra’nın Farkı</h3>
-          </div>
+          </div> */}
         </SliderFade>
       </div>
       <div className="absolute top-10 left-10 right-10 bottom-10 z-10">
-        <Canvas>
-          <WavyVortex />
+        <Canvas dpr={2}>
+          <WavyVortex currentItem={currentSlide} />
 
           <OrthographicCamera
             makeDefault
@@ -104,7 +124,7 @@ export function Sequence({ type }: { type: unknown }) {
               priority={true}
               className="object-contain"
               alt="Product Visual"
-              src={`/img/sequences/${type}/s_${currentItem}.png`}
+              src={`/img/sequences/${type}/s_${i}.png`}
               height={800}
               width={800}
             />

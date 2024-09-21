@@ -9,14 +9,16 @@ import { ReactNode, useCallback, useEffect, useState } from "react"
 
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { NextButton, PrevButton } from "@/components/utility/embla-carousel/buttons"
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
 
 export interface SliderFadeProps {
   children: ReactNode[]
   autoplay?: boolean
+  onSelectSlide?: (index: number) => void // New prop to pass the current index to the parent
 }
 
 export default function SliderFade(props: SliderFadeProps) {
-  const { children, autoplay = false } = props
+  const { children, autoplay = false, onSelectSlide } = props
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Fade(),
     ...(autoplay ? [Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false })] : []),
@@ -34,10 +36,20 @@ export default function SliderFade(props: SliderFadeProps) {
     setScrollSnaps(emblaApi.scrollSnapList())
   }, [])
 
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setPrevBtnDisabled(!emblaApi.canScrollPrev())
-    setNextBtnDisabled(!emblaApi.canScrollNext())
-  }, [])
+  const onSelect = useCallback(
+    (emblaApi: EmblaCarouselType) => {
+      setPrevBtnDisabled(!emblaApi.canScrollPrev())
+      setNextBtnDisabled(!emblaApi.canScrollNext())
+
+      const selectedIndex = emblaApi.selectedScrollSnap()
+
+      // Call the callback to notify the parent of the current index
+      if (onSelectSlide) {
+        onSelectSlide(selectedIndex)
+      }
+    },
+    [onSelectSlide]
+  )
 
   useEffect(() => {
     if (!emblaApi) return
@@ -61,8 +73,7 @@ export default function SliderFade(props: SliderFadeProps) {
           onClick={scrollPrev}
           disabled={prevBtnDisabled}
         >
-          {/* <IconArrow fill="var(--eye-patch)" rotate={180} /> */}
-          prev
+          <ArrowLeftIcon className="w-full h-full" />
         </PrevButton>
 
         <NextButton
@@ -70,8 +81,7 @@ export default function SliderFade(props: SliderFadeProps) {
           onClick={scrollNext}
           disabled={nextBtnDisabled}
         >
-          {/* <IconArrow fill="var(--eye-patch)" /> */}
-          next
+          <ArrowRightIcon className="w-full h-full" />
         </NextButton>
       </div>
     </div>

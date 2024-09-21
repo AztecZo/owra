@@ -344,7 +344,11 @@ const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
   return <>{items[index]}</>
 })
 
-export function WavyVortex() {
+interface WavyVortexProps {
+  currentItem?: number
+}
+
+export function WavyVortex(props: WavyVortexProps) {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
@@ -495,6 +499,10 @@ export function WavyVortex() {
     currentColor.current = (currentColor.current + 1) % colors.current.length
     t.current = 0
   }
+
+  useEffect(() => {
+    handlePointerDown()
+  }, [props.currentItem])
 
   return (
     <group position={[0, 0, -6]}>

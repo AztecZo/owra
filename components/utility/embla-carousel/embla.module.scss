@@ -29,9 +29,9 @@
   --slide-size: 100%;
   position: relative;
 
-  .emblaViewport {
-    overflow: hidden;
-  }
+  // .emblaViewport {
+  //   overflow: hidden;
+  // }
   .emblaContainer {
     display: flex;
     touch-action: pan-y pinch-zoom;
