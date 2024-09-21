@@ -82,8 +82,8 @@ export default function SliderMain(props: SliderMainProps) {
   }
 
   return (
-    <div className={cx(s.sliderMain, "grid grid-cols-12")} ref={ref}>
-      <div className={cx(s.text, "col-span-4")}>
+    <div className={cx(s.sliderMain, "flex flex-col tablet:grid grid-cols-12")} ref={ref}>
+      <div className={cx(s.text, "tablet:col-span-4")}>
         {props.items.map((item, i) => {
           return (
             <div className={cx(s.itemC, "flex flex-col", { [s.active]: currentSlide === i })} key={i}>
@@ -114,19 +114,21 @@ export default function SliderMain(props: SliderMainProps) {
           <small className={s.indicator}>{`${currentSlide + 1} / ${props.items.length}`}</small>
         </nav>
       </div>
-      <div className={cx(s.images, "col-span-8")}>
-        <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi}>
+      <div className={cx(s.images, "tablet:col-span-8")}>
+        <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi} type="default">
           {props.items.map((item, i) => {
             return (
               <div className={s.imgC} key={i}>
-                <Img
-                  className="object-cover"
-                  src={item.media.src}
-                  alt="Blog Cover Photo"
-                  height={1000}
-                  width={1000}
-                  loading="lazy"
-                />
+                <div className={s.img}>
+                  <Img
+                    className="object-cover"
+                    src={item.media.src}
+                    alt="Blog Cover Photo"
+                    height={1000}
+                    width={1000}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             )
           })}

@@ -50,8 +50,8 @@ export default function SliderFade(props: SliderFadeProps) {
   }, [emblaApi, onInit, onSelect])
 
   return (
-    <div className={s.slider}>
-      <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi}>
+    <div className={s.sliderFade}>
+      <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi} type="fade">
         {children}
       </EmblaCarousel>
 
