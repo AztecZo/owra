@@ -73,31 +73,31 @@ export default function Franchise(props: FranchiseProps) {
 
         <div className={cx(s.ice, s.ice1)}>
           <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i3} />
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i3} />
           </Parallax>
         </div>
 
         <div className={cx(s.ice, s.ice2)}>
           <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i1} />
+            <Img alt="Ice Cube" className="object-contain -rotate-6" src={i1} />
           </Parallax>
         </div>
 
         <div className={cx(s.ice, s.ice3)}>
           <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i1} />
+            <Img alt="Ice Cube" className="object-contain -rotate-12" src={i1} />
           </Parallax>
         </div>
 
         <div className={cx(s.ice, s.ice4)}>
           <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i2} />
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i2} />
           </Parallax>
         </div>
 
         <div className={cx(s.ice, s.ice5)}>
           <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain" src={i4} />
+            <Img alt="Ice Cube" className="object-contain rotate-6" src={i4} />
           </Parallax>
         </div>
       </section>

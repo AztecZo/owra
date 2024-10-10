@@ -4,7 +4,7 @@
 
   &::before {
     content: "";
-    @include position(absolute, 0, 0, auto, 0);
+    @include position(absolute, desktop-vw(-20px), 0, auto, 0);
     @include dims(100%);
     transform: translateY(-15%);
     background: url("../../public/img/s-2.svg");
@@ -19,7 +19,7 @@
   .nav {
     color: var(--black);
     gap: desktop-vw(100px);
-    margin-bottom: desktop-vw(600px);
+    margin-bottom: desktop-vw(450px);
     margin-top: desktop-vw(320px);
     padding: 0 desktop-vw(80px);
     z-index: 20;
@@ -127,7 +127,7 @@
   }
 
   .logoC {
-    @include position(absolute, auto, desktop-vw(120px), desktop-vw(180px), desktop-vw(120px));
+    @include position(absolute, auto, desktop-vw(120px), desktop-vw(50px), desktop-vw(120px));
 
     @include mobile {
       @include position(absolute, auto, mobile-vw(20px), mobile-vw(60px), mobile-vw(20px));
@@ -135,7 +135,7 @@
   }
 
   .iceC {
-    @include position(absolute, auto, 0, 0, 0);
+    @include position(absolute, auto, 0, desktop-vw(-100px), 0);
     z-index: 30;
 
     @include mobile {

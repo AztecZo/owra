@@ -4,8 +4,8 @@
   .prev,
   .next {
     @include dims(desktop-vw(70px));
-    background-color: var(--algerian-colar);
-    border: 4px solid var(--white);
+    background-color: var(--white);
+    border: 4px solid var(--science-blue);
     border-radius: 50%;
     color: var(--white);
     pointer-events: auto;

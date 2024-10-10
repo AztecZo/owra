@@ -88,3 +88,22 @@ export interface Seo {
 }
 
 export type CursorType = "default" | "click" | "clickDark" | "menu"
+
+export interface Product {
+  id: number
+  name: string
+  size: string
+  volume: string
+  description: string
+  images: {
+    id: number
+    thumbnail: string
+    full: string
+  }[]
+  other: {
+    id: number
+    url: string
+    size: string
+    image: string
+  }[]
+}

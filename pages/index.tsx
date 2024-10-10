@@ -36,6 +36,12 @@ export default function Home() {
           <IconOwraLogo />
         </div>
 
+        <div className={s.cupC}>
+          <FloatWrapper>
+            <Img className="object-contain rotate-6" src="/img/cup.png" alt="Ice Cup" height={1000} width={1000} />
+          </FloatWrapper>
+        </div>
+
         <div className={s.iceC}>
           <Img src={iceCubes} alt="Ice Cubes" />
         </div>
@@ -89,10 +95,10 @@ export default function Home() {
 
         <div className={cx(s.fullImg, "h-screen")}>
           <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+        </div>
 
-          <div className={s.waveC}>
-            <Img src={s1} alt="Ice Cubes" />
-          </div>
+        <div className={s.waveC}>
+          <Img src={s1} alt="Ice Cubes" />
         </div>
 
         <div className={cx(s.iceC, s.ice1)}>
@@ -127,10 +133,6 @@ export default function Home() {
         <div className="grid grid-cols-12">
           <div className={cx(s.imgs, "col-span-7")}>
             <div className={cx(s.imgC, s.img1)}>
-              <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
-            </div>
-
-            <div className={cx(s.imgC, s.img2)}>
               <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
             </div>
 

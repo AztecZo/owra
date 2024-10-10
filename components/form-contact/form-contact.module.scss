@@ -37,7 +37,7 @@
 
     .title {
       font-family: var(--font-manrope);
-      font-size: desktop-vw(24px);
+      font-size: desktop-vw(22px);
       font-weight: 500;
       margin-bottom: desktop-vw(30px);
 
@@ -130,7 +130,7 @@
       &::placeholder {
         font-family: var(--font-manrope);
         font-weight: 500;
-        font-size: desktop-vw(20px);
+        font-size: desktop-vw(16px);
         transition: 400ms opacity ease;
 
         @include mobile {

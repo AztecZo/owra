@@ -10,6 +10,7 @@ import { ReactNode, useCallback, useEffect, useState } from "react"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { NextButton, PrevButton } from "@/components/utility/embla-carousel/buttons"
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
+import { IconArrow } from "../icons"
 
 export interface SliderFadeProps {
   children: ReactNode[]
@@ -22,7 +23,9 @@ export default function SliderFade(props: SliderFadeProps) {
   const { children, autoplay = false, onSelectSlide } = props
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Fade(),
-    ...(autoplay ? [Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false })] : []),
+    ...(autoplay
+      ? [Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]
+      : []),
   ])
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
@@ -87,7 +90,8 @@ export function ButtonPrev(props: ButtonProps) {
       onClick={props.scroll}
       disabled={props.disabled}
     >
-      <ArrowLeftIcon className="w-full h-full" />
+      {/* <ArrowLeftIcon className="w-full h-full" /> */}
+      <IconArrow fill="var(--science-blue)" rotate={180} />
     </PrevButton>
   )
 }
@@ -99,7 +103,8 @@ export function ButtonNext(props: ButtonProps) {
       onClick={props.scroll}
       disabled={props.disabled}
     >
-      <ArrowRightIcon className="w-full h-full" />
+      {/* <ArrowRightIcon className="w-full h-full" /> */}
+      <IconArrow fill="var(--science-blue)" />
     </NextButton>
   )
 }

@@ -1,15 +1,25 @@
 .intro {
   margin: desktop-vw(50px) 0;
+  padding: 0 desktop-vw(80px);
 
   > h1 {
     color: var(--science-blue);
     font-size: desktop-vw(40px);
     font-family: var(--font-dela-gothic-one);
     font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    color: var(--science-blue);
+    font-size: desktop-vw(16px);
+    font-family: var(--font-fustat);
+    font-weight: 500;
   }
 }
 
 .products {
+  padding: 0 desktop-vw(80px);
   padding-bottom: desktop-vw(250px);
 
   .product {

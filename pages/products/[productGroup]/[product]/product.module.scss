@@ -1,0 +1,96 @@
+.intro {
+  margin: desktop-vw(30px) 0;
+  padding: 0 desktop-vw(80px);
+
+  > h1 {
+    color: var(--science-blue);
+    font-size: desktop-vw(40px);
+    font-family: var(--font-dela-gothic-one);
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    color: var(--science-blue);
+    font-size: desktop-vw(16px);
+    font-family: var(--font-fustat);
+    font-weight: 700;
+  }
+}
+
+.product {
+  padding: 0 desktop-vw(80px);
+  padding-bottom: desktop-vw(250px);
+
+  .imgs {
+    .imgC {
+      @include dims(auto, desktop-vw(90px));
+      border-radius: desktop-vw(6px);
+      padding: desktop-vw(10px);
+      transition: 200ms all ease;
+
+      &.active {
+        border: 1px solid rgba(0, 117, 206, 0.2);
+      }
+    }
+  }
+
+  .mainImgC {
+    @include dims(auto, desktop-vw(620px));
+    border-radius: desktop-vw(16px);
+    border: 1px solid rgba(0, 117, 206, 0.2);
+    padding: desktop-vw(40px);
+  }
+
+  .info {
+    @include dims(desktop-vw(500px), auto);
+    padding-top: desktop-vw(50px);
+
+    .volume {
+      color: var(--science-blue);
+      font-size: desktop-vw(16px);
+      font-family: var(--font-fustat);
+      font-weight: 400;
+    }
+
+    .name {
+      color: var(--science-blue);
+      font-size: desktop-vw(40px);
+      font-family: var(--font-dela-gothic-one);
+      font-weight: 400;
+    }
+
+    .size {
+      color: var(--science-blue);
+      font-size: desktop-vw(16px);
+      font-family: var(--font-fustat);
+      font-weight: 700;
+      margin-bottom: desktop-vw(20px);
+    }
+
+    .desc {
+      color: var(--black);
+      font-size: desktop-vw(14px);
+      font-family: var(--font-fustat);
+      font-weight: 400;
+      margin-bottom: desktop-vw(50px);
+    }
+
+    .other {
+      .title {
+        color: var(--science-blue);
+        font-size: desktop-vw(16px);
+        font-family: var(--font-fustat);
+        font-weight: 700;
+        margin-bottom: desktop-vw(20px);
+      }
+
+      .imgC {
+        @include dims(desktop-vw(60px));
+        border-radius: 50%;
+        border: 1px solid var(--science-blue);
+        padding: desktop-vw(4px);
+      }
+    }
+  }
+}

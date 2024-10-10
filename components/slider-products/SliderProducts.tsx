@@ -9,7 +9,6 @@ import Float from "@/components/animations/float"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
 import { Vortex } from "@/components/vortex"
-import { ButtonPrev } from "../slider-fade/SliderFade"
 
 export interface SliderProductsProps {}
 
@@ -64,7 +63,7 @@ export default function SliderProducts(props: SliderProductsProps) {
           </div> */}
         </SliderFade>
       </div>
-      <div className="absolute top-10 left-10 right-10 bottom-10 z-10 opacity-80">
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-80">
         <Canvas dpr={2}>
           <Vortex currentItem={currentSlide} />
           <OrthographicCamera
