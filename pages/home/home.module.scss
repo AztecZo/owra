@@ -231,7 +231,8 @@
   }
 
   .imgs {
-    padding: desktop-vw(70px);
+    padding: desktop-vw(100px);
+    padding-bottom: desktop-vw(160px);
     position: relative;
 
     @include mobile {
@@ -239,27 +240,15 @@
     }
 
     .imgC {
+      @include dims(desktop-vw(480px), desktop-vw(580px));
       border-radius: desktop-vw(10px);
-      margin-bottom: desktop-vw(-100px);
       overflow: hidden;
-      position: relative;
+      z-index: 10;
 
       @include mobile {
+        @include dims(100%, mobile-vw(250px));
         border-radius: mobile-vw(10px);
         margin-bottom: mobile-vw(20px);
-      }
-
-      &.img1 {
-        @include dims(desktop-vw(510px));
-        margin-left: desktop-vw(100px);
-        margin-top: desktop-vw(150px);
-        transform: rotate(-7deg);
-        z-index: 10;
-
-        @include mobile {
-          @include dims(100%, mobile-vw(250px));
-          transform: rotate(0deg);
-        }
       }
     }
 
@@ -271,8 +260,8 @@
       }
 
       &.icon1 {
-        @include position(absolute, desktop-vw(200px), auto, auto, desktop-vw(120px));
-        transform: rotate(-5deg);
+        @include position(absolute, 0, auto, auto, 0);
+        transform: translateX(-50%);
         z-index: 15;
 
         @include mobile {
@@ -281,8 +270,8 @@
       }
 
       &.icon2 {
-        @include position(absolute, desktop-vw(950px), auto, auto, desktop-vw(600px));
-        transform: rotate(-5deg);
+        @include position(absolute, auto, 0, 0, auto);
+        transform: translate(-20%, 130%);
         z-index: 15;
 
         @include mobile {
@@ -293,7 +282,7 @@
   }
 
   .text {
-    padding: desktop-vw(140px) desktop-vw(80px) desktop-vw(60px) desktop-vw(30px);
+    padding: desktop-vw(200px) desktop-vw(250px) desktop-vw(50px) desktop-vw(30px);
 
     @include mobile {
       padding: mobile-vw(140px) mobile-vw(80px) mobile-vw(60px) mobile-vw(30px);
@@ -302,9 +291,10 @@
     > p {
       color: var(--black);
       font-family: var(--font-fustat);
-      font-size: desktop-vw(24px);
+      font-size: desktop-vw(20px);
       font-weight: 400;
-      margin-bottom: desktop-vw(90px);
+      margin-bottom: desktop-vw(60px);
+      margin-left: desktop-vw(-30px);
 
       @include mobile {
         font-size: mobile-vw(24px);
@@ -313,7 +303,11 @@
     }
 
     li {
-      margin-bottom: desktop-vw(50px);
+      margin-bottom: desktop-vw(30px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       @include mobile {
         margin-bottom: mobile-vw(50px);
@@ -324,7 +318,6 @@
         font-family: var(--font-dela-gothic-one);
         font-size: desktop-vw(24px);
         font-weight: 400;
-        margin-bottom: desktop-vw(8px);
         position: relative;
 
         @include mobile {
@@ -350,7 +343,7 @@
       p {
         color: var(--black);
         font-family: var(--font-fustat);
-        font-size: desktop-vw(24px);
+        font-size: desktop-vw(18px);
         font-weight: 400;
 
         @include mobile {
@@ -395,7 +388,7 @@
   .title {
     color: var(--science-blue);
     font-family: var(--font-dela-gothic-one);
-    font-size: desktop-vw(60px);
+    font-size: desktop-vw(50px);
     font-weight: 400;
     margin-bottom: desktop-vw(40px);
     text-align: center;
@@ -407,10 +400,10 @@
   }
 
   .description {
-    @include dims(desktop-vw(650px), auto);
+    @include dims(desktop-vw(600px), auto);
     color: var(--black);
     font-family: var(--font-fustat);
-    font-size: desktop-vw(24px);
+    font-size: desktop-vw(18px);
     font-weight: 400;
     text-align: center;
 
@@ -437,7 +430,7 @@
   }
 
   .ice2 {
-    @include position(absolute, desktop-vw(930px), auto, auto, desktop-vw(180px));
+    @include position(absolute, desktop-vw(830px), auto, auto, desktop-vw(180px));
     @include dims(desktop-vw(100px));
     transform: rotate(-8deg);
 
@@ -448,7 +441,7 @@
   }
 
   .ice3 {
-    @include position(absolute, desktop-vw(950px), auto, auto, desktop-vw(1000px));
+    @include position(absolute, desktop-vw(850px), auto, auto, desktop-vw(1000px));
     @include dims(desktop-vw(120px));
     transform: rotate(-16deg);
 
@@ -459,7 +452,7 @@
   }
 
   .ice4 {
-    @include position(absolute, desktop-vw(150px), auto, auto, desktop-vw(1100px));
+    @include position(absolute, desktop-vw(150px), auto, auto, desktop-vw(1200px));
     @include dims(desktop-vw(85px));
     transform: rotate(8deg);
 

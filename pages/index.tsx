@@ -130,26 +130,26 @@ export default function Home() {
           </Marquee>
         </div>
 
-        <div className="grid grid-cols-12">
-          <div className={cx(s.imgs, "col-span-7")}>
-            <div className={cx(s.imgC, s.img1)}>
-              <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
-            </div>
-
-            <div className={cx(s.iconC, s.icon1)}>
-              <ParallaxWrapper speedY={-1}>
-                <IconStar fill="var(--algerian-colar)" />
-              </ParallaxWrapper>
-            </div>
-
-            <div className={cx(s.iconC, s.icon2)}>
-              <ParallaxWrapper speedY={-2}>
-                <IconStar fill="var(--algerian-colar)" />
-              </ParallaxWrapper>
+        <div className="grid grid-cols-12 gap-10">
+          <div className={cx(s.imgs, "col-span-6 flex items-start justify-end")}>
+            <div className="relative flex">
+              <div className={s.imgC}>
+                <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+              </div>
+              <div className={cx(s.iconC, s.icon1)}>
+                <ParallaxWrapper speedY={-0.5}>
+                  <IconStar fill="var(--algerian-colar)" />
+                </ParallaxWrapper>
+              </div>
+              <div className={cx(s.iconC, s.icon2)}>
+                <ParallaxWrapper speedY={-1}>
+                  <IconStar fill="var(--algerian-colar)" />
+                </ParallaxWrapper>
+              </div>
             </div>
           </div>
 
-          <div className={cx(s.text, "flex flex-col items-center justify-center col-span-5")}>
+          <div className={cx(s.text, "flex flex-col items-start justify-center col-span-6")}>
             <p>
               Owra ile kaliteyi ve eğlenceyi bir arada yaşayın. Hayatınıza biraz daha keyif ve neşe katmak için
               buradayız.
