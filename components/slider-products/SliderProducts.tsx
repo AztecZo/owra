@@ -63,20 +63,10 @@ export default function SliderProducts(props: SliderProductsProps) {
           </div> */}
         </SliderFade>
       </div>
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-80">
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-0">
         <Canvas dpr={2}>
           <Vortex currentItem={currentSlide} />
-          <OrthographicCamera
-            makeDefault
-            zoom={50} // Control zoom level
-            // left={-window.innerWidth / 2}
-            // right={window.innerWidth / 2}
-            // top={window.innerHeight / 2}
-            // bottom={-window.innerHeight / 2}
-            near={0.1}
-            far={1000}
-            position={[0, 0, 100]} // Position the camera in space
-          />
+          <OrthographicCamera makeDefault zoom={50} near={0.1} far={1000} position={[0, 0, 100]} />
         </Canvas>
       </div>
     </div>
