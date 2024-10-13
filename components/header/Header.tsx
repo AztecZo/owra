@@ -1,18 +1,25 @@
 import s from "./header.module.scss"
 
+import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
 import cx from "clsx"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
-import { Link } from "@/components/utility/link"
 import { Marquee } from "@/components/animations/marquee"
 import { IconOwraLogo, IconPointer } from "@/components/icons"
+import { Img } from "@/components/utility/img"
+import { Link } from "@/components/utility/link"
+import { useLenisStore } from "@/lib/store/lenis"
 import { useModalStore } from "@/lib/store/modal"
-import { Cross2Icon } from "@radix-ui/react-icons"
-import { Img } from "../utility/img"
 
 export default function Header() {
   const ref = useRef(null)
   const modalStore = useModalStore()
+  const { lenis } = useLenisStore()
+  const [hamburgerOpen, setHamburgerOpen] = useState(false)
+
+  useEffect(() => {
+    return hamburgerOpen ? lenis?.stop() : lenis?.start()
+  }, [hamburgerOpen, lenis])
 
   function handleModal() {
     modalStore.setIsOpen(true)
@@ -60,28 +67,45 @@ export default function Header() {
           <IconOwraLogo />
         </Link>
 
-        <nav className={cx(s.nav, "flex items-center justify-between")}>
-          <div className={s.navItem}>
-            <Link href="/about-us">Hakkımızda</Link>
-          </div>
-          <div className={s.navItem}>
-            <Link href="/products">Ürünler</Link>
-          </div>
-          <div className={s.navItem}>
-            <Link href="/blog">Blog</Link>
-          </div>
-        </nav>
+        <div
+          className={cx(s.trigger, "block tablet:hidden", { [s.active]: hamburgerOpen })}
+          onClick={() => setHamburgerOpen((prev) => !prev)}
+        >
+          {hamburgerOpen ? <Cross2Icon className="w-full h-full" /> : <HamburgerMenuIcon className="w-full h-full" />}
+        </div>
 
-        <nav className={cx(s.nav, "flex items-center justify-between")}>
-          <div className={s.navItem}>
-            <Link href="/franchise">Franchise</Link>
+        <nav
+          className={cx(
+            s.navC,
+            "flex flex-col tablet:flex-row items-center justify-center tablet:justify-between flex-1 gap-5",
+            {
+              [s.active]: hamburgerOpen,
+            }
+          )}
+        >
+          <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
+            <div className={s.navItem}>
+              <Link href="/about-us">Hakkımızda</Link>
+            </div>
+            <div className={s.navItem}>
+              <Link href="/products">Ürünler</Link>
+            </div>
+            <div className={s.navItem}>
+              <Link href="/blog">Blog</Link>
+            </div>
           </div>
-          <div className={s.navItem}>
-            <Link href="/contact">İletişim</Link>
-          </div>
-          {/* <div className={s.navItem}>
+
+          <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
+            <div className={s.navItem}>
+              <Link href="/franchise">Franchise</Link>
+            </div>
+            <div className={s.navItem}>
+              <Link href="/contact">İletişim</Link>
+            </div>
+            {/* <div className={s.navItem}>
             <>EN</>
           </div> */}
+          </div>
         </nav>
       </header>
     </>
