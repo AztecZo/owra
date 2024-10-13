@@ -114,8 +114,8 @@ const IconArrow = (props: Props) => {
     <span className="inherit-dims block" style={{ transform: `rotate(${props.rotate ?? 0}deg)` }}>
       <svg width="100%" height="100%" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M5.18876 0L9.08501 0L13 5.49066L9.08501 11L5.18876 11L8.03602 7.04075L0 7.0034L0 3.9966L8.03602 3.95925L5.18876 0Z"
           fill={props.fill}
         />
