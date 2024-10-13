@@ -6,11 +6,9 @@ import { FormContact } from "@/components/form-contact"
 import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
 
-export interface ContactProps {}
-
-export default function Contact(props: ContactProps) {
+export default function Contact() {
   return (
-    <DefaultLayout seo={{ ...routes.blog.seo }}>
+    <DefaultLayout seo={{ ...routes.contact.seo }}>
       <section className={cx(s.contact, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={s.text}>
           <h5>Bizimle İletişime Geçin</h5>

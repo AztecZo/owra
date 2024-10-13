@@ -12,7 +12,8 @@
     background-repeat: no-repeat;
 
     @include mobile {
-      @include dims(100%, mobile-vw(300px));
+      @include dims(200%, mobile-vw(300px));
+      transform: translateY(-30%);
     }
   }
 
