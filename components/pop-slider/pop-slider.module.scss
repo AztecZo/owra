@@ -29,6 +29,21 @@
 
     .content {
       flex: 1;
+      color: var(--science-blue);
+      font-family: var(--font-dela-gothic-one);
+      font-size: desktop-vw(30px);
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      padding: desktop-vw(4px);
+      padding-left: desktop-vw(16px);
+      pointer-events: auto;
+
+      @include mobile {
+        font-size: mobile-vw(24px);
+        margin-bottom: mobile-vw(30px);
+        text-align: center;
+      }
     }
 
     .button {
@@ -51,6 +66,7 @@
   white-space: nowrap;
   padding: desktop-vw(4px);
   padding-left: desktop-vw(16px);
+  pointer-events: auto;
 
   @include mobile {
     font-size: mobile-vw(24px);

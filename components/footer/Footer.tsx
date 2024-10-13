@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer className={cx(s.footer, "flex flex-col items-stretch justify-center")} ref={ref}>
-      <nav className={cx(s.nav, "flex flex-col items-stretch")}>
+      <nav className={cx(s.nav, "flex flex-col items-stretch gap-10 tablet:gap-20")}>
         <div className={cx(s.row, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
           <div className={cx(s.col, "flex flex-col")}>
             <div className={s.navItem}>

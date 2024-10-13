@@ -13,7 +13,7 @@ import {
   useGLTF,
 } from "@react-three/drei"
 import { Canvas, extend, useFrame, useLoader, useThree } from "@react-three/fiber"
-import { BallCollider, CuboidCollider, Physics, RapierRigidBody, RigidBody } from "@react-three/rapier"
+import { BallCollider, Physics, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import cx from "clsx"
 import { Leva, useControls } from "leva"
 import { forwardRef, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
@@ -23,9 +23,8 @@ extend({ Html })
 
 import { LoadingScreen } from "@/components/loading-screen"
 import { Vortex } from "@/components/vortex"
-import IceCube from "../ice-cube"
 import { IconArrow } from "../icons"
-import { ModelOwraLogo } from "../model-owra-logo"
+import { ModelOwraLogo, OwraModelTypes } from "../model-owra-logo"
 import { Link } from "../utility/link"
 
 type GLTFResult = GLTF & {
@@ -85,24 +84,25 @@ type GLTFResultBobaLid = GLTF & {
   }
 }
 
-type GLTFResultCoffeeCup = GLTF & {
-  nodes: {
-    Object_1: THREE.Mesh
-  }
-  materials: {
-    eti1: THREE.MeshStandardMaterial
-  }
-}
+// type GLTFResultCoffeeCup = GLTF & {
+//   nodes: {
+//     Object_1: THREE.Mesh
+//   }
+//   materials: {
+//     eti1: THREE.MeshStandardMaterial
+//   }
+// }
 
-type GLTFResultCoffeeLid = GLTF & {
-  nodes: {
-    CHEKA: THREE.Mesh
-    KRYSH001: THREE.Mesh
-  }
-  materials: {
-    Chrome: THREE.MeshStandardMaterial
-  }
-}
+// type GLTFResultCoffeeLid = GLTF & {
+//   nodes: {
+//     CHEKA: THREE.Mesh
+//     KRYSH001: THREE.Mesh
+//   }
+//   materials: {
+//     Chrome: THREE.MeshStandardMaterial
+//   }
+// }
+
 interface SliderItemProps {
   // active: boolean
   index: number
@@ -129,9 +129,7 @@ function Scene() {
       <Suspense fallback={<LoadingScreen />}>
         <color attach="background" args={["#ffffff"]} />
 
-        <Geometry />
-
-        {/* <PerspectiveCamera makeDefault position={[0, 0, 25]} near={0.1} fov={50} /> */}
+        <Slider />
 
         <OrthographicCamera
           makeDefault
@@ -142,18 +140,14 @@ function Scene() {
           // bottom={-window.innerHeight / 2}
           near={0.1}
           far={1000}
-          position={[0, 0, 100]} // Position the camera in space
+          position={[0, 0, 100]}
         />
 
         <ambientLight intensity={1.75} />
-
         <directionalLight intensity={5.75} position={[0, 10, 0]} />
-
         <Environment preset="studio" environmentIntensity={0.15} environmentRotation={new THREE.Euler(0, 400, 0)} />
 
         {/* <OrbitControls /> */}
-
-        <PhysicsIceCube />
 
         <Stats showPanel={0} />
       </Suspense>
@@ -161,16 +155,16 @@ function Scene() {
   )
 }
 
-function Geometry() {
+function Slider() {
   const groupRef = useRef<THREE.Group>(null)
   const tlRef = useRef<gsap.core.Timeline | null>(null)
-
   const [currentItem, setCurrentItem] = useState(0)
-  const [currentItemUi, setCurrentItemUi] = useState(currentItem)
   const [buttonDisabled, setButtonDisabled] = useState(false)
-
   const { contextSafe } = useGSAP()
 
+  const items = ["Ice Glass", "Owra Boba"]
+
+  // Initialize GSAP timeline once
   useEffect(() => {
     if (!groupRef.current) return
 
@@ -198,66 +192,57 @@ function Geometry() {
         },
         "s"
       )
+      .eventCallback("onComplete", () => handleAnimationComplete())
+  }, [])
 
-    tlRef.current.eventCallback("onComplete", () => {
-      if (!groupRef.current) return
-
-      setCurrentItemUi(currentItem)
-
-      gsap.to(groupRef.current.scale, {
-        x: 1,
-        y: 1,
-        z: 1,
-        duration: 1,
-        delay: 0.4,
-        ease: "expo.out",
-        onComplete: () => {
-          setButtonDisabled(false)
-        },
-      })
-
-      gsap.to(groupRef.current.rotation, {
-        x: 0,
-        y: 0,
-        z: 0,
-        duration: 1,
-        delay: 0.4,
-        ease: "expo.out",
-        onComplete: () => {
-          setButtonDisabled(false)
-        },
-      })
-    })
-  }, [currentItem])
-
-  const handleNext = contextSafe(() => {
-    if (!tlRef.current) return
+  // Update the UI when currentItem changes
+  useEffect(() => {
+    if (!groupRef.current || !tlRef.current) return
 
     setButtonDisabled(true)
-
-    if (buttonDisabled) return
-
     tlRef.current.play(0)
+  }, [currentItem])
 
-    setCurrentItem((currentItem + 1) % 3)
+  // Handle animation completion
+  const handleAnimationComplete = () => {
+    if (!groupRef.current) return
+
+    gsap.to(groupRef.current.scale, {
+      x: 1,
+      y: 1,
+      z: 1,
+      duration: 1,
+      delay: 0.4,
+      ease: "expo.out",
+    })
+
+    gsap.to(groupRef.current.rotation, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 1,
+      delay: 0.4,
+      ease: "expo.out",
+      onComplete: () => {
+        setButtonDisabled(false)
+      },
+    })
+  }
+
+  const handleNext = contextSafe(() => {
+    if (buttonDisabled) return
+    setCurrentItem((currentItem + 1) % items.length)
   })
 
   const handlePrev = contextSafe(() => {
-    if (!tlRef.current) return
-
-    setButtonDisabled(true)
-
     if (buttonDisabled) return
-
-    tlRef.current.play(0)
-
-    setCurrentItem(Math.abs(currentItem - 1) % 3)
+    setCurrentItem((currentItem - 1 + items.length) % items.length)
   })
 
   return (
     <>
-      <group ref={groupRef} position={[0, 0, 0]}>
-        <SliderItem index={currentItemUi} />
+      <group ref={groupRef}>
+        <SliderItem index={currentItem} />
       </group>
 
       <Html fullscreen pointerEvents="none" zIndexRange={[0, 100]}>
@@ -272,7 +257,7 @@ function Geometry() {
               </span>
             </div>
             <div className={cx(s.content, "flex items-center justify-center")}>
-              <span>content</span>
+              <span>{items[currentItem]}</span>
             </div>
             <div
               className={cx(s.button, s.next, "flex items-center justify-center cursor-pointer")}
@@ -295,6 +280,8 @@ function Geometry() {
       </Html>
 
       <Vortex />
+
+      <PhysicsLayer currentItem={currentItem} />
     </>
   )
 }
@@ -302,44 +289,6 @@ function Geometry() {
 const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
   const myRef = useRef<THREE.Mesh | null>(null)
   useImperativeHandle(ref, () => myRef.current as THREE.Mesh)
-  const { contextSafe } = useGSAP()
-  const [rotateSpeed, setRotateSpeed] = useState(0.2)
-
-  const handlePointerOver = contextSafe(() => {
-    if (!myRef.current) return
-
-    setRotateSpeed(0.6)
-
-    gsap.to(myRef.current.scale, {
-      x: 1.5,
-      y: 1.5,
-      z: 1.5,
-      duration: 2,
-      ease: "elastic.out",
-    })
-  })
-
-  const handlePointerOut = contextSafe(() => {
-    if (!myRef.current) return
-
-    setRotateSpeed(0.2)
-
-    gsap.to(myRef.current.scale, {
-      x: 1,
-      y: 1,
-      z: 1,
-      duration: 1.5,
-      ease: "elastic.out",
-    })
-  })
-
-  useFrame(() => {
-    if (!myRef.current) return
-
-    myRef.current.rotation.x += 0.02 * rotateSpeed
-    myRef.current.rotation.y += 0.02 * rotateSpeed
-    myRef.current.rotation.z += 0.02 * rotateSpeed
-  })
 
   const items = [
     <>
@@ -352,18 +301,20 @@ const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
         <Boba />
       </Float>
     </>,
-    <>
-      <Float>
-        <Coffee />
-      </Float>
-    </>,
+    // <>
+    //   <Float>
+    //     <Coffee />
+    //   </Float>
+    // </>,
   ]
 
-  return <>{items[index]}</>
+  return <group>{items[index]}</group>
 })
 
 function IceGlass() {
   const groupRef = useRef<THREE.Group | null>(null)
+  const group2Ref = useRef<THREE.Group | null>(null)
+
   const { nodes } = useGLTF("/glb/bardak.glb") as GLTFResult
   const packageMap = useLoader(THREE.TextureLoader, "/img/chill-owra-package.png")
   const iceCubesMap = useLoader(THREE.TextureLoader, "/img/ice-cubes-fill.png")
@@ -385,16 +336,16 @@ function IceGlass() {
     "ice glass material",
     {
       transmissionSampler: false,
-      backside: true,
-      backsideThickness: { value: 2, min: -10, max: 10 },
+      backside: false,
+      backsideThickness: { value: 0, min: -10, max: 10 },
       samples: { value: 3, min: 0, max: 32, step: 1 },
-      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+      resolution: { value: 1024, min: 256, max: 2048, step: 256 },
       backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
       transmission: { value: 1, min: 0, max: 1 },
       roughness: { value: 0.39, min: 0, max: 1, step: 0.01 },
       ior: { value: 1.5, min: 1, max: 5, step: 0.01 },
       thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
-      chromaticAberration: { value: 0.4, min: 0, max: 1 },
+      chromaticAberration: { value: 0, min: 0, max: 1 },
       anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
       attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
       clearcoat: { value: 0, min: 0, max: 1 },
@@ -404,9 +355,60 @@ function IceGlass() {
     { collapsed: true }
   )
 
+  const { contextSafe } = useGSAP()
+
+  const [rotateSpeed, setRotateSpeed] = useState(0.2)
+
+  const handlePointerOver = contextSafe(() => {
+    if (!groupRef.current) return
+    if (!group2Ref.current) return
+
+    gsap.to(groupRef.current.scale, {
+      x: 0.05,
+      y: 0.05,
+      z: 0.05,
+      duration: 1,
+      ease: "back.out",
+    })
+
+    setRotateSpeed(3)
+  })
+
+  const handlePointerOut = contextSafe(() => {
+    if (!groupRef.current) return
+    if (!group2Ref.current) return
+
+    gsap.to(groupRef.current.scale, {
+      x: 0.035,
+      y: 0.035,
+      z: 0.035,
+      duration: 1,
+      ease: "back.out",
+    })
+
+    setRotateSpeed(0.2)
+  })
+
+  useFrame(() => {
+    if (!groupRef.current) return
+    if (!group2Ref.current) return
+
+    // groupRef.current.rotation.x += 0.0002
+    // groupRef.current.rotation.y += 0.0002
+    // groupRef.current.rotation.z += 0.0002
+
+    group2Ref.current.rotation.y += 0.02 * rotateSpeed
+  })
+
   return (
-    <group position={[0, 0, 0]} scale={0.035}>
-      <group position={[0, -4.5, 0]}>
+    <group
+      position={[0, 0, 0]}
+      scale={0.035}
+      onPointerEnter={handlePointerOver}
+      onPointerLeave={handlePointerOut}
+      ref={groupRef}
+    >
+      <group position={[0, -4.5, 0]} ref={group2Ref}>
         <mesh
           geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
           position={[1.37532806, -173.60058784, 0.00108719]}
@@ -420,7 +422,7 @@ function IceGlass() {
       </group>
 
       <group scale={60} position={[0, -0.75, 4]} rotation={[Math.PI / 1, 0, 0]}>
-        <mesh geometry={new THREE.PlaneGeometry(5, 3.5)}>
+        <mesh geometry={new THREE.PlaneGeometry(6, 3.5)}>
           <meshPhysicalMaterial
             map={iceCubesMap}
             bumpMap={iceCubesMap}
@@ -438,6 +440,8 @@ function IceGlass() {
 
 function Boba() {
   const groupRef = useRef<THREE.Group | null>(null)
+  const group2Ref = useRef<THREE.Group | null>(null)
+
   const packageMap = useLoader(THREE.TextureLoader, "/img/boba-pineapple.jpg")
   const fillMap = useLoader(THREE.TextureLoader, "/img/boba-fill.png")
   const { nodes: bobaCupNodes } = useGLTF("/glb/boba-cup.glb") as GLTFResultBobaCup
@@ -483,18 +487,55 @@ function Boba() {
     { collapsed: true }
   )
 
+  const { contextSafe } = useGSAP()
+
+  const [rotateSpeed, setRotateSpeed] = useState(0.2)
+
+  const handlePointerOver = contextSafe(() => {
+    if (!groupRef.current) return
+    if (!group2Ref.current) return
+
+    gsap.to(groupRef.current.scale, {
+      x: 1,
+      y: 1,
+      z: 1,
+      duration: 1,
+      ease: "back.out",
+    })
+
+    setRotateSpeed(2)
+  })
+
+  const handlePointerOut = contextSafe(() => {
+    if (!groupRef.current) return
+    if (!group2Ref.current) return
+
+    gsap.to(groupRef.current.scale, {
+      x: 0.7,
+      y: 0.7,
+      z: 0.7,
+      duration: 1,
+      ease: "back.out",
+    })
+
+    setRotateSpeed(0.2)
+  })
+
   useFrame(() => {
     if (!groupRef.current) return
+    if (!group2Ref.current) return
 
-    // groupRef.current.rotation.x += 0.01
-    groupRef.current.rotation.y += 0.01
-    // groupRef.current.rotation.z += 0.01
+    // groupRef.current.rotation.x += 0.0002
+    // groupRef.current.rotation.y += 0.0002
+    // groupRef.current.rotation.z += 0.0002
+
+    group2Ref.current.rotation.y += 0.02 * rotateSpeed
   })
 
   return (
     <>
-      <group position={[0, 0, 0]}>
-        <group ref={groupRef} scale={0.7} position={[0, -4.5, 0]}>
+      <group position={[0, 0, 0]} onPointerEnter={handlePointerOver} onPointerLeave={handlePointerOut} ref={groupRef}>
+        <group ref={group2Ref} scale={0.7} position={[0, -4.5, 0]}>
           <mesh geometry={BobaLidNodes.Boba_sise1.geometry} position={[0, 11.927, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <meshPhongMaterial color={new THREE.Color("#000000")} side={THREE.DoubleSide} />
           </mesh>
@@ -526,197 +567,41 @@ function Boba() {
   )
 }
 
-function Coffee() {
-  const groupRef = useRef<THREE.Group | null>(null)
-  const packageMap = useLoader(THREE.TextureLoader, "/img/coffee-fill.png")
-  const coffeeMap = useLoader(THREE.TextureLoader, "/img/foam-texture.jpg")
-  const { nodes: cupNodes } = useGLTF("/glb/coffee-cup.glb") as GLTFResultCoffeeCup
-  const { nodes: lidNodes } = useGLTF("/glb/coffee-lid.glb") as GLTFResultCoffeeLid
-
-  useMemo(() => {
-    if (packageMap) {
-      packageMap.wrapS = packageMap.wrapT = THREE.ClampToEdgeWrapping
-      packageMap.offset.set(0, 0.15)
-      packageMap.rotation = Math.PI * 2.5
-      packageMap.flipY = true
-      packageMap.center = new THREE.Vector2(0.5, 0.5)
-
-      const aspectRatio = packageMap.image.width / packageMap.image.height
-      packageMap.repeat.set(1, -2)
-    }
-  }, [packageMap])
-
-  useMemo(() => {
-    if (coffeeMap) {
-      coffeeMap.wrapS = coffeeMap.wrapT = THREE.ClampToEdgeWrapping
-      coffeeMap.offset.set(0, 0.15)
-      coffeeMap.rotation = Math.PI * 2.5
-      coffeeMap.flipY = true
-      coffeeMap.center = new THREE.Vector2(0.5, 0.5)
-
-      const aspectRatio = coffeeMap.image.width / coffeeMap.image.height
-      coffeeMap.repeat.set(1.5, 1.5)
-    }
-  }, [coffeeMap])
-
-  const materialProps = useControls(
-    "coffe cup material",
-    {
-      meshPhysicalMaterial: false,
-      transmissionSampler: false,
-      backside: false,
-      backsideThickness: { value: 2, min: -10, max: 10 },
-      samples: { value: 3, min: 0, max: 32, step: 1 },
-      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
-      transmission: { value: 1, min: 0, max: 1 },
-      roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
-      ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
-      thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
-      chromaticAberration: { value: 0.4, min: 0, max: 1 },
-      anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
-      distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
-      distortionScale: { value: 0.3, min: 0.01, max: 1, step: 0.01 },
-      temporalDistortion: { value: 0.65, min: 0, max: 1, step: 0.01 },
-      attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
-      clearcoat: { value: 0, min: 0, max: 1 },
-      attenuationColor: "#ffffff",
-      color: "white",
-    },
-    { collapsed: true }
-  )
-
-  const metallicMaterialProps = useControls(
-    "coffee lid material",
-    {
-      backside: false,
-      backsideThickness: { value: 2, min: -10, max: 10 },
-      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
-      roughness: { value: 0.1, min: 0, max: 1, step: 0.01 }, // Slightly rougher for brushed metal
-      metalness: { value: 1, min: 0, max: 1 }, // Fully metallic
-      ior: { value: 1.45, min: 1, max: 5, step: 0.01 }, // Lower IOR for a less intense reflection
-      thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
-      anisotropy: { value: 0.6, min: 0, max: 1, step: 0.01 }, // Higher anisotropy for brushed metal effect
-      clearcoat: { value: 0.7, min: 0, max: 1 }, // For a glossy finish
-      attenuationColor: "#ffffff",
-      color: "#ffffff", // Silver color
-    },
-    { collapsed: true }
-  )
-
-  useFrame(() => {
-    if (!groupRef.current) return
-
-    // groupRef.current.rotation.x += 0.01
-    groupRef.current.rotation.y += 0.01
-    // groupRef.current.rotation.z += 0.01
-  })
-
-  return (
-    <>
-      <group position={[0, 0, 0]} rotation={[0, 1, 0]}>
-        <group ref={groupRef} scale={0.6} position={[0, 0, 0]}>
-          <group>
-            <mesh geometry={lidNodes.CHEKA.geometry} position={[0, 8, 0]}>
-              <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
-            </mesh>
-            <mesh geometry={lidNodes.KRYSH001.geometry} position={[0, 8, 0]}>
-              <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
-            </mesh>
-          </group>
-
-          <group>
-            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-              <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} transparent={true} />
-            </mesh>
-          </group>
-
-          <group scale={0.95}>
-            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-              <meshStandardMaterial
-                map={coffeeMap}
-                color={new THREE.Color("#ddb893")}
-                toneMapped={false}
-                side={THREE.DoubleSide}
-              />
-            </mesh>
-          </group>
-
-          <group scale={0.98}>
-            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-              <MeshTransmissionMaterial toneMapped={false} side={THREE.DoubleSide} {...materialProps} />
-            </mesh>
-          </group>
-
-          {/* <mesh
-            castShadow={false}
-            receiveShadow={false}
-            geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
-            position={[0, 5.8, 0]}
-          >
-            <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
-          </mesh> */}
-        </group>
-        {/* <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
-          <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
-            <meshPhysicalMaterial
-              map={fillMap}
-              bumpMap={fillMap}
-              bumpScale={4}
-              color={"#FFFFFF"}
-              transparent={true}
-              opacity={0.9}
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        </group> */}
-      </group>
-    </>
-  )
+interface PhysicsLayerProps {
+  currentItem: number
 }
 
-function PhysicsIceCube() {
+function PhysicsLayer(props: PhysicsLayerProps) {
   const { viewport } = useThree()
   const vw = viewport.width * 100
+
+  const [moved, setMoved] = useState(false)
+
+  useEffect(() => {
+    setMoved(true)
+    const timeout = setTimeout(() => {
+      setMoved(false)
+    }, 100)
+
+    return () => clearTimeout(timeout)
+  }, [props.currentItem])
 
   return (
     <>
       <Physics gravity={[0, 0, 0]} debug>
         {vw > 1024 && (
           <>
-            {/* <IceCube scale={1.3} position={new THREE.Vector3(-10, -5, 0)} />
-            <IceCube scale={1} position={new THREE.Vector3(-8, 5, 0)} />
-            <IceCube scale={1} position={new THREE.Vector3(7, 3, 0)} />
-            <IceCube scale={1} position={new THREE.Vector3(9, -4, 0)} /> */}
-
-            <ModelOwraLogo w={true} scale={1.3} position={new THREE.Vector3(-10, -5, 0)} moved={true} />
-            <ModelOwraLogo o={true} scale={1} position={new THREE.Vector3(-8, 5, 0)} moved={true} />
-            <ModelOwraLogo r={true} scale={1} position={new THREE.Vector3(7, 3, 0)} moved={true} />
-            <ModelOwraLogo a={true} scale={1} position={new THREE.Vector3(9, -4, 0)} moved={true} />
+            <ModelOwraLogo modelType={OwraModelTypes.o} scale={1.3} position={new THREE.Vector3(-11, -5, 0)} />
+            <ModelOwraLogo modelType={OwraModelTypes.w} scale={1} position={new THREE.Vector3(-10, 5, 0)} />
+            <ModelOwraLogo modelType={OwraModelTypes.r} scale={1.1} position={new THREE.Vector3(9, 4, 0)} />
+            <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
           </>
         )}
-        {/* <Walls /> */}
         <Pointer />
       </Physics>
     </>
   )
 }
-
-// function Walls() {
-//   const { width: viewportWidth, height: viewportHeight } = useThree((state) => state.viewport)
-
-//   return (
-//     <>
-//       {/* rectangle */}
-//       <CuboidCollider position={[0, viewportHeight / 2 + 1, 0]} args={[viewportWidth / 2, 1, 30]} />
-//       <CuboidCollider position={[0, -viewportHeight / 2 - 1, 0]} args={[viewportWidth / 2, 1, 30]} />
-//       <CuboidCollider position={[-viewportWidth / 2 - 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
-//       <CuboidCollider position={[viewportWidth / 2 + 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
-//       {/* rectangle */}
-//     </>
-//   )
-// }
 
 function Pointer({ vec = new THREE.Vector3() }) {
   const api = useRef<RapierRigidBody>(null)
@@ -738,10 +623,175 @@ function Pointer({ vec = new THREE.Vector3() }) {
   )
 }
 
+// function Coffee() {
+//   const groupRef = useRef<THREE.Group | null>(null)
+//   const packageMap = useLoader(THREE.TextureLoader, "/img/coffee-fill.png")
+//   const coffeeMap = useLoader(THREE.TextureLoader, "/img/foam-texture.jpg")
+//   const { nodes: cupNodes } = useGLTF("/glb/coffee-cup.glb") as GLTFResultCoffeeCup
+//   const { nodes: lidNodes } = useGLTF("/glb/coffee-lid.glb") as GLTFResultCoffeeLid
+
+//   useMemo(() => {
+//     if (packageMap) {
+//       packageMap.wrapS = packageMap.wrapT = THREE.ClampToEdgeWrapping
+//       packageMap.offset.set(0, 0.15)
+//       packageMap.rotation = Math.PI * 2.5
+//       packageMap.flipY = true
+//       packageMap.center = new THREE.Vector2(0.5, 0.5)
+
+//       const aspectRatio = packageMap.image.width / packageMap.image.height
+//       packageMap.repeat.set(1, -2)
+//     }
+//   }, [packageMap])
+
+//   useMemo(() => {
+//     if (coffeeMap) {
+//       coffeeMap.wrapS = coffeeMap.wrapT = THREE.ClampToEdgeWrapping
+//       coffeeMap.offset.set(0, 0.15)
+//       coffeeMap.rotation = Math.PI * 2.5
+//       coffeeMap.flipY = true
+//       coffeeMap.center = new THREE.Vector2(0.5, 0.5)
+
+//       const aspectRatio = coffeeMap.image.width / coffeeMap.image.height
+//       coffeeMap.repeat.set(1.5, 1.5)
+//     }
+//   }, [coffeeMap])
+
+//   const materialProps = useControls(
+//     "coffe cup material",
+//     {
+//       meshPhysicalMaterial: false,
+//       transmissionSampler: false,
+//       backside: false,
+//       backsideThickness: { value: 2, min: -10, max: 10 },
+//       samples: { value: 3, min: 0, max: 32, step: 1 },
+//       resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+//       backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
+//       transmission: { value: 1, min: 0, max: 1 },
+//       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
+//       ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
+//       thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
+//       chromaticAberration: { value: 0.4, min: 0, max: 1 },
+//       anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
+//       distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
+//       distortionScale: { value: 0.3, min: 0.01, max: 1, step: 0.01 },
+//       temporalDistortion: { value: 0.65, min: 0, max: 1, step: 0.01 },
+//       attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
+//       clearcoat: { value: 0, min: 0, max: 1 },
+//       attenuationColor: "#ffffff",
+//       color: "white",
+//     },
+//     { collapsed: true }
+//   )
+
+//   const metallicMaterialProps = useControls(
+//     "coffee lid material",
+//     {
+//       backside: false,
+//       backsideThickness: { value: 2, min: -10, max: 10 },
+//       resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+//       backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
+//       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 }, // Slightly rougher for brushed metal
+//       metalness: { value: 1, min: 0, max: 1 }, // Fully metallic
+//       ior: { value: 1.45, min: 1, max: 5, step: 0.01 }, // Lower IOR for a less intense reflection
+//       thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
+//       anisotropy: { value: 0.6, min: 0, max: 1, step: 0.01 }, // Higher anisotropy for brushed metal effect
+//       clearcoat: { value: 0.7, min: 0, max: 1 }, // For a glossy finish
+//       attenuationColor: "#ffffff",
+//       color: "#ffffff", // Silver color
+//     },
+//     { collapsed: true }
+//   )
+
+//   useFrame(() => {
+//     if (!groupRef.current) return
+
+//     // groupRef.current.rotation.x += 0.01
+//     groupRef.current.rotation.y += 0.01
+//     // groupRef.current.rotation.z += 0.01
+//   })
+
+//   return (
+//     <>
+//       <group position={[0, 0, 0]} rotation={[0, 1, 0]}>
+//         <group ref={groupRef} scale={0.6} position={[0, 0, 0]}>
+//           <group>
+//             <mesh geometry={lidNodes.CHEKA.geometry} position={[0, 8, 0]}>
+//               <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
+//             </mesh>
+//             <mesh geometry={lidNodes.KRYSH001.geometry} position={[0, 8, 0]}>
+//               <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
+//             </mesh>
+//           </group>
+
+//           <group>
+//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
+//               <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} transparent={true} />
+//             </mesh>
+//           </group>
+
+//           <group scale={0.95}>
+//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
+//               <meshStandardMaterial
+//                 map={coffeeMap}
+//                 color={new THREE.Color("#ddb893")}
+//                 toneMapped={false}
+//                 side={THREE.DoubleSide}
+//               />
+//             </mesh>
+//           </group>
+
+//           <group scale={0.98}>
+//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
+//               <MeshTransmissionMaterial toneMapped={false} side={THREE.DoubleSide} {...materialProps} />
+//             </mesh>
+//           </group>
+
+//           {/* <mesh
+//             castShadow={false}
+//             receiveShadow={false}
+//             geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
+//             position={[0, 5.8, 0]}
+//           >
+//             <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
+//           </mesh> */}
+//         </group>
+//         {/* <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
+//           <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
+//             <meshPhysicalMaterial
+//               map={fillMap}
+//               bumpMap={fillMap}
+//               bumpScale={4}
+//               color={"#FFFFFF"}
+//               transparent={true}
+//               opacity={0.9}
+//               side={THREE.DoubleSide}
+//             />
+//           </mesh>
+//         </group> */}
+//       </group>
+//     </>
+//   )
+// }
+
+// function Walls() {
+//   const { width: viewportWidth, height: viewportHeight } = useThree((state) => state.viewport)
+
+//   return (
+//     <>
+//       {/* rectangle */}
+//       <CuboidCollider position={[0, viewportHeight / 2 + 1, 0]} args={[viewportWidth / 2, 1, 30]} />
+//       <CuboidCollider position={[0, -viewportHeight / 2 - 1, 0]} args={[viewportWidth / 2, 1, 30]} />
+//       <CuboidCollider position={[-viewportWidth / 2 - 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
+//       <CuboidCollider position={[viewportWidth / 2 + 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
+//       {/* rectangle */}
+//     </>
+//   )
+// }
+
 SliderItem.displayName = "SliderItem"
 
-useGLTF.preload("/glb/coffee-lid.glb")
-useGLTF.preload("/glb/coffee-cup.glb")
+// useGLTF.preload("/glb/coffee-lid.glb")
+// useGLTF.preload("/glb/coffee-cup.glb")
 useGLTF.preload("/glb/boba-lid.glb")
 useGLTF.preload("/glb/boba-cup.glb")
 useGLTF.preload("/glb/bardak.glb")

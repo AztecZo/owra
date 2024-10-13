@@ -4,7 +4,7 @@
 
   .logoC {
     @include dims(100%, auto);
-    padding: desktop-vw(130px) 0 desktop-vw(260px) 0;
+    padding: desktop-vw(230px) 0 desktop-vw(240px) 0;
 
     @include mobile {
       padding: mobile-vw(180px) 0;
@@ -25,7 +25,7 @@
   .cupC {
     @include position(absolute, 50%, auto, auto, 50%);
     @include dims(desktop-vw(500px));
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -70%);
 
     @include mobile {
       @include dims(mobile-vw(320px));

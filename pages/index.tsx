@@ -43,7 +43,7 @@ export default function Home() {
         </div>
 
         <div className={s.iceC}>
-          <Img src={iceCubes} alt="Ice Cubes" />
+          <Img src={iceCubes} alt="Ice Cubes" priority={true} />
         </div>
 
         <div className={cx(s.ice, s.ice1)}>

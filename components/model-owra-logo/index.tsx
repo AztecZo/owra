@@ -1,6 +1,6 @@
 import { gsap } from "@/lib/gsap"
 import { useGLTF } from "@react-three/drei"
-import { BallCollider, CuboidCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
+import { CuboidCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import React, { ReactNode, useEffect } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
@@ -20,110 +20,85 @@ type GLTFResult = GLTF & {
   }
 }
 
+export enum OwraModelTypes {
+  o = "o",
+  w = "w",
+  r = "r",
+  a = "a",
+}
+
 interface ModelProps {
-  o?: boolean
-  w?: boolean
-  r?: boolean
-  a?: boolean
+  modelType: OwraModelTypes
   position: any
   scale: any
-  moved: boolean
+  moved?: boolean
 }
 
 export function ModelOwraLogo(props: ModelProps) {
-  const { nodes, materials } = useGLTF("/glb/owra.glb") as GLTFResult
-  const { o = false, w = false, r = false, a = false } = props
+  const { nodes } = useGLTF("/glb/owra.glb") as GLTFResult
+  const { modelType } = props
+
   return (
     <PhysicsWrapper position={props.position} scale={props.scale} moved={props.moved}>
       <group dispose={null} scale={40}>
-        {o && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.o.geometry}
-            material={new THREE.MeshStandardMaterial({ color: "#FF5B4A" })}
-          />
-        )}
-        {w && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.w.geometry}
-            material={new THREE.MeshStandardMaterial({ color: "#FF5B4A" })}
-          />
-        )}
-        {r && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.r.geometry}
-            material={new THREE.MeshStandardMaterial({ color: "#FF5B4A" })}
-          />
-        )}
-        {a && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.a.geometry}
-            material={new THREE.MeshStandardMaterial({ color: "#FF5B4A" })}
-          />
-        )}
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes[modelType].geometry}
+          material={new THREE.MeshStandardMaterial({ color: "#FF5B4A" })}
+        />
       </group>
     </PhysicsWrapper>
   )
 }
 
-useGLTF.preload("/glb/owra.glb")
-
 interface PhysicsWrapperProps {
   children: ReactNode
   position: any
   scale: any
-  moved: boolean
+  moved?: boolean
 }
 
 export default function PhysicsWrapper(props: PhysicsWrapperProps) {
-  const api = React.useRef<RapierRigidBody | null>(null)
+  const api = React.useRef<RapierRigidBody>(null)
+  const random = () => gsap.utils.random(-10, 10, 0.1)
 
-  const rt = new THREE.Euler(
-    gsap.utils.random(-10, 10, 0.1),
-    gsap.utils.random(-10, 10, 0.1),
-    gsap.utils.random(-10, 10, 0.1)
-  )
+  // useEffect(() => {
+  //   function move() {
+  //     const vec3 = new THREE.Vector3()
 
-  const vec4 = new THREE.Vector4()
+  //     if (!api.current) return
 
-  function move() {
+  //     api.current.addTorque(vec3.set(500, 0, 0), false)
+  //   }
+
+  //   props.moved ?? move()
+  // }, [props.moved])
+
+  useEffect(() => {
     const vec3 = new THREE.Vector3()
 
     if (!api.current) return
 
-    api.current.addTorque(vec3.set(500, 0, 0), true)
-  }
-
-  useEffect(() => {
-    props.moved ? move() : null
-  }, [props.moved])
+    api.current.addTorque(vec3.set(0, 50, 0), false)
+  }, [])
 
   return (
     <>
       <RigidBody
         ref={api}
-        colliders={false}
         enabledRotations={[true, true, true]}
         enabledTranslations={[false, false, false]}
-        linearDamping={10} // Increase this to slow down linear movement
-        angularDamping={10} // More angular resistance to simulate drag
-        mass={50000}
-        canSleep={false}
-        restitution={0.1} // Lower restitution for softer impacts in water
-        friction={0.1} // Lower friction for smoother movement
-        rotation={rt}
+        angularDamping={10}
+        friction={0.1}
+        rotation={new THREE.Euler(random(), random(), random())}
         position={props.position}
         scale={props.scale}
       >
-        <CuboidCollider args={[2, 2, 2]}>{props.children}</CuboidCollider>
+        {props.children}
       </RigidBody>
     </>
   )
 }
+
+useGLTF.preload("/glb/owra.glb")
