@@ -1,0 +1,83 @@
+{
+    "home": {
+        "h1": {
+            "p1": "TASTE THE BURGER",
+            "p2": "REVOLUTION",
+            "cta": "SEE THE MENU"
+        },
+        "text1": "At Depo Burger, we aim to make a high-quality fast food experience accessible to everyone.",
+        "text2": "Seeing our customers happy as they enjoy classic flavors like burgers and hot dogs made with the best ingredients is the core motivation behind our brand.",
+        "slider": {
+            "s1": {
+                "title": "HOT DOG",
+                "description": "Depo's Pride: Delivering the Best Hot dog Experience with Every Bite"
+            },
+            "s2": {
+                "title": "HAMBURGER",
+                "description": "Depo's Pride: Delivering the Best Burger Experience with Every Bite"
+            },
+            "s3": {
+                "title": "FRIES",
+                "description": "Depo's Pride: Delivering the Best Burger Experience with Every Bite"
+            }
+        },
+        "followUs": "FOLLOW US!"
+    },
+    "about": {
+        "h1": "TASTE THE BURGER REVOLUTION",
+        "p1": "At Depo Burger, we aim to provide a high-quality fast food experience accessible to everyone.",
+        "p2": "Depo Burger opened its first branch on Bağdat Avenue in the early months of 2020, with the goal of offering a high-quality experience to fast food lovers. Gaining significant attention in a short time, Depo Burger continued its growth journey by opening its second branch in Nişantaşı City’s Mall in the summer of 2021. The foundation of the brand stems from our love for fast food and our desire to crown that love with quality products. Seeing people happy with products like burgers, hot dogs, and fries on our menu motivates us to reach more people.",
+        "p3": "At Depo Burger, we aim to provide a high-quality fast food experience accessible to everyone.",
+        "p4": "Seeing our customers happy with the classic tastes like burgers and hot dogs, prepared with the best ingredients, forms the core motivation of our brand. When preparing our products, we choose the highest quality for all ingredients. Our goal is to offer a unique fast food experience with people who value themselves and their surroundings, and are open to innovation and development.",
+        "p5": "Customer satisfaction comes first for us, and that's why we prepare each meal with care. At Depo Burger, we aim to offer not only a quick and satisfying meal but also an enjoyable experience. We are here to prove that fast food can also be a quality, healthy, and happy experience.",
+        "followUs": "FOLLOW US!"
+    },
+    "menu": {
+        "h1": "DEPO BURGER MENU",
+        "menuItems": {
+            "i1": "burgers",
+            "i2": "hot dogs",
+            "i3": "fries",
+            "i4": "shakes",
+            "i5": "beverages"
+        },
+        "extras": "EXTRAS",
+        "footnote": "Our prices have been updated as of March 1, 2024. All our products include 10% VAT. Dear customers, please consult our waitstaff before placing your order if you have any food allergies. Your health is important to us."
+    },
+    "whereWeAre": {
+        "h1": "FIND YOUR PERFECT SPOT",
+        "select": {
+            "placeholder": "ALL CITIES"
+        },
+        "getDirection": "GET DIRECTIONS",
+        "locations": "Location",
+        "workingHours": "Working Hours"
+    },
+    "notFound": {
+        "title": "PAGE NOT FOUND",
+        "button": "HOMEPAGE"
+    },
+    "contact": {
+        "h1": {
+            "p1": "REACH OUT",
+            "p2": "WE'RE",
+            "p3": "ALL EARS!"
+        },
+        "section1": {
+            "title": "GET IN TOUCH",
+            "description": "Simply want to connect or have a general inquiry? Feel free to reach out, and we'll get back to you as soon as we can.",
+            "email": "Email Address:",
+            "phone": "Phone Number:",
+            "address": "Address:"
+        },
+        "section2": {
+            "title": "LET'S WORK TOGETHER",
+            "description": "Looking to join forces? Whether it's a partnership, advertising opportunity, or creative collaboration, reach out to explore possibilities of working together.",
+            "apply": "APPLY"
+        }
+    },
+    "cursor": {
+        "seeTheMenu": "SEE THE MENU",
+        "followUs": "FOLLOW!"
+    }
+}

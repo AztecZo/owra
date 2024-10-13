@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { Marquee } from "@/components/animations/marquee"
 import { IconOwraLogo, IconPointer } from "@/components/icons"
+import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { useLenisStore } from "@/lib/store/lenis"
@@ -104,9 +105,9 @@ export default function Header() {
             <div className={s.navItem} onClick={closeMenu}>
               <Link href="/contact">İletişim</Link>
             </div>
-            {/* <div className={s.navItem}>
-            <>EN</>
-          </div> */}
+            <div className={s.navItem}>
+              <LocaleSwitcher />
+            </div>
           </div>
         </nav>
       </header>

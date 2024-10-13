@@ -1,0 +1,83 @@
+{
+    "home": {
+        "h1": {
+            "p1": "BURGER DEVRİMİNE",
+            "p2": "TANIK OL",
+            "cta": "MENÜYÜ İNCELE"
+        },
+        "text1": "Depo Burger olarak, kaliteli fast food deneyimini herkesin erişimine sunmayı amaçlıyoruz.",
+        "text2": "Müşterilerimizin burger ve hot dog gibi klasik lezzetleri en iyi malzemelerle hazırladığımız ürünlerimizle deneyimleyip mutlu olduklarını görmek, markamızın temel motivasyonunu oluşturuyor.",
+        "slider": {
+            "s1": {
+                "title": "HOT DOG",
+                "description": "Depo’nun Gururu: Her Lokmada En İyi Hot dog Deneyimini Sunmak"
+            },
+            "s2": {
+                "title": "HAMBURGER",
+                "description": "Depo’nun Gururu: Her Lokmada En İyi Hot dog Deneyimini Sunmak"
+            },
+            "s3": {
+                "title": "FRIES",
+                "description": "Depo's Pride: Delivering the Best Burger Experience with Every Bite"
+            }
+        },
+        "followUs": "BİZİ TAKİP ET!"
+    },
+    "about": {
+        "h1": "BURGER DEVRİMİNE TANIK OL",
+        "p1": "Depo Burger olarak, kaliteli fast food deneyimini herkesin erişimine sunmayı amaçlıyoruz.",
+        "p2": "Depo Burger, 2020 yılının ilk aylarında fast food severlere yüksek kaliteli bir deneyim sunma amacıyla Bağdat Caddesi’nde ilk şubesini açtı. Kısa sürede büyük ilgi gören Depo Burger, 2021 yılının yaz aylarında Nişantaşı City’s AVM’de ikinci şubesini açarak büyüme yolculuğuna devam etti. Markanın temelleri, fast food yiyeceklerine olan sevgimizden ve bu sevgiyi kaliteli ürünlerle taçlandırma arzumuzdan doğdu. İnsanların, menümüzdeki burger, hot dog ve patates kızartması gibi ürünleri deneyimlediklerinde mutlu olduklarını görmek, bizi daha fazla kişiye ulaşma konusunda motive etti.",
+        "p3": "Depo Burger olarak, kaliteli fast food deneyimini herkesin erişimine sunmayı amaçlıyoruz.",
+        "p4": "Müşterilerimizin burger ve hot dog gibi klasik lezzetleri en iyi malzemelerle hazırladığımız ürünlerimizle deneyimleyip mutlu olduklarını görmek, markamızın temel motivasyonunu oluşturuyor. Ürünlerimizi hazırlarken, tüm malzemelerde en yüksek kaliteyi tercih ediyoruz. Amacımız, kendine ve çevresine değer veren, yeniliklere ve gelişime açık insanlarla birlikte, benzersiz bir fast food deneyimi sunmak.",
+        "p5": "Müşteri memnuniyeti bizim için her şeyden önce gelir ve bu nedenle her bir yemeği titizlikle hazırlıyoruz. Depo Burger olarak, lezzet tutkunlarına yalnızca hızlı ve doyurucu bir yemek değil, aynı zamanda keyif dolu bir deneyim sunmayı hedefliyoruz. Fast food’un da kaliteli, sağlıklı ve mutlu bir deneyim olabileceğini kanıtlamak için buradayız.",
+        "followUs": "BİZİ TAKİP EDİN!"
+    },
+    "menu": {
+        "h1": "DEPO BURGER MENU",
+        "menuItems": {
+            "i1": "burgerler",
+            "i2": "hot doglar",
+            "i3": "patatesler",
+            "i4": "shakeler",
+            "i5": "içecekler"
+        },
+        "extras": "EXTRALAR",
+        "footnote": "Fiyatlarımız 1 Mart 2024 itibarıyla güncellenmiştir. Tüm ürünlerimize %10 KDV dahildir. Değerli müşterilerimiz, herhangi bir gıda alerjiniz varsa sipariş vermeden önce lütfen servis personelimize danışınız. Sağlığınız bizim için önemlidir."
+    },
+    "whereWeAre": {
+        "h1": "SANA EN YAKIN KONUMU BUL",
+        "select": {
+            "placeholder": "ALL CITIES"
+        },
+        "getDirection": "KONUMA BAK",
+        "locations": "Konum",
+        "workingHours": "Çalışma Saatleri"
+    },
+    "notFound": {
+        "title": "SAYFA BULUNAMADI",
+        "button": "ANASAYFA"
+    },
+    "contact": {
+        "h1": {
+            "p1": "BİZİMLE",
+            "p2": "İLETİŞİME",
+            "p3": "GEÇİN!"
+        },
+        "section1": {
+            "title": "İLETİŞİME GEÇİN",
+            "description": "Sadece bağlantı kurmak mı istiyorsunuz ya da genel bir sorunuz mu var? Bize ulaşın, en kısa sürede size geri döneceğiz.",
+            "email": "E-posta:",
+            "phone": "Telefon Numarası:",
+            "address": "Adres:"
+        },
+        "section2": {
+            "title": "BİRLİKTE ÇALIŞALIM",
+            "description": "Bir iş birliği mi arıyorsunuz? İster bir ortaklık, reklam fırsatı, ister yaratıcı bir iş birliği olsun, birlikte çalışmanın imkanlarını keşfetmek için bize ulaşın.",
+            "apply": "BAŞVUR"
+        }
+    },
+    "cursor": {
+        "seeTheMenu": "MENÜYÜ İNCELE",
+        "followUs": "TAKİP ET"
+    }
+}
