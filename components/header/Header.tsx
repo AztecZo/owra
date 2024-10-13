@@ -28,28 +28,26 @@ export default function Header() {
   function handleModal() {
     modalStore.setIsOpen(true)
     modalStore.setContent(
-      <>
-        <div className={cx(s.modalContent, "h-10 w-10 bg-white")}>
-          <div className={cx(s.header, "flex items-center justify-between")}>
-            <p className={s.title}>Feeling Thirsty?</p>
-            <span className={cx(s.iconC, "cursor-pointer")} onClick={() => modalStore.setIsOpen(false)}>
-              <Cross2Icon className="w-full h-full" />
-            </span>
-          </div>
-
-          <div className={cx(s.content, "flex flex-col items-center tablet:items-start")}>
-            <p>If you’re craving your favorite frozen concoction, drop us an email.</p>
-            <p>We promise it’s worth the brain freeze!</p>
-            <Link className={s.buttonDrop} href="mailto:sales@owra.co">
-              Drop a Line & Chill
-            </Link>
-          </div>
-
-          <div className={s.iceC}>
-            <Img alt="Ice Cube Sitting" src={"/img/ice-2.png"} height={500} width={500} className="object-contain" />
-          </div>
+      <div className={s.modalContent}>
+        <div className={cx(s.modalContentHeader, "flex items-center justify-between")}>
+          <p>Feeling Thirsty?</p>
+          <span className={cx(s.iconC, "cursor-pointer")} onClick={() => modalStore.setIsOpen(false)}>
+            <Cross2Icon className="w-full h-full" />
+          </span>
         </div>
-      </>
+
+        <div className={cx(s.content, "flex flex-col items-center tablet:items-start")}>
+          <p>If you’re craving your favorite frozen concoction, drop us an email.</p>
+          <p>We promise it’s worth the brain freeze!</p>
+          <Link className={s.buttonDrop} href="mailto:sales@owra.co">
+            Drop a Line & Chill
+          </Link>
+        </div>
+
+        <div className={s.iceC}>
+          <Img alt="Ice Cube Sitting" src={"/img/ice-3.png"} height={500} width={500} className="object-contain" />
+        </div>
+      </div>
     )
   }
 

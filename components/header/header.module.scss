@@ -95,31 +95,25 @@
     padding: mobile-vw(16px);
   }
 
-  .header {
+  .modalContentHeader {
     border-bottom: 1px solid rgba(255, 255, 255, 0.23);
+    color: var(--white);
+    font-family: var(--font-fustat);
+    font-size: desktop-vw(36px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
     padding-bottom: desktop-vw(14px);
 
     @include mobile {
-      padding-bottom: mobile-vw(14px);
-    }
-
-    .title {
-      color: var(--white);
-      font-family: var(--font-fustat);
-      font-size: desktop-vw(36px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-
-      @include mobile {
-        font-size: mobile-vw(22px);
-      }
+      font-size: mobile-vw(22px);
+      padding-bottom: mobile-vw(8px);
     }
 
     .iconC {
-      @include dims(desktop-vw(20px));
+      @include dims(desktop-vw(40px));
 
       @include mobile {
-        @include dims(mobile-vw(16px));
+        @include dims(mobile-vw(25px));
       }
     }
   }
@@ -128,7 +122,7 @@
     padding-top: desktop-vw(16px);
 
     @include mobile {
-      padding-top: mobile-vw(16px);
+      padding-top: mobile-vw(30px);
     }
 
     > p {
@@ -142,7 +136,7 @@
 
       @include mobile {
         @include dims(auto);
-        font-size: mobile-vw(22px);
+        font-size: mobile-vw(18px);
         margin-bottom: mobile-vw(10px);
         text-align: center;
       }
@@ -160,11 +154,11 @@
       padding: desktop-vw(12px) desktop-vw(12px);
 
       @include mobile {
-        border-radius: mobile-vw(10px);
-        font-size: mobile-vw(20px);
+        border-radius: mobile-vw(4px);
+        font-size: mobile-vw(18px);
         margin-bottom: mobile-vw(30px);
         margin-top: mobile-vw(20px);
-        padding: mobile-vw(5px) mobile-vw(8px);
+        padding: mobile-vw(5px) mobile-vw(12px);
       }
     }
   }

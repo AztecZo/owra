@@ -1,7 +1,7 @@
 .modal {
   @include position(fixed, 0, 0, 0, 0);
   @include dims(100vw, 100vh);
-  background-color: rgb(0, 117, 206, 0.3);
+  background-color: rgb(21, 24, 25, 0.6);
   backdrop-filter: blur(16px);
   z-index: z-index("modal");
 
