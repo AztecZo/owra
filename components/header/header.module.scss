@@ -30,9 +30,19 @@
   font-weight: 700;
   padding: desktop-vw(10px) 0;
 
+  @include mobile {
+    font-size: mobile-vw(18px);
+    padding: mobile-vw(8px) 0;
+  }
+
   .iconC {
-    @include dims(28px);
+    @include dims(desktop-vw(28px));
     margin: 0 desktop-vw(32px);
+
+    @include mobile {
+      @include dims(mobile-vw(18px));
+      margin: 0 mobile-vw(20px);
+    }
   }
 }
 

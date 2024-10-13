@@ -130,7 +130,7 @@ export default function Home() {
           </Marquee>
         </div>
 
-        <div className="grid grid-cols-12 gap-10">
+        <div className="flex flex-col items-stretch gap:0 tablet:grid grid-cols-12 tablet:gap-10">
           <div className={cx(s.imgs, "col-span-6 flex items-start justify-end")}>
             <div className="relative flex">
               <div className={s.imgC}>
@@ -261,7 +261,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={cx(s.contact, "grid grid-cols-12")}>
+      <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
         <div className={cx(s.formC, "col-span-6")}>
           <h2>Herhangi Bir Sorunuz mu Var? Yardımcı Olmaktan Mutluluk Duyarız!</h2>
           <FormContact theme="white" />

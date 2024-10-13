@@ -132,9 +132,10 @@
         font-weight: 500;
         font-size: desktop-vw(16px);
         transition: 400ms opacity ease;
+        opacity: 0.3;
 
         @include mobile {
-          font-size: mobile-vw(20px);
+          font-size: mobile-vw(16px);
         }
       }
 

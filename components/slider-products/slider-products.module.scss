@@ -6,7 +6,11 @@
       position: relative;
 
       .imgC {
-        @include dims(450px);
+        @include dims(desktop-vw(450px));
+
+        @include mobile {
+          @include dims(mobile-vw(350px));
+        }
       }
 
       .text {
@@ -21,6 +25,13 @@
         padding: desktop-vw(16px) desktop-vw(30px);
         transform: translate(-50%, calc(100% + desktop-vw(60px)));
 
+        @include mobile {
+          @include dims(100vw, auto);
+          border-radius: 0;
+          padding: mobile-vw(8px) mobile-vw(16px);
+          transform: translate(-50%, calc(100% + mobile-vw(-30px)));
+        }
+
         .title {
           color: var(--white);
           font-family: var(--font-dela-gothic-one);
@@ -32,7 +43,7 @@
           text-align: center;
 
           @include mobile {
-            font-size: mobile-vw(40px);
+            font-size: mobile-vw(24px);
             margin-bottom: mobile-vw(30px);
             text-align: center;
           }
@@ -47,8 +58,7 @@
           text-align: center;
 
           @include mobile {
-            font-size: mobile-vw(40px);
-            margin-bottom: mobile-vw(30px);
+            font-size: mobile-vw(14px);
             text-align: center;
           }
         }
