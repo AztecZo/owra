@@ -34,6 +34,7 @@
     .button {
       @include dims(var(--height));
       flex-shrink: 0;
+      padding: desktop-vw(20px);
     }
   }
 }

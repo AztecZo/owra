@@ -8,10 +8,12 @@ import {
   Html,
   MeshTransmissionMaterial,
   OrthographicCamera,
+  Sphere,
   Stats,
   useGLTF,
 } from "@react-three/drei"
-import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber"
+import { Canvas, extend, useFrame, useLoader, useThree } from "@react-three/fiber"
+import { BallCollider, CuboidCollider, Physics, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import cx from "clsx"
 import { Leva, useControls } from "leva"
 import { forwardRef, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
@@ -21,6 +23,9 @@ extend({ Html })
 
 import { LoadingScreen } from "@/components/loading-screen"
 import { Vortex } from "@/components/vortex"
+import IceCube from "../ice-cube"
+import { IconArrow } from "../icons"
+import { ModelOwraLogo } from "../model-owra-logo"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -147,6 +152,8 @@ function Scene() {
 
         {/* <OrbitControls /> */}
 
+        <PhysicsIceCube />
+
         <Stats showPanel={0} />
       </Suspense>
     </Canvas>
@@ -259,7 +266,9 @@ function Geometry() {
               className={cx(s.button, s.prev, "flex items-center justify-center cursor-pointer")}
               onClick={handlePrev}
             >
-              <span>prev</span>
+              <span>
+                <IconArrow fill="var(--science-blue)" rotate={180} />
+              </span>
             </div>
             <div className={cx(s.content, "flex items-center justify-center")}>
               <span>content</span>
@@ -268,7 +277,9 @@ function Geometry() {
               className={cx(s.button, s.next, "flex items-center justify-center cursor-pointer")}
               onClick={handleNext}
             >
-              <span>next</span>
+              <span>
+                <IconArrow fill="var(--science-blue)" />
+              </span>
             </div>
           </div>
         </div>
@@ -653,6 +664,68 @@ function Coffee() {
         </group> */}
       </group>
     </>
+  )
+}
+
+function PhysicsIceCube() {
+  const { viewport } = useThree()
+  const vw = viewport.width * 100
+
+  return (
+    <>
+      <Physics gravity={[0, 0, 0]} debug>
+        {vw > 1024 && (
+          <>
+            {/* <IceCube scale={1.3} position={new THREE.Vector3(-10, -5, 0)} />
+            <IceCube scale={1} position={new THREE.Vector3(-8, 5, 0)} />
+            <IceCube scale={1} position={new THREE.Vector3(7, 3, 0)} />
+            <IceCube scale={1} position={new THREE.Vector3(9, -4, 0)} /> */}
+
+            <ModelOwraLogo w={true} scale={1.3} position={new THREE.Vector3(-10, -5, 0)} moved={true} />
+            <ModelOwraLogo o={true} scale={1} position={new THREE.Vector3(-8, 5, 0)} moved={true} />
+            <ModelOwraLogo r={true} scale={1} position={new THREE.Vector3(7, 3, 0)} moved={true} />
+            <ModelOwraLogo a={true} scale={1} position={new THREE.Vector3(9, -4, 0)} moved={true} />
+          </>
+        )}
+        {/* <Walls /> */}
+        <Pointer />
+      </Physics>
+    </>
+  )
+}
+
+// function Walls() {
+//   const { width: viewportWidth, height: viewportHeight } = useThree((state) => state.viewport)
+
+//   return (
+//     <>
+//       {/* rectangle */}
+//       <CuboidCollider position={[0, viewportHeight / 2 + 1, 0]} args={[viewportWidth / 2, 1, 30]} />
+//       <CuboidCollider position={[0, -viewportHeight / 2 - 1, 0]} args={[viewportWidth / 2, 1, 30]} />
+//       <CuboidCollider position={[-viewportWidth / 2 - 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
+//       <CuboidCollider position={[viewportWidth / 2 + 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
+//       {/* rectangle */}
+//     </>
+//   )
+// }
+
+function Pointer({ vec = new THREE.Vector3() }) {
+  const api = useRef<RapierRigidBody>(null)
+
+  useFrame(({ pointer, viewport }) => {
+    api.current?.setNextKinematicTranslation(
+      vec.set((pointer.x * viewport.width) / 2, (pointer.y * viewport.height) / 2, 1.5)
+    )
+  })
+
+  return (
+    <RigidBody position={[0, 0, 0]} type="kinematicPosition" colliders={false} ref={api}>
+      <BallCollider args={[0.5]}>
+        <Sphere args={[0.5]}>
+          <meshBasicMaterial color="#FF5B4A" transparent={true} opacity={0.1} />
+        </Sphere>
+      </BallCollider>
+    </RigidBody>
   )
 }
 

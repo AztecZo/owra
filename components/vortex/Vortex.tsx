@@ -15,6 +15,8 @@ export default function Vortex(props: VortexProps) {
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
 
+  console.log("RENDER")
+
   // Calculate the aspect ratio
   const aspectRatio = size.width / size.height
   const planeWidth = viewport.width * 1
@@ -118,8 +120,6 @@ export default function Vortex(props: VortexProps) {
 
   useFrame(({ clock, size, gl }) => {
     if (!materialRef.current) return
-
-    console.log(gl.getPixelRatio())
 
     materialRef.current.uniforms.time.value = clock.getElapsedTime() * controls.time
     materialRef.current.uniforms.width.value = size.width * gl.getPixelRatio()
