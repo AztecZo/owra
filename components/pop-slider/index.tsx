@@ -26,6 +26,7 @@ import { Vortex } from "@/components/vortex"
 import IceCube from "../ice-cube"
 import { IconArrow } from "../icons"
 import { ModelOwraLogo } from "../model-owra-logo"
+import { Link } from "../utility/link"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -283,6 +284,14 @@ function Geometry() {
             </div>
           </div>
         </div>
+        <Link className={cx(s.cta, "absolute bottom-5 right-5 flex items-center gap-2 cursor-pointer")} href="/">
+          <span>Homepage</span>
+          <span className={s.iconC}>
+            <div className="w-full h-full">
+              <IconArrow fill="var(--science-blue)" />
+            </div>
+          </span>
+        </Link>
       </Html>
 
       <Vortex />

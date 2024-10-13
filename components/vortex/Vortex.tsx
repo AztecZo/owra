@@ -135,7 +135,7 @@ export default function Vortex(props: VortexProps) {
 
   const colors = useRef([
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#0075CE")),
-    new THREE.Color().setFromVector3(convertHexToGLSLRGB("#FF5B4A")),
+    // new THREE.Color().setFromVector3(convertHexToGLSLRGB("#FF5B4A")),
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#73C6E4")),
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#FFEBAA")),
   ])

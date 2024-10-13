@@ -9,6 +9,8 @@ import Float from "@/components/animations/float"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
 import { Vortex } from "@/components/vortex"
+import { IconArrow } from "../icons"
+import { Link } from "../utility/link"
 
 export interface SliderProductsProps {}
 
@@ -36,10 +38,10 @@ export default function SliderProducts(props: SliderProductsProps) {
               <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
             </Float>
             <div className={s.text}>
-              <h3 className={s.title}>Owra ile Kalite</h3>
+              <h3 className={s.title}>Chill Owra</h3>
               <p className={s.description}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
-                voluptatem voluptates dignissimos explicabo natus aspernatur!
+                voluptatem.
               </p>
             </div>
           </div>
@@ -48,10 +50,10 @@ export default function SliderProducts(props: SliderProductsProps) {
               <div className={s.imgC}>{<Sequence type={seqs.boba} />}</div>
             </Float>
             <div className={s.text}>
-              <h3 className={s.title}>Owra ile Eğlence</h3>
+              <h3 className={s.title}>Owra Boba</h3>
               <p className={s.description}>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
-                voluptatem voluptates dignissimos explicabo natus aspernatur!
+                voluptatem voluptates.
               </p>
             </div>
           </div>
@@ -69,6 +71,14 @@ export default function SliderProducts(props: SliderProductsProps) {
           <OrthographicCamera makeDefault zoom={50} near={0.1} far={1000} position={[0, 0, 100]} />
         </Canvas>
       </div>
+      <Link className={cx(s.cta, "absolute bottom-5 right-5 flex items-center gap-2 cursor-pointer")} href="/showcase">
+        <span>Experience in 3D</span>
+        <span className={s.iconC}>
+          <div className="w-full h-full">
+            <IconArrow fill="var(--science-blue)" />
+          </div>
+        </span>
+      </Link>
     </div>
   )
 }

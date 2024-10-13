@@ -38,3 +38,34 @@
     }
   }
 }
+
+.cta {
+  background-color: var(--science-blue);
+  border: 1px solid var(--science-blue);
+  border-radius: desktop-vw(32px);
+  color: var(--white);
+  font-family: var(--font-fustat);
+  font-size: desktop-vw(18px);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  padding: desktop-vw(4px);
+  padding-left: desktop-vw(16px);
+
+  @include mobile {
+    font-size: mobile-vw(24px);
+    margin-bottom: mobile-vw(30px);
+    text-align: center;
+  }
+
+  .iconC {
+    @include dims(desktop-vw(30px));
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: desktop-vw(8px);
+
+    @include mobile {
+      @include dims(mobile-vw(30px));
+    }
+  }
+}
