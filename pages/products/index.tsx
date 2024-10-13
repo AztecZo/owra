@@ -12,26 +12,29 @@ export interface ProductsProps {}
 export default function Products(props: ProductsProps) {
   const products = [
     {
-      productName: "Owra X",
+      id: "1",
+      productName: "Bardak",
       img: "/img/cup.png",
-      url: "owra-x",
+      url: "owra-bardak",
     },
     {
-      productName: "Owra Y",
+      id: "2",
+      productName: "Boba",
       img: "/img/cup.png",
-      url: "owra-y",
+      url: "owra-boba",
     },
     {
-      productName: "Owra Z",
+      id: "3",
+      productName: "Kahve",
       img: "/img/cup.png",
-      url: "owra-z",
+      url: "owra-kahve",
     },
   ]
 
   return (
     <DefaultLayout seo={{ ...routes.blog.seo }}>
       <section className={cx(s.intro, "flex items-center justify-center")}>
-        <h1>Ürünler</h1>
+        <h1>Ürün Grupları</h1>
       </section>
       <section className={cx(s.products, "flex items-center justify-center flex-wrap gap-10")}>
         {products.map((item, i) => {

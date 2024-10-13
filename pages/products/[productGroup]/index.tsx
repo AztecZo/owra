@@ -49,21 +49,29 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
 
   const products = [
     {
-      productName: "Owra X - 1",
+      id: "1",
+      productName: "Owra Bardak - 1",
       img: "/img/cup.png",
-      url: "owra-x",
+      url: "owra-bardak-1",
     },
     {
-      productName: "Owra X - 2",
+      id: "2",
+      productName: "Owra Bardak - 2",
       img: "/img/cup.png",
-      url: "owra-y",
+      url: "owra-bardak-2",
     },
     {
-      productName: "Owra X - 3",
+      id: "3",
+      productName: "Owra Bardak - 3",
       img: "/img/cup.png",
-      url: "owra-z",
+      url: "owra-bardak-3",
     },
   ]
+
+  const data = {
+    title: "Owra Bardak",
+    products,
+  }
 
   return {
     props: {
