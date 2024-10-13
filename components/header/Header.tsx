@@ -17,6 +17,10 @@ export default function Header() {
   const { lenis } = useLenisStore()
   const [hamburgerOpen, setHamburgerOpen] = useState(false)
 
+  function closeMenu() {
+    setHamburgerOpen(false)
+  }
+
   useEffect(() => {
     return hamburgerOpen ? lenis?.stop() : lenis?.start()
   }, [hamburgerOpen, lenis])
@@ -63,7 +67,7 @@ export default function Header() {
       </div>
 
       <header className={cx(s.header, "flex items-center justify-between")} ref={ref}>
-        <Link className={cx(s.logoC, "cursor-pointer")} href="/">
+        <Link className={cx(s.logoC, "cursor-pointer")} href="/" onClick={closeMenu}>
           <IconOwraLogo />
         </Link>
 
@@ -84,22 +88,22 @@ export default function Header() {
           )}
         >
           <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
-            <div className={s.navItem}>
+            <div className={s.navItem} onClick={closeMenu}>
               <Link href="/about-us">Hakkımızda</Link>
             </div>
-            <div className={s.navItem}>
+            <div className={s.navItem} onClick={closeMenu}>
               <Link href="/products">Ürünler</Link>
             </div>
-            <div className={s.navItem}>
+            <div className={s.navItem} onClick={closeMenu}>
               <Link href="/blog">Blog</Link>
             </div>
           </div>
 
           <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
-            <div className={s.navItem}>
+            <div className={s.navItem} onClick={closeMenu}>
               <Link href="/franchise">Franchise</Link>
             </div>
-            <div className={s.navItem}>
+            <div className={s.navItem} onClick={closeMenu}>
               <Link href="/contact">İletişim</Link>
             </div>
             {/* <div className={s.navItem}>

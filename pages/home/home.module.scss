@@ -29,6 +29,7 @@
 
     @include mobile {
       @include dims(mobile-vw(320px));
+      transform: translate(-50%, -50%);
     }
   }
 

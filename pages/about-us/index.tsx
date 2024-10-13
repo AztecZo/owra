@@ -115,7 +115,7 @@ export default function AboutUs(props: AboutUsProps) {
         </Link>
       </section>
 
-      <section className={cx(s.career, "grid grid-cols-1 tablet:grid-cols-2")}>
+      <section className={cx(s.career, "flex flex-col-reverse tablet:grid grid-cols-1 tablet:grid-cols-2 gap-10")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
           <p>
             Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve
