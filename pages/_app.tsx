@@ -18,7 +18,7 @@ const delaGothicOne = Dela_Gothic_One({
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  useReloadOnResize()
+  // useReloadOnResize()
   return (
     <div className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}>
       <QueryClientProvider client={queryClient}>
