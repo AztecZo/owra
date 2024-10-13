@@ -13,6 +13,7 @@
 
   .iceC {
     @include position(absolute, auto, 0, 0, 50%);
+    @include dims(100vw, auto);
     transform: translateY(50%) translateX(-50%);
     z-index: 10;
 
