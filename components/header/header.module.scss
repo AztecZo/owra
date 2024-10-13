@@ -73,7 +73,7 @@
   }
 
   .iconC {
-    @include dims(desktop-vw(28px));
+    @include dims(desktop-vw(20px));
     margin: 0 desktop-vw(32px);
 
     @include mobile {
