@@ -1,6 +1,6 @@
 import { gsap } from "@/lib/gsap"
 import { useGLTF } from "@react-three/drei"
-import { CuboidCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
+import { RapierRigidBody, RigidBody } from "@react-three/rapier"
 import React, { ReactNode, useEffect } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
@@ -63,41 +63,26 @@ export default function PhysicsWrapper(props: PhysicsWrapperProps) {
   const api = React.useRef<RapierRigidBody>(null)
   const random = () => gsap.utils.random(-10, 10, 0.1)
 
-  // useEffect(() => {
-  //   function move() {
-  //     const vec3 = new THREE.Vector3()
-
-  //     if (!api.current) return
-
-  //     api.current.addTorque(vec3.set(500, 0, 0), false)
-  //   }
-
-  //   props.moved ?? move()
-  // }, [props.moved])
-
   useEffect(() => {
     const vec3 = new THREE.Vector3()
-
     if (!api.current) return
-
     api.current.addTorque(vec3.set(0, 50, 0), false)
   }, [])
 
   return (
-    <>
-      <RigidBody
-        ref={api}
-        enabledRotations={[true, true, true]}
-        enabledTranslations={[false, false, false]}
-        angularDamping={10}
-        friction={0.1}
-        rotation={new THREE.Euler(random(), random(), random())}
-        position={props.position}
-        scale={props.scale}
-      >
-        {props.children}
-      </RigidBody>
-    </>
+    <RigidBody
+      ref={api}
+      enabledRotations={[true, true, false]}
+      enabledTranslations={[false, false, false]}
+      angularDamping={10}
+      friction={0.1}
+      rotation={new THREE.Euler(Math.PI / 2, 0, 0)}
+      position={props.position}
+      scale={props.scale}
+      canSleep={false}
+    >
+      {props.children}
+    </RigidBody>
   )
 }
 

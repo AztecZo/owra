@@ -13,19 +13,19 @@ export default function Products(props: ProductsProps) {
   const products = [
     {
       id: "1",
-      productName: "Bardak",
+      name: "Bardak",
       img: "/img/cup.png",
       url: "owra-bardak",
     },
     {
       id: "2",
-      productName: "Boba",
+      name: "Boba",
       img: "/img/cup.png",
       url: "owra-boba",
     },
     {
       id: "3",
-      productName: "Kahve",
+      name: "Kahve",
       img: "/img/cup.png",
       url: "owra-kahve",
     },
@@ -47,7 +47,7 @@ export default function Products(props: ProductsProps) {
               <div className={s.imgC}>
                 <Img className="object-contain" src={item.img} height={500} width={500} alt="Product Visual" />
               </div>
-              <p>{item.productName}</p>
+              <p>{item.name}</p>
             </Link>
           )
         })}

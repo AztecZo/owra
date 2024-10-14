@@ -172,7 +172,7 @@ export default function Vortex(props: VortexProps) {
 
   return (
     <group position={[0, 0, -6]}>
-      <mesh ref={meshRef} geometry={new THREE.PlaneGeometry(planeWidth, planeHeight)} onPointerDown={handlePointerDown}>
+      <mesh ref={meshRef} geometry={new THREE.PlaneGeometry(planeWidth, planeHeight)}>
         <shaderMaterial
           ref={materialRef}
           uniforms={uniforms}

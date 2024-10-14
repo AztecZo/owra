@@ -1,5 +1,5 @@
 import { apiClient } from "@/api"
-import { BlogProps, CardBlogProps } from "@/types"
+import { CardBlogProps } from "@/types"
 import { useQuery } from "react-query"
 
 interface BlogPostProps {
@@ -28,7 +28,7 @@ interface BlogPage {
 }
 
 export function useAll() {
-  return useQuery<BlogPage>(["all"], () => all(), {
+  return useQuery<BlogPage>(["blog-posts"], () => all(), {
     retry: 2,
   })
 }

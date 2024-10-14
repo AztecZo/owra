@@ -1,6 +1,6 @@
-import apiClient from "@/pages/api"
 import { z } from "zod"
 import { useMutation } from "react-query"
+import { apiClient } from "@/api"
 
 export const FormSchema = z.object({
   name: z.string().min(1, {
@@ -16,13 +16,24 @@ export const FormSchema = z.object({
     message: "Firma adı giriniz.",
   }),
   kvkk: z.boolean(),
+  formType: z.string(),
 })
 
 type FormData = z.infer<typeof FormSchema>
 
-async function submitForm(data: FormData) {
-  const response = await apiClient.post("/message.php", data)
-  return response.data
+async function submitForm(values: FormData) {
+  const formData = new FormData()
+
+  Object.entries(values).forEach(([key, value]) => {
+    formData.append(`${key}`, value.toString())
+  })
+
+  const res = await apiClient.post<{ success: boolean; message: string }>("/contact.php", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+  return res.data
 }
 
 export function useSubmitForm() {

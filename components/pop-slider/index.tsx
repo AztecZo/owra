@@ -12,20 +12,20 @@ import {
   Stats,
   useGLTF,
 } from "@react-three/drei"
-import { Canvas, extend, useFrame, useLoader, useThree } from "@react-three/fiber"
+import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber"
 import { BallCollider, Physics, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import cx from "clsx"
 import { Leva, useControls } from "leva"
-import { forwardRef, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
+import { forwardRef, memo, Suspense, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
 extend({ Html })
 
+import { IconArrow } from "@/components/icons"
 import { LoadingScreen } from "@/components/loading-screen"
+import { ModelOwraLogo, OwraModelTypes } from "@/components/model-owra-logo"
+import { Link } from "@/components/utility/link"
 import { Vortex } from "@/components/vortex"
-import { IconArrow } from "../icons"
-import { ModelOwraLogo, OwraModelTypes } from "../model-owra-logo"
-import { Link } from "../utility/link"
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -155,16 +155,162 @@ function Scene() {
   )
 }
 
+// function Slider() {
+//   const groupRef = useRef<THREE.Group>(null)
+//   const tlRef = useRef<gsap.core.Timeline | null>(null)
+//   const [currentItem, setCurrentItem] = useState(0)
+//   const { contextSafe } = useGSAP()
+//   const items = ["Ice Glass", "Owra Boba"]
+
+//   useEffect(() => {
+//     if (!groupRef.current) return
+
+//     tlRef.current = gsap
+//       .timeline({ paused: true })
+//       .to(
+//         groupRef.current.rotation,
+//         {
+//           x: 0,
+//           y: 0,
+//           z: 0,
+//           duration: 1,
+//           ease: "expo.out",
+//         },
+//         "a"
+//       )
+//       .to(
+//         groupRef.current.scale,
+//         {
+//           x: 0,
+//           y: 0,
+//           z: 0,
+//           duration: 1,
+//           ease: "expo.out",
+//         },
+//         "a"
+//       )
+//       .to(
+//         groupRef.current.rotation,
+//         {
+//           x: 0,
+//           y: 10,
+//           z: 0,
+//           duration: 1,
+//           ease: "expo.out",
+//         },
+//         "s"
+//       )
+//       .to(
+//         groupRef.current.scale,
+//         {
+//           x: 1,
+//           y: 1,
+//           z: 1,
+//           duration: 1,
+//           ease: "expo.out",
+//         },
+//         "s"
+//       )
+
+//     tlRef.current.play(1)
+//   }, [])
+
+//   useEffect(() => {
+//     if (!groupRef.current) return
+
+//     tlRef.current?.play(0)
+//   }, [currentItem])
+
+//   const handleNext = contextSafe(() => {
+//     if (!tlRef.current) return
+//     setCurrentItem((currentItem + 1) % items.length)
+//   })
+
+//   const handlePrev = contextSafe(() => {
+//     if (!tlRef.current) return
+
+//     setCurrentItem((currentItem - 1 + items.length) % items.length)
+//   })
+
+//   return (
+//     <>
+//       <group ref={groupRef}>
+//         <SliderItem index={currentItem} />
+//       </group>
+
+//       <Html fullscreen pointerEvents="none" zIndexRange={[0, 100]}>
+//         <div className={cx(s.controls)}>
+//           <div className={cx(s.inner, "flex items-center justify-center flex-1")}>
+//             <div
+//               className={cx(s.button, s.prev, "flex items-center justify-center cursor-pointer")}
+//               onClick={handlePrev}
+//             >
+//               <span>
+//                 <IconArrow fill="var(--science-blue)" rotate={180} />
+//               </span>
+//             </div>
+//             <div className={cx(s.content, "flex items-center justify-center")}>
+//               <span>{items[currentItem]}</span>
+//             </div>
+//             <div
+//               className={cx(s.button, s.next, "flex items-center justify-center cursor-pointer")}
+//               onClick={handleNext}
+//             >
+//               <span>
+//                 <IconArrow fill="var(--science-blue)" />
+//               </span>
+//             </div>
+//           </div>
+//         </div>
+//         <Link className={cx(s.cta, "absolute bottom-5 right-5 flex items-center gap-2 cursor-pointer")} href="/">
+//           <span>Homepage</span>
+//           <span className={s.iconC}>
+//             <div className="w-full h-full">
+//               <IconArrow fill="var(--science-blue)" />
+//             </div>
+//           </span>
+//         </Link>
+//       </Html>
+
+//       <PhysicsLayer />
+//       <Vortex currentItem={currentItem} />
+//     </>
+//   )
+// }
+
+// const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
+//   const myRef = useRef<THREE.Mesh | null>(null)
+//   useImperativeHandle(ref, () => myRef.current as THREE.Mesh)
+
+//   const items = [
+//     <>
+//       <Float>
+//         <IceGlass />
+//       </Float>
+//     </>,
+//     <>
+//       <Float>
+//         <Boba />
+//       </Float>
+//     </>,
+//   ]
+
+//   return (
+//     <group>
+//       {items.map((item) => {
+//         return item
+//       })}
+//     </group>
+//   )
+// })
+
 function Slider() {
   const groupRef = useRef<THREE.Group>(null)
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const [currentItem, setCurrentItem] = useState(0)
-  const [buttonDisabled, setButtonDisabled] = useState(false)
   const { contextSafe } = useGSAP()
-
   const items = ["Ice Glass", "Owra Boba"]
 
-  // Initialize GSAP timeline once
   useEffect(() => {
     if (!groupRef.current) return
 
@@ -174,12 +320,12 @@ function Slider() {
         groupRef.current.rotation,
         {
           x: 0,
-          y: 5,
+          y: 0,
           z: 0,
-          duration: 1.3,
+          duration: 1,
           ease: "expo.out",
         },
-        "s"
+        "a"
       )
       .to(
         groupRef.current.scale,
@@ -187,62 +333,57 @@ function Slider() {
           x: 0,
           y: 0,
           z: 0,
-          duration: 1.3,
+          duration: 1,
+          ease: "expo.out",
+        },
+        "a"
+      )
+      .to(
+        groupRef.current.rotation,
+        {
+          x: 0,
+          y: 10,
+          z: 0,
+          duration: 1,
           ease: "expo.out",
         },
         "s"
       )
-      .eventCallback("onComplete", () => handleAnimationComplete())
+      .to(
+        groupRef.current.scale,
+        {
+          x: 1,
+          y: 1,
+          z: 1,
+          duration: 1,
+          ease: "expo.out",
+        },
+        "s"
+      )
+
+    tlRef.current.play(1)
   }, [])
 
-  // Update the UI when currentItem changes
   useEffect(() => {
-    if (!groupRef.current || !tlRef.current) return
-
-    setButtonDisabled(true)
-    tlRef.current.play(0)
-  }, [currentItem])
-
-  // Handle animation completion
-  const handleAnimationComplete = () => {
     if (!groupRef.current) return
 
-    gsap.to(groupRef.current.scale, {
-      x: 1,
-      y: 1,
-      z: 1,
-      duration: 1,
-      delay: 0.4,
-      ease: "expo.out",
-    })
-
-    gsap.to(groupRef.current.rotation, {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 1,
-      delay: 0.4,
-      ease: "expo.out",
-      onComplete: () => {
-        setButtonDisabled(false)
-      },
-    })
-  }
+    tlRef.current?.play(0)
+  }, [currentItem])
 
   const handleNext = contextSafe(() => {
-    if (buttonDisabled) return
+    if (!tlRef.current) return
     setCurrentItem((currentItem + 1) % items.length)
   })
 
   const handlePrev = contextSafe(() => {
-    if (buttonDisabled) return
+    if (!tlRef.current) return
     setCurrentItem((currentItem - 1 + items.length) % items.length)
   })
 
   return (
     <>
       <group ref={groupRef}>
-        <SliderItem index={currentItem} />
+        <SliderItem currentItem={currentItem} />
       </group>
 
       <Html fullscreen pointerEvents="none" zIndexRange={[0, 100]}>
@@ -279,14 +420,13 @@ function Slider() {
         </Link>
       </Html>
 
-      <Vortex />
-
-      <PhysicsLayer currentItem={currentItem} />
+      <PhysicsLayer />
+      <Vortex currentItem={currentItem} />
     </>
   )
 }
 
-const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
+const SliderItem = forwardRef<THREE.Mesh, { currentItem: number }>(({ currentItem }, ref) => {
   const myRef = useRef<THREE.Mesh | null>(null)
   useImperativeHandle(ref, () => myRef.current as THREE.Mesh)
 
@@ -301,14 +441,17 @@ const SliderItem = forwardRef<THREE.Mesh, SliderItemProps>(({ index }, ref) => {
         <Boba />
       </Float>
     </>,
-    // <>
-    //   <Float>
-    //     <Coffee />
-    //   </Float>
-    // </>,
   ]
 
-  return <group>{items[index]}</group>
+  return (
+    <group>
+      {items.map((item, index) => (
+        <group key={index} scale={index === currentItem ? [1, 1, 1] : [0, 0, 0]}>
+          {item}
+        </group>
+      ))}
+    </group>
+  )
 })
 
 function IceGlass() {
@@ -336,7 +479,7 @@ function IceGlass() {
     "ice glass material",
     {
       transmissionSampler: false,
-      backside: false,
+      backside: true,
       backsideThickness: { value: 0, min: -10, max: 10 },
       samples: { value: 3, min: 0, max: 32, step: 1 },
       resolution: { value: 1024, min: 256, max: 2048, step: 256 },
@@ -364,9 +507,9 @@ function IceGlass() {
     if (!group2Ref.current) return
 
     gsap.to(groupRef.current.scale, {
-      x: 0.05,
-      y: 0.05,
-      z: 0.05,
+      x: 0.04,
+      y: 0.04,
+      z: 0.04,
       duration: 1,
       ease: "back.out",
     })
@@ -401,14 +544,13 @@ function IceGlass() {
   })
 
   return (
-    <group
-      position={[0, 0, 0]}
-      scale={0.035}
-      onPointerEnter={handlePointerOver}
-      onPointerLeave={handlePointerOut}
-      ref={groupRef}
-    >
-      <group position={[0, -4.5, 0]} ref={group2Ref}>
+    <group position={[0, -0.5, 0]} scale={0.035} ref={groupRef}>
+      <group
+        ref={group2Ref}
+        position={[0, -4.5, 0]}
+        onPointerEnter={handlePointerOver}
+        onPointerLeave={handlePointerOut}
+      >
         <mesh
           geometry={nodes.CUsersberkaOneDriveMasaüstüBardak_Ustobj.geometry}
           position={[1.37532806, -173.60058784, 0.00108719]}
@@ -421,15 +563,15 @@ function IceGlass() {
         </mesh>
       </group>
 
-      <group scale={60} position={[0, -0.75, 4]} rotation={[Math.PI / 1, 0, 0]}>
-        <mesh geometry={new THREE.PlaneGeometry(6, 3.5)}>
+      <group scale={60} position={[0, 5, 5]} rotation={[0, 0, Math.PI / 18]}>
+        <mesh geometry={new THREE.PlaneGeometry(6, 4)}>
           <meshPhysicalMaterial
             map={iceCubesMap}
             bumpMap={iceCubesMap}
             bumpScale={4}
             color={"#ffffff"}
             transparent={true}
-            opacity={0.9}
+            opacity={0.5}
             side={THREE.DoubleSide}
           />
         </mesh>
@@ -496,10 +638,10 @@ function Boba() {
     if (!group2Ref.current) return
 
     gsap.to(groupRef.current.scale, {
-      x: 1,
-      y: 1,
-      z: 1,
-      duration: 1,
+      x: 0.75,
+      y: 0.75,
+      z: 0.75,
+      duration: 0.3,
       ease: "back.out",
     })
 
@@ -511,10 +653,10 @@ function Boba() {
     if (!group2Ref.current) return
 
     gsap.to(groupRef.current.scale, {
-      x: 0.7,
-      y: 0.7,
-      z: 0.7,
-      duration: 1,
+      x: 0.6,
+      y: 0.6,
+      z: 0.6,
+      duration: 0.3,
       ease: "back.out",
     })
 
@@ -534,8 +676,13 @@ function Boba() {
 
   return (
     <>
-      <group position={[0, 0, 0]} onPointerEnter={handlePointerOver} onPointerLeave={handlePointerOut} ref={groupRef}>
-        <group ref={group2Ref} scale={0.7} position={[0, -4.5, 0]}>
+      <group position={[0, -1, 0]} scale={0.6} ref={groupRef}>
+        <group
+          ref={group2Ref}
+          position={[0, -4.5, 0]}
+          onPointerEnter={handlePointerOver}
+          onPointerLeave={handlePointerOut}
+        >
           <mesh geometry={BobaLidNodes.Boba_sise1.geometry} position={[0, 11.927, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <meshPhongMaterial color={new THREE.Color("#000000")} side={THREE.DoubleSide} />
           </mesh>
@@ -549,7 +696,7 @@ function Boba() {
           </mesh>
         </group>
 
-        <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
+        <group scale={1.5} position={[0, 0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
           <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
             <meshPhysicalMaterial
               map={fillMap}
@@ -568,40 +715,22 @@ function Boba() {
 }
 
 interface PhysicsLayerProps {
-  currentItem: number
+  currentItem?: number
 }
 
-function PhysicsLayer(props: PhysicsLayerProps) {
-  const { viewport } = useThree()
-  const vw = viewport.width * 100
-
-  const [moved, setMoved] = useState(false)
-
-  useEffect(() => {
-    setMoved(true)
-    const timeout = setTimeout(() => {
-      setMoved(false)
-    }, 100)
-
-    return () => clearTimeout(timeout)
-  }, [props.currentItem])
-
+const PhysicsLayer = memo((props: PhysicsLayerProps) => {
   return (
-    <>
-      <Physics gravity={[0, 0, 0]} debug>
-        {vw > 1024 && (
-          <>
-            <ModelOwraLogo modelType={OwraModelTypes.o} scale={1.3} position={new THREE.Vector3(-11, -5, 0)} />
-            <ModelOwraLogo modelType={OwraModelTypes.w} scale={1} position={new THREE.Vector3(-10, 5, 0)} />
-            <ModelOwraLogo modelType={OwraModelTypes.r} scale={1.1} position={new THREE.Vector3(9, 4, 0)} />
-            <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
-          </>
-        )}
-        <Pointer />
-      </Physics>
-    </>
+    <Physics gravity={[0, 0, 0]} debug>
+      <ModelOwraLogo modelType={OwraModelTypes.w} scale={1.3} position={new THREE.Vector3(-10, -4, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.o} scale={0.8} position={new THREE.Vector3(-10, 5, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.r} scale={0.7} position={new THREE.Vector3(9, 4, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
+      <Pointer />
+    </Physics>
   )
-}
+})
+
+PhysicsLayer.displayName = "PhysicsLayer"
 
 function Pointer({ vec = new THREE.Vector3() }) {
   const api = useRef<RapierRigidBody>(null)

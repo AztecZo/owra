@@ -1,13 +1,13 @@
 import s from "./product.module.scss"
 
 import cx from "clsx"
+import { GetServerSidePropsContext } from "next"
 import { useState } from "react"
 
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
-import { GetServerSidePropsContext } from "next"
 import { Product } from "@/types"
 
 export interface ProductGroupProps {
@@ -29,9 +29,9 @@ export default function ProductGroup(props: ProductGroupProps) {
           <span>{props.product.name}</span>
         </div>
       </section>
-      <section className={cx(s.product, "grid grid-cols-12 gap-20")}>
-        <div className="col-span-6 grid grid-cols-12 gap-4">
-          <div className={cx(s.imgs, "col-span-2 flex flex-col gap-2")}>
+      <section className={cx(s.product, "flex flex-col tablet:grid grid-cols-12 gap-0 tablet:gap-20")}>
+        <div className="col-span-6 flex flex-col-reverse tablet:grid grid-cols-12 gap-2 tablet:gap-4">
+          <div className={cx(s.imgs, "col-span-2 flex flex-row tablet:flex-col justify-center gap-2")}>
             {props.product.images.map((item, i) => {
               return (
                 <div
@@ -67,7 +67,7 @@ export default function ProductGroup(props: ProductGroupProps) {
           </div>
           <div className={cx(s.other)}>
             <div className={s.title}>Diğer Seçenekler</div>
-            <div className={cx(s.items, "flex items-center justify-start gap-3")}>
+            <div className={cx(s.items, "flex items-center justify-center tablet:justify-start gap-3 flex-wrap")}>
               {props.product.other.map((item, i) => {
                 return (
                   <Link href={`/${item.id}`} className={s.imgC} key={i}>

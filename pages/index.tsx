@@ -27,6 +27,7 @@ import ice1 from "@/public/img/ice-1.png"
 import ice2 from "@/public/img/ice-2.png"
 import iceCubes from "@/public/img/ice-cubes.png"
 import s1 from "@/public/img/s-1.svg"
+import { FormType } from "@/types"
 
 export default function Home() {
   return (
@@ -264,7 +265,7 @@ export default function Home() {
       <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
         <div className={cx(s.formC, "col-span-6")}>
           <h2>Herhangi Bir Sorunuz mu Var? Yardımcı Olmaktan Mutluluk Duyarız!</h2>
-          <FormContact theme="white" />
+          <FormContact theme="white" formType={FormType.contact} />
         </div>
         <div className="col-span-6">
           <div className={s.imgC}>

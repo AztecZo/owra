@@ -8,15 +8,17 @@ import { z } from "zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/utility/form"
 import { Input } from "@/components/utility/input"
 import { Textarea } from "@/components/utility/textarea"
-import { FormSchema, useSubmitForm } from "@/pages/api/mutations/contact-form"
-import { Button } from "../button"
+import { FormSchema, useSubmitForm } from "@/api/mutations/contact-form"
+import { Button } from "@/components/button"
+import { FormType } from "@/types"
 
 export interface FormContactProps {
   theme?: "blue" | "white"
+  formType: FormType
 }
 
 export default function FormContact(props: FormContactProps) {
-  const { theme = "blue" } = props
+  const { theme = "blue", formType } = props
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -26,16 +28,19 @@ export default function FormContact(props: FormContactProps) {
       phone: "",
       message: "",
       kvkk: false,
+      formType,
     },
   })
 
-  const { mutate, isLoading, isError, isSuccess } = useSubmitForm()
+  const { mutate, isLoading, isError, isSuccess, data: responseData } = useSubmitForm()
 
   console.table([
     ["isLoading", isLoading],
     ["isError", isError],
     ["isSuccess", isSuccess],
   ])
+
+  console.log(responseData)
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log("form submitted", data)

@@ -11,8 +11,8 @@ export interface Filter {
 }
 
 export interface Social {
-  icon: any
-  ui: string
+  id: string
+  name: string
   url: string
 }
 
@@ -106,4 +106,24 @@ export interface Product {
     size: string
     image: string
   }[]
+}
+
+export enum FormType {
+  franchise = "franchise",
+  contact = "contact",
+}
+
+export interface ContactData {
+  email: string
+  phone: string
+  address: string
+}
+
+export enum SocialMedia {
+  tiktok = "tiktok",
+  linkedin = "linkedin",
+  facebook = "facebook",
+  instagram = "instagram",
+  x = "x",
+  youtube = "youtube",
 }

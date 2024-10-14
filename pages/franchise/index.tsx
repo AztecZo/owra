@@ -17,10 +17,16 @@ import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
 import i4 from "@/public/img/b-4.png"
+import { ContactData, FormType } from "@/types"
+import { GetServerSidePropsContext } from "next"
+import { single } from "@/api/queries/franchise"
 
-export interface FranchiseProps {}
+export interface FranchiseProps {
+  contactData: ContactData
+}
 
 export default function Franchise(props: FranchiseProps) {
+  const { contactData } = props
   const prosRef = useRef(null)
   const { lenis } = useLenisStore()
 
@@ -181,22 +187,34 @@ export default function Franchise(props: FranchiseProps) {
           <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col">
               <h3>Telefon:</h3>
-              <p>+90 555 555 55 55</p>
+              <p>{contactData.phone}</p>
             </div>
             <div className="flex flex-col">
               <h3>Email:</h3>
-              <p>sales@owra.com</p>
+              <p>{contactData.email}</p>
             </div>
             <div className="flex flex-col">
               <h3>Adres:</h3>
-              <p>4004 Eagle Lane, Strathcona Minnesota 56759</p>
+              <p>{contactData.address}</p>
             </div>
           </div>
         </div>
         <div className={s.formContactC}>
-          <FormContact />
+          <FormContact formType={FormType.franchise} />
         </div>
       </section>
     </DefaultLayout>
   )
+}
+
+export async function getServerSideProps({ locale }: GetServerSidePropsContext) {
+  const contactData = await single()
+
+  return {
+    props: {
+      contactData,
+      // locale,
+      // messages: pick((await import(`@/messages/${locale}.json`)).default, About.messages),
+    },
+  }
 }

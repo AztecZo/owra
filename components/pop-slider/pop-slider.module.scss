@@ -1,10 +1,10 @@
 .controls {
   --height: #{desktop-vw(80px)};
+  @include position(absolute, auto, auto, 2%, 50%);
   @include dims(desktop-vw(500px), var(--height));
   border-radius: desktop-vw(64px);
   border: 0px solid var(--science-blue);
   display: flex;
-  @include position(absolute, auto, auto, 2%, 50%);
   transform: translateX(-50%);
   pointer-events: auto;
   z-index: 10;
