@@ -1,13 +1,13 @@
 import { convertHexToGLSLRGB } from "@/lib/utils"
+import fragmentShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/fragment.glsl"
+import vertexShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/vertex.glsl"
 import { useFrame, useThree } from "@react-three/fiber"
 import { useControls } from "leva"
 import { useEffect, useMemo, useRef } from "react"
 import * as THREE from "three"
-import fragmentShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/fragment.glsl"
-import vertexShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/vertex.glsl"
 
-interface VortexProps {
-  currentItem: number
+export interface VortexProps {
+  currentItem?: number
 }
 
 export default function Vortex(props: VortexProps) {
@@ -15,6 +15,9 @@ export default function Vortex(props: VortexProps) {
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
 
+  console.log("RENDER")
+
+  // Calculate the aspect ratio
   const aspectRatio = size.width / size.height
   const planeWidth = viewport.width * 1
   const planeHeight = (planeWidth / aspectRatio) * 1
@@ -23,27 +26,70 @@ export default function Vortex(props: VortexProps) {
     if (!meshRef.current) return
 
     const geometry = new THREE.PlaneGeometry(planeWidth, planeHeight)
-
-    // Dispose of previous geometry to prevent memory leaks
-    if (meshRef.current.geometry) meshRef.current.geometry.dispose()
-
     meshRef.current.geometry = geometry
-
-    return () => {
-      geometry.dispose() // Clean up when component unmounts
-    }
   }, [planeWidth, planeHeight])
+
+  // const uniforms = useMemo(
+  //   () => ({
+  //     color: { value: props.color },
+  //     ringDistance: { value: props.ringDistance },
+  //     maxRings: { value: props.maxRings },
+  //     waveCount: { value: props.waveCount },
+  //     waveDepth: { value: props.waveDepth },
+  //     yCenter: { value: props.yCenter },
+  //     direction: { value: props.direction },
+  //     time: { value: 0 },
+  //     width: { value: 0 },
+  //     height: { value: 0 },
+  //   }),
+  //   []
+  // )
 
   const controls = useControls(
     "vortex",
     {
-      ringDistance: { value: 0.05, min: 0.0, max: 1.0, step: 0.00125 },
-      maxRings: { value: 5, min: 2, max: 50, step: 1 },
-      waveCount: { value: 20, min: 2, max: 100, step: 1 },
-      waveDepth: { value: 0.05, min: 0.01, max: 0.2, step: 0.005 },
-      yCenter: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
-      direction: { value: -0.4, min: -3.0, max: 3.0, step: 0.1 },
-      time: { value: 0.05, min: 0, max: 1.0, step: 0.01 },
+      ringDistance: {
+        value: 0.05,
+        min: 0.0,
+        max: 1.0,
+        step: 0.00125,
+      },
+      maxRings: {
+        value: 5,
+        min: 2,
+        max: 50,
+        step: 1,
+      },
+      waveCount: {
+        value: 20,
+        min: 2,
+        max: 100,
+        step: 1,
+      },
+      waveDepth: {
+        value: 0.05,
+        min: 0.01,
+        max: 0.2,
+        step: 0.005,
+      },
+      yCenter: {
+        value: 1.0,
+        min: 0.0,
+        max: 3.0,
+        step: 0.1,
+      },
+      direction: {
+        value: -0.4,
+        min: -3.0,
+        max: 3.0,
+        step: 0.1,
+      },
+      time: {
+        value: 0.05,
+        min: 0,
+        max: 1.0,
+        step: 0.01,
+      },
     },
     { collapsed: true }
   )
@@ -61,7 +107,7 @@ export default function Vortex(props: VortexProps) {
       width: { value: 0 },
       height: { value: 0 },
     }),
-    [controls]
+    []
   )
 
   useFrame(({ clock, size, gl }) => {
@@ -81,12 +127,15 @@ export default function Vortex(props: VortexProps) {
 
   const colors = useRef([
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#0075CE")),
+    // new THREE.Color().setFromVector3(convertHexToGLSLRGB("#FF5B4A")),
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#73C6E4")),
     new THREE.Color().setFromVector3(convertHexToGLSLRGB("#FFEBAA")),
   ])
 
   const currentColor = useRef(colors.current.length - 1)
+
   const t = useRef<number>(1)
+
   const transitionDuration = 0.4 // seconds
 
   useFrame((state, delta) => {
@@ -96,8 +145,10 @@ export default function Vortex(props: VortexProps) {
     const c2 = colors.current[(currentColor.current + 1) % colors.current.length]
 
     const lerped = c1.clone().lerp(c2, t.current)
+
+    // Update t.current based on delta time
     t.current += delta / transitionDuration
-    if (t.current > 1) t.current = 1
+    if (t.current > 1) t.current = 1 // Clamp t.current to 1
 
     materialRef.current.uniforms.color.value = new THREE.Vector4(lerped.r, lerped.g, lerped.b, 1)
   })
@@ -111,15 +162,9 @@ export default function Vortex(props: VortexProps) {
     handlePointerDown()
   }, [props.currentItem])
 
-  useEffect(() => {
-    return () => {
-      if (materialRef.current) materialRef.current.dispose()
-    }
-  }, [])
-
   return (
     <group position={[0, 0, -6]}>
-      <mesh ref={meshRef}>
+      <mesh ref={meshRef} geometry={new THREE.PlaneGeometry(planeWidth, planeHeight)}>
         <shaderMaterial
           ref={materialRef}
           uniforms={uniforms}
