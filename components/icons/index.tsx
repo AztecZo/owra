@@ -58,8 +58,8 @@ const IconLinkedin = (props: Props) => {
       <svg width="100%" height="100%" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18.052 21.4763H20.3048L9.93539 6.62867H7.68265L18.052 21.4763Z" fill="black" />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M14 28C21.732 28 28 21.732 28 14C28 6.26802 21.732 0 14 0C6.26801 0 0 6.26802 0 14C0 21.732 6.26801 28 14 28ZM21.7707 5.52344L15.5816 12.7251L22.3125 22.5312H17.362L12.8292 15.9278L7.15418 22.5312H5.6875L12.1781 14.9792L5.6875 5.52344H10.638L14.9301 11.7765L20.3041 5.52344H21.7707Z"
           fill="black"
         />

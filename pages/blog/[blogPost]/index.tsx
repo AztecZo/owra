@@ -20,8 +20,6 @@ type Props = BlogProps
 const BlogPost = (props: Props) => {
   const [copied, setCopied] = useState(false)
 
-  console.log(props)
-
   useIsomorphicLayoutEffect(() => {
     const timeout = setTimeout(() => {
       setCopied(false)

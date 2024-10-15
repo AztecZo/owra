@@ -17,8 +17,6 @@ interface BlogProps {
 }
 
 const Blog = ({ blogPage }: BlogProps) => {
-  console.log(blogPage)
-
   return (
     <DefaultLayout seo={{ ...routes.blog.seo }}>
       <section className={s.intro}>

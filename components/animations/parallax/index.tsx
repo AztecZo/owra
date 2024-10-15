@@ -25,8 +25,6 @@ const Parallax = (props: ParallaxProps) => {
     () => {
       if (!ref.current) return
 
-      console.log(getElementOffsetTop(ref.current))
-
       gsap.to(".parallax-item", {
         ...(speedX && { xPercent: 100 * speedX }),
         ...(speedY && { yPercent: 100 * speedY }),

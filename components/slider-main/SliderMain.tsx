@@ -26,8 +26,6 @@ export default function SliderMain(props: SliderMainProps) {
     if (emblaApi) {
       emblaApi.scrollTo(currentSlide)
     }
-
-    console.log(currentSlide)
   }, [emblaApi, currentSlide])
 
   // const items = [

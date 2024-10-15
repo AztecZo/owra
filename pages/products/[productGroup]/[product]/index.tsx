@@ -84,8 +84,6 @@ export default function ProductGroup(props: ProductGroupProps) {
 }
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
-  console.log(query)
-
   const product = JSON.parse(`{
         "id": 1,
         "name": "Owra Boba",

@@ -11,8 +11,6 @@ const TitleReveal = (props: TitleRevealProps) => {
   const { children } = props
   const ref = useRef(null)
 
-  console.log("RENDER TITLE REVEAL")
-
   useGSAP(
     () => {
       if (ScrollTrigger.isTouch) {

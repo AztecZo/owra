@@ -15,8 +15,6 @@ export interface AboutUsProps {}
 export default function AboutUs(props: AboutUsProps) {
   const router = useRouter()
 
-  console.log(router)
-
   return (
     <DefaultLayout seo={{ title: "About Us", description: "About Us" }}>
       <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2")}>

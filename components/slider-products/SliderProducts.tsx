@@ -24,7 +24,6 @@ export default function SliderProducts(props: SliderProductsProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const handleSelectSlide = (index: number) => {
-    console.log("Current slide index:", index)
     setCurrentSlide(index)
     // Do something with the selected slide index here
   }
