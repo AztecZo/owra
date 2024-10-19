@@ -9,7 +9,6 @@ import { ReactNode, useCallback, useEffect, useState } from "react"
 
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { NextButton, PrevButton } from "@/components/utility/embla-carousel/buttons"
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
 import { IconArrow } from "../icons"
 
 export interface SliderFadeProps {
@@ -24,7 +23,15 @@ export default function SliderFade(props: SliderFadeProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Fade(),
     ...(autoplay
-      ? [Autoplay({ playOnInit: true, delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]
+      ? [
+          Autoplay({
+            playOnInit: true,
+            delay: 5000,
+            stopOnInteraction: false,
+            stopOnMouseEnter: true,
+            stopOnLastSnap: true,
+          }),
+        ]
       : []),
   ])
 

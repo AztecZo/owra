@@ -4,7 +4,7 @@ import cx from "clsx"
 
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
-import { truncateByWords, truncateString } from "@/lib/utils"
+import { truncateByWords } from "@/lib/utils"
 import { CardBlogProps } from "@/types"
 import { useEffect, useRef, useState } from "react"
 
@@ -90,7 +90,7 @@ export default function SliderMain(props: SliderMainProps) {
               <p className={s.title}>{truncateByWords(item.title, 7)}</p>
               <p className={s.description}>{truncateByWords(item.description, 18)}</p>
               <p className={s.date}>{item.date}</p>
-              <Link className={s.link} href={`/${item.url}`}>
+              <Link className={s.link} href={`/blog/${item.url}`}>
                 Devamını Oku
               </Link>
             </div>

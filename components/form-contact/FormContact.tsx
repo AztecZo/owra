@@ -5,12 +5,14 @@ import cx from "clsx"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/utility/form"
-import { Input } from "@/components/utility/input"
-import { Textarea } from "@/components/utility/textarea"
 import { FormSchema, useSubmitForm } from "@/api/mutations/contact-form"
 import { Button } from "@/components/button"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/utility/form"
+import { Input } from "@/components/utility/input"
+import { LoadingSpinner } from "@/components/utility/loading-spinner"
+import { Textarea } from "@/components/utility/textarea"
 import { FormType } from "@/types"
+import { useEffect, useState } from "react"
 
 export interface FormContactProps {
   theme?: "blue" | "white"
@@ -19,6 +21,8 @@ export interface FormContactProps {
 
 export default function FormContact(props: FormContactProps) {
   const { theme = "blue", formType } = props
+
+  const [responseMessage, setResponseMessage] = useState("")
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -32,20 +36,27 @@ export default function FormContact(props: FormContactProps) {
     },
   })
 
-  const { mutate, isLoading, isError, isSuccess, data: responseData } = useSubmitForm()
-
-  console.table([
-    ["isLoading", isLoading],
-    ["isError", isError],
-    ["isSuccess", isSuccess],
-  ])
-
-  console.log(responseData)
+  const { mutate, isLoading, data: responseData } = useSubmitForm()
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("form submitted", data)
     mutate(data)
   }
+
+  useEffect(() => {
+    if (!responseData?.message) return
+    setResponseMessage(responseData?.message)
+    form.reset()
+  }, [responseData, form])
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+
+    if (responseMessage) {
+      timeout = setTimeout(() => setResponseMessage(""), 10000)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [responseMessage])
 
   return (
     <div className={cx(s.formContact, [s[theme]])}>
@@ -132,11 +143,24 @@ export default function FormContact(props: FormContactProps) {
               />
             </div>
 
-            <button className={cx(s.submitBtn)} type="submit" disabled={!form.formState.isValid}>
-              <Button theme={theme}>Gönder</Button>
+            <button
+              className={cx(s.submitBtn, "flex items-center justify-center")}
+              type="submit"
+              disabled={!form.formState.isValid}
+            >
+              <Button theme={theme}>
+                {isLoading ? (
+                  <div className={s.spinnerC}>
+                    <LoadingSpinner />
+                  </div>
+                ) : (
+                  <span>Gönder</span>
+                )}
+              </Button>
             </button>
           </form>
         </Form>
+        {responseMessage && <div className={s.response}>{responseMessage}</div>}
       </div>
     </div>
   )

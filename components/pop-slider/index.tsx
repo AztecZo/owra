@@ -118,7 +118,7 @@ export default function PopSlider() {
   return (
     <div className="w-full h-full">
       <Scene />
-      <Leva />
+      <Leva hidden={true} />
     </div>
   )
 }

@@ -1,15 +1,17 @@
 import { create } from "zustand"
 
 interface State {
-  theme: "light" | "dark"
-  setTheme: (theme: State["theme"]) => void
+  primaryColor: string | null
+  secondaryColor: string | null
+  setColors: (primary: string | null, secondary: string | null) => void
 }
 
 export const useStore = create<State>((set) => ({
-  theme: "light",
-  setTheme: (theme) => {
-    set({ theme })
+  primaryColor: "#ffffff",
+  secondaryColor: "#000000",
+  setColors: (primary, secondary) => {
+    set({ primaryColor: primary, secondaryColor: secondary })
   },
 }))
 
-export const useThemeStore = useStore
+export const useTheme = useStore

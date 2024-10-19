@@ -6,26 +6,27 @@ import cx from "clsx"
 import { useEffect, useRef, useState } from "react"
 
 import Float from "@/components/animations/float"
+import { IconArrow } from "@/components/icons"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
+import { Link } from "@/components/utility/link"
 import { Vortex } from "@/components/vortex"
-import { IconArrow } from "../icons"
-import { Link } from "../utility/link"
 
-export interface SliderProductsProps {}
+export interface SliderProductsProps {
+  locales: any
+}
 
 export default function SliderProducts(props: SliderProductsProps) {
   const seqs = {
     iceGlass: "ice-glass",
     boba: "boba",
-    // coffee: "coffee",
+    coffee: "coffee",
   }
 
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const handleSelectSlide = (index: number) => {
     setCurrentSlide(index)
-    // Do something with the selected slide index here
   }
 
   return (
@@ -33,35 +34,29 @@ export default function SliderProducts(props: SliderProductsProps) {
       <div className={cx(s.sliderC, "z-20")}>
         <SliderFade onSelectSlide={handleSelectSlide} autoplay>
           <div className={cx(s.slide, "flex flex-col items-center")}>
-            <Float amountY={[-5, 5]}>
+            <Float amountY={[-3, 3]}>
               <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
             </Float>
             <div className={s.text}>
-              <h3 className={s.title}>Chill Owra</h3>
-              <p className={s.description}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
-                voluptatem.
-              </p>
+              <h3 className={s.title}>{props.locales("productSlider.s1.title")}</h3>
             </div>
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
-            <Float amountY={[-7, 7]}>
+            <Float amountY={[-3, 3]}>
               <div className={s.imgC}>{<Sequence type={seqs.boba} />}</div>
             </Float>
             <div className={s.text}>
-              <h3 className={s.title}>Owra Boba</h3>
-              <p className={s.description}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum magnam a obcaecati quidem delectus
-                voluptatem voluptates.
-              </p>
+              <h3 className={s.title}>{props.locales("productSlider.s2.title")}</h3>
             </div>
           </div>
-          {/* <div className={cx(s.slide, "flex flex-col items-center")}>
-            <Float>
+          <div className={cx(s.slide, "flex flex-col items-center")}>
+            <Float amountY={[-3, 3]}>
               <div className={s.imgC}>{<Sequence type={seqs.coffee} />}</div>
             </Float>
-            <h3 className={s.title}>Owra’nın Farkı</h3>
-          </div> */}
+            <div className={s.text}>
+              <h3 className={s.title}>{props.locales("productSlider.s3.title")}</h3>
+            </div>
+          </div>
         </SliderFade>
       </div>
       <div className="absolute top-0 left-0 right-0 bottom-0 z-0">
@@ -71,7 +66,7 @@ export default function SliderProducts(props: SliderProductsProps) {
         </Canvas>
       </div>
       <Link className={cx(s.cta, "absolute bottom-5 right-5 flex items-center gap-2 cursor-pointer")} href="/showcase">
-        <span>Experience in 3D</span>
+        <span>{props.locales("productSlider.cta.title")}</span>
         <span className={s.iconC}>
           <div className="w-full h-full">
             <IconArrow fill="var(--science-blue)" />

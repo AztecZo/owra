@@ -1,3 +1,4 @@
+import { gsap } from "@/lib/gsap"
 import { convertHexToGLSLRGB } from "@/lib/utils"
 import fragmentShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/fragment.glsl"
 import vertexShaderVortex from "@/public/shaders/pop-slider/wavy-vortex/vertex.glsl"
@@ -14,8 +15,6 @@ export default function Vortex(props: VortexProps) {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
-
-  console.log("RENDER")
 
   // Calculate the aspect ratio
   const aspectRatio = size.width / size.height
@@ -79,7 +78,7 @@ export default function Vortex(props: VortexProps) {
         step: 0.1,
       },
       direction: {
-        value: -0.4,
+        value: 0.0,
         min: -3.0,
         max: 3.0,
         step: 0.1,
@@ -110,6 +109,8 @@ export default function Vortex(props: VortexProps) {
     []
   )
 
+  const test = useRef(0.05)
+
   useFrame(({ clock, size, gl }) => {
     if (!materialRef.current) return
 
@@ -120,7 +121,7 @@ export default function Vortex(props: VortexProps) {
     materialRef.current.uniforms.ringDistance.value = controls.ringDistance
     materialRef.current.uniforms.maxRings.value = controls.maxRings
     materialRef.current.uniforms.waveCount.value = controls.waveCount
-    materialRef.current.uniforms.waveDepth.value = controls.waveDepth
+    materialRef.current.uniforms.waveDepth.value = test.current
     materialRef.current.uniforms.yCenter.value = controls.yCenter
     materialRef.current.uniforms.direction.value = controls.direction
   })
@@ -154,6 +155,31 @@ export default function Vortex(props: VortexProps) {
   })
 
   const handlePointerDown = () => {
+    if (!materialRef.current) return
+
+    const val = { v: test.current }
+
+    gsap.to(val, {
+      v: 0.09,
+      duration: 0.5,
+      ease: "elastic.out",
+      onUpdate: () => {
+        if (!materialRef.current) return
+        test.current = val.v
+      },
+      onComplete: () => {
+        if (!materialRef.current) return
+        gsap.to(val, {
+          v: 0.05,
+          duration: 0.5,
+          ease: "elastic.out",
+          onUpdate: () => {
+            if (!materialRef.current) return
+            test.current = val.v
+          },
+        })
+      },
+    })
     currentColor.current = (currentColor.current + 1) % colors.current.length
     t.current = 0
   }
