@@ -8,10 +8,6 @@
 @import "./_themes.scss";
 @import "./_scroll.scss";
 
-// * {
-//   @include outline(red);
-// }
-
 :root {
   --header-height: #{desktop-vw(120px)};
   --page-padding-top: #{desktop-vw(50px)};
@@ -39,7 +35,6 @@ body {
 }
 
 body {
-  background-color: var(--white);
   line-height: 1;
 }
 
@@ -58,8 +53,8 @@ select {
 }
 
 *::selection {
-  background-color: var(--fuego);
-  color: var(--black);
+  background-color: var(--theme-secondary);
+  color: var(--theme-primary);
 }
 
 input {
@@ -110,7 +105,7 @@ sup {
 }
 
 .text-highlight {
-  color: var(--fuego);
+  color: var(--theme-secondary);
   font-style: italic;
   font-weight: 600;
   font-size: 1.1em;

@@ -91,9 +91,9 @@
 
 .greetings {
   background-color: var(--science-blue);
-  margin-bottom: desktop-vw(30px);
   position: relative;
   z-index: 10;
+  overflow: hidden;
 
   .text {
     padding: desktop-vw(300px) 0;
@@ -116,7 +116,7 @@
       }
 
       span {
-        display: inline-block;
+        display: block;
 
         &:nth-child(1) {
           margin-left: desktop-vw(500px);

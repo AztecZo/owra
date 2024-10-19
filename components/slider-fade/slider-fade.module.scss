@@ -14,10 +14,10 @@
 
   .prev {
     @include position(absolute, 50%, auto, auto, 50%);
-    transform: translate(calc(-50% + desktop-vw(-400px)), -50%);
+    transform: translate(calc(-50% + desktop-vw(-360px)), -50%);
   }
   .next {
     @include position(absolute, 50%, auto, auto, 50%);
-    transform: translate(calc(-50% + desktop-vw(400px)), -50%);
+    transform: translate(calc(-50% + desktop-vw(360px)), -50%);
   }
 }
