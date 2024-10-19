@@ -51,20 +51,6 @@ const nextConfig = {
       },
     ]
   },
-  async rewrites() {
-    return [
-      {
-        source: "/en/about-us",
-        destination: "/about-us",
-        locale: false,
-      },
-      {
-        source: "/tr/hakkimizda",
-        destination: "/about-us",
-        locale: false,
-      },
-    ]
-  },
   i18n: {
     locales: ["en", "tr"],
     defaultLocale: "tr",
