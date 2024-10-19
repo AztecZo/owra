@@ -2,12 +2,13 @@ import s from "./contact.module.scss"
 
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
+import { useLocale, useTranslations } from "next-intl"
 
 import { single } from "@/api/queries/contact"
 import { FormContact } from "@/components/form-contact"
-import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
-import { ContactData, FormType } from "@/types"
+import { routes } from "@/lib/constants"
+import { ContactData, FormType, Locales } from "@/types"
 
 interface ContactProps {
   contactData: ContactData
@@ -15,22 +16,25 @@ interface ContactProps {
 
 export default function Contact(props: ContactProps) {
   const { contactData } = props
+  const t = useTranslations("contact")
+  const locale = useLocale()
+
   return (
-    <DefaultLayout seo={{ ...routes.contact.seo }}>
+    <DefaultLayout seo={routes[locale as Locales].contact.seo}>
       <section className={cx(s.contact, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={s.text}>
-          <h5>Bizimle İletişime Geçin</h5>
+          <h1>{t("heading")}</h1>
           <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col">
-              <h3>Telefon:</h3>
+              <h3>{t("contactInfo.phone")}</h3>
               <p>{contactData.phone}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Email:</h3>
+              <h3>{t("contactInfo.email")}</h3>
               <p>{contactData.email}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Adres:</h3>
+              <h3>{t("contactInfo.address")}</h3>
               <p>{contactData.address}</p>
             </div>
           </div>
@@ -49,8 +53,7 @@ export async function getServerSideProps({ locale }: GetServerSidePropsContext) 
   return {
     props: {
       contactData,
-      // locale,
-      // messages: pick((await import(`@/messages/${locale}.json`)).default, About.messages),
+      messages: (await import(`@/messages/${locale}.json`)).default,
     },
   }
 }

@@ -2,6 +2,7 @@ import s from "./header.module.scss"
 
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
 import cx from "clsx"
+import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 import { Marquee } from "@/components/animations/marquee"
@@ -9,14 +10,18 @@ import { IconOwraLogo, IconPointer } from "@/components/icons"
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
+import { routes } from "@/lib/constants"
 import { useLenisStore } from "@/lib/store/lenis"
 import { useModalStore } from "@/lib/store/modal"
+import { Locales } from "@/types"
 
 export default function Header() {
   const ref = useRef(null)
   const modalStore = useModalStore()
   const { lenis } = useLenisStore()
   const [hamburgerOpen, setHamburgerOpen] = useState(false)
+  const locale = useLocale()
+  const t = useTranslations("header")
 
   function closeMenu() {
     setHamburgerOpen(false)
@@ -31,7 +36,7 @@ export default function Header() {
     modalStore.setContent(
       <div className={s.modalContent}>
         <div className={cx(s.modalContentHeader, "flex items-center justify-between")}>
-          <p>Feeling Thirsty?</p>
+          <p>{t("modal.heading")}</p>
           <span className={cx(s.iconC, "cursor-pointer")} onClick={() => modalStore.setIsOpen(false)}>
             <Cross2Icon className="w-full h-full" />
           </span>
@@ -67,7 +72,7 @@ export default function Header() {
 
       <header className={cx(s.header, "flex items-center justify-between")} ref={ref}>
         <Link className={cx(s.logoC, "cursor-pointer")} href="/" onClick={closeMenu}>
-          <IconOwraLogo />
+          <IconOwraLogo fill="var(--theme-secondary)" />
         </Link>
 
         <div
@@ -88,22 +93,24 @@ export default function Header() {
         >
           <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
             <div className={s.navItem} onClick={closeMenu}>
-              <Link href="/about-us">Hakkımızda</Link>
+              <Link href={`/${routes[locale as Locales].about.path}`}>{routes[locale as Locales].about.ui}</Link>
             </div>
             <div className={s.navItem} onClick={closeMenu}>
-              <Link href="/products">Ürünler</Link>
+              <Link href={`/${routes[locale as Locales].products.path}`}>{routes[locale as Locales].products.ui}</Link>
             </div>
             <div className={s.navItem} onClick={closeMenu}>
-              <Link href="/blog">Blog</Link>
+              <Link href={`/${routes[locale as Locales].blog.path}`}>{routes[locale as Locales].blog.ui}</Link>
             </div>
           </div>
 
           <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
             <div className={s.navItem} onClick={closeMenu}>
-              <Link href="/franchise">Franchise</Link>
+              <Link href={`/${routes[locale as Locales].franchise.path}`}>
+                {routes[locale as Locales].franchise.ui}
+              </Link>
             </div>
             <div className={s.navItem} onClick={closeMenu}>
-              <Link href="/contact">İletişim</Link>
+              <Link href={`/${routes[locale as Locales].contact.path}`}>{routes[locale as Locales].contact.ui}</Link>
             </div>
             <div className={s.navItem}>
               <LocaleSwitcher />

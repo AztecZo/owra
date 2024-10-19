@@ -1,5 +1,10 @@
 import { NextSeoProps } from "next-seo"
 
+export enum Locales {
+  en = "en",
+  tr = "tr",
+}
+
 export interface Seo {
   title: NextSeoProps["title"]
   description: NextSeoProps["description"]
@@ -89,6 +94,13 @@ export interface Seo {
 
 export type CursorType = "default" | "click" | "clickDark" | "menu"
 
+export interface ProductCard {
+  id: number
+  name: string
+  url: string
+  img: string
+}
+
 export interface Product {
   id: number
   name: string
@@ -97,8 +109,7 @@ export interface Product {
   description: string
   images: {
     id: number
-    thumbnail: string
-    full: string
+    img: string
   }[]
   other: {
     id: number
@@ -106,6 +117,9 @@ export interface Product {
     size: string
     image: string
   }[]
+  backgroundColor: string
+  textcolor: string
+  parent: string
 }
 
 export enum FormType {

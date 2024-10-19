@@ -19,6 +19,7 @@ const FloatWrapper = dynamic(() => import("@/components/animations/float"), {
   ssr: false,
 })
 
+import { routes } from "@/lib/constants"
 import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
@@ -27,11 +28,16 @@ import ice1 from "@/public/img/ice-1.png"
 import ice2 from "@/public/img/ice-2.png"
 import iceCubes from "@/public/img/ice-cubes.png"
 import s1 from "@/public/img/s-1.svg"
-import { FormType } from "@/types"
+import { FormType, Locales } from "@/types"
+import { GetStaticPropsContext } from "next"
+import { useLocale, useTranslations } from "next-intl"
 
 export default function Home() {
+  const t = useTranslations("home")
+  const locale = useLocale()
+
   return (
-    <DefaultLayout seo={{ title: "title", description: "description" }}>
+    <DefaultLayout seo={routes[locale as Locales].home.seo}>
       <section className={cx(s.intro, "flex items-center justify-center")}>
         <div className={s.logoC}>
           <IconOwraLogo />
@@ -80,18 +86,13 @@ export default function Home() {
 
       <section className={cx(s.greetings, "flex flex-col items-center")}>
         <div className={s.text}>
-          <h1>
-            <span>Kalite</span>
-            <span>ve Eğlencenin</span>
-            <span>Buluşma</span>
-            <span>Noktası!</span>
+          <h1 className="flex flex-col">
+            <span>{t("headline.p1")}</span>
+            <span>{t("headline.p2")}</span>
+            <span>{t("headline.p3")}</span>
+            <span>{t("headline.p4")}</span>
           </h1>
-
-          <p>
-            Owra olarak, hayatınıza kalite ve eğlence katmak için buradayız. İster serinletici bir buz, ister taze
-            sıkılmış meyve suları, isterse de kahvenin eşsiz aroması olsun; her bir ürünümüzle size en iyi deneyimi
-            sunmayı hedefliyoruz.
-          </p>
+          <p>{t("description")}</p>
         </div>
 
         <div className={cx(s.fullImg, "h-screen")}>
@@ -115,15 +116,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-screen h-screen flex items-center justify-center">
-        <SliderProducts />
+      <section className="w-screen h-[120vh] flex items-center justify-center">
+        <SliderProducts locales={t} />
       </section>
 
       <section className={s.why}>
         <div className={s.marqueeC}>
           <Marquee repeat={5}>
             <div className="flex items-center">
-              <h2>Neden Owra?</h2>
+              <h2>{t("why")}</h2>
               <span className={s.iconC}>
                 <IconStar fill="var(--algerian-colar)" />
               </span>
@@ -151,46 +152,43 @@ export default function Home() {
           </div>
 
           <div className={cx(s.text, "flex flex-col items-start justify-center col-span-6")}>
-            <p>
-              Owra ile kaliteyi ve eğlenceyi bir arada yaşayın. Hayatınıza biraz daha keyif ve neşe katmak için
-              buradayız.
-            </p>
+            <p>{t("pros.description")}</p>
             <ul>
               <li>
                 <h5>
                   <span className={s.iconC}>
                     <IconOk />
                   </span>
-                  Tazelik ve Lezzet
+                  {t("pros.items.i1.title")}
                 </h5>
-                <p>Ürünlerimiz her zaman taze ve lezzet doludur.</p>
+                <p>{t("pros.items.i1.description")}</p>
               </li>
               <li>
                 <h5>
                   <span className={s.iconC}>
                     <IconOk />
                   </span>
-                  Güvenilirlik
+                  {t("pros.items.i2.title")}
                 </h5>
-                <p>Kalitemize ve hizmetimize güvenebilirsiniz.</p>
+                <p>{t("pros.items.i2.description")}</p>
               </li>
               <li>
                 <h5>
                   <span className={s.iconC}>
                     <IconOk />
                   </span>
-                  Eğlenceli Deneyimler
+                  {t("pros.items.i3.title")}
                 </h5>
-                <p>Her anınıza neşe katmayı amaçlıyoruz.</p>
+                <p>{t("pros.items.i3.description")}</p>
               </li>
               <li>
                 <h5>
                   <span className={s.iconC}>
                     <IconOk />
                   </span>
-                  Müşteri Memnuniyeti
+                  {t("pros.items.i4.title")}
                 </h5>
-                <p>Sizin memnuniyetiniz bizim için en büyük ödüldür.</p>
+                <p>{t("pros.items.i4.description")}</p>
               </li>
             </ul>
           </div>
@@ -204,29 +202,16 @@ export default function Home() {
           </div>
           <SliderFade autoplay buttonStyles={s.button}>
             <div className="flex flex-col items-center">
-              <h3 className={s.title}>Owra ile Kalite</h3>
-              <p className={s.description}>
-                Owra olarak, her ürünümüzde kaliteyi ön planda tutuyoruz. Ürünlerimizin her bir aşamasında titizlikle
-                çalışarak, en yüksek kalite standartlarını sağlıyoruz. Kullandığımız malzemelerden üretim sürecine kadar
-                her detayda kaliteyi hissetmeniz için çalışıyoruz. Çünkü sizin memnuniyetiniz, bizim önceliğimiz.
-              </p>
+              <h3 className={s.title}>{t("prosSlider.s1.title")}</h3>
+              <p className={s.description}>{t("prosSlider.s1.description")}</p>
             </div>
             <div className="flex flex-col items-center">
-              <h3 className={s.title}>Owra ile Eğlence</h3>
-              <p className={s.description}>
-                Owra, sadece bir marka değil, aynı zamanda eğlenceli anların yaratıcısıdır. Ürünlerimizle, günlük
-                rutininize biraz daha neşe ve keyif katmayı amaçlıyoruz. İster bir arkadaş buluşmasında, ister bir aile
-                etkinliğinde, Owra ürünleri her anınıza renk katacak. Her yudumda eğlenceyi ve mutluluğu hissetmeniz
-                için buradayız.
-              </p>
+              <h3 className={s.title}>{t("prosSlider.s2.title")}</h3>
+              <p className={s.description}>{t("prosSlider.s2.description")}</p>
             </div>
             <div className="flex flex-col items-center">
-              <h3 className={s.title}>Owra’nın Farkı</h3>
-              <p className={s.description}>
-                Owra, kalite ve eğlenceyi bir arada sunarak fark yaratır. Bizim için her anın özel ve değerli olduğunu
-                biliyoruz. Bu yüzden, size en iyi ürünleri sunarken, aynı zamanda eğlenceli deneyimler yaşatmayı
-                hedefliyoruz. Owra ürünleriyle, her anınızı unutulmaz kılın. 
-              </p>
+              <h3 className={s.title}>{t("prosSlider.s3.title")}</h3>
+              <p className={s.description}>{t("prosSlider.s3.description")}</p>
             </div>
           </SliderFade>
         </div>
@@ -264,7 +249,7 @@ export default function Home() {
 
       <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
         <div className={cx(s.formC, "col-span-6")}>
-          <h2>Herhangi Bir Sorunuz mu Var? Yardımcı Olmaktan Mutluluk Duyarız!</h2>
+          <h2>{t("contact.heading")}</h2>
           <FormContact theme="white" formType={FormType.contact} />
         </div>
         <div className="col-span-6">
@@ -278,4 +263,12 @@ export default function Home() {
       </section>
     </DefaultLayout>
   )
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`@/messages/${locale}.json`)).default,
+    },
+  }
 }

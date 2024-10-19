@@ -1,83 +1,195 @@
 {
     "home": {
-        "h1": {
-            "p1": "TASTE THE BURGER",
-            "p2": "REVOLUTION",
-            "cta": "SEE THE MENU"
+        "headline": {
+            "p1": "Where",
+            "p2": "Quality and",
+            "p3": "Innovation",
+            "p4": "Meet!"
         },
-        "text1": "At Depo Burger, we aim to make a high-quality fast food experience accessible to everyone.",
-        "text2": "Seeing our customers happy as they enjoy classic flavors like burgers and hot dogs made with the best ingredients is the core motivation behind our brand.",
-        "slider": {
+        "description": "At Owra, we're here to bring quality and fun into your life. Whether it's refreshing ice, freshly squeezed fruit juices, or the unique aroma of coffee, we aim to provide the best experience with every product.",
+        "productSlider": {
             "s1": {
-                "title": "HOT DOG",
-                "description": "Depo's Pride: Delivering the Best Hot dog Experience with Every Bite"
+                "title": "Chill Owra"
             },
             "s2": {
-                "title": "HAMBURGER",
-                "description": "Depo's Pride: Delivering the Best Burger Experience with Every Bite"
+                "title": "Owra Boba"
             },
             "s3": {
-                "title": "FRIES",
-                "description": "Depo's Pride: Delivering the Best Burger Experience with Every Bite"
+                "title": "Owra Coffee"
+            },
+            "cta": {
+                "title": "Experience in 3D"
             }
         },
-        "followUs": "FOLLOW US!"
+        "why": "Why Owra?",
+        "pros": {
+            "description": "Experience quality and fun with Owra. We're here to add a little more joy and pleasure to your life.",
+            "items": {
+                "i1": {
+                    "title": "Freshness and Flavor",
+                    "description": "Our products are always fresh and full of flavor."
+                },
+                "i2": {
+                    "title": "Reliability",
+                    "description": "You can trust our quality and service."
+                },
+                "i3": {
+                    "title": "Fun Experiences",
+                    "description": "We aim to bring joy to every moment."
+                },
+                "i4": {
+                    "title": "Customer Satisfaction",
+                    "description": "Your satisfaction is our greatest reward."
+                }
+            }
+        },
+        "prosSlider": {
+            "s1": {
+                "title": "Quality with Owra",
+                "description": "At Owra, we prioritize quality in every product. We meticulously ensure the highest standards at every stage, from the materials we use to the production process. Your satisfaction is our priority."
+            },
+            "s2": {
+                "title": "Fun with Owra",
+                "description": "Owra is not just a brand, it's the creator of fun moments. Our products aim to add joy to your daily routine, whether with friends or family."
+            },
+            "s3": {
+                "title": "The Owra Difference",
+                "description": "Owra creates a difference by combining quality and fun. We aim to make every moment unforgettable with our products."
+            }
+        },
+        "contact": {
+            "heading": "Have Any Questions? We'd Be Happy to Help!"
+        },
+        "footer": {
+            "copyright": "©2024 Owra",
+            "madeBy": "Byte My Work"
+        }
     },
     "about": {
-        "h1": "TASTE THE BURGER REVOLUTION",
-        "p1": "At Depo Burger, we aim to provide a high-quality fast food experience accessible to everyone.",
-        "p2": "Depo Burger opened its first branch on Bağdat Avenue in the early months of 2020, with the goal of offering a high-quality experience to fast food lovers. Gaining significant attention in a short time, Depo Burger continued its growth journey by opening its second branch in Nişantaşı City’s Mall in the summer of 2021. The foundation of the brand stems from our love for fast food and our desire to crown that love with quality products. Seeing people happy with products like burgers, hot dogs, and fries on our menu motivates us to reach more people.",
-        "p3": "At Depo Burger, we aim to provide a high-quality fast food experience accessible to everyone.",
-        "p4": "Seeing our customers happy with the classic tastes like burgers and hot dogs, prepared with the best ingredients, forms the core motivation of our brand. When preparing our products, we choose the highest quality for all ingredients. Our goal is to offer a unique fast food experience with people who value themselves and their surroundings, and are open to innovation and development.",
-        "p5": "Customer satisfaction comes first for us, and that's why we prepare each meal with care. At Depo Burger, we aim to offer not only a quick and satisfying meal but also an enjoyable experience. We are here to prove that fast food can also be a quality, healthy, and happy experience.",
-        "followUs": "FOLLOW US!"
-    },
-    "menu": {
-        "h1": "DEPO BURGER MENU",
-        "menuItems": {
-            "i1": "burgers",
-            "i2": "hot dogs",
-            "i3": "fries",
-            "i4": "shakes",
-            "i5": "beverages"
+        "intro": {
+            "heading": {
+                "p1": "Owra’s",
+                "p2": "Story"
+            },
+            "text": "Owra was founded with the aim of bringing quality and fun into your life. It all started with our desire to offer fresh and high-quality products to our loved ones. Today, we offer a wide range of products, from icy fruit juices to coffee and other beverages."
         },
-        "extras": "EXTRAS",
-        "footnote": "Our prices have been updated as of March 1, 2024. All our products include 10% VAT. Dear customers, please consult our waitstaff before placing your order if you have any food allergies. Your health is important to us."
-    },
-    "whereWeAre": {
-        "h1": "FIND YOUR PERFECT SPOT",
-        "select": {
-            "placeholder": "ALL CITIES"
+        "marquee": "Where quality meets fun",
+        "mission": {
+            "heading": "Our Mission",
+            "text": "At Owra, we aim to provide quality and enjoyment with every sip. We carefully select our products, prepare them with the freshest ingredients, and present them to you. Customer satisfaction and promoting a healthy lifestyle are our top priorities."
         },
-        "getDirection": "GET DIRECTIONS",
-        "locations": "Location",
-        "workingHours": "Working Hours"
+        "vision": {
+            "heading": "Our Vision",
+            "text": "To be a part of moments where quality and fun meet all over Turkey. When people think of Owra, we want the first things that come to mind to be trust and taste."
+        },
+        "values": {
+            "quality": {
+                "heading": "Quality",
+                "text": "We ensure the highest quality standards in our products."
+            },
+            "fun": {
+                "heading": "Fun",
+                "text": "We are here to bring a little more joy into your life."
+            },
+            "trust": {
+                "heading": "Trust",
+                "text": "We always maintain the trust of our customers."
+            },
+            "innovation": {
+                "heading": "Innovation",
+                "text": "We constantly renew and improve ourselves."
+            }
+        },
+        "franchise": {
+            "cta": "Become a Franchise",
+            "text": "Owra is more than just a brand; it is a lifestyle. We are here to make every moment more enjoyable and special for you. Join us and add a little more joy to your life with Owra."
+        },
+        "career": {
+            "cta": "Career",
+            "text": "Owra is more than just a brand; it is a lifestyle. We are here to make every moment more enjoyable and special for you. Join us and add a little more joy to your life with Owra."
+        }
+    },
+    "franchise": {
+        "intro": {
+            "heading": "Join the Owra Family!",
+            "text": "At Owra, we are looking for new partners to join our growing family! With Owra Franchise opportunities, you can start your own business and become a successful entrepreneur. We want to work together to provide the best service to our customers with our quality, freshness, and fun-focused products.",
+            "cta": "Become a Franchise"
+        },
+        "why": {
+            "heading": "Why Should You Franchise with Us?",
+            "items": {
+                "i1": {
+                    "heading": "Brand Power",
+                    "text": "Owra is a strong brand that combines quality and fun."
+                },
+                "i2": {
+                    "heading": "Support",
+                    "text": "We provide comprehensive training and operational support to our franchisees."
+                },
+                "i3": {
+                    "heading": "Product Variety",
+                    "text": "We offer a wide range of products, including ice, fruit juices, coffee, and more."
+                },
+                "i4": {
+                    "heading": "Marketing Support",
+                    "text": "We provide support with national marketing campaigns and local advertising strategies."
+                },
+                "i5": {
+                    "heading": "Innovation",
+                    "text": "We continuously offer opportunities for product development and innovation."
+                }
+            }
+        },
+        "advantages": {
+            "heading": "Advantages of Owra Franchise Ownership",
+            "items": {
+                "i1": {
+                    "heading": "Establishment and Operational Guidance",
+                    "text": "We guide you as you start and run your business."
+                },
+                "i2": {
+                    "heading": "Product Supply",
+                    "text": "We ensure the supply of high-quality ingredients."
+                },
+                "i3": {
+                    "heading": "Brand Recognition",
+                    "text": "You benefit from Owra's strong brand image."
+                },
+                "i4": {
+                    "heading": "Profitability",
+                    "text": "We offer a profitable business model with competitive returns."
+                }
+            }
+        },
+        "contact": {
+            "heading": "How Can I Apply?",
+            "text": "Contact us for more information on the Owra Franchise application process and how to apply. Our team will work with you to discuss the franchise options that are right for you. You can fill out the application form or contact us for more detailed information.",
+            "contactInfo": {
+                "phone": "Phone:",
+                "email": "Email:",
+                "address": "Address:"
+            }
+        }
+    },
+    "contact": {
+        "heading": "Get in Touch",
+        "contactInfo": {
+            "phone": "Phone:",
+            "email": "Email:",
+            "address": "Address:"
+        }
     },
     "notFound": {
         "title": "PAGE NOT FOUND",
         "button": "HOMEPAGE"
     },
-    "contact": {
-        "h1": {
-            "p1": "REACH OUT",
-            "p2": "WE'RE",
-            "p3": "ALL EARS!"
-        },
-        "section1": {
-            "title": "GET IN TOUCH",
-            "description": "Simply want to connect or have a general inquiry? Feel free to reach out, and we'll get back to you as soon as we can.",
-            "email": "Email Address:",
-            "phone": "Phone Number:",
-            "address": "Address:"
-        },
-        "section2": {
-            "title": "LET'S WORK TOGETHER",
-            "description": "Looking to join forces? Whether it's a partnership, advertising opportunity, or creative collaboration, reach out to explore possibilities of working together.",
-            "apply": "APPLY"
-        }
-    },
     "cursor": {
         "seeTheMenu": "SEE THE MENU",
         "followUs": "FOLLOW!"
+    },
+    "header": {
+        "modal": {
+            "heading": "Feeling thirsty?"
+        }
     }
 }

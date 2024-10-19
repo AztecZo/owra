@@ -1,13 +1,15 @@
 import s from "./blog.module.scss"
 
 import cx from "clsx"
+import { GetServerSidePropsContext } from "next"
+import { useLocale } from "next-intl"
 
 import { all } from "@/api/queries/blog"
 import { CardBlog } from "@/components/card-blog"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
-import { routes } from "@/constants/index"
 import { DefaultLayout } from "@/layouts/default"
-import { CardBlogProps } from "@/types"
+import { routes } from "@/lib/constants"
+import { CardBlogProps, Locales } from "@/types"
 
 interface BlogProps {
   blogPage: {
@@ -17,8 +19,10 @@ interface BlogProps {
 }
 
 const Blog = ({ blogPage }: BlogProps) => {
+  const locale = useLocale()
+
   return (
-    <DefaultLayout seo={{ ...routes.blog.seo }}>
+    <DefaultLayout seo={routes[locale as Locales].blog.seo}>
       <section className={s.intro}>
         <h1>Blog / Haberler</h1>
       </section>
@@ -51,7 +55,7 @@ const Blog = ({ blogPage }: BlogProps) => {
 
 export default Blog
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ locale }: GetServerSidePropsContext) => {
   const blogPage = await all()
-  return { props: { blogPage } }
+  return { props: { blogPage, messages: (await import(`@/messages/${locale}.json`)).default } }
 }

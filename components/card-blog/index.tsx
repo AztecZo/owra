@@ -1,18 +1,21 @@
 import s from "./card-blog.module.scss"
 
 import cn from "clsx"
+import { useLocale } from "next-intl"
 
-import { routes } from "@/constants"
-import { CardBlogProps } from "@/types"
-import { Link } from "@/components/utility/link"
 import { Img } from "@/components/utility/img"
+import { Link } from "@/components/utility/link"
+import { routes } from "@/lib/constants"
+import { CardBlogProps, Locales } from "@/types"
 
 type Props = CardBlogProps
 
 const CardBlog = (props: Props) => {
+  const locale = useLocale()
+
   return (
     <Link
-      href={`${routes.blog.path}/${props.url}`}
+      href={`${routes[locale as Locales].blog.path}/${props.url}`}
       className={cn(s.cardBlog, "cursor-pointer", { [s.horizontal]: props.horizontal })}
     >
       <div className={s.imgC}>

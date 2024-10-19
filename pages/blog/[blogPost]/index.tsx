@@ -2,22 +2,23 @@ import s from "./post.module.scss"
 
 import cx from "clsx"
 import { GetServerSideProps } from "next"
-import { useRouter } from "next/router"
+import { useLocale } from "next-intl"
 import { useState } from "react"
 import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
+import { single } from "@/api/queries/blog"
 import { Marquee } from "@/components/animations/marquee"
+import { SliderMain } from "@/components/slider-main"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
-import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
-import { BlogProps } from "@/types"
-import { SliderMain } from "@/components/slider-main"
-import { single } from "@/api/queries/blog"
+import { routes } from "@/lib/constants"
+import { BlogProps, Locales } from "@/types"
 
 type Props = BlogProps
 
 const BlogPost = (props: Props) => {
+  const locale = useLocale()
   const [copied, setCopied] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
@@ -29,17 +30,17 @@ const BlogPost = (props: Props) => {
   }, [copied])
 
   return (
-    <DefaultLayout seo={{ title: `Blog | ${props.blog.title}`, description: props.blog.title }}>
+    <DefaultLayout seo={routes[locale as Locales].blog.seo}>
       <section className={cx(s.intro, "flex flex-col tablet:grid grid-cols-12")}>
         <Link className={cx(s.back, "underline")} href="/blog">
           Geri Dön
         </Link>
         <div className={cx(s.info, "flex flex-col col-start-1 tablet:col-start-7 col-end-13 tablet:col-end-12")}>
-          <Link className={s.category} href={`/${routes.blog.path}`}>
+          <Link className={s.category} href={`/${routes[locale as Locales].blog.path}`}>
             Blog
           </Link>
 
-          <small className={s.time}>{props.blog.time} Dakikda Okuma Süresi</small>
+          <small className={s.time}>{props.blog.time} Dakika Okuma Süresi</small>
 
           <h1 className={s.title}>{props.blog.title}</h1>
 

@@ -1,7 +1,8 @@
-import s from "./about-us.module.scss"
+import s from "./about.module.scss"
 
 import cx from "clsx"
-import { useRouter } from "next/router"
+import { GetStaticPropsContext } from "next"
+import { useLocale, useTranslations } from "next-intl"
 
 import { Marquee } from "@/components/animations/marquee"
 import { Button } from "@/components/button"
@@ -9,39 +10,35 @@ import { IconMask, IconStar } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
+import { routes } from "@/lib/constants"
+import { Locales } from "@/types"
 
-export interface AboutUsProps {}
-
-export default function AboutUs(props: AboutUsProps) {
-  const router = useRouter()
+export default function About() {
+  const t = useTranslations("about")
+  const locale = useLocale()
 
   return (
-    <DefaultLayout seo={{ title: "About Us", description: "About Us" }}>
-      <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2")}>
+    <DefaultLayout seo={routes[locale as Locales].about.seo}>
+      <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2 gap-0 tablet:gap-20")}>
         <div className={s.imgC}>
           <div className={s.mask}>
             <IconMask />
           </div>
           <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
-
         <div className={s.text}>
           <h1>
-            <span>Owra’nın</span>
-            <span>Hikayesi</span>
+            <span>{t("intro.heading.p1")}</span>
+            <span>{t("intro.heading.p2")}</span>
           </h1>
-          <p>
-            Owra, kaliteyi ve eğlenceyi yaşamınıza getirmek amacıyla kuruldu. Her şey, en sevdiklerimize taptaze ve
-            kaliteli ürünler sunma arzumuzla başladı. Bugün, buzdan meyve sularına, kahveden diğer içeceklere kadar
-            geniş bir ürün yelpazesi ile hizmet veriyoruz.
-          </p>
+          <p>{t("intro.text")}</p>
         </div>
       </div>
 
       <section className={s.marqueeC}>
         <Marquee repeat={5}>
           <div className="flex items-center">
-            <h2>Kalitenin eğlence ile buluşması</h2>
+            <h2>{t("marquee")}</h2>
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
             </span>
@@ -51,19 +48,12 @@ export default function AboutUs(props: AboutUsProps) {
 
       <section className={cx(s.purpose, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className="flex flex-col items-center">
-          <h2>Misyonumuz</h2>
-          <p>
-            Owra olarak, her yudumda kaliteyi ve keyfi sunmayı hedefliyoruz. Ürünlerimizi titizlikle seçiyor, en taze
-            malzemelerle hazırlıyor ve sizlere sunuyoruz. Müşteri memnuniyeti ve sağlıklı yaşam tarzını teşvik etmek
-            bizim en büyük önceliğimizdir.
-          </p>
+          <h2>{t("mission.heading")}</h2>
+          <p>{t("mission.text")}</p>
         </div>
         <div className="flex flex-col items-center">
-          <h2>Vizyonumuz</h2>
-          <p>
-            Türkiye&apos;nin dört bir yanında kalite ve eğlencenin buluştuğu anların bir parçası olmak. Owra&apos;nın
-            adı anıldığında, akıllara gelen ilk şeyin güven ve lezzet olması için çalışıyoruz.
-          </p>
+          <h2>{t("vision.heading")}</h2>
+          <p>{t("vision.text")}</p>
         </div>
       </section>
 
@@ -76,51 +66,45 @@ export default function AboutUs(props: AboutUsProps) {
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
             </span>
-            <h3>Kalite</h3>
-            <p>Ürünlerimizde en yüksek kalite standartlarını sağlıyoruz.</p>
+            <h3>{t("values.quality.heading")}</h3>
+            <p>{t("values.quality.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
             </span>
-            <h3>Eğlence</h3>
-            <p>Hayatınıza biraz daha neşe katmak için buradayız.</p>
+            <h3>{t("values.fun.heading")}</h3>
+            <p>{t("values.fun.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
             </span>
-            <h3>Güven</h3>
-            <p>Müşterilerimizin bize olan güvenini her zaman koruyoruz.</p>
+            <h3>{t("values.trust.heading")}</h3>
+            <p>{t("values.trust.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
             <span className={s.iconC}>
               <IconStar fill="var(--science-blue)" />
             </span>
-            <h3>Yenilik</h3>
-            <p>Sürekli olarak kendimizi yeniliyor ve geliştiriyoruz.</p>
+            <h3>{t("values.innovation.heading")}</h3>
+            <p>{t("values.innovation.text")}</p>
           </div>
         </div>
       </section>
 
       <section className={cx(s.franchise, "flex flex-col items-center")}>
-        <p>
-          Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve
-          özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın.
-        </p>
+        <p>{t("franchise.text")}</p>
         <Link className={s.cta} href="/franchise">
-          <Button>Franchise Ol</Button>
+          <Button>{t("franchise.cta")}</Button>
         </Link>
       </section>
 
       <section className={cx(s.career, "flex flex-col-reverse tablet:grid grid-cols-1 tablet:grid-cols-2 gap-10")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
-          <p>
-            Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve
-            özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın.
-          </p>
+          <p>{t("career.text")}</p>
           <Link className={s.cta} href="/franchise">
-            <Button theme="white">Kariyer</Button>
+            <Button theme="white">{t("career.cta")}</Button>
           </Link>
         </div>
         <div>
@@ -131,4 +115,12 @@ export default function AboutUs(props: AboutUsProps) {
       </section>
     </DefaultLayout>
   )
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`@/messages/${locale}.json`)).default,
+    },
+  }
 }

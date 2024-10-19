@@ -1,8 +1,13 @@
 import s from "./franchise.module.scss"
 
+import { single } from "@/api/queries/franchise"
+import { routes } from "@/lib/constants"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
+import { ContactData, FormType, Locales } from "@/types"
 import { useGSAP } from "@gsap/react"
 import cx from "clsx"
+import { GetServerSidePropsContext } from "next"
+import { useLocale, useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { Marquee } from "@/components/animations/marquee"
@@ -17,9 +22,6 @@ import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
 import i4 from "@/public/img/b-4.png"
-import { ContactData, FormType } from "@/types"
-import { GetServerSidePropsContext } from "next"
-import { single } from "@/api/queries/franchise"
 
 export interface FranchiseProps {
   contactData: ContactData
@@ -29,6 +31,8 @@ export default function Franchise(props: FranchiseProps) {
   const { contactData } = props
   const prosRef = useRef(null)
   const { lenis } = useLenisStore()
+  const t = useTranslations("franchise")
+  const locale = useLocale()
 
   useGSAP(
     () => {
@@ -59,14 +63,10 @@ export default function Franchise(props: FranchiseProps) {
   )
 
   return (
-    <DefaultLayout seo={{ title: "Franchise", description: "Franchise" }}>
+    <DefaultLayout seo={routes[locale as Locales].about.seo}>
       <section className={cx(s.intro, "flex flex-col items-center")}>
-        <h1>Owra Ailesine Katılın!</h1>
-        <p>
-          Owra olarak, büyüyen ailemize yeni iş ortakları arıyoruz! Owra Franchise fırsatları ile kendi işinizi kurarak
-          başarılı bir girişimci olabilirsiniz. Kalite, tazelik ve eğlence odaklı ürünlerimizle müşterilerimize en iyi
-          hizmeti sunmak için birlikte çalışmak istiyoruz.
-        </p>
+        <h1>{t("intro.heading")}</h1>
+        <p>{t("intro.text")}</p>
         <button
           type="button"
           className={s.cta}
@@ -74,7 +74,7 @@ export default function Franchise(props: FranchiseProps) {
             lenis?.scrollTo(`#franchise`, { duration: 1.5 })
           }}
         >
-          <Button>Franchise Ol</Button>
+          <Button>{t("intro.cta")}</Button>
         </button>
 
         <div className={cx(s.ice, s.ice1)}>
@@ -122,27 +122,27 @@ export default function Franchise(props: FranchiseProps) {
       </section>
 
       <section className={cx(s.why, "flex flex-col items-center flex-wrap")}>
-        <h2>Bizimle Neden Franchise Yapmalısınız?</h2>
+        <h2>{t("why.heading")}</h2>
         <div className={cx(s.items, "flex flex-wrap items-start justify-center")}>
           <div className="flex flex-col items-center justify-start">
-            <h3>Marka Gücü</h3>
-            <p>Owra, kalite ve eğlenceyi bir araya getiren güçlü bir markadır.</p>
+            <h3>{t("why.items.i1.heading")}</h3>
+            <p>{t("why.items.i1.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
-            <h3>Destek</h3>
-            <p>Franchise sahiplerimize kapsamlı eğitim ve operasyonel destek sağlarız.</p>
+            <h3>{t("why.items.i2.heading")}</h3>
+            <p>{t("why.items.i3.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
-            <h3>Ürün Çeşitliliği</h3>
-            <p>Buz, meyve suları, kahve ve diğer içeceklerimizle geniş bir ürün yelpazesi sunarız.</p>
+            <h3>{t("why.items.i3.heading")}</h3>
+            <p>{t("why.items.i3.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
-            <h3>Pazarlama Desteği</h3>
-            <p>Ulusal pazarlama kampanyaları ve yerel reklam stratejileri ile destek veririz.</p>
+            <h3>{t("why.items.i4.heading")}</h3>
+            <p>{t("why.items.i4.text")}</p>
           </div>
           <div className="flex flex-col items-center justify-start">
-            <h3>İnovasyon</h3>
-            <p>Sürekli olarak ürün geliştirme ve yenilik yapma fırsatı sunarız.</p>
+            <h3>{t("why.items.i5.heading")}</h3>
+            <p>{t("why.items.i5.text")}</p>
           </div>
         </div>
       </section>
@@ -154,23 +154,23 @@ export default function Franchise(props: FranchiseProps) {
           </div>
         </div>
         <div className={cx(s.text, "sticky-pin", "flex flex-col")}>
-          <h2>Owra Franchise Sahibi Olmanın Avantajları</h2>
-          <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
-            <div className="flex flex-col items-center justify-start">
-              <h3>Kuruluş ve Operasyonel Rehberlik</h3>
-              <p>İşinizi başlatırken ve işletirken size rehberlik ediyoruz.</p>
+          <h2>{t("advantages.heading")}</h2>
+          <div className={cx(s.items, "flex flex-col tablet:items-start")}>
+            <div className="flex flex-col">
+              <h3>{t("advantages.items.i1.heading")}</h3>
+              <p>{t("advantages.items.i1.text")}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Ürün Tedarik</h3>
-              <p>Kaliteli malzemelerle ürün tedarikini sağlıyoruz.</p>
+              <h3>{t("advantages.items.i2.heading")}</h3>
+              <p>{t("advantages.items.i3.text")}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Marka Tanınırlığı</h3>
-              <p>Owra&apos;nın güçlü marka imajından yararlanırsınız.</p>
+              <h3>{t("advantages.items.i3.heading")}</h3>
+              <p>{t("advantages.items.i3.text")}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Karlılık</h3>
-              <p>Karlı bir iş modeli ve rekabetçi getiri sağlar.</p>
+              <h3>{t("advantages.items.i4.heading")}</h3>
+              <p>{t("advantages.items.i4.text")}</p>
             </div>
           </div>
         </div>
@@ -178,23 +178,19 @@ export default function Franchise(props: FranchiseProps) {
 
       <section id="franchise" className={cx(s.contact, "grid grid-cols-1 tablet:grid-cols-2")}>
         <div className={s.text}>
-          <h5>Nasıl Başvurabilirim?</h5>
-          <p>
-            Owra Franchise başvuru süreci hakkında daha fazla bilgi almak ve başvuru yapmak için bize ulaşın. Ekibimiz,
-            sizinle birlikte çalışarak size uygun olan franchise seçeneklerini tartışacaktır. Başvuru formu doldurabilir
-            veya detaylı bilgi almak için bize ulaşabilirsiniz.
-          </p>
+          <h5>{t("contact.heading")}</h5>
+          <p>{t("contact.text")}</p>
           <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col">
-              <h3>Telefon:</h3>
+              <h3>{t("contact.contactInfo.phone")}</h3>
               <p>{contactData.phone}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Email:</h3>
+              <h3>{t("contact.contactInfo.email")}</h3>
               <p>{contactData.email}</p>
             </div>
             <div className="flex flex-col">
-              <h3>Adres:</h3>
+              <h3>{t("contact.contactInfo.address")}</h3>
               <p>{contactData.address}</p>
             </div>
           </div>
@@ -213,8 +209,7 @@ export async function getServerSideProps({ locale }: GetServerSidePropsContext) 
   return {
     props: {
       contactData,
-      // locale,
-      // messages: pick((await import(`@/messages/${locale}.json`)).default, About.messages),
+      messages: (await import(`@/messages/${locale}.json`)).default,
     },
   }
 }
