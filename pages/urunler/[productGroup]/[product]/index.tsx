@@ -3,15 +3,16 @@ import s from "./product.module.scss"
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
 import { useState } from "react"
+import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
+import { single } from "@/api/queries/product-detail"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
-import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
-import { Locales, Product } from "@/types"
-import { single } from "@/api/queries/product-detail"
 import { useTheme } from "@/lib/store/theme"
-import { useIsomorphicLayoutEffect } from "usehooks-ts"
+import { Locales, Product } from "@/types"
+import { routes } from "@/lib/constants"
+import { useLocale } from "next-intl"
 
 export interface ProductGroupProps {
   productGroup: string
@@ -21,8 +22,7 @@ export interface ProductGroupProps {
 export default function ProductGroup(props: ProductGroupProps) {
   const [currentItem, setCurrentItem] = useState(0)
   const theme = useTheme()
-
-  console.log(props.product)
+  const locale = useLocale()
 
   useIsomorphicLayoutEffect(() => {
     theme.setColors(props.product.textcolor, props.product.backgroundColor)
@@ -30,7 +30,7 @@ export default function ProductGroup(props: ProductGroupProps) {
   }, [props.product.textcolor, props.product.backgroundColor])
 
   return (
-    <DefaultLayout seo={{ ...routes.blog.seo }}>
+    <DefaultLayout seo={routes[locale as Locales].products.seo}>
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <div className={s.breadcrumb}>
           <Link href="/products">Kategoriler</Link>

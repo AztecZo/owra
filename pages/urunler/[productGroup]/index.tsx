@@ -2,12 +2,13 @@ import s from "./product-group.module.scss"
 
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
+import { useLocale } from "next-intl"
 
 import { all } from "@/api/queries/products"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
-import { routes } from "@/constants"
 import { DefaultLayout } from "@/layouts/default"
+import { routes } from "@/lib/constants"
 import { Locales, ProductCard } from "@/types"
 
 export interface ProductGroupProps {
@@ -17,8 +18,10 @@ export interface ProductGroupProps {
 }
 
 export default function ProductGroup(props: ProductGroupProps) {
+  const locale = useLocale()
+
   return (
-    <DefaultLayout seo={{ ...routes.blog.seo }}>
+    <DefaultLayout seo={routes[locale as Locales].products.seo}>
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <h1>{props.parent}</h1>
         <div className={s.breadcrumb}>
