@@ -7,20 +7,6 @@
             "p4": "Noktası!"
         },
         "description": "Owra olarak, hayatınıza kalite ve eğlence katmak için buradayız. İster serinletici bir buz, ister taze sıkılmış meyve suları, isterse de kahvenin eşsiz aroması olsun; her bir ürünümüzle size en iyi deneyimi sunmayı hedefliyoruz.",
-        "productSlider": {
-            "s1": {
-                "title": "Chill Owra"
-            },
-            "s2": {
-                "title": "Owra Boba"
-            },
-            "s3": {
-                "title": "Owra Coffee"
-            },
-            "cta": {
-                "title": "3D Olarak İncele"
-            }
-        },
         "why": "Neden Owra?",
         "pros": {
             "description": "Owra ile kaliteyi ve eğlenceyi bir arada yaşayın. Hayatınıza biraz daha keyif ve neşe katmak için buradayız.",
@@ -189,7 +175,59 @@
     },
     "header": {
         "modal": {
-            "heading": "Feeling thirsty? -tr"
+            "heading": "Susadınız mı?",
+            "content": {
+                "p1": "Favori dondurulmuş içeceğinizi mi canınız çekti? Bize bir e-posta gönderin.",
+                "p2": "Beyin donmasına değeceğine söz veriyoruz!"
+            },
+            "button": {
+                "text": "Bir Satır Yaz & Rahatla"
+            }
+        }
+    },
+    "footer": {
+        "salesAndOrders": "Satış ve Sipariş",
+        "generalQuestions": "Genel",
+        "address": "Adres",
+        "copyright": {
+            "year": "2024 Owra"
+        }
+    },
+    "formContact": {
+        "fields": {
+            "name": {
+                "placeholder": "İSİM",
+                "error": "Lütfen geçerli bir isim giriniz"
+            },
+            "email": {
+                "placeholder": "E-POSTA ADRESİ",
+                "error": "Lütfen geçerli bir e-posta adresi giriniz"
+            },
+            "phone": {
+                "placeholder": "TELEFON NUMARASI",
+                "error": "Lütfen geçerli bir telefon numarası giriniz"
+            },
+            "message": {
+                "placeholder": "SİZE NASIL YARDIMCI OLABİLİRİZ?",
+                "error": "Lütfen mesajınızı giriniz"
+            }
+        },
+        "button": {
+            "text": "Gönder"
+        }
+    },
+    "productSlider": {
+        "s1": {
+            "title": "Chill Owra"
+        },
+        "s2": {
+            "title": "Owra Boba"
+        },
+        "s3": {
+            "title": "Owra Coffee"
+        },
+        "cta": {
+            "title": "3D Olarak İncele"
         }
     }
 }

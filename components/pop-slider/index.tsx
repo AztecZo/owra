@@ -721,10 +721,18 @@ interface PhysicsLayerProps {
 const PhysicsLayer = memo((props: PhysicsLayerProps) => {
   return (
     <Physics gravity={[0, 0, 0]} debug>
-      <ModelOwraLogo modelType={OwraModelTypes.w} scale={1.3} position={new THREE.Vector3(-10, -4, 0)} />
-      <ModelOwraLogo modelType={OwraModelTypes.o} scale={0.8} position={new THREE.Vector3(-10, 5, 0)} />
-      <ModelOwraLogo modelType={OwraModelTypes.r} scale={0.7} position={new THREE.Vector3(9, 4, 0)} />
-      <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
+      <Float>
+        <ModelOwraLogo modelType={OwraModelTypes.w} scale={1.3} position={new THREE.Vector3(-10, -4, 0)} />
+      </Float>
+      <Float>
+        <ModelOwraLogo modelType={OwraModelTypes.o} scale={0.8} position={new THREE.Vector3(-10, 5, 0)} />
+      </Float>
+      <Float>
+        <ModelOwraLogo modelType={OwraModelTypes.r} scale={0.7} position={new THREE.Vector3(9, 4, 0)} />
+      </Float>
+      <Float>
+        <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
+      </Float>
       <Pointer />
     </Physics>
   )

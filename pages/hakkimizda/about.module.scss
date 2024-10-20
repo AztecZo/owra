@@ -12,23 +12,6 @@
     margin: 0 0 0 desktop-vw(60px);
     position: relative;
 
-    .mask {
-      @include position(absolute, 50%, auto, auto, 50%);
-      @include dims(102%);
-      transform: translate(-50%, -50%);
-    }
-
-    // background: url("../../public/img/exclude.svg");
-
-    // img {
-    //   -webkit-mask-image: url("../../public/img/b-1.png");
-    //   mask-image: url("../../public/img/b-1.png");
-    //   -webkit-mask-position: center center;
-    //   mask-position: center center;
-    //   -webkit-mask-repeat: no-repeat;
-    //   mask-repeat: no-repeat;
-    // }
-
     @include mobile {
       @include dims(auto, mobile-vw(250px));
       order: 2;

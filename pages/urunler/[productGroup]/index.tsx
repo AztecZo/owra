@@ -34,7 +34,7 @@ export default function ProductGroup(props: ProductGroupProps) {
         {props.products.map((item, i) => {
           return (
             <Link
-              href={`/products/${props.productGroup}/${item.url}`}
+              href={`/${routes[locale as Locales].products.path}/${props.productGroup}/${item.url}`}
               className={cx(s.product, "flex flex-col items-center cursor-pointer")}
               key={i}
             >
@@ -51,31 +51,7 @@ export default function ProductGroup(props: ProductGroupProps) {
 }
 
 export async function getServerSideProps({ query, locale }: GetServerSidePropsContext) {
-  // console.log("q", query)
-
-  // const products = [
-  //   {
-  //     id: "1",
-  //     productName: "Owra Bardak - 1",
-  //     img: "/img/cup.png",
-  //     url: "owra-bardak-1",
-  //   },
-  //   {
-  //     id: "2",
-  //     productName: "Owra Bardak - 2",
-  //     img: "/img/cup.png",
-  //     url: "owra-bardak-2",
-  //   },
-  //   {
-  //     id: "3",
-  //     productName: "Owra Bardak - 3",
-  //     img: "/img/cup.png",
-  //     url: "owra-bardak-3",
-  //   },
-  // ]
-
   const data = await all(locale as Locales, query.productGroup as string)
-  console.log(data)
 
   if (!data.products) {
     return {
@@ -83,16 +59,12 @@ export async function getServerSideProps({ query, locale }: GetServerSidePropsCo
     }
   }
 
-  // const data = {
-  //   title: "Owra Bardak",
-  //   products,
-  // }
-
   return {
     props: {
       productGroup: query.productGroup,
       parent: data.parent,
       products: data.products,
+      messages: (await import(`@/messages/${locale}.json`)).default,
     },
   }
 }

@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl"
 
 import { Marquee } from "@/components/animations/marquee"
 import { Button } from "@/components/button"
-import { IconMask, IconStar } from "@/components/icons"
+import { IconStar } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
@@ -21,9 +21,6 @@ export default function About() {
     <DefaultLayout seo={routes[locale as Locales].about.seo}>
       <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2 gap-0 tablet:gap-20")}>
         <div className={s.imgC}>
-          <div className={s.mask}>
-            <IconMask />
-          </div>
           <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
         <div className={s.text}>

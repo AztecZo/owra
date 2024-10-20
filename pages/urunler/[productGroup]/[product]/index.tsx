@@ -2,6 +2,7 @@ import s from "./product.module.scss"
 
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
+import { useLocale } from "next-intl"
 import { useState } from "react"
 import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
@@ -9,10 +10,12 @@ import { single } from "@/api/queries/product-detail"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
+import { routes } from "@/lib/constants"
 import { useTheme } from "@/lib/store/theme"
 import { Locales, Product } from "@/types"
-import { routes } from "@/lib/constants"
-import { useLocale } from "next-intl"
+import { SliderProducts } from "@/components/slider-products"
+import { Marquee } from "@/components/animations/marquee"
+import { IconStar } from "@/components/icons"
 
 export interface ProductGroupProps {
   productGroup: string
@@ -25,9 +28,11 @@ export default function ProductGroup(props: ProductGroupProps) {
   const locale = useLocale()
 
   useIsomorphicLayoutEffect(() => {
-    theme.setColors(props.product.textcolor, props.product.backgroundColor)
-    return () => theme.setColors(null, null)
-  }, [props.product.textcolor, props.product.backgroundColor])
+    console.log(props.product.textColor, props.product.backgroundColor)
+
+    theme.setColors(props.product.textColor, props.product.backgroundColor)
+    return () => theme.resetColors()
+  }, [props.product.textColor, props.product.backgroundColor])
 
   return (
     <DefaultLayout seo={routes[locale as Locales].products.seo}>
@@ -35,7 +40,7 @@ export default function ProductGroup(props: ProductGroupProps) {
         <div className={s.breadcrumb}>
           <Link href="/products">Kategoriler</Link>
           <span> / </span>
-          <Link href={`/products/${props.productGroup}`}>{props.product.parent}</Link>
+          <Link href={`/${routes[locale as Locales].products.path}/${props.productGroup}`}>{props.product.parent}</Link>
           <span> / </span>
           <span>{props.product.name}</span>
         </div>
@@ -78,7 +83,7 @@ export default function ProductGroup(props: ProductGroupProps) {
               {props.product.other.map((item, i) => {
                 return (
                   <Link
-                    href={`/products/${props.productGroup}/${item.url}`}
+                    href={`/${routes[locale as Locales].products.path}/${props.productGroup}/${item.url}`}
                     className={cx(s.imgC, "cursor-pointer")}
                     key={i}
                   >
@@ -90,56 +95,28 @@ export default function ProductGroup(props: ProductGroupProps) {
           </div>
         </div>
       </section>
+      <section className="w-screen py-10 pb-48 bg-[var(--theme-secondary)]">
+        <div className={cx(s.marqueeC, "mb-10")}>
+          <Marquee repeat={5}>
+            <div className="flex items-center">
+              <h2>Diğer Ürünler</h2>
+              <span className={s.iconC}>
+                <IconStar fill="var(--theme-primary)" />
+              </span>
+            </div>
+          </Marquee>
+        </div>
+        <div className="px-10">
+          <div className="rounded-xl overflow-hidden">
+            <SliderProducts />
+          </div>
+        </div>
+      </section>
     </DefaultLayout>
   )
 }
 
 export async function getServerSideProps({ query, locale }: GetServerSidePropsContext) {
-  // console.log("q", query)
-
-  //   const product = JSON.parse(`{
-  //         "id": 1,
-  //         "name": "Owra Boba",
-  //         "size": "Small",
-  //         "volume": "330ml",
-  //         "description": "Sıcak yaz günlerinde serinlemenin en güzel yolu Owra Buz ile tanışın! %100 saf su kullanılarak üretilen buzlarımız, içeceklerinizi soğutmak ve serinletici anlar yaşatmak için idealdir. İster evde, ister iş yerinde, isterse de özel davetlerde kullanın; Owra Buz her zaman tazeliği ve kalitesiyle yanınızda.",
-  //         "images": [
-  //             {
-  //                 "id": 101,
-  //                 "thumbnail": "/img/cup.png",
-  //                 "full": "/img/cup.png"
-  //             },
-  //             {
-  //                 "id": 102,
-  //                  "thumbnail": "/img/cup.png",
-  //                 "full": "/img/cup.png"
-  //             },
-  //             {
-  //                 "id": 103,
-  //                  "thumbnail": "/img/cup.png",
-  //                 "full": "/img/cup.png"
-  //             }
-  //         ],
-  //         "other": [
-  //             {
-  //                 "id": 1,
-  //                 "size": "Small",
-  //                 "image": "/img/cup.png"
-  //             },
-  //             {
-  //                 "id": 2,
-  //                 "size": "Medium",
-  //                 "image": "/img/cup.png"
-  //             },
-  //             {
-  //                 "id": 3,
-  //                 "size": "Large",
-  //                 "image": "/img/cup.png"
-  //             }
-  //         ]
-
-  // }`)
-
   const product = await single(locale as Locales, query.product as string)
 
   if (!product) {
@@ -153,6 +130,7 @@ export async function getServerSideProps({ query, locale }: GetServerSidePropsCo
       productGroup: query.productGroup,
       productName: query.product,
       product,
+      messages: (await import(`@/messages/${locale}.json`)).default,
     },
   }
 }

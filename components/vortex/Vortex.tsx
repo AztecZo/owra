@@ -161,8 +161,8 @@ export default function Vortex(props: VortexProps) {
 
     gsap.to(val, {
       v: 0.09,
-      duration: 0.5,
-      ease: "elastic.out",
+      duration: 1,
+      ease: "back.out",
       onUpdate: () => {
         if (!materialRef.current) return
         test.current = val.v
@@ -171,8 +171,8 @@ export default function Vortex(props: VortexProps) {
         if (!materialRef.current) return
         gsap.to(val, {
           v: 0.05,
-          duration: 0.5,
-          ease: "elastic.out",
+          duration: 1.5,
+          ease: "back.out",
           onUpdate: () => {
             if (!materialRef.current) return
             test.current = val.v

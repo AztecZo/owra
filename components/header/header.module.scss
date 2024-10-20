@@ -1,7 +1,8 @@
 .header {
-  border-bottom: 1px solid var(--science-blue);
+  border-bottom: 1px solid var(--theme-secondary);
   padding: desktop-vw(13px) desktop-vw(40px);
   position: relative;
+  transition: 400ms border ease;
   z-index: z-index("header");
 
   @include mobile {
@@ -48,10 +49,11 @@
   }
 
   .navItem {
-    color: var(--science-blue);
+    color: var(--theme-secondary);
     font-family: var(--font-dela-gothic-one);
     font-size: desktop-vw(20px);
     font-weight: 400;
+    transition: 400ms color ease;
 
     @include mobile {
       font-size: mobile-vw(20px);

@@ -27,7 +27,7 @@ export default function Products(props: ProductsProps) {
           props.productGroups.map((item, i) => {
             return (
               <Link
-                href={`/products/${item.url}`}
+                href={`/${routes[locale as Locales].products.path}/${item.url}`}
                 className={cx(s.product, "flex flex-col items-center cursor-pointer")}
                 key={i}
               >

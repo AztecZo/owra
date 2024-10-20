@@ -7,20 +7,6 @@
             "p4": "Meet!"
         },
         "description": "At Owra, we're here to bring quality and fun into your life. Whether it's refreshing ice, freshly squeezed fruit juices, or the unique aroma of coffee, we aim to provide the best experience with every product.",
-        "productSlider": {
-            "s1": {
-                "title": "Chill Owra"
-            },
-            "s2": {
-                "title": "Owra Boba"
-            },
-            "s3": {
-                "title": "Owra Coffee"
-            },
-            "cta": {
-                "title": "Experience in 3D"
-            }
-        },
         "why": "Why Owra?",
         "pros": {
             "description": "Experience quality and fun with Owra. We're here to add a little more joy and pleasure to your life.",
@@ -189,7 +175,59 @@
     },
     "header": {
         "modal": {
-            "heading": "Feeling thirsty?"
+            "heading": "Feeling thirsty?",
+            "content": {
+                "p1": "If you’re craving your favorite frozen concoction, drop us an email.",
+                "p2": "We promise it’s worth the brain freeze!"
+            },
+            "button": {
+                "text": "Drop a Line & Chill"
+            }
+        }
+    },
+    "footer": {
+        "salesAndOrders": "Sales and Orders",
+        "generalQuestions": "General Questions",
+        "address": "Address",
+        "copyright": {
+            "year": "2024 Owra"
+        }
+    },
+    "formContact": {
+        "fields": {
+            "name": {
+                "placeholder": "YOUR NAME",
+                "error": "Please enter a valid name"
+            },
+            "email": {
+                "placeholder": "YOUR EMAIL ADDRESS",
+                "error": "Please enter a valid email address"
+            },
+            "phone": {
+                "placeholder": "YOUR PHONE NUMBER",
+                "error": "Please enter a valid phone number"
+            },
+            "message": {
+                "placeholder": "HOW CAN WE HELP?",
+                "error": "Please enter your message"
+            }
+        },
+        "button": {
+            "text": "Send"
+        }
+    },
+    "productSlider": {
+        "s1": {
+            "title": "Chill Owra"
+        },
+        "s2": {
+            "title": "Owra Boba"
+        },
+        "s3": {
+            "title": "Owra Coffee"
+        },
+        "cta": {
+            "title": "Experience in 3D"
         }
     }
 }

@@ -1,6 +1,8 @@
 import s from "./home/home.module.scss"
 
 import cx from "clsx"
+import { GetStaticPropsContext } from "next"
+import { useLocale, useTranslations } from "next-intl"
 import dynamic from "next/dynamic"
 
 import { Marquee } from "@/components/animations/marquee"
@@ -29,8 +31,6 @@ import ice2 from "@/public/img/ice-2.png"
 import iceCubes from "@/public/img/ice-cubes.png"
 import s1 from "@/public/img/s-1.svg"
 import { FormType, Locales } from "@/types"
-import { GetStaticPropsContext } from "next"
-import { useLocale, useTranslations } from "next-intl"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -44,8 +44,8 @@ export default function Home() {
         </div>
 
         <div className={s.cupC}>
-          <FloatWrapper>
-            <Img className="object-contain rotate-6" src="/img/cup.png" alt="Ice Cup" height={1000} width={1000} />
+          <FloatWrapper amountY={[-3, 3]} amountRotate={[-4, 4]}>
+            <Img className="object-contain -rotate-6" src="/img/cup.png" alt="Ice Cup" height={1000} width={1000} />
           </FloatWrapper>
         </div>
 
@@ -55,7 +55,7 @@ export default function Home() {
 
         <div className={cx(s.ice, s.ice1)}>
           <ParallaxWrapper speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain rotate-6" src={i3} />
+            <Img alt="Ice Cube" className="object-contain rotate-12" src={i3} />
           </ParallaxWrapper>
         </div>
 
@@ -79,7 +79,7 @@ export default function Home() {
 
         <div className={cx(s.ice, s.ice5)}>
           <ParallaxWrapper speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain rotate-6" src={i4} />
+            <Img alt="Ice Cube" className="object-contain rotate-12" src={i4} />
           </ParallaxWrapper>
         </div>
       </section>
@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       <section className="w-screen h-[120vh] flex items-center justify-center">
-        <SliderProducts locales={t} />
+        <SliderProducts />
       </section>
 
       <section className={s.why}>

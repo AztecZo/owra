@@ -1,16 +1,25 @@
 import { create } from "zustand"
 
+const defaultColors = {
+  primary: "var(--white)",
+  secondary: "var(--science-blue)",
+}
+
 interface State {
-  primaryColor: string | null
-  secondaryColor: string | null
-  setColors: (primary: string | null, secondary: string | null) => void
+  primaryColor: string
+  secondaryColor: string
+  setColors: (primary: string, secondary: string) => void
+  resetColors: () => void
 }
 
 export const useStore = create<State>((set) => ({
-  primaryColor: "#ffffff",
-  secondaryColor: "#000000",
+  primaryColor: defaultColors.primary,
+  secondaryColor: defaultColors.secondary,
   setColors: (primary, secondary) => {
     set({ primaryColor: primary, secondaryColor: secondary })
+  },
+  resetColors: () => {
+    set({ primaryColor: defaultColors.primary, secondaryColor: defaultColors.secondary })
   },
 }))
 

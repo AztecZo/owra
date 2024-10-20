@@ -118,7 +118,7 @@ export interface Product {
     image: string
   }[]
   backgroundColor: string
-  textcolor: string
+  textColor: string
   parent: string
 }
 

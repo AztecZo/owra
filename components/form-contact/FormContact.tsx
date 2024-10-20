@@ -2,6 +2,8 @@ import s from "./form-contact.module.scss"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import cx from "clsx"
+import { useTranslations } from "next-intl"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -12,7 +14,6 @@ import { Input } from "@/components/utility/input"
 import { LoadingSpinner } from "@/components/utility/loading-spinner"
 import { Textarea } from "@/components/utility/textarea"
 import { FormType } from "@/types"
-import { useEffect, useState } from "react"
 
 export interface FormContactProps {
   theme?: "blue" | "white"
@@ -21,6 +22,7 @@ export interface FormContactProps {
 
 export default function FormContact(props: FormContactProps) {
   const { theme = "blue", formType } = props
+  const t = useTranslations("formContact")
 
   const [responseMessage, setResponseMessage] = useState("")
 
@@ -74,7 +76,7 @@ export default function FormContact(props: FormContactProps) {
                 render={({ field }) => (
                   <FormItem className={s.formItem}>
                     <FormControl>
-                      <Input className={cx(s.input, s.border)} placeholder="YOUR NAME" {...field} />
+                      <Input className={cx(s.input, s.border)} placeholder={t("fields.name.placeholder")} {...field} />
                     </FormControl>
                     <FormMessage className={s.formMessage} />
                   </FormItem>
@@ -93,7 +95,7 @@ export default function FormContact(props: FormContactProps) {
                 render={({ field }) => (
                   <FormItem className={s.formItem}>
                     <FormControl>
-                      <Input className={cx(s.input, s.border)} placeholder="YOUR EMAIL ADDRESS" {...field} />
+                      <Input className={cx(s.input, s.border)} placeholder={t("fields.email.placeholder")} {...field} />
                     </FormControl>
                     <FormMessage className={s.formMessage} />
                   </FormItem>
@@ -112,7 +114,7 @@ export default function FormContact(props: FormContactProps) {
                 render={({ field }) => (
                   <FormItem className={s.formItem}>
                     <FormControl>
-                      <Input className={cx(s.input, s.border)} placeholder="YOUR PHONE NUMBER" {...field} />
+                      <Input className={cx(s.input, s.border)} placeholder={t("fields.phone.placeholder")} {...field} />
                     </FormControl>
                     <FormMessage className={s.formMessage} />
                   </FormItem>
@@ -133,7 +135,7 @@ export default function FormContact(props: FormContactProps) {
                     <FormControl>
                       <Textarea
                         className={cx(s.input, s.textarea, s.border)}
-                        placeholder="HOW CAN WE HELP?"
+                        placeholder={t("fields.message.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -154,7 +156,7 @@ export default function FormContact(props: FormContactProps) {
                     <LoadingSpinner />
                   </div>
                 ) : (
-                  <span>Gönder</span>
+                  <span>{t("button.text")}</span>
                 )}
               </Button>
             </button>

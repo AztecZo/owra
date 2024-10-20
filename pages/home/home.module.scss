@@ -25,7 +25,7 @@
   .cupC {
     @include position(absolute, 50%, auto, auto, 50%);
     @include dims(desktop-vw(500px));
-    transform: translate(-50%, -70%);
+    transform: translate(-50%, calc(-50% + desktop-vw(-100px)));
 
     @include mobile {
       @include dims(mobile-vw(320px));
@@ -39,7 +39,7 @@
   }
 
   .ice1 {
-    @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(100px));
+    @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(130px));
     @include dims(desktop-vw(120px));
 
     @include mobile {
@@ -49,7 +49,7 @@
   }
 
   .ice2 {
-    @include position(absolute, desktop-vw(330px), auto, auto, desktop-vw(180px));
+    @include position(absolute, desktop-vw(350px), auto, auto, desktop-vw(180px));
     @include dims(desktop-vw(100px));
 
     @include mobile {
@@ -59,7 +59,7 @@
   }
 
   .ice3 {
-    @include position(absolute, desktop-vw(50px), auto, auto, desktop-vw(730px));
+    @include position(absolute, desktop-vw(550px), auto, auto, desktop-vw(480px));
     @include dims(desktop-vw(120px));
 
     @include mobile {
@@ -69,8 +69,8 @@
   }
 
   .ice4 {
-    @include position(absolute, desktop-vw(280px), auto, auto, desktop-vw(1100px));
-    @include dims(desktop-vw(85px));
+    @include position(absolute, desktop-vw(450px), auto, auto, desktop-vw(1050px));
+    @include dims(desktop-vw(80px));
 
     @include mobile {
       @include position(absolute, mobile-vw(290px), auto, auto, mobile-vw(70px));
@@ -79,8 +79,8 @@
   }
 
   .ice5 {
-    @include position(absolute, desktop-vw(80px), auto, auto, desktop-vw(1300px));
-    @include dims(desktop-vw(140px));
+    @include position(absolute, desktop-vw(140px), auto, auto, desktop-vw(1200px));
+    @include dims(desktop-vw(120px));
 
     @include mobile {
       @include position(absolute, mobile-vw(180px), auto, auto, mobile-vw(320px));

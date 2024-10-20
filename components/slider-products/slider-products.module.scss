@@ -10,9 +10,9 @@
     font-size: desktop-vw(18px);
     font-weight: 700;
     line-height: 1;
-    white-space: nowrap;
     padding: desktop-vw(4px);
     padding-left: desktop-vw(16px);
+    white-space: nowrap;
 
     @include mobile {
       font-size: mobile-vw(24px);
@@ -33,7 +33,7 @@
   }
 
   .imgC {
-    @include dims(desktop-vw(500px), desktop-vw(700px));
+    @include dims(desktop-vw(400px), desktop-vw(750px));
 
     @include mobile {
       @include dims(mobile-vw(350px));
@@ -41,7 +41,7 @@
   }
 
   .text {
-    @include position(absolute, auto, auto, desktop-vw(-100px), 50%);
+    @include position(absolute, auto, auto, desktop-vw(-50px), 50%);
     align-items: center;
     display: flex;
     flex-direction: column;

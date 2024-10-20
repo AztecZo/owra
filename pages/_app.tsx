@@ -26,7 +26,15 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <NextIntlClientProvider locale={router.locale} timeZone="Europe/Istanbul" messages={pageProps.messages}>
-        <div className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}>
+        <div
+          className={`flex min-h-screen flex-col items-stretch justify-between ${delaGothicOne.variable}`}
+          style={
+            {
+              "--theme-primary": theme.primaryColor,
+              "--theme-secondary": theme.secondaryColor,
+            } as React.CSSProperties
+          }
+        >
           <SmoothLayout>
             <Component {...pageProps} />
           </SmoothLayout>

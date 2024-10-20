@@ -43,10 +43,10 @@ export default function Header() {
         </div>
 
         <div className={cx(s.content, "flex flex-col items-center tablet:items-start")}>
-          <p>If you’re craving your favorite frozen concoction, drop us an email.</p>
-          <p>We promise it’s worth the brain freeze!</p>
+          <p>{t("modal.content.p1")}</p>
+          <p>{t("modal.content.p2")}</p>
           <Link className={s.buttonDrop} href="mailto:sales@owra.co">
-            Drop a Line & Chill
+            {t("modal.button.text")}
           </Link>
         </div>
 
@@ -62,7 +62,7 @@ export default function Header() {
       <div className={cx(s.marquee, "cursor-pointer")} onClick={handleModal}>
         <Marquee repeat={10}>
           <div className={cx(s.feelingThirsty, "flex items-center")}>
-            <small>Feeling Thirsty?</small>
+            <small>{t("modal.heading")}</small>
             <span className={s.iconC}>
               <IconPointer fill="var(--white)" />
             </span>
