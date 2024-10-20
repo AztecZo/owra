@@ -246,7 +246,7 @@
     position: relative;
 
     @include mobile {
-      padding: mobile-vw(30px) mobile-vw(16px);
+      padding: mobile-vw(30px) mobile-vw(32px);
     }
 
     .imgC {
@@ -256,7 +256,7 @@
       z-index: 10;
 
       @include mobile {
-        @include dims(100%, mobile-vw(400px));
+        @include dims(100%, mobile-vw(360px));
         border-radius: mobile-vw(10px);
       }
     }
@@ -295,7 +295,7 @@
     padding: desktop-vw(200px) desktop-vw(250px) desktop-vw(50px) desktop-vw(30px);
 
     @include mobile {
-      padding: mobile-vw(30px) mobile-vw(16px);
+      padding: mobile-vw(50px) mobile-vw(32px);
       padding-top: 0;
     }
 
@@ -334,8 +334,8 @@
         position: relative;
 
         @include mobile {
-          font-size: mobile-vw(24px);
-          margin-bottom: mobile-vw(4px);
+          font-size: mobile-vw(20px);
+          margin-bottom: mobile-vw(8px);
           text-align: center;
         }
 
@@ -362,7 +362,7 @@
         font-weight: 400;
 
         @include mobile {
-          font-size: mobile-vw(18px);
+          font-size: mobile-vw(16px);
           text-align: center;
         }
       }
@@ -402,6 +402,10 @@
       background-color: var(--white);
       color: var(--science-blue);
       border: 1px solid var(--science-blue);
+
+      @include mobile {
+        @include dims(mobile-vw(32px));
+      }
     }
   }
 
@@ -428,7 +432,7 @@
     text-align: center;
 
     @include mobile {
-      @include dims(mobile-vw(300px), auto);
+      @include dims(mobile-vw(280px), auto);
       font-size: mobile-vw(15px);
     }
   }
@@ -436,6 +440,10 @@
   .ice {
     opacity: 0.75;
     z-index: 10;
+
+    @include mobile {
+      display: none;
+    }
   }
 
   .ice1 {

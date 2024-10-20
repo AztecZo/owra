@@ -64,7 +64,13 @@ export default function SliderProducts() {
           <OrthographicCamera makeDefault zoom={50} near={0.1} far={1000} position={[0, 0, 100]} />
         </Canvas>
       </div>
-      <Link className={cx(s.cta, "absolute bottom-5 right-5 flex items-center gap-2 cursor-pointer")} href="/showcase">
+      <Link
+        className={cx(
+          s.cta,
+          "absolute bottom-auto tablet:bottom-5 right-2 tablet:right-5 top-2 tablet:top-0 flex items-center gap-2 cursor-pointer"
+        )}
+        href="/showcase"
+      >
         <span>{t("cta.title")}</span>
         <span className={s.iconC}>
           <div className="w-full h-full">

@@ -116,7 +116,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-screen h-[120vh] flex items-center justify-center">
+      <section className="w-screen h-[90vh] tablet:h-[120vh] flex items-center justify-center">
         <SliderProducts />
       </section>
 
@@ -151,7 +151,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={cx(s.text, "flex flex-col items-start justify-center col-span-6")}>
+          <div className={cx(s.text, "flex flex-col items-center justify-center tablet:items-start col-span-6")}>
             <p>{t("pros.description")}</p>
             <ul>
               <li>
