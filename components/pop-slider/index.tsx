@@ -84,24 +84,24 @@ type GLTFResultBobaLid = GLTF & {
   }
 }
 
-// type GLTFResultCoffeeCup = GLTF & {
-//   nodes: {
-//     Object_1: THREE.Mesh
-//   }
-//   materials: {
-//     eti1: THREE.MeshStandardMaterial
-//   }
-// }
+type GLTFResultCoffeeCup = GLTF & {
+  nodes: {
+    Object_1: THREE.Mesh
+  }
+  materials: {
+    eti1: THREE.MeshStandardMaterial
+  }
+}
 
-// type GLTFResultCoffeeLid = GLTF & {
-//   nodes: {
-//     CHEKA: THREE.Mesh
-//     KRYSH001: THREE.Mesh
-//   }
-//   materials: {
-//     Chrome: THREE.MeshStandardMaterial
-//   }
-// }
+type GLTFResultCoffeeLid = GLTF & {
+  nodes: {
+    CHEKA: THREE.Mesh
+    KRYSH001: THREE.Mesh
+  }
+  materials: {
+    Chrome: THREE.MeshStandardMaterial
+  }
+}
 
 interface SliderItemProps {
   // active: boolean
@@ -118,7 +118,6 @@ export default function PopSlider() {
   return (
     <div className="w-full h-full">
       <Scene />
-      <Leva hidden={true} />
     </div>
   )
 }
@@ -131,19 +130,9 @@ function Scene() {
 
         <Slider />
 
-        <OrthographicCamera
-          makeDefault
-          zoom={50} // Control zoom level
-          // left={-window.innerWidth / 2}
-          // right={window.innerWidth / 2}
-          // top={window.innerHeight / 2}
-          // bottom={-window.innerHeight / 2}
-          near={0.1}
-          far={1000}
-          position={[0, 0, 100]}
-        />
+        <OrthographicCamera makeDefault zoom={50} near={0.001} far={10000} position={[0, 0, 100]} />
 
-        <ambientLight intensity={1.75} />
+        <ambientLight intensity={1.25} />
         <directionalLight intensity={5.75} position={[0, 10, 0]} />
         <Environment preset="studio" environmentIntensity={0.15} environmentRotation={new THREE.Euler(0, 400, 0)} />
 
@@ -151,6 +140,7 @@ function Scene() {
 
         <Stats showPanel={0} />
       </Suspense>
+      <Leva hidden></Leva>
     </Canvas>
   )
 }
@@ -309,7 +299,7 @@ function Slider() {
   const tlRef = useRef<gsap.core.Timeline | null>(null)
   const [currentItem, setCurrentItem] = useState(0)
   const { contextSafe } = useGSAP()
-  const items = ["Ice Glass", "Owra Boba"]
+  const items = ["Ice Glass", "Owra Boba", "Coffee"]
 
   useEffect(() => {
     if (!groupRef.current) return
@@ -441,6 +431,11 @@ const SliderItem = forwardRef<THREE.Mesh, { currentItem: number }>(({ currentIte
         <Boba />
       </Float>
     </>,
+    <>
+      <Float>
+        <Coffee />
+      </Float>
+    </>,
   ]
 
   return (
@@ -510,7 +505,7 @@ function IceGlass() {
       x: 0.04,
       y: 0.04,
       z: 0.04,
-      duration: 1,
+      duration: 0.4,
       ease: "back.out",
     })
 
@@ -525,7 +520,7 @@ function IceGlass() {
       x: 0.035,
       y: 0.035,
       z: 0.035,
-      duration: 1,
+      duration: 0.4,
       ease: "back.out",
     })
 
@@ -540,7 +535,7 @@ function IceGlass() {
     // groupRef.current.rotation.y += 0.0002
     // groupRef.current.rotation.z += 0.0002
 
-    group2Ref.current.rotation.y += 0.02 * rotateSpeed
+    group2Ref.current.rotation.y -= 0.02 * rotateSpeed
   })
 
   return (
@@ -671,7 +666,7 @@ function Boba() {
     // groupRef.current.rotation.y += 0.0002
     // groupRef.current.rotation.z += 0.0002
 
-    group2Ref.current.rotation.y += 0.02 * rotateSpeed
+    group2Ref.current.rotation.y -= 0.02 * rotateSpeed
   })
 
   return (
@@ -709,6 +704,156 @@ function Boba() {
             />
           </mesh>
         </group>
+      </group>
+    </>
+  )
+}
+
+function Coffee() {
+  const groupRef = useRef<THREE.Group | null>(null)
+  const packageMap = useLoader(THREE.TextureLoader, "/img/coffee-package-noir.png")
+  const coffeeMap = useLoader(THREE.TextureLoader, "/img/foam-texture.jpg")
+  const { nodes: cupNodes } = useGLTF("/glb/coffee-cup.glb") as GLTFResultCoffeeCup
+  const { nodes: lidNodes } = useGLTF("/glb/coffee-lid.glb") as GLTFResultCoffeeLid
+
+  useMemo(() => {
+    if (packageMap) {
+      packageMap.wrapS = packageMap.wrapT = THREE.ClampToEdgeWrapping
+      packageMap.offset.set(0, 0.2)
+      packageMap.rotation = Math.PI * 2.5
+      packageMap.flipY = true
+      packageMap.center = new THREE.Vector2(0.5, 0.5)
+
+      const aspectRatio = packageMap.image.width / packageMap.image.height
+      packageMap.repeat.set(1, -2.2)
+    }
+  }, [packageMap])
+
+  useMemo(() => {
+    if (coffeeMap) {
+      coffeeMap.wrapS = coffeeMap.wrapT = THREE.ClampToEdgeWrapping
+      coffeeMap.offset.set(0, 0.15)
+      coffeeMap.rotation = Math.PI * 2.5
+      coffeeMap.flipY = true
+      coffeeMap.center = new THREE.Vector2(0.5, 0.5)
+
+      const aspectRatio = coffeeMap.image.width / coffeeMap.image.height
+      coffeeMap.repeat.set(1.5, 1.5)
+    }
+  }, [coffeeMap])
+
+  const materialProps = useControls(
+    "coffe cup material",
+    {
+      meshPhysicalMaterial: false,
+      transmissionSampler: false,
+      backside: false,
+      backsideThickness: { value: 2, min: -10, max: 10 },
+      samples: { value: 3, min: 0, max: 32, step: 1 },
+      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
+      transmission: { value: 1, min: 0, max: 1 },
+      roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
+      ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
+      thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
+      chromaticAberration: { value: 0.4, min: 0, max: 1 },
+      anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
+      distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
+      distortionScale: { value: 0.3, min: 0.01, max: 1, step: 0.01 },
+      temporalDistortion: { value: 0.65, min: 0, max: 1, step: 0.01 },
+      attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
+      clearcoat: { value: 0, min: 0, max: 1 },
+      attenuationColor: "#ffffff",
+      color: "white",
+    },
+    { collapsed: true }
+  )
+
+  const metallicMaterialProps = useControls(
+    "coffee lid material",
+    {
+      backside: false,
+      backsideThickness: { value: 2, min: -10, max: 10 },
+      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
+      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
+      roughness: { value: 0.1, min: 0, max: 1, step: 0.01 }, // Slightly rougher for brushed metal
+      metalness: { value: 1, min: 0, max: 1 }, // Fully metallic
+      ior: { value: 1.45, min: 1, max: 5, step: 0.01 }, // Lower IOR for a less intense reflection
+      thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
+      anisotropy: { value: 0.6, min: 0, max: 1, step: 0.01 }, // Higher anisotropy for brushed metal effect
+      clearcoat: { value: 0.7, min: 0, max: 1 }, // For a glossy finish
+      attenuationColor: "#ffffff",
+      color: "#ffffff", // Silver color
+    },
+    { collapsed: true }
+  )
+
+  useFrame(() => {
+    if (!groupRef.current) return
+
+    // groupRef.current.rotation.x += 0.01
+    groupRef.current.rotation.y -= 0.01
+    // groupRef.current.rotation.z += 0.01
+  })
+
+  return (
+    <>
+      <group position={[0, 0, 0]} rotation={[0, 1, 0]}>
+        <group ref={groupRef} scale={0.6} position={[0, 0, 0]}>
+          <group>
+            <mesh geometry={lidNodes.CHEKA.geometry} position={[0, 7.5, 0]}>
+              <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
+            </mesh>
+            <mesh geometry={lidNodes.KRYSH001.geometry} position={[0, 7.5, 0]}>
+              <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
+            </mesh>
+          </group>
+
+          <group>
+            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
+              <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} transparent={true} />
+            </mesh>
+          </group>
+
+          <group scale={0.95}>
+            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]} receiveShadow={false} castShadow={false}>
+              <meshStandardMaterial
+                // map={coffeeMap}
+                color={new THREE.Color("#381e03")}
+                toneMapped={false}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          </group>
+
+          <group scale={0.98}>
+            <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
+              <MeshTransmissionMaterial toneMapped={false} side={THREE.DoubleSide} {...materialProps} />
+            </mesh>
+          </group>
+
+          {/* <mesh
+            castShadow={false}
+            receiveShadow={false}
+            geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
+            position={[0, 5.8, 0]}
+          >
+            <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
+          </mesh> */}
+        </group>
+        {/* <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
+          <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
+            <meshPhysicalMaterial
+              map={fillMap}
+              bumpMap={fillMap}
+              bumpScale={4}
+              color={"#FFFFFF"}
+              transparent={true}
+              opacity={0.9}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </group> */}
       </group>
     </>
   )
@@ -760,175 +905,10 @@ function Pointer({ vec = new THREE.Vector3() }) {
   )
 }
 
-// function Coffee() {
-//   const groupRef = useRef<THREE.Group | null>(null)
-//   const packageMap = useLoader(THREE.TextureLoader, "/img/coffee-fill.png")
-//   const coffeeMap = useLoader(THREE.TextureLoader, "/img/foam-texture.jpg")
-//   const { nodes: cupNodes } = useGLTF("/glb/coffee-cup.glb") as GLTFResultCoffeeCup
-//   const { nodes: lidNodes } = useGLTF("/glb/coffee-lid.glb") as GLTFResultCoffeeLid
-
-//   useMemo(() => {
-//     if (packageMap) {
-//       packageMap.wrapS = packageMap.wrapT = THREE.ClampToEdgeWrapping
-//       packageMap.offset.set(0, 0.15)
-//       packageMap.rotation = Math.PI * 2.5
-//       packageMap.flipY = true
-//       packageMap.center = new THREE.Vector2(0.5, 0.5)
-
-//       const aspectRatio = packageMap.image.width / packageMap.image.height
-//       packageMap.repeat.set(1, -2)
-//     }
-//   }, [packageMap])
-
-//   useMemo(() => {
-//     if (coffeeMap) {
-//       coffeeMap.wrapS = coffeeMap.wrapT = THREE.ClampToEdgeWrapping
-//       coffeeMap.offset.set(0, 0.15)
-//       coffeeMap.rotation = Math.PI * 2.5
-//       coffeeMap.flipY = true
-//       coffeeMap.center = new THREE.Vector2(0.5, 0.5)
-
-//       const aspectRatio = coffeeMap.image.width / coffeeMap.image.height
-//       coffeeMap.repeat.set(1.5, 1.5)
-//     }
-//   }, [coffeeMap])
-
-//   const materialProps = useControls(
-//     "coffe cup material",
-//     {
-//       meshPhysicalMaterial: false,
-//       transmissionSampler: false,
-//       backside: false,
-//       backsideThickness: { value: 2, min: -10, max: 10 },
-//       samples: { value: 3, min: 0, max: 32, step: 1 },
-//       resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-//       backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
-//       transmission: { value: 1, min: 0, max: 1 },
-//       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
-//       ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
-//       thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
-//       chromaticAberration: { value: 0.4, min: 0, max: 1 },
-//       anisotropy: { value: 0.3, min: 0, max: 1, step: 0.01 },
-//       distortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
-//       distortionScale: { value: 0.3, min: 0.01, max: 1, step: 0.01 },
-//       temporalDistortion: { value: 0.65, min: 0, max: 1, step: 0.01 },
-//       attenuationDistance: { value: 0.5, min: 0, max: 2.5, step: 0.01 },
-//       clearcoat: { value: 0, min: 0, max: 1 },
-//       attenuationColor: "#ffffff",
-//       color: "white",
-//     },
-//     { collapsed: true }
-//   )
-
-//   const metallicMaterialProps = useControls(
-//     "coffee lid material",
-//     {
-//       backside: false,
-//       backsideThickness: { value: 2, min: -10, max: 10 },
-//       resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-//       backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
-//       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 }, // Slightly rougher for brushed metal
-//       metalness: { value: 1, min: 0, max: 1 }, // Fully metallic
-//       ior: { value: 1.45, min: 1, max: 5, step: 0.01 }, // Lower IOR for a less intense reflection
-//       thickness: { value: 0.05, min: 0, max: 10, step: 0.01 },
-//       anisotropy: { value: 0.6, min: 0, max: 1, step: 0.01 }, // Higher anisotropy for brushed metal effect
-//       clearcoat: { value: 0.7, min: 0, max: 1 }, // For a glossy finish
-//       attenuationColor: "#ffffff",
-//       color: "#ffffff", // Silver color
-//     },
-//     { collapsed: true }
-//   )
-
-//   useFrame(() => {
-//     if (!groupRef.current) return
-
-//     // groupRef.current.rotation.x += 0.01
-//     groupRef.current.rotation.y += 0.01
-//     // groupRef.current.rotation.z += 0.01
-//   })
-
-//   return (
-//     <>
-//       <group position={[0, 0, 0]} rotation={[0, 1, 0]}>
-//         <group ref={groupRef} scale={0.6} position={[0, 0, 0]}>
-//           <group>
-//             <mesh geometry={lidNodes.CHEKA.geometry} position={[0, 8, 0]}>
-//               <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
-//             </mesh>
-//             <mesh geometry={lidNodes.KRYSH001.geometry} position={[0, 8, 0]}>
-//               <meshPhysicalMaterial toneMapped={false} side={THREE.DoubleSide} {...metallicMaterialProps} />
-//             </mesh>
-//           </group>
-
-//           <group>
-//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-//               <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} transparent={true} />
-//             </mesh>
-//           </group>
-
-//           <group scale={0.95}>
-//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-//               <meshStandardMaterial
-//                 map={coffeeMap}
-//                 color={new THREE.Color("#ddb893")}
-//                 toneMapped={false}
-//                 side={THREE.DoubleSide}
-//               />
-//             </mesh>
-//           </group>
-
-//           <group scale={0.98}>
-//             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-//               <MeshTransmissionMaterial toneMapped={false} side={THREE.DoubleSide} {...materialProps} />
-//             </mesh>
-//           </group>
-
-//           {/* <mesh
-//             castShadow={false}
-//             receiveShadow={false}
-//             geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
-//             position={[0, 5.8, 0]}
-//           >
-//             <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
-//           </mesh> */}
-//         </group>
-//         {/* <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
-//           <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
-//             <meshPhysicalMaterial
-//               map={fillMap}
-//               bumpMap={fillMap}
-//               bumpScale={4}
-//               color={"#FFFFFF"}
-//               transparent={true}
-//               opacity={0.9}
-//               side={THREE.DoubleSide}
-//             />
-//           </mesh>
-//         </group> */}
-//       </group>
-//     </>
-//   )
-// }
-
-// function Walls() {
-//   const { width: viewportWidth, height: viewportHeight } = useThree((state) => state.viewport)
-
-//   return (
-//     <>
-//       {/* rectangle */}
-//       <CuboidCollider position={[0, viewportHeight / 2 + 1, 0]} args={[viewportWidth / 2, 1, 30]} />
-//       <CuboidCollider position={[0, -viewportHeight / 2 - 1, 0]} args={[viewportWidth / 2, 1, 30]} />
-//       <CuboidCollider position={[-viewportWidth / 2 - 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
-//       <CuboidCollider position={[viewportWidth / 2 + 1, 0, 0]} args={[1, viewportHeight * 10, 30]} />
-//       {/* rectangle */}
-//     </>
-//   )
-// }
-
 SliderItem.displayName = "SliderItem"
 
-// useGLTF.preload("/glb/coffee-lid.glb")
-// useGLTF.preload("/glb/coffee-cup.glb")
+useGLTF.preload("/glb/coffee-lid.glb")
+useGLTF.preload("/glb/coffee-cup.glb")
 useGLTF.preload("/glb/boba-lid.glb")
 useGLTF.preload("/glb/boba-cup.glb")
 useGLTF.preload("/glb/bardak.glb")

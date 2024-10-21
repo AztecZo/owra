@@ -116,6 +116,17 @@ export default function Home() {
         </div>
       </section>
 
+      <div className={cx(s.marqueeC, "mt-32")}>
+        <Marquee repeat={5}>
+          <div className="flex items-center">
+            <h2>Ürünler</h2>
+            <span className={s.iconC}>
+              <IconStar fill="var(--algerian-colar)" />
+            </span>
+          </div>
+        </Marquee>
+      </div>
+
       <section className="w-screen h-[90vh] tablet:h-[120vh] flex items-center justify-center">
         <SliderProducts />
       </section>

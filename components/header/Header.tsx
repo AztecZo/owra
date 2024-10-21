@@ -72,7 +72,7 @@ export default function Header() {
 
       <header className={cx(s.header, "flex items-center justify-between")} ref={ref}>
         <Link className={cx(s.logoC, "cursor-pointer")} href="/" onClick={closeMenu}>
-          <IconOwraLogo fill="var(--theme-secondary)" />
+          <IconOwraLogo fill="var(--algerian-colar)" />
         </Link>
 
         <div

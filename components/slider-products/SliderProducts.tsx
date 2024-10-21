@@ -12,6 +12,7 @@ import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { Vortex } from "@/components/vortex"
+import { Leva } from "leva"
 
 export default function SliderProducts() {
   const t = useTranslations("productSlider")
@@ -62,12 +63,13 @@ export default function SliderProducts() {
         <Canvas dpr={2}>
           <Vortex currentItem={currentSlide} />
           <OrthographicCamera makeDefault zoom={50} near={0.1} far={1000} position={[0, 0, 100]} />
+          <Leva hidden />
         </Canvas>
       </div>
       <Link
         className={cx(
           s.cta,
-          "absolute bottom-auto tablet:bottom-5 right-2 tablet:right-5 top-2 tablet:top-0 flex items-center gap-2 cursor-pointer"
+          "absolute bottom-auto tablet:bottom-5 right-2 tablet:right-5 top-2 tablet:top-auto flex items-center gap-2 cursor-pointer"
         )}
         href="/showcase"
       >

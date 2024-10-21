@@ -2,7 +2,7 @@ import s from "./product.module.scss"
 
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
@@ -12,10 +12,12 @@ import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
 import { routes } from "@/lib/constants"
 import { useTheme } from "@/lib/store/theme"
-import { Locales, Product } from "@/types"
+import { FormType, Locales, Product } from "@/types"
 import { SliderProducts } from "@/components/slider-products"
 import { Marquee } from "@/components/animations/marquee"
 import { IconStar } from "@/components/icons"
+import { FormContact } from "@/components/form-contact"
+import { Button } from "@/components/button"
 
 export interface ProductGroupProps {
   productGroup: string
@@ -26,6 +28,7 @@ export default function ProductGroup(props: ProductGroupProps) {
   const [currentItem, setCurrentItem] = useState(0)
   const theme = useTheme()
   const locale = useLocale()
+  const t = useTranslations()
 
   useIsomorphicLayoutEffect(() => {
     console.log(props.product.textColor, props.product.backgroundColor)
@@ -95,7 +98,7 @@ export default function ProductGroup(props: ProductGroupProps) {
           </div>
         </div>
       </section>
-      <section className="w-screen py-10 pb-48 bg-[var(--theme-secondary)]">
+      <section className="w-screen  py-10 pb-10 bg-[var(--theme-secondary)]">
         <div className={cx(s.marqueeC, "mb-10")}>
           <Marquee repeat={5}>
             <div className="flex items-center">
@@ -107,8 +110,25 @@ export default function ProductGroup(props: ProductGroupProps) {
           </Marquee>
         </div>
         <div className="px-10">
-          <div className="rounded-xl overflow-hidden">
+          <div className="h-[120vh] rounded-xl overflow-hidden">
             <SliderProducts />
+          </div>
+        </div>
+      </section>
+      <section className={cx(s.franchise, "flex flex-col items-center")}>
+        <p>{t("productDetail.franchise.text")}</p>
+        <Link className={s.cta} href="/franchise">
+          <Button>{t("productDetail.franchise.cta")}</Button>
+        </Link>
+      </section>
+      <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
+        <div className={cx(s.formC, "col-span-6")}>
+          <h2>{t("contact.heading")}</h2>
+          <FormContact theme="white" formType={FormType.contact} />
+        </div>
+        <div className="col-span-6">
+          <div className={s.imgC}>
+            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
           </div>
         </div>
       </section>

@@ -47,7 +47,7 @@ export default function Footer() {
         end: "bottom bottom",
       })
     },
-    { scope: ref, dependencies: [contact] }
+    { scope: ref, dependencies: [contact, socialMedia, t], revertOnUpdate: true }
   )
 
   const icons: Record<SocialMedia, JSX.Element> = {

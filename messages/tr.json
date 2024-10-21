@@ -229,5 +229,11 @@
         "cta": {
             "title": "3D Olarak İncele"
         }
+    },
+    "productDetail": {
+        "franchise": {
+            "cta": "Franchise Ol",
+            "text": "Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın."
+        }
     }
 }
