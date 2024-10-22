@@ -92,8 +92,6 @@ export interface Seo {
   description: NextSeoProps["description"]
 }
 
-export type CursorType = "default" | "click" | "clickDark" | "menu"
-
 export interface ProductCard {
   id: number
   name: string
@@ -140,4 +138,10 @@ export enum SocialMedia {
   instagram = "instagram",
   x = "x",
   youtube = "youtube",
+}
+
+export enum CursorType {
+  default = "default",
+  view = "view",
+  email = "email",
 }

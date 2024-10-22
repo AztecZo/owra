@@ -43,7 +43,7 @@
     @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(80px), auto, auto, mobile-vw(20px));
+      @include position(absolute, mobile-vw(50px), auto, auto, mobile-vw(20px));
       @include dims(mobile-vw(50px));
     }
   }
@@ -53,7 +53,7 @@
     @include dims(desktop-vw(100px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(300px), auto, auto, mobile-vw(280px));
+      @include position(absolute, mobile-vw(300px), auto, auto, mobile-vw(300px));
       @include dims(mobile-vw(50px));
     }
   }
@@ -63,7 +63,7 @@
     @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(40px), auto, auto, mobile-vw(300px));
+      @include position(absolute, mobile-vw(40px), auto, auto, mobile-vw(310px));
       @include dims(mobile-vw(50px));
     }
   }
@@ -73,8 +73,8 @@
     @include dims(desktop-vw(80px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(290px), auto, auto, mobile-vw(70px));
-      @include dims(mobile-vw(50px));
+      @include position(absolute, mobile-vw(290px), auto, auto, mobile-vw(50px));
+      @include dims(mobile-vw(40px));
     }
   }
 
@@ -83,8 +83,8 @@
     @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(180px), auto, auto, mobile-vw(320px));
-      @include dims(mobile-vw(30px));
+      @include position(absolute, mobile-vw(180px), auto, auto, mobile-vw(300px));
+      @include dims(mobile-vw(35px));
     }
   }
 }
@@ -188,8 +188,8 @@
       @include dims(desktop-vw(150px));
 
       @include mobile {
-        @include position(absolute, mobile-vw(500px), auto, auto, mobile-vw(150px));
-        @include dims(mobile-vw(150px));
+        @include position(absolute, mobile-vw(250px), auto, auto, mobile-vw(5px));
+        @include dims(mobile-vw(70px));
       }
     }
 
@@ -198,14 +198,15 @@
       @include dims(desktop-vw(150px));
 
       @include mobile {
-        @include position(absolute, mobile-vw(800px), auto, auto, mobile-vw(700px));
-        @include dims(mobile-vw(150px));
+        @include position(absolute, mobile-vw(280px), auto, auto, mobile-vw(290px));
+        @include dims(mobile-vw(70px));
       }
     }
   }
 }
 
-.marqueeC {
+.marqueeProductsC {
+  margin-top: desktop-vw(150px);
   padding: desktop-vw(50px) 0;
 
   @include mobile {
@@ -294,6 +295,7 @@
 
       @include mobile {
         @include dims(mobile-vw(60px));
+        display: none;
       }
 
       &.icon1 {

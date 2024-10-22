@@ -3,14 +3,18 @@ import s from "./slider-products.module.scss"
 import { OrthographicCamera } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import cx from "clsx"
-import { useTranslations } from "next-intl"
+import { Leva } from "leva"
+import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 import Float from "@/components/animations/float"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
+import { Link } from "@/components/utility/link"
 import { Vortex } from "@/components/vortex"
-import { Leva } from "leva"
+import CursorText from "../cursor/cursor-text"
+import { routes } from "@/lib/constants"
+import { Locales } from "@/types"
 
 export default function SliderProducts() {
   const t = useTranslations("productSlider")
@@ -83,6 +87,7 @@ export default function SliderProducts() {
 }
 
 export function Sequence({ type }: { type: unknown }) {
+  const locale = useLocale()
   const PHASE = 22
 
   const [currentItem, setCurrentItem] = useState(0)
@@ -110,25 +115,29 @@ export function Sequence({ type }: { type: unknown }) {
 
   return (
     <div className="w-full h-full relative" onMouseEnter={startLoop} onMouseLeave={stopLoop}>
-      {Array.from({ length: PHASE }).map((_, i) => {
-        return (
-          <div
-            className={cx(s.item, "absolute top-0 left-0 bottom-0 right-0", {
-              [s.active]: currentItem === i,
-            })}
-            key={i}
-          >
-            <Img
-              priority={true}
-              className="object-contain"
-              alt="Product Visual"
-              src={`/img/sequences/${type}/s_${i}.png`}
-              height={1000}
-              width={1000}
-            />
-          </div>
-        )
-      })}
+      <CursorText>
+        {Array.from({ length: PHASE }).map((_, i) => {
+          return (
+            <div key={i}>
+              <Link
+                href={`/${routes[locale as Locales].products.path}`}
+                className={cx(s.item, "cursor-pointer absolute top-0 left-0 bottom-0 right-0", {
+                  [s.active]: currentItem === i,
+                })}
+              >
+                <Img
+                  priority={true}
+                  className="object-contain"
+                  alt="Product Visual"
+                  src={`/img/sequences/${type}/s_${i}.png`}
+                  height={1000}
+                  width={1000}
+                />
+              </Link>
+            </div>
+          )
+        })}
+      </CursorText>
     </div>
   )
 }

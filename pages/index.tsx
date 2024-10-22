@@ -116,7 +116,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className={cx(s.marqueeC, "mt-32")}>
+      <div className={s.marqueeProductsC}>
         <Marquee repeat={5}>
           <div className="flex items-center">
             <h2>Ürünler</h2>

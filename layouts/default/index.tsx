@@ -2,14 +2,16 @@ import s from "./default-layout.module.scss"
 
 import cx from "clsx"
 import { useRouter } from "next/router"
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 
 import { CustomHead } from "@/components/utility/custom-head"
 
 import { baseUrl } from "@/lib/constants"
-import { Seo } from "@/types"
+import { CursorType, Seo } from "@/types"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { useCursorStore } from "@/lib/store/cursor"
+import { useLenisStore } from "@/lib/store/lenis"
 
 type Props = {
   children: ReactNode
@@ -19,6 +21,16 @@ type Props = {
 
 const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
   const router = useRouter()
+  const cursorStore = useCursorStore()
+  const { lenis } = useLenisStore()
+
+  useEffect(() => {
+    if (cursorStore.type !== CursorType.default) cursorStore.reset()
+  }, [])
+
+  useEffect(() => {
+    lenis?.scrollTo(0, { immediate: true })
+  }, [lenis])
 
   return (
     <div className={cx(s.defaultLayout, `theme-${theme}`, [s[theme]])}>

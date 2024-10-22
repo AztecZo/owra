@@ -9,6 +9,11 @@ import type { AppProps } from "next/app"
 import { Dela_Gothic_One } from "next/font/google"
 import { useRouter } from "next/router"
 import { QueryClient, QueryClientProvider } from "react-query"
+import dynamic from "next/dynamic"
+
+const Cursor = dynamic(() => import("@/components/cursor").then((module) => module.Cursor), {
+  ssr: false,
+})
 
 const delaGothicOne = Dela_Gothic_One({
   weight: ["400"],
@@ -39,6 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </SmoothLayout>
           <Modal />
+          <Cursor />
         </div>
       </NextIntlClientProvider>
     </QueryClientProvider>

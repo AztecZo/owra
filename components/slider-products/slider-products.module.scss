@@ -39,7 +39,7 @@
     @include dims(desktop-vw(400px), desktop-vw(750px));
 
     @include mobile {
-      @include dims(mobile-vw(350px));
+      @include dims(mobile-vw(330px), mobile-vw(300px));
     }
   }
 
@@ -55,7 +55,7 @@
     transform: translateX(-50%);
 
     @include mobile {
-      @include position(absolute, auto, auto, mobile-vw(-100px), 50%);
+      @include position(absolute, auto, auto, mobile-vw(-120px), 50%);
       border-radius: mobile-vw(32px);
       padding: mobile-vw(8px) mobile-vw(16px);
     }
