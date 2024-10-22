@@ -1,6 +1,6 @@
 .intro {
   margin-bottom: desktop-vw(75px);
-  padding: desktop-vw(80px) 0;
+  padding: desktop-vw(50px) 0;
 
   @include mobile {
     margin-bottom: mobile-vw(30px);
@@ -14,13 +14,14 @@
 
     @include mobile {
       @include dims(auto, mobile-vw(250px));
+      margin: 0;
       order: 2;
       padding: 0 mobile-vw(16px);
     }
   }
 
   .text {
-    padding: 0 desktop-vw(60px);
+    padding-left: desktop-vw(60px);
 
     @include mobile {
       margin-bottom: mobile-vw(30px);
@@ -121,7 +122,7 @@
       margin-top: desktop-vw(100px);
 
       @include mobile {
-        margin-top: mobile-vw(100px);
+        margin-top: mobile-vw(50px);
       }
     }
   }
@@ -150,7 +151,7 @@
 
     @include mobile {
       @include dims(mobile-vw(300px), auto);
-      font-size: mobile-vw(18px);
+      font-size: mobile-vw(17px);
     }
   }
 }
@@ -160,7 +161,7 @@
   border-top: var(--border-width) solid var(--science-blue);
 
   .imgC {
-    @include dims(auto, desktop-vw(450px));
+    @include dims(auto, desktop-vw(600px));
     border-bottom: var(--border-width) solid var(--science-blue);
 
     @include mobile {

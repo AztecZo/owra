@@ -19,11 +19,17 @@ export default function About() {
 
   return (
     <DefaultLayout seo={routes[locale as Locales].about.seo}>
-      <div className={cx(s.intro, "grid grid-cols-1 tablet:grid-cols-2 gap-0 tablet:gap-20")}>
-        <div className={s.imgC}>
-          <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+      <div className={cx(s.intro, "flex flex-col tablet:grid tablet:grid-cols-12 items-center")}>
+        <div className={cx(s.imgC, "col-span-6")}>
+          <Img
+            className="object-contain"
+            src={"/img/ice-glass-commercial.png"}
+            alt="Ice Glass"
+            width={2000}
+            height={2000}
+          />
         </div>
-        <div className={s.text}>
+        <div className={cx(s.text, "col-span-6")}>
           <h1>
             <span>{t("intro.heading.p1")}</span>
             <span>{t("intro.heading.p2")}</span>
@@ -56,7 +62,7 @@ export default function About() {
 
       <section className={s.pros}>
         <div className={s.imgC}>
-          <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+          <Img className="object-cover" src={"/img/ice-glass-shoot-full.jpg"} alt="Sample" width={2000} height={2000} />
         </div>
         <div className={cx(s.items, "grid grid-cols-1 tablet:grid-cols-4")}>
           <div className="flex flex-col items-center justify-start">
@@ -100,7 +106,7 @@ export default function About() {
       <section className={cx(s.career, "flex flex-col-reverse tablet:grid grid-cols-1 tablet:grid-cols-2 gap-10")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
           <p>{t("career.text")}</p>
-          <Link className={s.cta} href="mailto:careers@owra.co">
+          <Link className={s.cta} href="mailto:career@owra.co">
             <Button theme="white">{t("career.cta")}</Button>
           </Link>
         </div>
