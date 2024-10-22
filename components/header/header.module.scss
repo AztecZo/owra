@@ -56,7 +56,7 @@
     transition: 400ms color ease;
 
     @include mobile {
-      font-size: mobile-vw(20px);
+      font-size: mobile-vw(24px);
     }
   }
 }

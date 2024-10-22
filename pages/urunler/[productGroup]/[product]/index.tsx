@@ -97,7 +97,7 @@ export default function ProductGroup(props: ProductGroupProps) {
           </div>
         </div>
       </section>
-      <section className="w-screen  py-10 pb-10 bg-[var(--theme-secondary)]">
+      <section className="w-screen py-10 pb-0 tablet:pb-10 bg-[var(--theme-secondary)]">
         <div className={cx(s.marqueeC, "mb-10")}>
           <Marquee repeat={5}>
             <div className="flex items-center">
@@ -108,8 +108,8 @@ export default function ProductGroup(props: ProductGroupProps) {
             </div>
           </Marquee>
         </div>
-        <div className="px-10">
-          <div className="h-[120vh] rounded-xl overflow-hidden">
+        <div className="px-0 tablet:px-10">
+          <div className="h-[90vh] tablet:h-[120vh] rounded-none tablet:rounded-xl overflow-hidden">
             <SliderProducts />
           </div>
         </div>

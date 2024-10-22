@@ -12,7 +12,7 @@
     transition: 400ms opacity ease;
 
     @include mobile {
-      font-size: mobile-vw(14px);
+      font-size: mobile-vw(16px);
     }
 
     &.active {

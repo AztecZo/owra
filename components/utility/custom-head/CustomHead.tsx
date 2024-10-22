@@ -16,14 +16,13 @@ export default function CustomHead({
   description,
   image,
   keywords,
-  themeColor = "#007538",
-  twitter = { handle: "@ferecatalog" },
+  themeColor = "#0075CE",
+  twitter = { handle: "@owra" },
 }: Props) {
   return (
     <>
       <NextHead>
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-
         <meta
           name="robots"
           content={process.env.NEXT_PUBLIC_NODE_ENV !== "development" ? "index,follow" : "noindex,nofollow"}
@@ -32,26 +31,22 @@ export default function CustomHead({
           name="googlebot"
           content={process.env.NEXT_PUBLIC_NODE_ENV !== "development" ? "index,follow" : "noindex,nofollow"}
         />
-
         <meta name="keywords" content={`${keywords && keywords.length ? keywords.join(",") : keywords}`} />
         <meta name="author" content="bytemywork" />
         <meta name="referrer" content="no-referrer" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="geo.region" content="US" />
-
         {/* START FAVICON */}
         {/* <link rel="manifest" href="/site.webmanifest" /> */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="mask-icon" href="/favicon-32x32.png" color={themeColor} />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+        <link rel="mask-icon" href="/favicon/favicon-32x32.png" color={themeColor} />
         <meta name="msapplication-TileColor" content={themeColor} />
         <meta name="theme-color" content={themeColor} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon/favicon.ico" />
         {/* END FAVICON */}
-
         <link rel="canonical" href={canonical}></link>
-
         <title>{title}</title>
       </NextHead>
       <NextSeo
@@ -72,7 +67,7 @@ export default function CustomHead({
           // ],
           defaultImageWidth: 522,
           defaultImageHeight: 84,
-          site_name: "catalog.ferecatalog.com",
+          site_name: "owra.co",
         }}
         twitter={{
           handle: twitter.handle,

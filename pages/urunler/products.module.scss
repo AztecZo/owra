@@ -21,7 +21,7 @@
   padding-bottom: desktop-vw(250px);
 
   @include mobile {
-    padding-bottom: mobile-vw(250px);
+    padding-bottom: mobile-vw(100px);
   }
 
   .product {
