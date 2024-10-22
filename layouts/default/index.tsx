@@ -3,16 +3,15 @@ import s from "./default-layout.module.scss"
 import cx from "clsx"
 import { useRouter } from "next/router"
 import { ReactNode, useEffect } from "react"
-import { gsap } from "@/lib/gsap"
 
 import { CustomHead } from "@/components/utility/custom-head"
 
-import { baseUrl } from "@/lib/constants"
-import { CursorType, Seo } from "@/types"
-import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { baseUrl } from "@/lib/constants"
 import { useCursorStore } from "@/lib/store/cursor"
 import { useLenisStore } from "@/lib/store/lenis"
+import { CursorType, Seo } from "@/types"
 
 type Props = {
   children: ReactNode
@@ -33,16 +32,8 @@ const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
     lenis?.scrollTo(0, { immediate: true })
   }, [lenis])
 
-  useEffect(() => {
-    gsap.from(".gsap-transition", {
-      opacity: 0,
-      duration: 0.4,
-      delay: 0.2,
-    })
-  }, [])
-
   return (
-    <div className={cx(s.defaultLayout, `theme-${theme}`, "gsap-transition opacity-0")}>
+    <div className={cx(s.defaultLayout, `theme-${theme}`)}>
       <CustomHead
         {...(seo &&
           Object.assign(seo, {
