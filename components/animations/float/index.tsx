@@ -1,6 +1,7 @@
 import { ClientOnly } from "@/components/utility/isomorphic"
 import { ScrollTrigger, gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
+import { useLocale } from "next-intl"
 import { ReactNode, useRef } from "react"
 
 interface FloatProps {
@@ -12,6 +13,7 @@ interface FloatProps {
 const Float = (props: FloatProps) => {
   const { children, amountY = [-10, 10], amountRotate = [-3, 3] } = props
   const ref = useRef(null)
+  const locale = useLocale()
 
   useGSAP(
     () => {
@@ -31,7 +33,7 @@ const Float = (props: FloatProps) => {
       })
     },
     {
-      dependencies: [amountRotate, amountY],
+      dependencies: [amountRotate, amountY, locale],
     }
   )
 

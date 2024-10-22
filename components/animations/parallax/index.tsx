@@ -1,6 +1,7 @@
 import { ClientOnly } from "@/components/utility/isomorphic"
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
+import { useLocale } from "next-intl"
 import { ReactNode, useRef } from "react"
 import { useWindowSize } from "usehooks-ts"
 
@@ -14,6 +15,7 @@ const Parallax = (props: ParallaxProps) => {
   const { children, speedX, speedY } = props
   const ref = useRef<HTMLDivElement | null>(null)
   const windowSize = useWindowSize()
+  const locale = useLocale()
 
   function getElementOffsetTop(element: HTMLElement): number {
     const rect = element.getBoundingClientRect()
@@ -36,7 +38,7 @@ const Parallax = (props: ParallaxProps) => {
         },
       })
     },
-    { scope: ref, dependencies: [speedX, speedY, windowSize.width] }
+    { scope: ref, dependencies: [speedX, speedY, windowSize.width, locale] }
   )
 
   return (
