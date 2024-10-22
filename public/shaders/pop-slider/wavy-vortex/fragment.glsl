@@ -3,7 +3,7 @@ precision highp float;
 const float PI = 3.14159265358979323846264;
 const float TWOPI = PI * 2.0;
 
-const vec4 WHITE = vec4(1.0, 1.0, 1.0, 1.0);
+const vec4 WHITE = vec4(1.0, 0.980, 0.953, 1.0);
 const vec4 BLACK = vec4(0.0, 0.4588, 0.8078, 1.0);
 
 const vec2 CENTER = vec2(0.0, 0.0);
