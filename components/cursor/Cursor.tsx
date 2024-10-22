@@ -11,9 +11,11 @@ import { useCursorStore } from "@/lib/store/cursor"
 import { useLenisStore } from "@/lib/store/lenis"
 import { breakpoints } from "@/lib/utils"
 import { CursorType } from "@/types"
+import { useTranslations } from "next-intl"
 
 export default function Cursor() {
   const isMobile = useMediaQuery(`(max-width: ${breakpoints.tablet}px)`)
+  const t = useTranslations("cursor")
 
   const ref = useRef(null)
   const cursorStore = useCursorStore()
@@ -95,7 +97,7 @@ export default function Cursor() {
         <span
           className={cx(s.text, "text", { [s.active]: cursorUi === CursorType.email || cursorUi === CursorType.view })}
         >
-          {cursorStore.type === CursorType.view ? "View" : "Ürünleri İncele"}
+          {cursorStore.type === CursorType.view ? "View" : t("discover")}
         </span>
       </div>
     </div>

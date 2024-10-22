@@ -170,8 +170,7 @@
         "button": "ANASAYFA"
     },
     "cursor": {
-        "seeTheMenu": "MENÜYÜ İNCELE",
-        "followUs": "TAKİP ET"
+        "discover": "Ürünleri Keşfet"
     },
     "header": {
         "modal": {
@@ -235,5 +234,10 @@
             "cta": "Franchise Ol",
             "text": "Owra, sıradan bir marka olmanın ötesinde, bir yaşam tarzıdır. Bizimle birlikte, her anınızı daha keyifli ve özel kılmak için buradayız. Bize katılın ve Owra ile hayatınıza biraz daha neşe katın."
         }
+    },
+    "products": {
+        "productGroups": "Ürün Grupları",
+        "otherOptions": "Diğer Deçenekler",
+        "otherProducts": "Diğer Ürünler"
     }
 }

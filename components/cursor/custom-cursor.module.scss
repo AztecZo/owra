@@ -23,12 +23,13 @@
 
     .text {
       @include position(absolute, 50%, auto, auto, 50%);
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -45%);
       color: var(--white);
       display: block;
       font-family: var(--font-fustat);
       font-size: desktop-vw(18px);
       font-weight: 900;
+      line-height: 1.25;
       opacity: 0;
       text-align: center;
 

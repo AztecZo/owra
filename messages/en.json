@@ -170,8 +170,7 @@
         "button": "HOMEPAGE"
     },
     "cursor": {
-        "seeTheMenu": "SEE THE MENU",
-        "followUs": "FOLLOW!"
+        "discover": "Discover Products"
     },
     "header": {
         "modal": {
@@ -235,5 +234,10 @@
             "cta": "Become a Franchise",
             "text": "Owra is more than just a brand; it is a lifestyle. We are here to make every moment more enjoyable and special for you. Join us and add a little more joy to your life with Owra."
         }
+    },
+    "products": {
+        "productGroups": "Product Groups",
+        "otherOptions": "Other Options",
+        "otherProducts": "Other Products"
     }
 }

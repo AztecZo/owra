@@ -7,17 +7,16 @@ import { useState } from "react"
 import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
 import { single } from "@/api/queries/product-detail"
+import { Marquee } from "@/components/animations/marquee"
+import { Button } from "@/components/button"
+import { IconStar } from "@/components/icons"
+import { SliderProducts } from "@/components/slider-products"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { DefaultLayout } from "@/layouts/default"
 import { routes } from "@/lib/constants"
 import { useTheme } from "@/lib/store/theme"
-import { FormType, Locales, Product } from "@/types"
-import { SliderProducts } from "@/components/slider-products"
-import { Marquee } from "@/components/animations/marquee"
-import { IconStar } from "@/components/icons"
-import { FormContact } from "@/components/form-contact"
-import { Button } from "@/components/button"
+import { Locales, Product } from "@/types"
 
 export interface ProductGroupProps {
   productGroup: string
@@ -39,7 +38,7 @@ export default function ProductGroup(props: ProductGroupProps) {
     <DefaultLayout seo={routes[locale as Locales].products.seo}>
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <div className={s.breadcrumb}>
-          <Link href={`/${routes[locale as Locales].products.path}`}>Kategoriler</Link>
+          <Link href={`/${routes[locale as Locales].products.path}`}>{t("products.productGroups")}</Link>
           <span> / </span>
           <Link href={`/${routes[locale as Locales].products.path}/${props.productGroup}`}>{props.product.parent}</Link>
           <span> / </span>
@@ -81,7 +80,7 @@ export default function ProductGroup(props: ProductGroupProps) {
           <div className={s.size}>{props.product.size}</div>
           <div className={s.desc}>{props.product.description}</div>
           <div className={cx(s.other)}>
-            <div className={s.title}>Diğer Seçenekler</div>
+            <div className={s.title}>{t("products.otherOptions")}</div>
             <div className={cx(s.items, "flex items-center justify-center tablet:justify-start gap-3 flex-wrap")}>
               {props.product.other.map((item, i) => {
                 return (
@@ -102,7 +101,7 @@ export default function ProductGroup(props: ProductGroupProps) {
         <div className={cx(s.marqueeC, "mb-10")}>
           <Marquee repeat={5}>
             <div className="flex items-center">
-              <h2>Diğer Ürünler</h2>
+              <h2>{t("products.otherProducts")}</h2>
               <span className={s.iconC}>
                 <IconStar fill="var(--theme-primary)" />
               </span>

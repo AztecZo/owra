@@ -15,7 +15,6 @@ import { routes } from "@/lib/constants"
 import { Locales } from "@/types"
 
 import ice1 from "@/public/img/ice-1.png"
-import ice2 from "@/public/img/ice-2.png"
 import ice3 from "@/public/img/ice-3.png"
 import ice4 from "@/public/img/ice-4.png"
 

@@ -2,7 +2,7 @@ import s from "./product-group.module.scss"
 
 import cx from "clsx"
 import { GetServerSidePropsContext } from "next"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import { all } from "@/api/queries/products"
 import { Img } from "@/components/utility/img"
@@ -19,13 +19,14 @@ export interface ProductGroupProps {
 
 export default function ProductGroup(props: ProductGroupProps) {
   const locale = useLocale()
+  const t = useTranslations()
 
   return (
     <DefaultLayout seo={routes[locale as Locales].products.seo}>
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <h1>{props.parent}</h1>
         <div className={s.breadcrumb}>
-          <Link href={`/${routes[locale as Locales].products.path}`}>Kategoriler</Link>
+          <Link href={`/${routes[locale as Locales].products.path}`}>{t("products.productGroups")}</Link>
           <span> / </span>
           <span>{props.parent}</span>
         </div>

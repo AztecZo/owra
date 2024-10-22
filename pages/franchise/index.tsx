@@ -63,6 +63,7 @@ export default function Franchise(props: FranchiseProps) {
     },
     {
       scope: prosRef,
+      dependencies: [locale],
     }
   )
 
