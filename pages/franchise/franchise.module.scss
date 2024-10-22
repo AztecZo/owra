@@ -52,11 +52,11 @@
   }
 
   .ice1 {
-    @include position(absolute, desktop-vw(100px), auto, auto, desktop-vw(100px));
+    @include position(absolute, desktop-vw(70px), auto, auto, desktop-vw(50px));
     @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(80px), auto, auto, mobile-vw(20px));
+      @include position(absolute, mobile-vw(90px), auto, auto, mobile-vw(10px));
       @include dims(mobile-vw(40px));
     }
   }
@@ -66,8 +66,8 @@
     @include dims(desktop-vw(100px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(100px), auto, auto, mobile-vw(220px));
-      @include dims(mobile-vw(50px));
+      @include position(absolute, mobile-vw(120px), auto, auto, mobile-vw(220px));
+      @include dims(mobile-vw(40px));
     }
   }
 
@@ -76,8 +76,8 @@
     @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(20px), auto, auto, mobile-vw(240px));
-      @include dims(mobile-vw(50px));
+      @include position(absolute, mobile-vw(30px), auto, auto, mobile-vw(310px));
+      @include dims(mobile-vw(40px));
     }
   }
 
@@ -92,12 +92,12 @@
   }
 
   .ice5 {
-    @include position(absolute, desktop-vw(80px), auto, auto, desktop-vw(1300px));
-    @include dims(desktop-vw(140px));
+    @include position(absolute, desktop-vw(80px), auto, auto, desktop-vw(1330px));
+    @include dims(desktop-vw(120px));
 
     @include mobile {
-      @include position(absolute, mobile-vw(140px), auto, auto, mobile-vw(330px));
-      @include dims(mobile-vw(50px));
+      @include position(absolute, mobile-vw(130px), auto, auto, mobile-vw(330px));
+      @include dims(mobile-vw(40px));
     }
   }
 }
@@ -121,7 +121,7 @@
     }
 
     &:nth-child(1) {
-      @include dims(desktop-vw(320px), desktop-vw(380px));
+      @include dims(desktop-vw(310px), desktop-vw(380px));
 
       @include mobile {
         @include dims(mobile-vw(160px), mobile-vw(190px));
@@ -129,7 +129,7 @@
     }
 
     &:nth-child(2) {
-      @include dims(desktop-vw(380px), desktop-vw(230px));
+      @include dims(desktop-vw(310px), desktop-vw(230px));
 
       @include mobile {
         @include dims(mobile-vw(190px), mobile-vw(115px));
@@ -211,7 +211,7 @@
   }
 }
 
-.pros {
+.advantages {
   background-color: var(--science-blue);
   padding: desktop-vw(20px);
 

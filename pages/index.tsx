@@ -96,7 +96,7 @@ export default function Home() {
         </div>
 
         <div className={cx(s.fullImg, "h-screen")}>
-          <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+          <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
         </div>
 
         <div className={s.waveC}>
@@ -147,7 +147,7 @@ export default function Home() {
           <div className={cx(s.imgs, "col-span-6 flex items-start justify-end")}>
             <div className="relative flex">
               <div className={s.imgC}>
-                <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+                <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
               </div>
               <div className={cx(s.iconC, s.icon1)}>
                 <ParallaxWrapper speedY={-0.5}>
@@ -265,7 +265,7 @@ export default function Home() {
         </div>
         <div className="col-span-6">
           <div className={s.imgC}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+            <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
           </div>
         </div>
         {/* <div className={s.waveC}>

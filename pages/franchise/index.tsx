@@ -11,17 +11,21 @@ import { useLocale, useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { Marquee } from "@/components/animations/marquee"
-import Parallax from "@/components/animations/parallax"
 import { Button } from "@/components/button"
 import { FormContact } from "@/components/form-contact"
 import { Img } from "@/components/utility/img"
 import { DefaultLayout } from "@/layouts/default"
 import { useLenisStore } from "@/lib/store/lenis"
 
+const ParallaxWrapper = dynamic(() => import("@/components/animations/parallax"), {
+  ssr: false,
+})
+
 import i1 from "@/public/img/b-1.png"
 import i2 from "@/public/img/b-2.png"
 import i3 from "@/public/img/b-3.png"
 import i4 from "@/public/img/b-4.png"
+import dynamic from "next/dynamic"
 
 export interface FranchiseProps {
   contactData: ContactData
@@ -78,33 +82,33 @@ export default function Franchise(props: FranchiseProps) {
         </button>
 
         <div className={cx(s.ice, s.ice1)}>
-          <Parallax speedY={-1}>
+          <ParallaxWrapper speedY={-1}>
             <Img alt="Ice Cube" className="object-contain rotate-6" src={i3} />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice2)}>
-          <Parallax speedY={-1}>
+          <ParallaxWrapper speedY={-1}>
             <Img alt="Ice Cube" className="object-contain -rotate-6" src={i1} />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice3)}>
-          <Parallax speedY={-1}>
+          <ParallaxWrapper speedY={-1}>
             <Img alt="Ice Cube" className="object-contain -rotate-12" src={i1} />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice4)}>
-          <Parallax speedY={-1}>
+          <ParallaxWrapper speedY={-1}>
             <Img alt="Ice Cube" className="object-contain rotate-6" src={i2} />
-          </Parallax>
+          </ParallaxWrapper>
         </div>
 
         <div className={cx(s.ice, s.ice5)}>
-          <Parallax speedY={-1}>
-            <Img alt="Ice Cube" className="object-contain rotate-6" src={i4} />
-          </Parallax>
+          <ParallaxWrapper speedY={-1}>
+            <Img alt="Ice Cube" className="object-contain rotate-[30deg]" src={i4} />
+          </ParallaxWrapper>
         </div>
       </section>
 
@@ -112,10 +116,22 @@ export default function Franchise(props: FranchiseProps) {
         <Marquee repeat={5}>
           <div className={cx(s.imgs, "flex items-center")}>
             <div className={s.imgC}>
-              <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+              <Img
+                className="object-cover"
+                src={"/img/ice-glass-shoot-full.jpg"}
+                alt="Owra"
+                width={2000}
+                height={2000}
+              />
             </div>
             <div className={s.imgC}>
-              <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+              <Img
+                className="object-cover"
+                src={"/img/ice-glass-shoot-full.jpg"}
+                alt="Owra"
+                width={2000}
+                height={2000}
+              />
             </div>
           </div>
         </Marquee>
@@ -147,15 +163,15 @@ export default function Franchise(props: FranchiseProps) {
         </div>
       </section>
 
-      <section className={cx(s.pros, "grid grid-cols-1 tablet:grid-cols-2")} ref={prosRef}>
+      <section className={cx(s.advantages, "grid grid-cols-1 tablet:grid-cols-2")} ref={prosRef}>
         <div>
           <div className={cx(s.imgC, "img-c")}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+            <Img className="object-cover" src={"/img/franchise.jpg"} alt="Owra" width={2000} height={2000} />
           </div>
         </div>
         <div className={cx(s.text, "sticky-pin", "flex flex-col")}>
           <h2>{t("advantages.heading")}</h2>
-          <div className={cx(s.items, "flex flex-col tablet:items-start")}>
+          <div className={cx(s.items, "flex flex-col items-center tablet:items-start")}>
             <div className="flex flex-col">
               <h3>{t("advantages.items.i1.heading")}</h3>
               <p>{t("advantages.items.i1.text")}</p>

@@ -62,7 +62,7 @@ export default function About() {
 
       <section className={s.pros}>
         <div className={s.imgC}>
-          <Img className="object-cover" src={"/img/ice-glass-shoot-full.jpg"} alt="Sample" width={2000} height={2000} />
+          <Img className="object-cover" src={"/img/ice-glass-shoot-full.jpg"} alt="Owra" width={2000} height={2000} />
         </div>
         <div className={cx(s.items, "grid grid-cols-1 tablet:grid-cols-4")}>
           <div className="flex flex-col items-center justify-start">
@@ -112,7 +112,7 @@ export default function About() {
         </div>
         <div>
           <div className={s.imgC}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+            <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
           </div>
         </div>
       </section>
