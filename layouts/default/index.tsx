@@ -12,6 +12,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useCursorStore } from "@/lib/store/cursor"
 import { useLenisStore } from "@/lib/store/lenis"
+import { gsap } from "@/lib/gsap"
 
 type Props = {
   children: ReactNode
@@ -32,8 +33,22 @@ const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
     lenis?.scrollTo(0, { immediate: true })
   }, [lenis])
 
+  useEffect(() => {
+    gsap.fromTo(
+      ".transition",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.4,
+        delay: 0.2,
+      }
+    )
+  }, [])
+
   return (
-    <div className={cx(s.defaultLayout, `theme-${theme}`, [s[theme]])}>
+    <div className={cx(s.defaultLayout, `theme-${theme}`, [s[theme]], "transition")}>
       <CustomHead
         {...(seo &&
           Object.assign(seo, {

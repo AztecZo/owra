@@ -128,7 +128,7 @@ export default function ProductGroup(props: ProductGroupProps) {
         </div>
         <div className="col-span-6">
           <div className={s.imgC}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Sample" width={2000} height={2000} />
+            <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
           </div>
         </div>
       </section>
