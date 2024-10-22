@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { IconArrow } from "../icons"
 import { Link } from "../utility/link"
+import { routes } from "@/lib/constants"
 
 export interface SliderMainProps {
   items: CardBlogProps[]
@@ -90,7 +91,7 @@ export default function SliderMain(props: SliderMainProps) {
               <p className={s.title}>{truncateByWords(item.title, 7)}</p>
               <p className={s.description}>{truncateByWords(item.description, 18)}</p>
               <p className={s.date}>{item.date}</p>
-              <Link className={s.link} href={`/blog/${item.url}`}>
+              <Link className={s.link} href={`/${routes.tr.blog.path}/${item.url}`}>
                 Devamını Oku
               </Link>
             </div>

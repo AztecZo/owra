@@ -44,11 +44,11 @@ export default function About() {
       </section>
 
       <section className={cx(s.purpose, "grid grid-cols-1 tablet:grid-cols-2")}>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center">
           <h2>{t("mission.heading")}</h2>
           <p>{t("mission.text")}</p>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center">
           <h2>{t("vision.heading")}</h2>
           <p>{t("vision.text")}</p>
         </div>
@@ -92,7 +92,7 @@ export default function About() {
 
       <section className={cx(s.franchise, "flex flex-col items-center")}>
         <p>{t("franchise.text")}</p>
-        <Link className={s.cta} href="/franchise">
+        <Link className={s.cta} href={`/${routes[locale as Locales].franchise.path}`}>
           <Button>{t("franchise.cta")}</Button>
         </Link>
       </section>
@@ -100,7 +100,7 @@ export default function About() {
       <section className={cx(s.career, "flex flex-col-reverse tablet:grid grid-cols-1 tablet:grid-cols-2 gap-10")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
           <p>{t("career.text")}</p>
-          <Link className={s.cta} href="/franchise">
+          <Link className={s.cta} href="mailto:careers@owra.co">
             <Button theme="white">{t("career.cta")}</Button>
           </Link>
         </div>

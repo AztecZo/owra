@@ -32,7 +32,7 @@ const BlogPost = (props: Props) => {
   return (
     <DefaultLayout seo={routes[locale as Locales].blog.seo}>
       <section className={cx(s.intro, "flex flex-col tablet:grid grid-cols-12")}>
-        <Link className={cx(s.back, "underline")} href="/blog">
+        <Link className={cx(s.back, "underline")} href={`/${routes.tr.blog.path}`}>
           Geri Dön
         </Link>
         <div className={cx(s.info, "flex flex-col col-start-1 tablet:col-start-7 col-end-13 tablet:col-end-12")}>

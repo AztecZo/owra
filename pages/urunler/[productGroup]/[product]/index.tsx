@@ -41,7 +41,7 @@ export default function ProductGroup(props: ProductGroupProps) {
     <DefaultLayout seo={routes[locale as Locales].products.seo}>
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <div className={s.breadcrumb}>
-          <Link href="/products">Kategoriler</Link>
+          <Link href={`/${routes[locale as Locales].products.path}`}>Kategoriler</Link>
           <span> / </span>
           <Link href={`/${routes[locale as Locales].products.path}/${props.productGroup}`}>{props.product.parent}</Link>
           <span> / </span>
@@ -117,7 +117,7 @@ export default function ProductGroup(props: ProductGroupProps) {
       </section>
       <section className={cx(s.franchise, "flex flex-col items-center")}>
         <p>{t("productDetail.franchise.text")}</p>
-        <Link className={s.cta} href="/franchise">
+        <Link className={s.cta} href={`/${routes[locale as Locales].franchise.path}`}>
           <Button>{t("productDetail.franchise.cta")}</Button>
         </Link>
       </section>
