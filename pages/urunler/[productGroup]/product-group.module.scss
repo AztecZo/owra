@@ -52,16 +52,31 @@
       gap: mobile-vw(16px);
     }
 
+    @include hover {
+      &:hover {
+        .imgC {
+          > img {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
     .imgC {
       @include dims(desktop-vw(260px), desktop-vw(310px));
       border-radius: desktop-vw(16px);
       border: 1px solid var(--science-blue);
+      overflow: hidden;
       padding: desktop-vw(40px);
 
       @include mobile {
         @include dims(mobile-vw(260px), mobile-vw(310px));
         border-radius: mobile-vw(16px);
         padding: mobile-vw(40px);
+      }
+
+      > img {
+        transition: 800ms transform var(--ease-out-expo);
       }
     }
   }

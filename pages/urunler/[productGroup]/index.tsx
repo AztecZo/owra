@@ -25,7 +25,7 @@ export default function ProductGroup(props: ProductGroupProps) {
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <h1>{props.parent}</h1>
         <div className={s.breadcrumb}>
-          <span>Kategoriler</span>
+          <Link href={`/${routes[locale as Locales].products.path}`}>Kategoriler</Link>
           <span> / </span>
           <span>{props.parent}</span>
         </div>

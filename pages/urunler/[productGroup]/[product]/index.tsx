@@ -31,8 +31,6 @@ export default function ProductGroup(props: ProductGroupProps) {
   const t = useTranslations()
 
   useIsomorphicLayoutEffect(() => {
-    console.log(props.product.textColor, props.product.backgroundColor)
-
     theme.setColors(props.product.textColor, props.product.backgroundColor)
     return () => theme.resetColors()
   }, [props.product.textColor, props.product.backgroundColor])
@@ -50,7 +48,9 @@ export default function ProductGroup(props: ProductGroupProps) {
       </section>
       <section className={cx(s.product, "flex flex-col tablet:grid grid-cols-12 gap-0 tablet:gap-20")}>
         <div className="col-span-6 flex flex-col-reverse tablet:grid grid-cols-12 gap-2 tablet:gap-4">
-          <div className={cx(s.imgs, "col-span-2 flex flex-row tablet:flex-col justify-center gap-2")}>
+          <div
+            className={cx(s.imgs, "col-span-2 flex flex-row tablet:flex-col justify-center tablet:justify-start gap-2")}
+          >
             {props.product.images.map((item, i) => {
               return (
                 <div
@@ -121,7 +121,7 @@ export default function ProductGroup(props: ProductGroupProps) {
           <Button>{t("productDetail.franchise.cta")}</Button>
         </Link>
       </section>
-      <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
+      {/* <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
         <div className={cx(s.formC, "col-span-6")}>
           <h2>{t("contact.heading")}</h2>
           <FormContact theme="white" formType={FormType.contact} />
@@ -131,7 +131,7 @@ export default function ProductGroup(props: ProductGroupProps) {
             <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
           </div>
         </div>
-      </section>
+      </section> */}
     </DefaultLayout>
   )
 }
