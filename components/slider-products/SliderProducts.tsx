@@ -7,10 +7,8 @@ import { useTranslations } from "next-intl"
 import { useEffect, useRef, useState } from "react"
 
 import Float from "@/components/animations/float"
-import { IconArrow } from "@/components/icons"
 import { SliderFade } from "@/components/slider-fade"
 import { Img } from "@/components/utility/img"
-import { Link } from "@/components/utility/link"
 import { Vortex } from "@/components/vortex"
 import { Leva } from "leva"
 
@@ -32,10 +30,10 @@ export default function SliderProducts() {
   return (
     <div className={cx(s.sliderProducts, "w-full h-full flex items-center justify-center")}>
       <div className={cx(s.sliderC, "z-20")}>
-        <SliderFade onSelectSlide={handleSelectSlide} autoplay>
+        <SliderFade onSelectSlide={handleSelectSlide}>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float amountY={[-3, 3]}>
-              <div className={s.imgC}>{<Sequence type={seqs.iceGlass} />}</div>
+              <div className={cx(s.imgC, "scale-110")}>{<Sequence type={seqs.iceGlass} />}</div>
             </Float>
             <div className={s.text}>
               <h3 className={s.title}>{t("s1.title")}</h3>
@@ -43,7 +41,7 @@ export default function SliderProducts() {
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float amountY={[-3, 3]}>
-              <div className={s.imgC}>{<Sequence type={seqs.boba} />}</div>
+              <div className={cx(s.imgC, "scale-105")}>{<Sequence type={seqs.boba} />}</div>
             </Float>
             <div className={s.text}>
               <h3 className={s.title}>{t("s2.title")}</h3>
@@ -51,7 +49,7 @@ export default function SliderProducts() {
           </div>
           <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float amountY={[-3, 3]}>
-              <div className={s.imgC}>{<Sequence type={seqs.coffee} />}</div>
+              <div className={cx(s.imgC, "scale-125")}>{<Sequence type={seqs.coffee} />}</div>
             </Float>
             <div className={s.text}>
               <h3 className={s.title}>{t("s3.title")}</h3>
@@ -66,7 +64,7 @@ export default function SliderProducts() {
           <Leva hidden />
         </Canvas>
       </div>
-      <Link
+      {/* <Link
         className={cx(
           s.cta,
           "absolute bottom-auto tablet:bottom-5 right-2 tablet:right-5 top-2 tablet:top-auto flex items-center gap-2 cursor-pointer"
@@ -79,7 +77,7 @@ export default function SliderProducts() {
             <IconArrow fill="var(--science-blue)" />
           </div>
         </span>
-      </Link>
+      </Link> */}
     </div>
   )
 }
@@ -125,8 +123,8 @@ export function Sequence({ type }: { type: unknown }) {
               className="object-contain"
               alt="Product Visual"
               src={`/img/sequences/${type}/s_${i}.png`}
-              height={800}
-              width={800}
+              height={1000}
+              width={1000}
             />
           </div>
         )
