@@ -3,6 +3,7 @@ import s from "./default-layout.module.scss"
 import cx from "clsx"
 import { useRouter } from "next/router"
 import { ReactNode, useEffect } from "react"
+import { gsap } from "@/lib/gsap"
 
 import { CustomHead } from "@/components/utility/custom-head"
 
@@ -12,7 +13,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { useCursorStore } from "@/lib/store/cursor"
 import { useLenisStore } from "@/lib/store/lenis"
-import { gsap } from "@/lib/gsap"
 
 type Props = {
   children: ReactNode
@@ -34,26 +34,20 @@ const DefaultLayout = ({ children, seo, theme = "light" }: Props) => {
   }, [lenis])
 
   useEffect(() => {
-    gsap.fromTo(
-      ".transition",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        duration: 0.4,
-        delay: 0.2,
-      }
-    )
+    gsap.from(".gsap-transition", {
+      opacity: 0,
+      duration: 0.4,
+      delay: 0.2,
+    })
   }, [])
 
   return (
-    <div className={cx(s.defaultLayout, `theme-${theme}`, [s[theme]], "transition")}>
+    <div className={cx(s.defaultLayout, `theme-${theme}`, "gsap-transition opacity-0")}>
       <CustomHead
         {...(seo &&
           Object.assign(seo, {
             canonical: `${baseUrl}${router.pathname}`,
-            keywords: ["ice"],
+            keywords: ["ice", "coffee", "ice glass", "bubble tea"],
           }))}
       />
       <Header />
