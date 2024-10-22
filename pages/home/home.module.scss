@@ -322,7 +322,7 @@
   }
 
   .text {
-    padding: desktop-vw(200px) desktop-vw(250px) desktop-vw(50px) desktop-vw(30px);
+    padding: 0 desktop-vw(250px) desktop-vw(50px) desktop-vw(30px);
 
     @include mobile {
       padding: mobile-vw(50px) mobile-vw(32px);

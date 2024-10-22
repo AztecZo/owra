@@ -102,6 +102,16 @@
       margin: 0 mobile-vw(25px);
     }
   }
+
+  .ice1 {
+    @include position(absolute, desktop-vw(230px), auto, auto, desktop-vw(1100px));
+    @include dims(desktop-vw(150px));
+
+    @include mobile {
+      @include position(absolute, mobile-vw(130px), auto, auto, mobile-vw(0px));
+      @include dims(mobile-vw(80px));
+    }
+  }
 }
 
 .purpose {
@@ -192,7 +202,7 @@
 
       .iconC {
         @include dims(desktop-vw(60px));
-        margin-bottom: desktop-vw(30px);
+        margin-bottom: desktop-vw(40px);
 
         @include mobile {
           @include dims(mobile-vw(60px));
@@ -206,7 +216,7 @@
         font-size: desktop-vw(30px);
         font-weight: 400;
         line-height: 1;
-        margin-bottom: desktop-vw(30px);
+        margin-bottom: desktop-vw(20px);
 
         @include mobile {
           font-size: mobile-vw(30px);
@@ -218,7 +228,7 @@
         @include dims(desktop-vw(260px), auto);
         color: var(--black);
         font-family: var(--font-fustat);
-        font-size: desktop-vw(20px);
+        font-size: desktop-vw(18px);
         font-weight: 400;
         text-align: center;
 
@@ -233,9 +243,30 @@
 
 .franchise {
   padding: desktop-vw(100px) 0;
+  position: relative;
 
   @include mobile {
     padding: mobile-vw(50px) 0;
+  }
+
+  .ice1 {
+    @include position(absolute, auto, auto, desktop-vw(-150px), desktop-vw(40px));
+    @include dims(desktop-vw(190px));
+
+    @include mobile {
+      @include position(absolute, mobile-vw(80px), auto, auto, mobile-vw(0px));
+      @include dims(mobile-vw(120px));
+    }
+  }
+
+  .ice2 {
+    @include position(absolute, auto, auto, desktop-vw(-180px), desktop-vw(220px));
+    @include dims(desktop-vw(180px));
+
+    @include mobile {
+      @include position(absolute, mobile-vw(380px), auto, auto, mobile-vw(270px));
+      @include dims(mobile-vw(110px));
+    }
   }
 
   > p {
@@ -268,7 +299,7 @@
   padding: desktop-vw(20px);
 
   @include mobile {
-    padding: mobile-vw(50px) mobile-vw(16px);
+    padding: mobile-vw(30px) mobile-vw(16px);
   }
 
   .text {

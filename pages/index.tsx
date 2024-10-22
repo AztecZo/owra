@@ -147,7 +147,13 @@ export default function Home() {
           <div className={cx(s.imgs, "col-span-6 flex items-start justify-end")}>
             <div className="relative flex">
               <div className={s.imgC}>
-                <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
+                <Img
+                  className="object-cover"
+                  src={"/img/ice-glass-shoot-full.jpg"}
+                  alt="Owra"
+                  width={2000}
+                  height={2000}
+                />
               </div>
               <div className={cx(s.iconC, s.icon1)}>
                 <ParallaxWrapper speedY={-0.5}>
@@ -161,7 +167,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           <div className={cx(s.text, "flex flex-col items-center justify-center tablet:items-start col-span-6")}>
             <p>{t("pros.description")}</p>
             <ul>
@@ -265,12 +270,15 @@ export default function Home() {
         </div>
         <div className="col-span-6">
           <div className={s.imgC}>
-            <Img className="object-cover" src={"/img/sample.jpg"} alt="Owra" width={2000} height={2000} />
+            <Img
+              className="object-cover"
+              src={"/img/ice-glass-commercial-social.jpg"}
+              alt="Owra"
+              width={1000}
+              height={1000}
+            />
           </div>
         </div>
-        {/* <div className={s.waveC}>
-          <Img src={s2} alt="Ice Cubes" />
-        </div> */}
       </section>
     </DefaultLayout>
   )
