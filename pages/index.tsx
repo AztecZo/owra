@@ -151,8 +151,8 @@ export default function Home() {
                   className="object-cover"
                   src={"/img/ice-glass-shoot-full.jpg"}
                   alt="Owra"
-                  width={2000}
-                  height={2000}
+                  width={1000}
+                  height={1000}
                 />
               </div>
               <div className={cx(s.iconC, s.icon1)}>
