@@ -104,11 +104,11 @@ export default function Header() {
           </div>
 
           <div className="flex flex-col tablet:flex-row items-center justify-between tablet:justify-center gap-5 tablet:gap-10">
-            <div className={s.navItem} onClick={closeMenu}>
+            {/* <div className={s.navItem} onClick={closeMenu}>
               <Link href={`/${routes[locale as Locales].franchise.path}`}>
                 {routes[locale as Locales].franchise.ui}
               </Link>
-            </div>
+            </div> */}
             <div className={s.navItem} onClick={closeMenu}>
               <Link href={`/${routes[locale as Locales].contact.path}`}>{routes[locale as Locales].contact.ui}</Link>
             </div>

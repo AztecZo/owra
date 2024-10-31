@@ -19,7 +19,7 @@
 
   .nav {
     color: var(--black);
-    margin-bottom: desktop-vw(450px);
+    margin-bottom: desktop-vw(480px);
     margin-top: desktop-vw(320px);
     padding: 0 desktop-vw(80px);
     z-index: 20;
@@ -126,7 +126,9 @@
   }
 
   .logoC {
-    @include position(absolute, auto, desktop-vw(120px), desktop-vw(50px), desktop-vw(120px));
+    @include position(absolute, auto, desktop-vw(120px), desktop-vw(50px), 50%);
+    @include dims(desktop-vw(560px), auto);
+    transform: translateX(-50%);
 
     @include mobile {
       @include position(absolute, auto, mobile-vw(20px), mobile-vw(60px), mobile-vw(20px));

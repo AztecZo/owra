@@ -43,7 +43,7 @@ export default function SliderProducts() {
               <h3 className={s.title}>{t("s1.title")}</h3>
             </div>
           </div>
-          <div className={cx(s.slide, "flex flex-col items-center")}>
+          {/* <div className={cx(s.slide, "flex flex-col items-center")}>
             <Float amountY={[-3, 3]}>
               <div className={cx(s.imgC, "scale-105")}>{<Sequence type={seqs.boba} />}</div>
             </Float>
@@ -58,7 +58,7 @@ export default function SliderProducts() {
             <div className={s.text}>
               <h3 className={s.title}>{t("s3.title")}</h3>
             </div>
-          </div>
+          </div> */}
         </SliderFade>
       </div>
       <div className="absolute top-0 left-0 right-0 bottom-0 z-0">

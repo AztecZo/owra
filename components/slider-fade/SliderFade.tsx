@@ -12,7 +12,7 @@ import { NextButton, PrevButton } from "@/components/utility/embla-carousel/butt
 import { IconArrow } from "../icons"
 
 export interface SliderFadeProps {
-  children: ReactNode[]
+  children: ReactNode[] | ReactNode
   autoplay?: boolean
   onSelectSlide?: (index: number) => void
   buttonStyles?: string
@@ -77,9 +77,12 @@ export default function SliderFade(props: SliderFadeProps) {
       <EmblaCarousel emblaRef={emblaRef} emblaApi={emblaApi} type="fade">
         {children}
       </EmblaCarousel>
-
-      <ButtonPrev className={props.buttonStyles} scroll={scrollPrev} disabled={prevBtnDisabled} />
-      <ButtonNext className={props.buttonStyles} scroll={scrollNext} disabled={nextBtnDisabled} />
+      {Array.isArray(children) && (
+        <>
+          <ButtonPrev className={props.buttonStyles} scroll={scrollPrev} disabled={prevBtnDisabled} />
+          <ButtonNext className={props.buttonStyles} scroll={scrollNext} disabled={nextBtnDisabled} />
+        </>
+      )}
     </div>
   )
 }

@@ -3,8 +3,8 @@
   z-index: 20;
 
   .logoC {
-    @include dims(100%, auto);
-    padding: desktop-vw(230px) 0 desktop-vw(240px) 0;
+    @include dims(desktop-vw(830px), auto);
+    padding: desktop-vw(150px) 0 desktop-vw(70px) 0;
 
     @include mobile {
       padding: mobile-vw(180px) 0;
@@ -25,7 +25,7 @@
   .cupC {
     @include position(absolute, 50%, auto, auto, 50%);
     @include dims(desktop-vw(500px));
-    transform: translate(-50%, calc(-50% + desktop-vw(-100px)));
+    transform: translate(-50%, calc(-50% + desktop-vw(-50px)));
 
     @include mobile {
       @include dims(mobile-vw(320px));

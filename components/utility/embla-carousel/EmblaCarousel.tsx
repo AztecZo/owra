@@ -6,7 +6,7 @@ import { EmblaViewportRefType } from "embla-carousel-react"
 import React, { ReactNode } from "react"
 
 interface Props {
-  children: ReactNode[]
+  children: ReactNode[] | ReactNode
   options?: EmblaOptionsType
   emblaRef?: EmblaViewportRefType
   emblaApi?: EmblaCarouselType | undefined
@@ -21,11 +21,17 @@ const EmblaCarousel = (props: Props) => {
     <div className={cx({ [s.emblaDefault]: type === "default", [s.emblaFade]: type === "fade" })}>
       <div className={s.emblaViewport} ref={emblaRef}>
         <div className={s.emblaContainer}>
-          {children?.map((item, i) => (
-            <div className={s.emblaSlide} key={i}>
-              <div className={s.emblaSlideContent}>{item}</div>
-            </div>
-          ))}
+          {Array.isArray(children) ? (
+            <>
+              {children?.map((item, i) => (
+                <div className={s.emblaSlide} key={i}>
+                  <div className={s.emblaSlideContent}>{item}</div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <div>{children}</div>
+          )}
         </div>
       </div>
     </div>

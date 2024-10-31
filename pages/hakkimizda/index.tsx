@@ -110,7 +110,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className={cx(s.franchise, "flex flex-col items-center")}>
+      {/* <section className={cx(s.franchise, "flex flex-col items-center")}>
         <p>{t("franchise.text")}</p>
         <Link className={s.cta} href={`/${routes[locale as Locales].franchise.path}`}>
           <Button>{t("franchise.cta")}</Button>
@@ -126,7 +126,7 @@ export default function About() {
             <Img className="object-contain" src={ice3} alt="Ice Cube" />
           </ParallaxWrapper>
         </div>
-      </section>
+      </section> */}
 
       <section className={cx(s.career, "flex flex-col-reverse tablet:grid grid-cols-1 tablet:grid-cols-2 gap-10")}>
         <div className={cx(s.text, "flex flex-col items-center justify-center")}>
