@@ -8,7 +8,15 @@ import { useRef } from "react"
 
 import { useSingle } from "@/api/queries/contact"
 import { useAll } from "@/api/queries/social-media"
-import { IconLinkedin, IconOwraLogo } from "@/components/icons"
+import {
+  IconFacebook,
+  IconInstagram,
+  IconLinkedin,
+  IconOwraLogo,
+  IconTiktok,
+  IconX,
+  IconYoutube,
+} from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import iceCubes from "@/public/img/ice-cubes-2.png"
@@ -51,12 +59,12 @@ export default function Footer() {
   )
 
   const icons: Record<SocialMedia, JSX.Element> = {
-    [SocialMedia.tiktok]: <IconLinkedin />,
-    [SocialMedia.linkedin]: <IconLinkedin />,
-    [SocialMedia.facebook]: <IconLinkedin />,
-    [SocialMedia.instagram]: <IconLinkedin />,
-    [SocialMedia.x]: <IconLinkedin />,
-    [SocialMedia.youtube]: <IconLinkedin />,
+    [SocialMedia.tiktok]: <IconTiktok fill={"var(--science-blue)"} />,
+    [SocialMedia.linkedin]: <IconLinkedin fill={"var(--science-blue)"} />,
+    [SocialMedia.facebook]: <IconFacebook fill={"var(--science-blue)"} />,
+    [SocialMedia.instagram]: <IconInstagram fill={"var(--science-blue)"} />,
+    [SocialMedia.x]: <IconX fill={"var(--science-blue)"} />,
+    [SocialMedia.youtube]: <IconYoutube fill={"var(--science-blue)"} />,
   }
 
   return (
