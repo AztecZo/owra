@@ -16,7 +16,7 @@
 
     @include mobile {
       @include position(relative, auto, auto, auto, auto);
-      @include dims(mobile-vw(90px), auto);
+      @include dims(mobile-vw(60px), auto);
       transform: none;
       z-index: 200;
     }

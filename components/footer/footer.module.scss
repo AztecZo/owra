@@ -25,7 +25,7 @@
     z-index: 20;
 
     @include mobile {
-      margin-bottom: mobile-vw(200px);
+      margin-bottom: mobile-vw(300px);
       margin-top: mobile-vw(120px);
       padding: 0 mobile-vw(16px);
     }
@@ -131,7 +131,9 @@
     transform: translateX(-50%);
 
     @include mobile {
-      @include position(absolute, auto, mobile-vw(20px), mobile-vw(60px), mobile-vw(20px));
+      @include position(absolute, auto, mobile-vw(20px), mobile-vw(60px), 50%);
+      @include dims(mobile-vw(300px), auto);
+      transform: translateX(-50%);
     }
   }
 
@@ -140,7 +142,7 @@
     z-index: 30;
 
     @include mobile {
-      @include position(absolute, auto, mobile-vw(-50px), mobile-vw(0px), mobile-vw(-90px));
+      @include position(absolute, auto, mobile-vw(-70px), mobile-vw(-20px), mobile-vw(-100px));
     }
   }
 }
