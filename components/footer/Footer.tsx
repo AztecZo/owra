@@ -110,11 +110,11 @@ export default function Footer() {
         </div>
       </nav>
 
-      <div className={cx(s.logoC, "logo-c")}>
+      <div className={cx(s.logoC, "logo-c", "pointer-events-none")}>
         <IconOwraLogo />
       </div>
 
-      <div className={cx(s.iceC, "ice-c")}>
+      <div className={cx(s.iceC, "ice-c", "pointer-events-none")}>
         <Img src={iceCubes} alt="Ice Cubes" />
       </div>
     </footer>
