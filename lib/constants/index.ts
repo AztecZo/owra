@@ -3,13 +3,13 @@ export const baseUrl = "owra.co"
 export const routes = {
   en: {
     home: {
-      ariaLabel: "Homepage",
+      ariaLabel: "Home",
       name: "home",
       path: "",
       ui: "Home",
       seo: {
-        title: "Owra",
-        description: "Kalite ve eğlencenin buluşma noktası.",
+        title: "Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     about: {
@@ -18,8 +18,8 @@ export const routes = {
       path: "hakkimizda",
       ui: "About",
       seo: {
-        title: "About | Owra",
-        description: "Kalite ve eğlencenin buluşma noktası.",
+        title: "About | Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     contact: {
@@ -28,8 +28,8 @@ export const routes = {
       path: "iletisim",
       ui: "Contact",
       seo: {
-        title: "Contact | Owra",
-        description: "Reach out, we're all ears!",
+        title: "Contact | Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     blog: {
@@ -38,8 +38,8 @@ export const routes = {
       path: "blog",
       ui: "Blog",
       seo: {
-        title: "Blog | Owra",
-        description: "Kalite ve eğlencenin buluşma noktası.",
+        title: "Blog | Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     franchise: {
@@ -48,8 +48,8 @@ export const routes = {
       path: "franchise",
       ui: "Franchise",
       seo: {
-        title: "Franchise | Owra",
-        description: "Frnachise.",
+        title: "Franchise | Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     products: {
@@ -58,8 +58,8 @@ export const routes = {
       path: "urunler",
       ui: "Products",
       seo: {
-        title: "Products | Owra",
-        description: "Products.",
+        title: "Products | Chill Owra",
+        description: "Where quality meets fun.",
       },
     },
     notFound: {
@@ -80,7 +80,7 @@ export const routes = {
       path: "",
       ui: "Anasayfa",
       seo: {
-        title: "Owra",
+        title: "Chill Owra",
         description: "Kalite ve eğlencenin buluşma noktası!",
       },
     },
@@ -90,7 +90,7 @@ export const routes = {
       path: "hakkimizda",
       ui: "Hakkımızda",
       seo: {
-        title: "Hakkımızda | Owra",
+        title: "Hakkımızda | Chill Owra",
         description: "Kalite ve eğlencenin buluşma noktası!",
       },
     },
@@ -100,8 +100,8 @@ export const routes = {
       path: "iletisim",
       ui: "İletişim",
       seo: {
-        title: "İletişim | Owra",
-        description: "Bize ulaşın, kulağımız sizde!",
+        title: "İletişim | Chill Owra",
+        description: "Kalite ve eğlencenin buluşma noktası.",
       },
     },
     blog: {
@@ -110,7 +110,7 @@ export const routes = {
       path: "blog",
       ui: "Blog",
       seo: {
-        title: "Blog | Owra",
+        title: "Blog | Chill Owra",
         description: "Kalite ve eğlencenin buluşma noktası!",
       },
     },
@@ -120,8 +120,8 @@ export const routes = {
       path: "franchise",
       ui: "Franchise",
       seo: {
-        title: "Franchise | Owra",
-        description: "Frnachise.",
+        title: "Franchise | Chill Owra",
+        description: "Kalite ve eğlencenin buluşma noktası.",
       },
     },
     products: {
@@ -130,8 +130,8 @@ export const routes = {
       path: "urunler",
       ui: "Ürünler",
       seo: {
-        title: "Ürünler | Owra",
-        description: "Ürünler.",
+        title: "Ürünler | Chill Owra",
+        description: "Kalite ve eğlencenin buluşma noktası.",
       },
     },
     notFound: {
