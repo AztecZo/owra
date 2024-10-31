@@ -6,10 +6,10 @@
             "p3": "Innovation",
             "p4": "Meet!"
         },
-        "description": "At Chill Chill Owra, we're here to bring quality and fun into your life. Whether it's refreshing ice, freshly squeezed fruit juices, or the unique aroma of coffee, we aim to provide the best experience with every product.",
-        "why": "Why Chill Chill Owra?",
+        "description": "At Chill Owra, we're here to bring quality and fun into your life. Whether it's refreshing ice, freshly squeezed fruit juices, or the unique aroma of coffee, we aim to provide the best experience with every product.",
+        "why": "Why Chill Owra?",
         "pros": {
-            "description": "Experience quality and fun with Chill Chill Owra. We're here to add a little more joy and pleasure to your life.",
+            "description": "Experience quality and fun with Chill Owra. We're here to add a little more joy and pleasure to your life.",
             "items": {
                 "i1": {
                     "title": "Freshness and Flavor",
@@ -31,42 +31,42 @@
         },
         "prosSlider": {
             "s1": {
-                "title": "Quality with Chill Chill Owra",
-                "description": "At Chill Chill Owra, we prioritize quality in every product. We meticulously ensure the highest standards at every stage, from the materials we use to the production process. Your satisfaction is our priority."
+                "title": "Quality with Chill Owra",
+                "description": "At Chill Owra, we prioritize quality in every product. We meticulously ensure the highest standards at every stage, from the materials we use to the production process. Your satisfaction is our priority."
             },
             "s2": {
-                "title": "Fun with Chill Chill Owra",
-                "description": "Chill Chill Owra is not just a brand, it's the creator of fun moments. Our products aim to add joy to your daily routine, whether with friends or family."
+                "title": "Fun with Chill Owra",
+                "description": "Chill Owra is not just a brand, it's the creator of fun moments. Our products aim to add joy to your daily routine, whether with friends or family."
             },
             "s3": {
-                "title": "The Chill Chill Owra Difference",
-                "description": "Chill Chill Owra creates a difference by combining quality and fun. We aim to make every moment unforgettable with our products."
+                "title": "The Chill Owra Difference",
+                "description": "Chill Owra creates a difference by combining quality and fun. We aim to make every moment unforgettable with our products."
             }
         },
         "contact": {
             "heading": "Have Any Questions? We'd Be Happy to Help!"
         },
         "footer": {
-            "copyright": "©2024 Chill Chill Owra",
+            "copyright": "©2024 Chill Owra",
             "madeBy": "Byte My Work"
         }
     },
     "about": {
         "intro": {
             "heading": {
-                "p1": "Chill Chill Owra’s",
+                "p1": "Chill Owra’s",
                 "p2": "Story"
             },
-            "text": "Chill Chill Owra was founded with the aim of bringing quality and fun into your life. It all started with our desire to offer fresh and high-quality products to our loved ones. Today, we offer a wide range of products, from icy fruit juices to coffee and other beverages."
+            "text": "Chill Owra was founded with the aim of bringing quality and fun into your life. It all started with our desire to offer fresh and high-quality products to our loved ones. Today, we offer a wide range of products, from icy fruit juices to coffee and other beverages."
         },
         "marquee": "Where quality meets fun",
         "mission": {
             "heading": "Our Mission",
-            "text": "At Chill Chill Owra, we aim to provide quality and enjoyment with every sip. We carefully select our products, prepare them with the freshest ingredients, and present them to you. Customer satisfaction and promoting a healthy lifestyle are our top priorities."
+            "text": "At Chill Owra, we aim to provide quality and enjoyment with every sip. We carefully select our products, prepare them with the freshest ingredients, and present them to you. Customer satisfaction and promoting a healthy lifestyle are our top priorities."
         },
         "vision": {
             "heading": "Our Vision",
-            "text": "To be a part of moments where quality and fun meet all over Turkey. When people think of Chill Chill Owra, we want the first things that come to mind to be trust and taste."
+            "text": "To be a part of moments where quality and fun meet all over Turkey. When people think of Chill Owra, we want the first things that come to mind to be trust and taste."
         },
         "values": {
             "quality": {
@@ -217,7 +217,7 @@
     },
     "productSlider": {
         "s1": {
-            "title": "Chill Chill Owra"
+            "title": "Chill Owra"
         },
         "s2": {
             "title": "Chill Owra Boba"
