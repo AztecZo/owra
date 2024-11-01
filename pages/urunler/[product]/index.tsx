@@ -8,7 +8,6 @@ import { useIsomorphicLayoutEffect } from "usehooks-ts"
 
 import { single } from "@/api/queries/product-detail"
 import { Marquee } from "@/components/animations/marquee"
-import { Button } from "@/components/button"
 import { IconStar } from "@/components/icons"
 import { SliderProducts } from "@/components/slider-products"
 import { Img } from "@/components/utility/img"
@@ -19,7 +18,6 @@ import { useTheme } from "@/lib/store/theme"
 import { Locales, Product } from "@/types"
 
 export interface ProductGroupProps {
-  productGroup: string
   product: Product
 }
 
@@ -39,8 +37,6 @@ export default function ProductGroup(props: ProductGroupProps) {
       <section className={cx(s.intro, "flex flex-col justify-center")}>
         <div className={s.breadcrumb}>
           <Link href={`/${routes[locale as Locales].products.path}`}>{t("products.productGroups")}</Link>
-          <span> / </span>
-          <Link href={`/${routes[locale as Locales].products.path}/${props.productGroup}`}>{props.product.parent}</Link>
           <span> / </span>
           <span>{props.product.name}</span>
         </div>
@@ -85,7 +81,7 @@ export default function ProductGroup(props: ProductGroupProps) {
               {props.product.other.map((item, i) => {
                 return (
                   <Link
-                    href={`/${routes[locale as Locales].products.path}/${props.productGroup}/${item.url}`}
+                    href={`/${routes[locale as Locales].products.path}/${item.url}`}
                     className={cx(s.imgC, "cursor-pointer")}
                     key={i}
                   >
@@ -114,12 +110,12 @@ export default function ProductGroup(props: ProductGroupProps) {
           </div>
         </div>
       </section>
-      <section className={cx(s.franchise, "flex flex-col items-center")}>
+      {/* <section className={cx(s.franchise, "flex flex-col items-center")}>
         <p>{t("productDetail.franchise.text")}</p>
         <Link className={s.cta} href={`/${routes[locale as Locales].franchise.path}`}>
           <Button>{t("productDetail.franchise.cta")}</Button>
         </Link>
-      </section>
+      </section> */}
       {/* <section className={cx(s.contact, "flex flex-col-reverse tablet:grid grid-cols-12")}>
         <div className={cx(s.formC, "col-span-6")}>
           <h2>{t("contact.heading")}</h2>
@@ -146,7 +142,6 @@ export async function getServerSideProps({ query, locale }: GetServerSidePropsCo
 
   return {
     props: {
-      productGroup: query.productGroup,
       productName: query.product,
       product,
       messages: (await import(`@/messages/${locale}.json`)).default,
