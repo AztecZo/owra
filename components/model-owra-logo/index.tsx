@@ -1,7 +1,7 @@
 import { gsap } from "@/lib/gsap"
 import { useGLTF } from "@react-three/drei"
-import { RapierRigidBody, RigidBody } from "@react-three/rapier"
-import React, { ReactNode, useEffect } from "react"
+import { CuboidCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
+import React, { ReactNode, useEffect, useRef } from "react"
 import * as THREE from "three"
 import { GLTF } from "three-stdlib"
 
@@ -60,26 +60,72 @@ interface PhysicsWrapperProps {
 }
 
 export default function PhysicsWrapper(props: PhysicsWrapperProps) {
-  const api = React.useRef<RapierRigidBody>(null)
-  const random = () => gsap.utils.random(-10, 10, 0.1)
+  const api = useRef<RapierRigidBody>(null)
+  const originalPosition = useRef(new THREE.Vector3(...props.position)) // Store original position as a Vector3
+  const threshold = 0.1 // Max distance allowed from original position before pulling back
 
   useEffect(() => {
-    const vec3 = new THREE.Vector3()
-    if (!api.current) return
-    api.current.addTorque(vec3.set(0, 50, 0), false)
+    if (api.current) {
+      // Ensure we set the exact original position using Rapier's API
+      api.current.setTranslation(originalPosition.current, true)
+    }
   }, [])
+
+  // Function to return the object to its original position if it exceeds the threshold
+  const returnToOriginalPosition = () => {
+    if (!api.current) return
+
+    const translation = api.current.translation() // Get the current translation
+    const currentPos = new THREE.Vector3(translation.x, translation.y, translation.z)
+    const distanceFromOriginal = currentPos.distanceTo(originalPosition.current)
+
+    // If the object has moved too far from its original position
+    if (distanceFromOriginal > threshold) {
+      gsap.to(currentPos, {
+        x: originalPosition.current.x,
+        y: originalPosition.current.y,
+        z: originalPosition.current.z,
+        duration: 2,
+        ease: "back.out",
+        onUpdate: () => {
+          // Explicitly set the translation using Rapier API to ensure it snaps back
+          api.current?.setTranslation(currentPos, true)
+        },
+        onComplete: () => {
+          // Ensure the final position is set exactly to the original after animation
+          api.current?.setTranslation(originalPosition.current, true)
+          api.current?.enableCcd(true)
+        },
+      })
+    }
+  }
+
+  // Handle mouse pointer interaction (assuming you have a pointer collision detection)
+  const handlePointerEnter = () => {
+    api.current?.enableCcd(false)
+    // Check after 0.5 seconds if it needs to return to its original position
+    gsap.delayedCall(0.5, () => {
+      returnToOriginalPosition()
+    })
+  }
+  console.log("RENDER")
 
   return (
     <RigidBody
       ref={api}
-      enabledRotations={[true, true, false]}
-      enabledTranslations={[false, false, false]}
-      angularDamping={10}
+      enabledRotations={[true, true, true]}
+      enabledTranslations={[true, true, false]}
+      angularDamping={5}
+      linearDamping={2}
       friction={0.1}
-      rotation={new THREE.Euler(Math.PI / 2, 0, 0)}
+      restitution={0.8}
       position={props.position}
       scale={props.scale}
       canSleep={false}
+      colliders="cuboid"
+      ccd={false}
+      onCollisionExit={handlePointerEnter} // Trigger interaction
+      rotation={new THREE.Euler(gsap.utils.random(-10, 10), gsap.utils.random(-10, 10), gsap.utils.random(-10, 10))}
     >
       {props.children}
     </RigidBody>

@@ -124,7 +124,7 @@ export default function PopSlider() {
 
 function Scene() {
   return (
-    <Canvas dpr={2}>
+    <Canvas dpr={2} gl={{ antialias: true, pixelRatio: window.devicePixelRatio }}>
       <Suspense fallback={<LoadingScreen />}>
         <color attach="background" args={["#ffffff"]} />
 
@@ -134,13 +134,15 @@ function Scene() {
 
         <ambientLight intensity={1.25} />
         <directionalLight intensity={5.75} position={[0, 10, 0]} />
-        <Environment preset="studio" environmentIntensity={0.15} environmentRotation={new THREE.Euler(0, 400, 0)} />
+        <Environment preset="studio" environmentIntensity={0.005} environmentRotation={new THREE.Euler(0, 400, 0)} />
 
         {/* <OrbitControls /> */}
 
         <Stats showPanel={0} />
       </Suspense>
-      <Leva hidden></Leva>
+      <Html>
+        <Leva />
+      </Html>
     </Canvas>
   )
 }
@@ -723,6 +725,8 @@ function Coffee() {
       packageMap.rotation = Math.PI * 2.5
       packageMap.flipY = true
       packageMap.center = new THREE.Vector2(0.5, 0.5)
+      packageMap.magFilter = THREE.NearestFilter
+      packageMap.generateMipmaps = false
 
       const aspectRatio = packageMap.image.width / packageMap.image.height
       packageMap.repeat.set(1, -2.2)
@@ -745,13 +749,12 @@ function Coffee() {
   const materialProps = useControls(
     "coffe cup material",
     {
-      meshPhysicalMaterial: false,
       transmissionSampler: false,
       backside: false,
       backsideThickness: { value: 2, min: -10, max: 10 },
       samples: { value: 3, min: 0, max: 32, step: 1 },
-      resolution: { value: 2048, min: 256, max: 2048, step: 256 },
-      backsideResolution: { value: 2048, min: 32, max: 2048, step: 256 },
+      resolution: { value: 1024, min: 256, max: 2048, step: 256 },
+      backsideResolution: { value: 1024, min: 32, max: 2048, step: 256 },
       transmission: { value: 1, min: 0, max: 1 },
       roughness: { value: 0.1, min: 0, max: 1, step: 0.01 },
       ior: { value: 3.5, min: 1, max: 5, step: 0.01 },
@@ -818,8 +821,8 @@ function Coffee() {
           <group scale={0.95}>
             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]} receiveShadow={false} castShadow={false}>
               <meshStandardMaterial
-                // map={coffeeMap}
-                color={new THREE.Color("#381e03")}
+                map={coffeeMap}
+                color={new THREE.Color("#CCAE88")}
                 toneMapped={false}
                 side={THREE.DoubleSide}
               />
@@ -828,32 +831,10 @@ function Coffee() {
 
           <group scale={0.98}>
             <mesh geometry={cupNodes.Object_1.geometry} position={[0, 0, 0]}>
-              <MeshTransmissionMaterial toneMapped={false} side={THREE.DoubleSide} {...materialProps} />
+              <MeshTransmissionMaterial {...materialProps} />
             </mesh>
           </group>
-
-          {/* <mesh
-            castShadow={false}
-            receiveShadow={false}
-            geometry={new THREE.CylinderGeometry(4.05, 4.05, 8.25, 64, 1, true)}
-            position={[0, 5.8, 0]}
-          >
-            <meshStandardMaterial map={packageMap} toneMapped={false} side={THREE.DoubleSide} />
-          </mesh> */}
         </group>
-        {/* <group scale={1.1} position={[0, -0.75, 0]} rotation={[Math.PI / 1, 0, 0]}>
-          <mesh geometry={new THREE.PlaneGeometry(5, 7)}>
-            <meshPhysicalMaterial
-              map={fillMap}
-              bumpMap={fillMap}
-              bumpScale={4}
-              color={"#FFFFFF"}
-              transparent={true}
-              opacity={0.9}
-              side={THREE.DoubleSide}
-            />
-          </mesh>
-        </group> */}
       </group>
     </>
   )
@@ -866,18 +847,10 @@ interface PhysicsLayerProps {
 const PhysicsLayer = memo((props: PhysicsLayerProps) => {
   return (
     <Physics gravity={[0, 0, 0]} debug>
-      <Float>
-        <ModelOwraLogo modelType={OwraModelTypes.w} scale={1.3} position={new THREE.Vector3(-10, -4, 0)} />
-      </Float>
-      <Float>
-        <ModelOwraLogo modelType={OwraModelTypes.o} scale={0.8} position={new THREE.Vector3(-10, 5, 0)} />
-      </Float>
-      <Float>
-        <ModelOwraLogo modelType={OwraModelTypes.r} scale={0.7} position={new THREE.Vector3(9, 4, 0)} />
-      </Float>
-      <Float>
-        <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
-      </Float>
+      <ModelOwraLogo modelType={OwraModelTypes.w} scale={1.3} position={new THREE.Vector3(-10, -4, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.o} scale={0.8} position={new THREE.Vector3(-10, 5, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.r} scale={0.7} position={new THREE.Vector3(9, 4, 0)} />
+      <ModelOwraLogo modelType={OwraModelTypes.a} scale={1.2} position={new THREE.Vector3(11, -4, 0)} />
       <Pointer />
     </Physics>
   )
@@ -890,7 +863,7 @@ function Pointer({ vec = new THREE.Vector3() }) {
 
   useFrame(({ pointer, viewport }) => {
     api.current?.setNextKinematicTranslation(
-      vec.set((pointer.x * viewport.width) / 2, (pointer.y * viewport.height) / 2, 1.5)
+      vec.set((pointer.x * viewport.width) / 2, (pointer.y * viewport.height) / 2, 0)
     )
   })
 

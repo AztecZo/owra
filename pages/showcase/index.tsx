@@ -1,4 +1,8 @@
-import PopSlider from "@/components/pop-slider"
+import dynamic from "next/dynamic"
+
+const PopSlider = dynamic(() => import("@/components/pop-slider"), {
+  ssr: false,
+})
 
 export default function Showcase() {
   return (
