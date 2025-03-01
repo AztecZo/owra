@@ -102,9 +102,8 @@ export default function Footer() {
             })}
           </span>
           <span>
-            Made by{" "}
-            <Link className="underline" href="https://bytemywork.com">
-              Byte My Work
+            <Link className="underline" href="https://storkmotion.com">
+              Stork Motion
             </Link>
           </span>
         </div>
